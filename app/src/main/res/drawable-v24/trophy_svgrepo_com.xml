@@ -12,7 +12,7 @@
   <path
       android:pathData="M50,80m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"
       android:fillColor="#FFFFFF"
-      android:fillAlpha="0.5"/>
+      android:fillAlpha="0.7"/>
   <path
       android:pathData="M255,135m-25,0a25,25 0,1 1,50 0a25,25 0,1 1,-50 0"
       android:fillColor="#FF9811"/>
@@ -22,7 +22,7 @@
   <path
       android:pathData="M270,80m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"
       android:fillColor="#FFFFFF"
-      android:fillAlpha="0.5"/>
+      android:fillAlpha="0.7"/>
   <path
       android:pathData="M50,30v20c0,60.75 49.25,110 110,110s110,-49.25 110,-110V30H50z"
       android:fillColor="#FFDA44"/>
