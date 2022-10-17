@@ -32,19 +32,19 @@ class GameView(context: Context) : View(context) {
         super.onDraw(canvas)
         // End the Game after getting 1000 Points for testing
         points++
-        if(points == 10000) this.gameover()
+        if(points == 1000) this.gameover()
 
         // static background
-        map.drawSky(canvas)
+        //map.drawSky(canvas)
 
         //cloud background-fragment
-        map.drawClouds(canvas, 2);
+        map.drawClouds(canvas, 0.4);
 
         // mountain background-fragment
-        map.drawMountains(canvas, 1);
+        map.drawMountains(canvas, 2);
 
         // grass background-fragment
-        map.drawGrass(canvas, 5);
+        map.drawGrass(canvas, 15);
 
         // draw the player on right position with right animation
         player.setjumpStats()
@@ -66,7 +66,7 @@ class GameView(context: Context) : View(context) {
         val action = event.action
         when (action)
         {
-            MotionEvent.ACTION_UP -> {
+            MotionEvent.ACTION_DOWN -> {
                 player.sprung()
             }
             MotionEvent.ACTION_MOVE -> {
