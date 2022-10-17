@@ -17,9 +17,9 @@ open class RectObstacle(var x: Int, var y: Int, var width: Int, var height: Int)
     }
 
     fun draw(c: Canvas, step: Int) {
-        drawable.setBounds(this.x, this.y + step, this.x+width, this.y+height+step )
-        hitbox.top = this.y + step
-        hitbox.bottom = this.y + height + step
+        drawable.setBounds(this.x + step, this.y, this.x+width+step, this.y+height )
+        hitbox.left = this.x + step
+        hitbox.right = this.x + width + step
 
         drawable.draw(c)
     }
