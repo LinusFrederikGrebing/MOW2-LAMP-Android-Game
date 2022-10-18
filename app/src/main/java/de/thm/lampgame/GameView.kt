@@ -66,7 +66,7 @@ class GameView(context: Context) : View(context) {
         val action = event.action
         when (action)
         {
-            MotionEvent.ACTION_DOWN -> {
+            MotionEvent.ACTION_UP -> {
                 player.sprung()
             }
             MotionEvent.ACTION_MOVE -> {
