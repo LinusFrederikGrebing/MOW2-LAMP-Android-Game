@@ -21,5 +21,5 @@ class BitmapObstacles(context: Context, val TubeHeight : Int, var tubeX : Int) {
     fun drawTubes(canvas: Canvas,  tubeVelocity : Int){
             tubeX -= tubeVelocity
             canvas.drawBitmap(bottomtube!!, tubeX.toFloat(), TubeHeight.toFloat(), null)
-        }
     }
+}

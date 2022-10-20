@@ -42,15 +42,9 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) {
        charY = screenHeight - 500
        charX = screenWidth / 2 - 600
    }
-    fun getchar(): Bitmap? {
-        return rechar[0]
-    }
 
     fun setjumpStats(collision : Boolean){
-        Log.i("test", collision.toString())
-
-
-        if (!collision || velocity <= 0) {
+        if (!collision  || velocity <= 0) {
             jumpState = true
             velocity += gravity
             charY += velocity
