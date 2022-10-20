@@ -37,6 +37,10 @@
             android:name=".GameOver"
             android:screenOrientation="landscape">
         </activity>
+        <activity
+            android:name=".Settings"
+            android:screenOrientation="landscape">
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
