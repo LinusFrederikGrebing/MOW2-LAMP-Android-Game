@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
+import android.util.Log
 import java.util.*
 
 class Player(context: Context, val screenHeight : Int, val screenWidth : Int) {
@@ -17,9 +18,11 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) {
     var charY : Int = 0
     var charframe = 0
     var velocity = 0
-    var gravity = 5
+    var gravity = 3
     var jumpCount = 0
     var jumpState = false
+        get() = field
+        set(value){ field = value }
     var birdsneek = false
         get() = field
         set(value){ field = value }
@@ -51,15 +54,18 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) {
        charX = screenWidth / 2 - 600
    }
 
-    fun setjumpStats(){
-        if (charY < screenHeight - rechar[0]!!.height-210 || velocity <= 0) {
+    fun setjumpStats(collision : Boolean){
+        if (!collision  || velocity <= 0) {
+            jumpState = true
             velocity += gravity
             charY += velocity
 
         } else {
             jumpCount = 0
             jumpState = false
+
         }
+
     }
 
     fun drawChar(canvas: Canvas){
@@ -76,7 +82,7 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) {
     fun sprung(){
         if(jumpCount < 2 && !birdsneek){
             jumpCount++
-            velocity = -60
+            velocity = -45
             jumpState = true
         }
     }

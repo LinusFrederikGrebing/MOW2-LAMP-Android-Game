@@ -16,6 +16,7 @@ class GrassLandscapeMap(context: Context, screenHeight : Int, private val screen
     var cloudX = 0.0
     var skyX = 0
     var grassX = 0
+    var grassY = 850f
     var mountainX = 0
 
 
@@ -29,7 +30,7 @@ class GrassLandscapeMap(context: Context, screenHeight : Int, private val screen
         val ratio = width / height
         newHeigt = screenHeight
         newWidth = (ratio * screenHeight).toInt()
-        grass = Bitmap.createScaledBitmap(grass, newWidth, newHeigt, false)
+        grass = Bitmap.createScaledBitmap(grass, newWidth, 200, true)
         clouds = Bitmap.createScaledBitmap(clouds, newWidth, newHeigt, false)
         sky = Bitmap.createScaledBitmap(sky, newWidth, newHeigt, false)
         mountain = Bitmap.createScaledBitmap(mountain, newWidth, newHeigt, false)
@@ -66,9 +67,9 @@ class GrassLandscapeMap(context: Context, screenHeight : Int, private val screen
         grassX -= speed
         if (grassX < -newWidth) grassX = 0
 
-         canvas.drawBitmap(grass, grassX.toFloat(), 0f, null)
+         canvas.drawBitmap(grass, grassX.toFloat(), grassY, null)
         if (grassX < screenWidth - newWidth) {
-            canvas.drawBitmap(grass, (grassX + newWidth).toFloat(), 0f, null)
+            canvas.drawBitmap(grass, (grassX + newWidth).toFloat(), grassY, null)
         }
     }
 
