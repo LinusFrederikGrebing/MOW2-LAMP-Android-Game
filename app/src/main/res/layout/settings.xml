@@ -30,6 +30,7 @@
         android:layout_marginTop="112dp"
         android:progressTint="#496289"
         android:thumbTint="#496289"
+        android:progress="100"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,5 +43,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sound_symbol" />
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="playSound"
+        android:src="@android:drawable/ic_media_play"
+        android:text="Play"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="181dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
