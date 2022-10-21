@@ -14,7 +14,7 @@ class GameView(context: Context) : View(context) {
     var screenHeight = 0
     var runnable: Runnable? = null
     val UPDATE_MILLIS: Long = 30
-    var points = 0
+        get() = field
 
     init {
         val display = (getContext() as Activity).windowManager.defaultDisplay
@@ -31,24 +31,24 @@ class GameView(context: Context) : View(context) {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         // End the Game after getting 1000 Points for testing
-        points++
-        if(points == 1000) this.gameover()
+        if(player.points == 1000) this.gameover()
 
         // static background
         //map.drawSky(canvas)
 
         //cloud background-fragment
-        map.drawClouds(canvas, 0.4);
+        map.drawClouds(canvas, 0.4)
 
         // mountain background-fragment
-        map.drawMountains(canvas, 2);
+        map.drawMountains(canvas, 2)
 
         // grass background-fragment
-        map.drawGrass(canvas, 15);
+        map.drawGrass(canvas, 15)
 
-        // draw the player on right position with right animation
+        // draw the player and the firebar on right position with right animation
         player.setjumpStats()
         player.drawChar(canvas)
+        player.drawFirebar(canvas)
 
         // refresh
         handler!!.postDelayed(runnable!!, UPDATE_MILLIS)
@@ -57,7 +57,7 @@ class GameView(context: Context) : View(context) {
     // Start GameOver Activity
     private fun gameover() {
         val intent = Intent(context, GameOver::class.java)
-        intent.putExtra("POINTS", points)
+        intent.putExtra("POINTS", player.points)
         context.startActivity(intent)
     }
 

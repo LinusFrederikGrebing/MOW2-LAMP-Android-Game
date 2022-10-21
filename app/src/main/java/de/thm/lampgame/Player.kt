@@ -9,6 +9,10 @@ import java.util.*
 class Player(context: Context, val screenHeight : Int, val screenWidth : Int) {
     var char = arrayOfNulls<Bitmap>(6)
     var rechar = arrayOfNulls<Bitmap>(6)
+    var firebar = arrayOfNulls<Bitmap>(5)
+    var charframe_firebar = 0
+    var points = 0
+    var fire: Float = 100F
     var charX : Int = 0
     var charY : Int = 0
     var charframe = 0
@@ -28,6 +32,13 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) {
        char[3] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_walk3)
        char[4] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_sneek)
        char[5] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_jump_fire)
+
+       // init firebar-Bitmap
+       firebar[0] = BitmapFactory.decodeResource(context.resources, R.drawable.firebar100)
+       firebar[1] = BitmapFactory.decodeResource(context.resources, R.drawable.firebar80)
+       firebar[2] = BitmapFactory.decodeResource(context.resources, R.drawable.firebar60)
+       firebar[3] = BitmapFactory.decodeResource(context.resources, R.drawable.firebar40)
+       firebar[4] = BitmapFactory.decodeResource(context.resources, R.drawable.firebar20)
 
        // resize char
        rechar[0] = char[0]?.let { Bitmap.createScaledBitmap(it, 200, 200, true) }
@@ -54,6 +65,12 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) {
     fun drawChar(canvas: Canvas){
         charframe = if(birdsneek) 4 else if(jumpState) 5 else if (charframe == 0) 1 else if(charframe == 1) 2 else if(charframe == 2) 3 else 0
         rechar[charframe]?.let { canvas.drawBitmap(it, charX.toFloat(), charY.toFloat(), null) }
+        points++
+        fire = fire - 0.1F
+    }
+    fun drawFirebar(canvas: Canvas) {
+        charframe_firebar = if(fire > 80) 0 else if (fire > 60) 1 else if (fire > 40) 2 else if (fire > 20) 3 else 4
+        firebar[charframe_firebar]?.let {canvas.drawBitmap(it, (screenWidth - screenWidth).toFloat(), (screenHeight/6).toFloat(), null)}
     }
 
     fun sprung(){
