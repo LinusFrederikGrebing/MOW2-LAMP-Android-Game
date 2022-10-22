@@ -13,7 +13,7 @@ import android.net.Uri
 
 import de.thm.lampgame.R
 
-class Settings : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
