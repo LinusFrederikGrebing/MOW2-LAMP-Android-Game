@@ -1,12 +1,13 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import de.thm.lampgame.R
 
-class GameOver : Activity() {
+class GameOverActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +18,7 @@ class GameOver : Activity() {
     }
 
     fun restart(view: View){
-        val intent = Intent(this, StartGame::class.java)
+        val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()
     }

@@ -1,9 +1,10 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import de.thm.lampgame.R
 
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,13 +13,13 @@ class MainActivity : Activity() {
     }
 
     fun startGame(view: View?) {
-        val intent = Intent(this, StartGame::class.java)
+        val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     fun buttonSettings(view: View?) {
-        val intent = Intent(this, Settings::class.java)
+        val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
         finish()
     }

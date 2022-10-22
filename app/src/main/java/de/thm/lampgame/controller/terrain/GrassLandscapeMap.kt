@@ -1,10 +1,11 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller.terrain
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.view.View
+import de.thm.lampgame.R
 
 class GrassLandscapeMap(context: Context, screenHeight : Int, private val screenWidth: Int) : View(context) {
     var sky: Bitmap

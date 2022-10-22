@@ -14,7 +14,7 @@
 
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".controller.MainActivity"
             android:screenOrientation="landscape"
             android:turnScreenOn="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -30,15 +30,15 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".StartGame"
+            android:name=".controller.StartGameActivity"
             android:screenOrientation="landscape">
         </activity>
         <activity
-            android:name=".GameOver"
+            android:name=".controller.GameOverActivity"
             android:screenOrientation="landscape">
         </activity>
         <activity
-            android:name=".Settings"
+            android:name=".controller.SettingsActivity"
             android:screenOrientation="landscape">
         </activity>
 

@@ -1,6 +1,8 @@
-package de.thm.lampgame
+package de.thm.lampgame.model
 
-class TilesetQueue {
+import de.thm.lampgame.controller.Tileset
+
+class TilesetQueueModel {
     var queue = ArrayDeque<Tileset>(2)
 
     fun initQueue(t1: Tileset, t2: Tileset, screenWidth: Int){

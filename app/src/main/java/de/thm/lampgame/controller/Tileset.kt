@@ -1,7 +1,9 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller
 
 import android.content.Context
 import android.graphics.*
+import de.thm.lampgame.R
+import de.thm.lampgame.controller.terrain.BitmapTerrain
 
 
 class Tileset(val context: Context, var startX: Int, var startY: Int, val width: Int, val height: Int) {
@@ -22,8 +24,14 @@ class Tileset(val context: Context, var startX: Int, var startY: Int, val width:
     fun randomTileset() {
         var random = (1..2).random()
         when (random) {
-            1 -> obstacles.addAll(listOf(BitmapTerrain(context,200,1000, 100, 200),BitmapTerrain(context,700,500, 500, 700)))
-            2 -> obstacles.addAll(listOf(BitmapTerrain(context,600,300, 100, 600),BitmapTerrain(context,400,300, 300, 400), BitmapTerrain(context,200,300, 500, 200)))
+            1 -> obstacles.addAll(listOf(
+                BitmapTerrain(context,200,1000, 100, 200),
+                BitmapTerrain(context,700,500, 500, 700)
+            ))
+            2 -> obstacles.addAll(listOf(
+                BitmapTerrain(context,600,300, 100, 600),
+                BitmapTerrain(context,400,300, 300, 400), BitmapTerrain(context,200,300, 500, 200)
+            ))
             else -> println("Failed")
         }
     }

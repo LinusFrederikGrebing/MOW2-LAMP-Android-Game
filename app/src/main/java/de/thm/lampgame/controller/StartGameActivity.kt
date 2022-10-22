@@ -1,9 +1,10 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller
 
 import android.app.Activity
 import android.os.Bundle
+import de.thm.lampgame.GameView
 
-class StartGame : Activity() {
+class StartGameActivity : Activity() {
     var gameView: GameView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

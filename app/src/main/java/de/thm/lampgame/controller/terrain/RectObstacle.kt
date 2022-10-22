@@ -1,4 +1,4 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller.terrain
 
 import android.graphics.Canvas
 import android.graphics.Color

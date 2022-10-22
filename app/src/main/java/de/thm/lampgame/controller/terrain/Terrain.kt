@@ -1,10 +1,11 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller.terrain
 
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Matrix
+import de.thm.lampgame.R
 
 class Terrain(x: Int,y: Int,width: Int,height: Int, res: Resources) : RectObstacle(x,y, width,height) {
     val solid = true
