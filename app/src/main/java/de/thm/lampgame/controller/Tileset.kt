@@ -1,29 +1,26 @@
-package de.thm.lampgame
-
+package de.thm.lampgame.controller
+import de.thm.lampgame.controller.terrain.BitmapGround
+import de.thm.lampgame.controller.terrain.Obstacles
+import de.thm.lampgame.controller.terrain.BitmapTerrain
 import android.content.Context
-import android.graphics.*
+import de.thm.lampgame.controller.terrain.BitmapTube
 
 
 class Tileset(val context: Context, var startX: Int, var startY: Int, val width: Int, val height: Int) {
-    var unsizedbottomtileset: Bitmap? = null
-    var bottomtileset: Bitmap? = null
     val obstacles: MutableList<Obstacles> = mutableListOf()
     init {
-        unsizedbottomtileset = BitmapFactory.decodeResource(context.resources, R.drawable.border)
-        bottomtileset = unsizedbottomtileset?.let { Bitmap.createScaledBitmap(it, width, height, true) }
         randomTileset()
     }
 
-    fun drawTileset(canvas: Canvas, terrainVelocity : Int){
+    fun drawTileset(terrainVelocity : Int){
         startX -= terrainVelocity
-        canvas.drawBitmap(bottomtileset!!, startX.toFloat(), startY.toFloat(),null)
     }
 
-    fun randomTileset() {
-        var random = (1..2).random()
-        when (random) {
-            1 -> obstacles.addAll(listOf(BitmapGround(context,width), BitmapTerrain(context,1000, 100, 200),BitmapTerrain(context,500, 500, 700)))
-            2 -> obstacles.addAll(listOf(BitmapGround(context,width), BitmapTerrain(context,300, 100, 600),BitmapTerrain(context,300, 300, 400), BitmapTerrain(context,300, 500, 200)))
+
+    private fun randomTileset() {
+        when ((1..2).random()) {
+            1 -> obstacles.addAll(listOf(BitmapGround(context, width), BitmapTerrain(context,1200, 100, 300)))
+            2 -> obstacles.addAll(listOf(BitmapGround(context, width), BitmapTube(context,300, 700), BitmapTube(context,1300, 700)))
             else -> println("Failed")
         }
     }

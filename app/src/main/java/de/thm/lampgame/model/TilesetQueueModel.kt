@@ -6,7 +6,7 @@ class TilesetQueueModel {
     var queue = ArrayDeque<Tileset>(2)
 
     fun initQueue(t1: Tileset, t2: Tileset, screenWidth: Int){
-        queue.add(t1);queue.add(t2)
+        queue.add(t1); queue.add(t2)
 
         for (i in 0 until queue.first().obstacles.size) {
             queue.first().obstacles[i].x += screenWidth
@@ -20,10 +20,15 @@ class TilesetQueueModel {
         //queue.last().obstacles.forEach {(it as Obstacles).x += screenWidth * 2}
     }
 
+    fun recycleOldTileset() {
+        for (i in 0 until queue.first().obstacles.size) {
+            queue.first().obstacles[i].bmp.recycle()
+        }
+    }
+
     fun insertTileset(screenWidth: Int, t: Tileset){
             queue.removeFirst()
             queue.add(t)
             queue.last().obstacles.forEach {it.x += screenWidth}
-
     }
 }

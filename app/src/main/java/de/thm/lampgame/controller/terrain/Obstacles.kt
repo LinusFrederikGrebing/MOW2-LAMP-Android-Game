@@ -1,4 +1,4 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller.terrain
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -11,4 +11,5 @@ open abstract class Obstacles(context: Context,val height: Int,val width: Int,va
     lateinit var bmp: Bitmap
 
     abstract fun draw(canvas: Canvas, velocity: Int)
+
 }

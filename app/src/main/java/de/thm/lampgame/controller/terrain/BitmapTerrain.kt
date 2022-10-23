@@ -1,10 +1,11 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller.terrain
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
-import java.util.*
+import de.thm.lampgame.R
+
 
 class BitmapTerrain(context: Context,width: Int, x: Int, y: Int) : Obstacles(context,100,width,x,y) {
 

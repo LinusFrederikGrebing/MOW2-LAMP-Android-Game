@@ -1,10 +1,10 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller.terrain
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
-import java.util.*
+import de.thm.lampgame.R
 
 class BitmapTube(context: Context, x: Int, y: Int) : Obstacles(context,400,150,x,y) {
 

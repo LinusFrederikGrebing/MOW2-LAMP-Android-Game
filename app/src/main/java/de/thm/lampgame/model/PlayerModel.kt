@@ -28,7 +28,8 @@ abstract class PlayerModel(screenWidth: Int, screenHeight: Int) {
     }
 
     fun setJumpStats(collision : Boolean){
-        if (!collision  || velocity <= 0) {
+
+        if (!collision  || velocity <= 0 ) {
             jumpState = true
             velocity += gravity
             charY += velocity
@@ -36,6 +37,7 @@ abstract class PlayerModel(screenWidth: Int, screenHeight: Int) {
             jumpCount = 0
             jumpState = false
         }
+
     }
 
     fun calkPoints(){

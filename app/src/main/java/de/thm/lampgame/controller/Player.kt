@@ -42,7 +42,7 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) : 
     }
 
     fun drawFirebar(canvas: Canvas) {
-        firebar[calkFirebar()]?.let {canvas.drawBitmap(it, (screenWidth - screenWidth).toFloat(), (screenHeight/6).toFloat(), null)}
+        firebar[calkFirebar()]?.let {canvas.drawBitmap(it, 0.toFloat(), (screenHeight/6).toFloat(), null)}
     }
 
 }
