@@ -88,8 +88,9 @@ class GameView(context: Context) : View(context) {
 
         //check If a new Tileset needs to be inserted into the Queue
         if (tilesetQueue.queue.first().startX <= -screenWidth) {
+            var rest = -screenWidth - tilesetQueue.queue.first().startX
             tilesetQueue.recycleOldTileset()
-            tilesetQueue.insertTileset(screenWidth,Tileset(context,screenWidth, 0, screenWidth, screenHeight))
+            tilesetQueue.insertTileset(screenWidth-rest,Tileset(context,screenWidth-rest, 0, screenWidth, screenHeight))
         }
 
         //draw Char
