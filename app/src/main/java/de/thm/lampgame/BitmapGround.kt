@@ -4,9 +4,8 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
-import java.util.*
 
-class BitmapTerrain(context: Context,width: Int, x: Int, y: Int) : Obstacles(context,100,width,x,y) {
+class BitmapGround(context: Context,width: Int) : Obstacles(context,200,width,0,840) {
 
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.gras2)
@@ -16,5 +15,4 @@ class BitmapTerrain(context: Context,width: Int, x: Int, y: Int) : Obstacles(con
         x -= velocity
         canvas.drawBitmap(bmp, x.toFloat(), this.y.toFloat(), null)
     }
-
 }
