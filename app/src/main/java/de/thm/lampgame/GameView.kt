@@ -20,7 +20,7 @@ class GameView(context: Context) : View(context) {
     private var gamestate = true
     private var collision = false
     private var tubesCount = 50
-    private var multiplyer = 0
+    private var multiplier = 0
     private var objList = ArrayList<BitmapObstacles>()
     init {
         val display = (getContext() as Activity).windowManager.defaultDisplay
@@ -41,7 +41,7 @@ class GameView(context: Context) : View(context) {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if(player.points%20 == 0) multiplyer++
+        if(player.points%20 == 0) multiplier++
         player.calkFire()
         player.calkPoints()
 
@@ -49,17 +49,17 @@ class GameView(context: Context) : View(context) {
         //map.drawSky(canvas)
 
         //cloud background-fragment
-        map.drawClouds(canvas, 0.4 + multiplyer)
+        map.drawClouds(canvas, 0.4 + multiplier)
 
         // mountain background-fragmentS
-        map.drawMountains(canvas, 2 + multiplyer)
+        map.drawMountains(canvas, 2 + multiplier)
 
         // grass background-fragment
-        map.drawGrass(canvas, 20 + multiplyer)
+        map.drawGrass(canvas, 20 + multiplier)
 
         // draw the player on right position with right animation
         for (i in 0 until objList.size){
-            objList[i].drawTubes(canvas, 20 + multiplyer)
+            objList[i].drawTubes(canvas, 20 + multiplier)
         }
         collision = this.checkTubeCollisions(objList, player.rechar[0]!!, player.charX.toFloat(), player.charY.toFloat())
         if(!collision) collision = this.checkCollisions(map.grass, player.charX.toFloat(), map.grassY, player.rechar[0]!!, player.charX.toFloat(), player.charY.toFloat())

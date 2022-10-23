@@ -14,10 +14,10 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) : 
 
    init {
        // init char-Bitmap
-       char[0] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_idle)
-       char[1] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_walk1)
-       char[2] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_walk2)
-       char[3] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_walk3)
+       char[0] = BitmapFactory.decodeResource(context.resources, R.drawable.legs_left)
+       char[1] = BitmapFactory.decodeResource(context.resources, R.drawable.innen)
+       char[2] = BitmapFactory.decodeResource(context.resources, R.drawable.legs_right)
+       char[3] = BitmapFactory.decodeResource(context.resources, R.drawable.aussen)
        char[4] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_sneek)
        char[5] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_jump_fire)
 
