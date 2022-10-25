@@ -19,7 +19,7 @@ class GameView(context: Context) : View(context) {
     var screenWidth = 0
     var screenHeight = 0
     var runnable: Runnable? = null
-    val UPDATE_MILLIS: Long = 1
+    val UPDATE_MILLIS: Long = 5
     var points = 0
     var gamestate = true
     var collision = false
@@ -56,33 +56,28 @@ class GameView(context: Context) : View(context) {
         ground.draw(canvas,10)
 
         tilesetQueue.queue.first().drawTileset(10)
-        for (i in 0 until tilesetQueue.queue.first().obstacles.size) {
-            tilesetQueue.queue.first().obstacles[i].draw(canvas,10)
-        }
         //Alternative Lösung für die for-Schleife mit ClassCastException
-        /*tilesetQueue.queue.first().obstacles.forEach {
+        tilesetQueue.queue.first().obstacles.forEach {
             it.draw(canvas,10)
-        }*/
+        }
 
         tilesetQueue.queue.last().drawTileset(10)
-        for (i in 0 until tilesetQueue.queue.last().obstacles.size) {
-            tilesetQueue.queue.last().obstacles[i].draw(canvas,10)
-        }
         //Alternative Lösung für die for-Schleife mit ClassCastException
-        /*tilesetQueue.queue.last().obstacles.forEach {
+        tilesetQueue.queue.last().obstacles.forEach {
             it.draw(canvas,10)
-        }*/
+        }
 
         //check Map-Collision
-        collision = this.checkMapCollisions(ground.bmp, player.charX, ground.y, player.rechar[0]!!, player.charX, player.charY)
+        collision = this.checkCollisions(ground.death, ground.bmp, player.charX, ground.y, player.rechar[0]!!, player.charX, player.charY)
 
         //check Tileset Obstacles-Collision
         for(i in 0 until tilesetQueue.queue.first().obstacles.size) {
-            if(this.checkCollisions(tilesetQueue.queue.first().obstacles[i].bmp, tilesetQueue.queue.first().obstacles[i].x, tilesetQueue.queue.first().obstacles[i].y, player.rechar[0]!!, player.charX, player.charY))
+            if(this.checkCollisions(tilesetQueue.queue.first().obstacles[i].death, tilesetQueue.queue.first().obstacles[i].bmp, tilesetQueue.queue.first().obstacles[i].x, tilesetQueue.queue.first().obstacles[i].y, player.rechar[0]!!, player.charX, player.charY))
                 collision = true
         }
+
         for(i in 0 until tilesetQueue.queue.last().obstacles.size) {
-            if(this.checkCollisions(tilesetQueue.queue.last().obstacles[i].bmp, tilesetQueue.queue.last().obstacles[i].x, tilesetQueue.queue.last().obstacles[i].y, player.rechar[0]!!, player.charX, player.charY))
+            if(this.checkCollisions(tilesetQueue.queue.last().obstacles[i].death, tilesetQueue.queue.last().obstacles[i].bmp, tilesetQueue.queue.last().obstacles[i].x, tilesetQueue.queue.last().obstacles[i].y, player.rechar[0]!!, player.charX, player.charY))
                 collision = true
         }
 
@@ -129,38 +124,26 @@ class GameView(context: Context) : View(context) {
         return true
     }
 
-    private fun checkCollisions(bitmap1: Bitmap, x1: Int, y1: Int, bitmap2: Bitmap, x2: Int, y2: Int) : Boolean {
+    private fun checkCollisions(death: Boolean, bitmap1: Bitmap, x1: Int, y1: Int, bitmap2: Bitmap, x2: Int, y2: Int) : Boolean {
         if(gamestate) {
             val hitboxRect1 = Rect(x1, y1, (x1 + bitmap1.width), (y1 + bitmap1.height))
             val hitboxRect2 = Rect(x2, y2, (x2 + bitmap2.width), (y2 + bitmap2.height))
             if (Rect.intersects(hitboxRect1, hitboxRect2)) {
-                if(y2 < y1 + bitmap1.height-40 && y2 > y1+40 || ((y2 + bitmap2.height < y1 + bitmap1.height-40) && (y2 + bitmap2.height > y1+40))) {
-                        gamestate = false
-                        this.gameOver()
+                if(death){
+                   gamestate = false
+                   this.gameOver()
+               } /*else if( y2 < y1 + bitmap1.height-40 && y2 > y1+40 || ((y2 + bitmap2.height < y1 + bitmap1.height-40) && (y2 + bitmap2.height > y1+40))) {
 
-                }
+                          gamestate = false
+                          this.gameOver()
+
+                }*/
                 return true
             }
 
         }
         return false
     }
-
-
-    private fun checkMapCollisions(bitmap1: Bitmap, x1: Int, y1: Int, bitmap2: Bitmap, x2: Int, y2: Int) : Boolean {
-        if(gamestate) {
-            val hitboxRect1 = Rect(x1, y1, (x1 + bitmap1.width), (y1 + bitmap1.height))
-            val hitboxRect2 = Rect(x2, y2, (x2 + bitmap2.width), (y2 + bitmap2.height))
-            if (Rect.intersects(hitboxRect1, hitboxRect2)) {
-
-                return true
-            }
-        }
-
-        return false
-    }
-
-
 
 }
 
