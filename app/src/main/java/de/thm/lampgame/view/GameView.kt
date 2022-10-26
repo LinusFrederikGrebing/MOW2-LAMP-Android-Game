@@ -5,27 +5,32 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import de.thm.lampgame.model.TilesetQueueModel
-import de.thm.lampgame.controller.Player
-import de.thm.lampgame.controller.terrain.GrassLandscapeMap
 import de.thm.lampgame.controller.GameOverActivity
+import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.Tileset
 import de.thm.lampgame.controller.terrain.BitmapGround
+import de.thm.lampgame.controller.terrain.GrassLandscapeMap
+import de.thm.lampgame.model.TilesetQueueModel
+
 
 class GameView(context: Context) : View(context) {
     var screenWidth = 0
     var screenHeight = 0
     var runnable: Runnable? = null
     val UPDATE_MILLIS: Long = 1
-    var points = 0
     var gamestate = true
+    var multiplikator = 0
     var collision = false
     var tilesetQueue = TilesetQueueModel()
+    val paint = Paint()
+
 
     init {
+        paint.setTextSize(75F)
+        paint.setColor(Color.BLACK)
+
         val display = (getContext() as Activity).windowManager.defaultDisplay
         val size = Point()
         display.getSize(size)
@@ -42,29 +47,30 @@ class GameView(context: Context) : View(context) {
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
         if (gamestate) {
-            // End the Game after getting 1000 Points for testing
-            points++
+
             player.calkPoints()
-            if (points == 2000) this.gameOver()
+
+            if (player.points % 100 == 0) multiplikator++
             player.calkFire()
 
 
             //cloud background-fragment
-            map.drawClouds(canvas, 0.4);
-            map.drawMountains(canvas, 2);
-            ground.draw(canvas, 10)
+            map.drawClouds(canvas, 0.4 + multiplikator/4);
+            map.drawMountains(canvas, 2 + multiplikator/2);
+            ground.draw(canvas, 10 + multiplikator)
 
-            tilesetQueue.queue.first().drawTileset(10)
+            tilesetQueue.queue.first().drawTileset(10 + multiplikator)
             //Alternative Lösung für die for-Schleife mit ClassCastException
             tilesetQueue.queue.first().obstacles.forEach {
-                it.draw(canvas, 10)
+                it.draw(canvas, 10 + multiplikator)
             }
 
-            tilesetQueue.queue.last().drawTileset(10)
+            tilesetQueue.queue.last().drawTileset(10 + multiplikator )
             //Alternative Lösung für die for-Schleife mit ClassCastException
             tilesetQueue.queue.last().obstacles.forEach {
-                it.draw(canvas, 10)
+                it.draw(canvas, 10 + multiplikator)
             }
 
             //check Map-Collision
@@ -122,6 +128,10 @@ class GameView(context: Context) : View(context) {
             player.drawChar(canvas)
             player.drawFirebar(canvas)
 
+            canvas.drawText("Punkte: " + player.points.toString(), 10F, 75F, paint)
+
+
+
             // refresh
             handler!!.postDelayed(runnable!!, UPDATE_MILLIS)
 
@@ -139,16 +149,16 @@ class GameView(context: Context) : View(context) {
         val action = event.action
         when (action)
         {
-            MotionEvent.ACTION_UP -> {
+            MotionEvent.ACTION_DOWN -> {
                 player.sprung()
             }
-            MotionEvent.ACTION_MOVE -> {
+          /*  MotionEvent.ACTION_MOVE -> {
                 player.birdsneek = true
-            }
+            }*/
         }
-        if (action == MotionEvent.ACTION_UP){
+       /* if (action == MotionEvent.ACTION_UP){
             player.birdsneek = false
-        }
+        }*/
         return true
     }
 
@@ -170,8 +180,8 @@ class GameView(context: Context) : View(context) {
         }
 
     private fun checkObstacleCollisions(playerHitbox: Rect, obstacleBitmap: Bitmap, obstacleX: Int, obstacleY: Int) : Boolean {
-                val obstacleHitboxOben = Rect(obstacleX, obstacleY, (obstacleX + obstacleBitmap.width), (obstacleY + obstacleBitmap.height/5))
-                val obstacleHitboxUnten = Rect(obstacleX, obstacleY + obstacleBitmap.height/5, (obstacleX + obstacleBitmap.width), (obstacleY + obstacleBitmap.height-obstacleBitmap.height/5))
+                val obstacleHitboxOben = Rect(obstacleX, obstacleY, (obstacleX + obstacleBitmap.width), (obstacleY + player.maxVelocity+5))
+                val obstacleHitboxUnten = Rect(obstacleX, obstacleY + player.maxVelocity+5, (obstacleX + obstacleBitmap.width), (obstacleY + obstacleBitmap.height-player.maxVelocity+5))
                 if (Rect.intersects(obstacleHitboxUnten, playerHitbox)) {
                     gamestate = false
                     this.gameOver()

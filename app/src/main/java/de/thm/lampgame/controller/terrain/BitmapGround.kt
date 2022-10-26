@@ -9,7 +9,7 @@ import de.thm.lampgame.R
 class BitmapGround(context: Context,width: Int) : Obstacles(context,200,width,0,840, false) {
 
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.gras2)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.bodengras)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true) }
 
     override fun draw(canvas: Canvas, velocity : Int){

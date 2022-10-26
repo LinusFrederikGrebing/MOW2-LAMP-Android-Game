@@ -1,5 +1,7 @@
 package de.thm.lampgame.model
 
+import android.util.Log
+
 abstract class PlayerModel(screenWidth: Int, screenHeight: Int) {
     var firebarFrame = 0
     var points = 0
@@ -8,10 +10,11 @@ abstract class PlayerModel(screenWidth: Int, screenHeight: Int) {
     var charY : Int = 0
     var charframe = 0
     var velocity = 0
-    var gravity = 3
+    var gravity = 2
     var jumpCount = 0
     var jumpState = false
     var birdsneek = false
+    val maxVelocity = 30
     init {
         charY = screenHeight - 500
         charX = screenWidth / 2 - 600
@@ -31,8 +34,9 @@ abstract class PlayerModel(screenWidth: Int, screenHeight: Int) {
 
         if (!collision  || velocity <= 0 ) {
             jumpState = true
-            velocity += gravity
+            if(velocity < maxVelocity) velocity += gravity
             charY += velocity
+            Log.i("test", velocity.toString())
         } else {
             jumpCount = 0
             jumpState = false
@@ -51,7 +55,7 @@ abstract class PlayerModel(screenWidth: Int, screenHeight: Int) {
     fun sprung(){
         if(jumpCount < 2 && !birdsneek){
             jumpCount++
-            velocity = -45
+            velocity = -30
             jumpState = true
         }
     }
