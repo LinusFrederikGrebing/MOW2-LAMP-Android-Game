@@ -18,7 +18,7 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) : 
        char[1] = BitmapFactory.decodeResource(context.resources, R.drawable.innen)
        char[2] = BitmapFactory.decodeResource(context.resources, R.drawable.legs_right)
        char[3] = BitmapFactory.decodeResource(context.resources, R.drawable.aussen)
-       char[4] = BitmapFactory.decodeResource(context.resources, R.drawable.charsneek)
+       char[4] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_sneek)
        char[5] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_jump_fire)
 
        // init firebar-Bitmap

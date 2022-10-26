@@ -9,7 +9,7 @@ import de.thm.lampgame.R
 class BitmapWater(context: Context, x: Int, y: Int) : Obstacles(context,300,200,x,y, true) {
 
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.wasser)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.himmel)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true)
     }
 
