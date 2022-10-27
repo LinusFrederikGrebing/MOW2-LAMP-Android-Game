@@ -1,9 +1,9 @@
 package de.thm.lampgame.view
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.*
 import android.media.MediaPlayer
 import android.view.MotionEvent
@@ -16,66 +16,63 @@ import de.thm.lampgame.controller.terrain.BitmapGround
 import de.thm.lampgame.controller.terrain.GrassLandscapeMap
 import de.thm.lampgame.model.TilesetQueueModel
 
-
 class GameView(context: Context) : View(context) {
-    var screenWidth = 0
-    var screenHeight = 0
-    var runnable: Runnable? = null
-    val UPDATE_MILLIS: Long = 5
-    var gamestate = true
-    var multiplikator = 0
-    var collision = false
-    var tilesetQueue = TilesetQueueModel()
-    val paint = Paint()
-    val mp: MediaPlayer
+    private var screenWidth = 0
+    private var screenHeight = 0
+    private var runnable: Runnable? = null
+    private val updateMillis: Long = 5
+    private var gameStatus = true
+    private var multiplication = 0
+    private var collision = false
+    private var tilesetQueue = TilesetQueueModel()
+    private val paint = Paint()
+    private val mp: MediaPlayer
 
 
     init {
-        paint.setTextSize(75F)
-        paint.setColor(Color.BLACK)
-
-        val display = (getContext() as Activity).windowManager.defaultDisplay
-        val size = Point()
-        display.getSize(size)
-        screenWidth = size.x
-        screenHeight = size.y
+        paint.textSize = 75F
+        paint.color = Color.BLACK
+        screenWidth = Resources.getSystem().displayMetrics.widthPixels
+        screenHeight = Resources.getSystem().displayMetrics.heightPixels
         tilesetQueue.initQueue(Tileset(context, screenWidth, 0, screenWidth, screenHeight),Tileset(context,screenWidth*2, 0, screenWidth, screenHeight),screenWidth)
         runnable = Runnable { invalidate() }
-         mp = MediaPlayer.create(context, R.raw.background)
-         mp.start()
+        mp = MediaPlayer.create(context, R.raw.background)
+        mp.start()
     }
 
-    var player = Player(context, screenHeight, screenWidth)
-    var map =  GrassLandscapeMap(context, screenHeight, screenWidth)
-    var ground = BitmapGround(context,screenWidth, screenHeight)
+    private var player = Player(context, screenHeight, screenWidth)
+    private var map =  GrassLandscapeMap(context, screenHeight, screenWidth)
+    private var ground = BitmapGround(context,screenWidth, screenHeight)
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        if (gamestate) {
+        if (gameStatus) {
 
             player.calkPoints()
 
-            if (player.points % 200 == 0) multiplikator++
+            if (player.points % 200 == 0) multiplication++
             player.calkFire()
 
 
             //cloud background-fragment
-            map.drawClouds(canvas, 0.4 + multiplikator/4);
-            map.drawMountains(canvas, 2 + multiplikator/2);
-            ground.draw(canvas, 10 + multiplikator)
+            map.drawClouds(canvas, 0.4 + multiplication/4)
+            map.drawMountains(canvas, 2 + multiplication/2)
+            ground.draw(canvas, 10 + multiplication)
 
-            tilesetQueue.queue.first().drawTileset(10 + multiplikator)
+            tilesetQueue.queue.first().drawTileset(10 + multiplication)
+
             //Alternative Lösung für die for-Schleife mit ClassCastException
             tilesetQueue.queue.first().obstacles.forEach {
-                it.draw(canvas, 10 + multiplikator)
+                it.draw(canvas, 10 + multiplication)
             }
 
-            tilesetQueue.queue.last().drawTileset(10 + multiplikator )
+            tilesetQueue.queue.last().drawTileset(10 + multiplication )
+
             //Alternative Lösung für die for-Schleife mit ClassCastException
             tilesetQueue.queue.last().obstacles.forEach {
-                it.draw(canvas, 10 + multiplikator)
+                it.draw(canvas, 10 + multiplication)
             }
 
             //check Map-Collision
@@ -104,27 +101,13 @@ class GameView(context: Context) : View(context) {
                     collision = true
             }
 
-            for (i in 0 until tilesetQueue.queue.last().obstacles.size) {
-                if (this.checkCollisions(
-                        tilesetQueue.queue.last().obstacles[i].death,
-                        tilesetQueue.queue.last().obstacles[i].bmp,
-                        tilesetQueue.queue.last().obstacles[i].x,
-                        tilesetQueue.queue.last().obstacles[i].y,
-                        player.rechar[0]!!,
-                        player.charX,
-                        player.charY
-                    )
-                )
-                    collision = true
-            }
-
             //check If a new Tileset needs to be inserted into the Queue
             if (tilesetQueue.queue.first().startX <= -screenWidth) {
-                var rest = -screenWidth - tilesetQueue.queue.first().startX
+                val rest = -screenWidth - tilesetQueue.queue.first().startX
                 tilesetQueue.recycleOldTileset()
                 tilesetQueue.insertTileset(
                     screenWidth - rest,
-                    Tileset(context, screenWidth - rest, 0, screenWidth, screenHeight)
+                    Tileset(context, (screenWidth - rest), 0, screenWidth, screenHeight)
                 )
             }
 
@@ -138,7 +121,7 @@ class GameView(context: Context) : View(context) {
 
 
             // refresh
-            handler!!.postDelayed(runnable!!, UPDATE_MILLIS)
+            handler!!.postDelayed(runnable!!, updateMillis)
 
         } else {
             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY)
@@ -154,9 +137,9 @@ class GameView(context: Context) : View(context) {
     }
 
     // jump if action up, count for double jump, check action move for sneek
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        val action = event.action
-        when (action)
+        when (event.action)
         {
             MotionEvent.ACTION_DOWN -> {
                 if(player.jumpCount < 2) player.groundjumping(context)
@@ -183,7 +166,7 @@ class GameView(context: Context) : View(context) {
     private fun checkDeathCollisions(playerHitbox: Rect, obstacleBitmap: Bitmap, obstacleX: Int, obstacleY: Int) : Boolean {
                 val obstacleHitbox = Rect(obstacleX, obstacleY, (obstacleX + obstacleBitmap.width), (obstacleY + obstacleBitmap.height))
                 if (Rect.intersects(obstacleHitbox, playerHitbox)) {
-                        gamestate = false
+                        gameStatus = false
                         this.gameOver()
                 }
           return false
@@ -193,7 +176,7 @@ class GameView(context: Context) : View(context) {
                 val obstacleHitboxOben = Rect(obstacleX, obstacleY, (obstacleX + obstacleBitmap.width), (obstacleY + player.maxVelocity+5))
                 val obstacleHitboxUnten = Rect(obstacleX, obstacleY + player.maxVelocity+5, (obstacleX + obstacleBitmap.width), (obstacleY + obstacleBitmap.height-player.maxVelocity+5))
                 if (Rect.intersects(obstacleHitboxUnten, playerHitbox)) {
-                    gamestate = false
+                    gameStatus = false
                     this.gameOver()
                 }
                 else if (Rect.intersects(obstacleHitboxOben, playerHitbox)) {
