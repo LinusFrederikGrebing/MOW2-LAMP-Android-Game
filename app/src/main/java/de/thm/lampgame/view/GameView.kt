@@ -21,7 +21,7 @@ class GameView(context: Context) : View(context) {
     var screenWidth = 0
     var screenHeight = 0
     var runnable: Runnable? = null
-    val UPDATE_MILLIS: Long = 1
+    val UPDATE_MILLIS: Long = 5
     var gamestate = true
     var multiplikator = 0
     var collision = false
@@ -47,7 +47,7 @@ class GameView(context: Context) : View(context) {
 
     var player = Player(context, screenHeight, screenWidth)
     var map =  GrassLandscapeMap(context, screenHeight, screenWidth)
-    var ground = BitmapGround(context,screenWidth)
+    var ground = BitmapGround(context,screenWidth, screenHeight)
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
@@ -57,13 +57,13 @@ class GameView(context: Context) : View(context) {
 
             player.calkPoints()
 
-            if (player.points % 100 == 0) multiplikator++
+            if (player.points % 200 == 0) multiplikator++
             player.calkFire()
 
 
             //cloud background-fragment
-            map.drawClouds(canvas, 0.4 + multiplikator/4)
-            map.drawMountains(canvas, 2 + multiplikator/2)
+            map.drawClouds(canvas, 0.4 + multiplikator/4);
+            map.drawMountains(canvas, 2 + multiplikator/2);
             ground.draw(canvas, 10 + multiplikator)
 
             tilesetQueue.queue.first().drawTileset(10 + multiplikator)
@@ -120,7 +120,7 @@ class GameView(context: Context) : View(context) {
 
             //check If a new Tileset needs to be inserted into the Queue
             if (tilesetQueue.queue.first().startX <= -screenWidth) {
-                val rest = -screenWidth - tilesetQueue.queue.first().startX
+                var rest = -screenWidth - tilesetQueue.queue.first().startX
                 tilesetQueue.recycleOldTileset()
                 tilesetQueue.insertTileset(
                     screenWidth - rest,

@@ -1,21 +1,28 @@
 package de.thm.lampgame.model
 
-abstract class PlayerModel(screenWidth: Int, screenHeight: Int) {
+abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
+    var charHeight: Double = 0.0
+    var charwidth: Double = 0.0
     var firebarFrame = 0
     var points = 0
     var fire: Float = 100F
-    var charX : Int = 0
-    var charY : Int = 0
     var charframe = 0
+    var charY = (0.10*screenWidth).toInt()
+    var charX = (0.15*screenWidth).toInt()
     var velocity = 0
     var gravity = 2
     var jumpCount = 0
     var jumpState = false
     var birdsneek = false
     val maxVelocity = 30
-    init {
-        charY = screenHeight - 500
-        charX = screenWidth / 2 - 600
+
+    fun getCharWidth() : Int{
+        charwidth = 0.08*screenWidth
+        return charwidth.toInt()
+    }
+    fun getCharHeight() : Int{
+        charHeight = 0.18*screenHeight
+        return charHeight.toInt()
     }
 
     fun calkCharframe() : Int{
