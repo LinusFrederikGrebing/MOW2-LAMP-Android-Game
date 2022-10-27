@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
+import android.media.MediaPlayer
 import de.thm.lampgame.R
 import de.thm.lampgame.model.PlayerModel
 
@@ -29,12 +30,12 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) : 
        firebar[4] = BitmapFactory.decodeResource(context.resources, R.drawable.firebar20)
 
        // resize char
-       rechar[0] = char[0]?.let { Bitmap.createScaledBitmap(it, 175, 200, true) }
-       rechar[1] = char[1]?.let { Bitmap.createScaledBitmap(it, 175, 200, true) }
-       rechar[2] = char[2]?.let { Bitmap.createScaledBitmap(it, 175, 200, true) }
-       rechar[3] = char[3]?.let { Bitmap.createScaledBitmap(it, 175, 200, true) }
-       rechar[4] = char[4]?.let { Bitmap.createScaledBitmap(it, 175, 200, true) }
-       rechar[5] = char[5]?.let { Bitmap.createScaledBitmap(it, 175, 200, true) }
+       rechar[0] = char[0]?.let { Bitmap.createScaledBitmap(it, 150, 175, true) }
+       rechar[1] = char[1]?.let { Bitmap.createScaledBitmap(it, 150, 175, true) }
+       rechar[2] = char[2]?.let { Bitmap.createScaledBitmap(it, 150, 175, true) }
+       rechar[3] = char[3]?.let { Bitmap.createScaledBitmap(it, 150, 175, true) }
+       rechar[4] = char[4]?.let { Bitmap.createScaledBitmap(it, 150, 175, true) }
+       rechar[5] = char[5]?.let { Bitmap.createScaledBitmap(it, 150, 175, true) }
    }
 
     fun drawChar(canvas: Canvas){
@@ -43,6 +44,11 @@ class Player(context: Context, val screenHeight : Int, val screenWidth : Int) : 
 
     fun drawFirebar(canvas: Canvas) {
         firebar[calkFirebar()]?.let {canvas.drawBitmap(it, 0.toFloat(), (screenHeight/6).toFloat(), null)}
+    }
+
+    fun groundjumping(context : Context){
+        val mp: MediaPlayer = MediaPlayer.create(context, R.raw.groundjumping)
+        mp.start()
     }
 
 }

@@ -1,7 +1,5 @@
 package de.thm.lampgame.model
 
-import android.util.Log
-
 abstract class PlayerModel(screenWidth: Int, screenHeight: Int) {
     var firebarFrame = 0
     var points = 0
@@ -36,7 +34,6 @@ abstract class PlayerModel(screenWidth: Int, screenHeight: Int) {
             jumpState = true
             if(velocity < maxVelocity) velocity += gravity
             charY += velocity
-            Log.i("test", velocity.toString())
         } else {
             jumpCount = 0
             jumpState = false

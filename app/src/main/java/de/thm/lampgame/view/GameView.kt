@@ -5,8 +5,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
+import android.media.MediaPlayer
 import android.view.MotionEvent
 import android.view.View
+import de.thm.lampgame.R
 import de.thm.lampgame.controller.GameOverActivity
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.Tileset
@@ -25,6 +27,7 @@ class GameView(context: Context) : View(context) {
     var collision = false
     var tilesetQueue = TilesetQueueModel()
     val paint = Paint()
+    val mp: MediaPlayer
 
 
     init {
@@ -38,6 +41,8 @@ class GameView(context: Context) : View(context) {
         screenHeight = size.y
         tilesetQueue.initQueue(Tileset(context, screenWidth, 0, screenWidth, screenHeight),Tileset(context,screenWidth*2, 0, screenWidth, screenHeight),screenWidth)
         runnable = Runnable { invalidate() }
+         mp = MediaPlayer.create(context, R.raw.background)
+         mp.start()
     }
 
     var player = Player(context, screenHeight, screenWidth)
@@ -57,8 +62,8 @@ class GameView(context: Context) : View(context) {
 
 
             //cloud background-fragment
-            map.drawClouds(canvas, 0.4 + multiplikator/4);
-            map.drawMountains(canvas, 2 + multiplikator/2);
+            map.drawClouds(canvas, 0.4 + multiplikator/4)
+            map.drawMountains(canvas, 2 + multiplikator/2)
             ground.draw(canvas, 10 + multiplikator)
 
             tilesetQueue.queue.first().drawTileset(10 + multiplikator)
@@ -115,7 +120,7 @@ class GameView(context: Context) : View(context) {
 
             //check If a new Tileset needs to be inserted into the Queue
             if (tilesetQueue.queue.first().startX <= -screenWidth) {
-                var rest = -screenWidth - tilesetQueue.queue.first().startX
+                val rest = -screenWidth - tilesetQueue.queue.first().startX
                 tilesetQueue.recycleOldTileset()
                 tilesetQueue.insertTileset(
                     screenWidth - rest,
@@ -135,7 +140,11 @@ class GameView(context: Context) : View(context) {
             // refresh
             handler!!.postDelayed(runnable!!, UPDATE_MILLIS)
 
+        } else {
+            canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY)
+            mp.stop()
         }
+
     }
     // Start GameOver Activity
     private fun gameOver() {
@@ -150,6 +159,7 @@ class GameView(context: Context) : View(context) {
         when (action)
         {
             MotionEvent.ACTION_DOWN -> {
+                if(player.jumpCount < 2) player.groundjumping(context)
                 player.sprung()
             }
           /*  MotionEvent.ACTION_MOVE -> {
@@ -187,6 +197,7 @@ class GameView(context: Context) : View(context) {
                     this.gameOver()
                 }
                 else if (Rect.intersects(obstacleHitboxOben, playerHitbox)) {
+
                     return true
                 }
            return false

@@ -7,7 +7,7 @@ import android.graphics.Canvas
 import de.thm.lampgame.R
 
 
-class BitmapTerrain(context: Context,width: Int, x: Int, y: Int) : Obstacles(context,150,width,x,y, false) {
+class BitmapTerrain(context: Context,width: Int, x: Int, y: Int) : Obstacles(context,120,width,x,y, false) {
 
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.plattform2)

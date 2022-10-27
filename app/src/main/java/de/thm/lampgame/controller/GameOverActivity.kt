@@ -2,6 +2,7 @@ package de.thm.lampgame.controller
 
 import android.app.Activity
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -15,6 +16,8 @@ class GameOverActivity : Activity() {
         val points = intent.extras!!.getInt("POINTS")
         val viewPoints: TextView = findViewById(R.id.points) as TextView
         viewPoints.setText("Punkte:  " + points)
+        val mp: MediaPlayer = MediaPlayer.create(this, R.raw.oohgameover)
+        mp.start()
     }
 
     fun restart(view: View){
