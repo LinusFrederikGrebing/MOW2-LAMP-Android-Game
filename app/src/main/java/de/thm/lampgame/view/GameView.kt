@@ -141,7 +141,7 @@ class GameView(context: Context) : View(context) {
     var random = 0
     fun getpossibleTileset(): Tileset {
         do {
-            random = (1..tilesetsCount).random()
+            random = (0 until tilesetsCount).random()
         } while (tilesetQueue.queue.last()==tilesetList[random])
         return tilesetList[random]
     }
