@@ -4,7 +4,7 @@ import de.thm.lampgame.controller.terrain.*
 
 
 class Tileset(val context: Context, var startX: Int, var startY: Int, val width: Int, val height: Int) {
-    val obstacles: MutableList<Obstacles> = mutableListOf()
+    var obstacles: MutableList<Obstacles> = mutableListOf()
     init {
         randomTileset()
     }
@@ -14,7 +14,7 @@ class Tileset(val context: Context, var startX: Int, var startY: Int, val width:
     }
 
 
-    private fun randomTileset() {
+    fun randomTileset() {
         when ((1..5).random()) {
             1 -> obstacles.addAll(listOf(BitmapGround(context, width, height), BitmapTerrain(context, (0.50*width).toInt(), height, (0.20*width).toInt(), (0.45*height).toInt())))
             2 -> obstacles.addAll(listOf(BitmapGround(context, width, height), BitmapWater(context, (0.15*width).toInt(),(0.20*height).toInt(), (0.55*width).toInt(), (0.80*height).toInt())))
@@ -24,4 +24,5 @@ class Tileset(val context: Context, var startX: Int, var startY: Int, val width:
             else -> println("Failed")
         }
     }
+
 }

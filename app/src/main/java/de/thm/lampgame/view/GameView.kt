@@ -6,15 +6,22 @@ import android.content.Intent
 import android.content.res.Resources
 import android.graphics.*
 import android.media.MediaPlayer
+import android.provider.Settings.Global
 import android.view.MotionEvent
 import android.view.View
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.GameOverActivity
 import de.thm.lampgame.controller.Player
+import de.thm.lampgame.controller.StartGameActivity
 import de.thm.lampgame.controller.Tileset
+import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.terrain.BitmapGround
 import de.thm.lampgame.controller.terrain.GrassLandscapeMap
 import de.thm.lampgame.model.TilesetQueueModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class GameView(context: Context) : View(context) {
     private var screenWidth = 0
@@ -28,12 +35,19 @@ class GameView(context: Context) : View(context) {
     private val paint = Paint()
     private val mp: MediaPlayer
 
-
+    private val feedingArray = ArrayDeque<Tileset>()
     init {
         paint.textSize = 75F
         paint.color = Color.BLACK
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
+
+
+            for (i in 0..30) {
+                feedingArray.add(Tileset(context, screenWidth, 0, screenWidth, screenHeight))
+            }
+
+
         tilesetQueue.initQueue(Tileset(context, screenWidth, 0, screenWidth, screenHeight),Tileset(context,screenWidth*2, 0, screenWidth, screenHeight),screenWidth)
         runnable = Runnable { invalidate() }
         mp = MediaPlayer.create(context, R.raw.background)
@@ -43,6 +57,7 @@ class GameView(context: Context) : View(context) {
     private var player = Player(context, screenHeight, screenWidth)
     private var map =  GrassLandscapeMap(context, screenHeight, screenWidth)
     private var ground = BitmapGround(context,screenWidth, screenHeight)
+    private var torch = Torch(context,screenHeight,screenWidth,2800,200)
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
@@ -101,14 +116,18 @@ class GameView(context: Context) : View(context) {
                     collision = true
             }
 
+            //Items Testing
+            torch.draw(canvas,10+multiplication)
+            torch.itemPickup(player,torch.activateEffect)
+
             //check If a new Tileset needs to be inserted into the Queue
             if (tilesetQueue.queue.first().startX <= -screenWidth) {
-                val rest = -screenWidth - tilesetQueue.queue.first().startX
+                var rest = -screenWidth - tilesetQueue.queue.first().startX
                 tilesetQueue.recycleOldTileset()
                 tilesetQueue.insertTileset(
-                    screenWidth - rest,
-                    Tileset(context, (screenWidth - rest), 0, screenWidth, screenHeight)
-                )
+                        screenWidth - rest, feedingArray.first())
+                tilesetQueue.queue.last().startX  -= rest
+                feedingArray.removeFirst()
             }
 
             //draw Char
@@ -131,6 +150,7 @@ class GameView(context: Context) : View(context) {
     }
     // Start GameOver Activity
     private fun gameOver() {
+        feedingArray.clear()
         val intent = Intent(context, GameOverActivity::class.java)
         intent.putExtra("POINTS", player.points)
         context.startActivity(intent)

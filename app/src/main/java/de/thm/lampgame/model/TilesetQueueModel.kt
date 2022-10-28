@@ -21,9 +21,19 @@ class TilesetQueueModel {
         }
     }
 
-    fun insertTileset(screenWidth: Int, t: Tileset){
+    /*fun insertTileset(screenWidth: Int){
+            val newTileset = queue.first()
+            newTileset.randomTileset()
             queue.removeFirst()
-            queue.add(t)
+            newTileset.startX = screenWidth
+            queue.add(newTileset)
             queue.last().obstacles.forEach {it.x += screenWidth}
+    }*/
+
+    fun insertTileset(screenWidth: Int, t: Tileset) {
+        queue.removeFirst()
+        queue.add(t)
+        queue.last().obstacles.forEach { it.x += screenWidth }
     }
-}
+
+    }
