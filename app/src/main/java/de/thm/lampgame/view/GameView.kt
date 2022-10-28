@@ -28,6 +28,7 @@ class GameView(context: Context) : View(context) {
     private val paint = Paint()
     private val mp: MediaPlayer
     var tilesetList = ArrayList<Tileset>()
+    val tilesetsCount = 5
 
     private val feedingArray = ArrayDeque<Tileset>()
     init {
@@ -35,11 +36,11 @@ class GameView(context: Context) : View(context) {
         paint.color = Color.BLACK
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
-        for (i in 0 until 5){
-            tilesetList.add(Tileset(context, screenWidth, 0, screenWidth, screenHeight))
+        for (i in 1 .. tilesetsCount){
+            tilesetList.add(Tileset(i, context, screenWidth, 0, screenWidth, screenHeight))
         }
 
-        tilesetQueue.initQueue(Tileset(context, screenWidth, 0, screenWidth, screenHeight),Tileset(context,screenWidth*2, 0, screenWidth, screenHeight),screenWidth)
+        tilesetQueue.initQueue(Tileset((1..tilesetsCount).random(),context, screenWidth, 0, screenWidth, screenHeight), Tileset((1..tilesetsCount).random(),context,screenWidth*2, 0, screenWidth, screenHeight),screenWidth)
         runnable = Runnable { invalidate() }
         mp = MediaPlayer.create(context, R.raw.background)
         mp.start()
@@ -54,7 +55,6 @@ class GameView(context: Context) : View(context) {
         super.onDraw(canvas)
 
         if (gameStatus) {
-
             player.calkPoints()
 
             if (player.points % 200 == 0) multiplication++
@@ -112,8 +112,8 @@ class GameView(context: Context) : View(context) {
 
             //check If a new Tileset needs to be inserted into the Queue
             if (tilesetQueue.queue.first().startX <= -screenWidth) {
-                    var rest = -screenWidth - tilesetQueue.queue.first().startX
-                    var tileset =  getpossibleTileset()
+                    val rest = -screenWidth - tilesetQueue.queue.first().startX
+                    val tileset =  getpossibleTileset()
                     tileset.startX = (screenWidth - rest)
                     tilesetQueue.insertTileset(
                         screenWidth - rest, tileset)
@@ -141,8 +141,8 @@ class GameView(context: Context) : View(context) {
     var random = 0
     fun getpossibleTileset(): Tileset {
         do {
-            random = (1..4).random()
-        } while (tilesetQueue.queue.first()==tilesetList[random]||tilesetQueue.queue.last()==tilesetList[random])
+            random = (1..tilesetsCount).random()
+        } while (tilesetQueue.queue.last()==tilesetList[random])
         return tilesetList[random]
     }
 

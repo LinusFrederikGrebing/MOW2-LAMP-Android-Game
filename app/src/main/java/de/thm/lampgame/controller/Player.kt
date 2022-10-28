@@ -30,12 +30,9 @@ class Player(context: Context, screenHeight : Int, screenWidth : Int) : PlayerMo
        firebar[4] = BitmapFactory.decodeResource(context.resources, R.drawable.firebar20)
 
        // resize char
-       rechar[0] = char[0]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
-       rechar[1] = char[1]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
-       rechar[2] = char[2]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
-       rechar[3] = char[3]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
-       rechar[4] = char[4]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
-       rechar[5] = char[5]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
+       for(i in 0 until 5){
+           rechar[i] = char[i]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
+       }
    }
 
 
