@@ -3,10 +3,7 @@ package de.thm.lampgame.controller.items
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Rect
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.RectShape
 import de.thm.lampgame.controller.Player
 
 open abstract class Item(context: Context, val height: Int, val width: Int, var x: Int, var y: Int) {

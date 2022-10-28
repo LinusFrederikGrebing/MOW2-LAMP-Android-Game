@@ -13,7 +13,7 @@ class BitmapGround(context: Context, screenWidth: Int, screenHeight: Int) : Obst
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true) }
 
     override fun draw(canvas: Canvas, velocity : Int){
-        x -= velocity
-        canvas.drawBitmap(bmp, x.toFloat(), this.y.toFloat(), null)
+        changeableX -= velocity
+        canvas.drawBitmap(bmp, changeableX.toFloat(), this.y.toFloat(), null)
     }
 }

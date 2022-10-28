@@ -10,30 +10,19 @@ class TilesetQueueModel {
         queue.add(t1); queue.add(t2)
 
         queue.first().obstacles.forEach {
-            it.x  += screenWidth}
+            it.changeableX  += screenWidth}
         queue.last().obstacles.forEach {
-            it.x += screenWidth * 2}
+            it.changeableX += screenWidth * 2}
     }
-
-    fun recycleOldTileset() {
-        queue.first().obstacles.forEach {
-            it.bmp.recycle()
-        }
-    }
-
-    /*fun insertTileset(screenWidth: Int){
-            val newTileset = queue.first()
-            newTileset.randomTileset()
-            queue.removeFirst()
-            newTileset.startX = screenWidth
-            queue.add(newTileset)
-            queue.last().obstacles.forEach {it.x += screenWidth}
-    }*/
 
     fun insertTileset(screenWidth: Int, t: Tileset) {
+        queue.first().startX = screenWidth
+        queue.first().obstacles.forEach {
+            it.changeableX = it.x
+        }
         queue.removeFirst()
         queue.add(t)
-        queue.last().obstacles.forEach { it.x += screenWidth }
+        queue.last().obstacles.forEach { it.changeableX += screenWidth }
     }
 
     }

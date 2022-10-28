@@ -1,27 +1,20 @@
 package de.thm.lampgame.view
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.*
 import android.media.MediaPlayer
-import android.provider.Settings.Global
 import android.view.MotionEvent
 import android.view.View
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.GameOverActivity
 import de.thm.lampgame.controller.Player
-import de.thm.lampgame.controller.StartGameActivity
 import de.thm.lampgame.controller.Tileset
 import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.terrain.BitmapGround
 import de.thm.lampgame.controller.terrain.GrassLandscapeMap
 import de.thm.lampgame.model.TilesetQueueModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 class GameView(context: Context) : View(context) {
     private var screenWidth = 0
@@ -34,6 +27,7 @@ class GameView(context: Context) : View(context) {
     private var tilesetQueue = TilesetQueueModel()
     private val paint = Paint()
     private val mp: MediaPlayer
+    var tilesetList = ArrayList<Tileset>()
 
     private val feedingArray = ArrayDeque<Tileset>()
     init {
@@ -41,12 +35,9 @@ class GameView(context: Context) : View(context) {
         paint.color = Color.BLACK
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
-
-
-            for (i in 0..30) {
-                feedingArray.add(Tileset(context, screenWidth, 0, screenWidth, screenHeight))
-            }
-
+        for (i in 0 until 5){
+            tilesetList.add(Tileset(context, screenWidth, 0, screenWidth, screenHeight))
+        }
 
         tilesetQueue.initQueue(Tileset(context, screenWidth, 0, screenWidth, screenHeight),Tileset(context,screenWidth*2, 0, screenWidth, screenHeight),screenWidth)
         runnable = Runnable { invalidate() }
@@ -59,7 +50,6 @@ class GameView(context: Context) : View(context) {
     private var ground = BitmapGround(context,screenWidth, screenHeight)
     private var torch = Torch(context,screenHeight,screenWidth,2800,200)
 
-    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
@@ -106,7 +96,7 @@ class GameView(context: Context) : View(context) {
                 if (this.checkCollisions(
                         tilesetQueue.queue.first().obstacles[i].death,
                         tilesetQueue.queue.first().obstacles[i].bmp,
-                        tilesetQueue.queue.first().obstacles[i].x,
+                        tilesetQueue.queue.first().obstacles[i].changeableX,
                         tilesetQueue.queue.first().obstacles[i].y,
                         player.rechar[0]!!,
                         player.charX,
@@ -122,12 +112,11 @@ class GameView(context: Context) : View(context) {
 
             //check If a new Tileset needs to be inserted into the Queue
             if (tilesetQueue.queue.first().startX <= -screenWidth) {
-                var rest = -screenWidth - tilesetQueue.queue.first().startX
-                tilesetQueue.recycleOldTileset()
-                tilesetQueue.insertTileset(
-                        screenWidth - rest, feedingArray.first())
-                tilesetQueue.queue.last().startX  -= rest
-                feedingArray.removeFirst()
+                    var rest = -screenWidth - tilesetQueue.queue.first().startX
+                    var tileset =  getpossibleTileset()
+                    tileset.startX = (screenWidth - rest)
+                    tilesetQueue.insertTileset(
+                        screenWidth - rest, tileset)
             }
 
             //draw Char
@@ -148,6 +137,15 @@ class GameView(context: Context) : View(context) {
         }
 
     }
+
+    var random = 0
+    fun getpossibleTileset(): Tileset {
+        do {
+            random = (1..4).random()
+        } while (tilesetQueue.queue.first()==tilesetList[random]||tilesetQueue.queue.last()==tilesetList[random])
+        return tilesetList[random]
+    }
+
     // Start GameOver Activity
     private fun gameOver() {
         feedingArray.clear()
@@ -157,7 +155,6 @@ class GameView(context: Context) : View(context) {
     }
 
     // jump if action up, count for double jump, check action move for sneek
-    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action)
         {
