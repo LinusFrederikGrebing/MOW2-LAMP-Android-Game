@@ -5,18 +5,22 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
 import de.thm.lampgame.controller.Player
+import de.thm.lampgame.model.ItemModel
 
-open abstract class Item(context: Context, val height: Int, val width: Int, var x: Int, var y: Int) {
+abstract class Item(
+    context: Context,
+    val height: Int,
+    val width: Int,
+    var x: Int,
+    var y: Int
+) : ItemModel() {
 
     lateinit var unsizedBmp: Bitmap
     lateinit var bmp: Bitmap
-    var pickedUp = false
 
     abstract fun draw(canvas: Canvas, velocity: Int)
 
-    abstract val activateEffect: (Player) -> Unit
-
-    fun itemPickup(p: Player, itemEffect: (Player) -> Unit){
+    fun itemPickup(p: Player, itemEffect: (Player) -> Unit) {
         if (!pickedUp) {
             val playerHitbox = Rect(
                 p.charX,

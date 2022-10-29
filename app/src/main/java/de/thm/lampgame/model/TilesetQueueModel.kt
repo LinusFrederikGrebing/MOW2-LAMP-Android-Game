@@ -1,18 +1,21 @@
 package de.thm.lampgame.model
 
 import de.thm.lampgame.controller.Tileset
-import de.thm.lampgame.controller.terrain.Obstacles
 
-class TilesetQueueModel {
+open class TilesetQueueModel {
     var queue = ArrayDeque<Tileset>(2)
+    var collision = false
+    var gameover = false
 
-    fun initQueue(t1: Tileset, t2: Tileset, screenWidth: Int){
+    fun initQueue(t1: Tileset, t2: Tileset, screenWidth: Int) {
         queue.add(t1); queue.add(t2)
 
         queue.first().obstacles.forEach {
-            it.changeableX  += screenWidth}
+            it.changeableX += 0
+        }
         queue.last().obstacles.forEach {
-            it.changeableX += screenWidth * 2}
+            it.changeableX += screenWidth
+        }
     }
 
     fun insertTileset(screenWidth: Int, t: Tileset) {
@@ -25,4 +28,26 @@ class TilesetQueueModel {
         queue.last().obstacles.forEach { it.changeableX += screenWidth }
     }
 
+    fun insertTilesetifneedTo(
+        screenWidth: Int,
+        tilesetList: ArrayList<Tileset>,
+        tilesetsCount: Int
+    ) {
+        if (queue.first().startX <= -screenWidth) {
+            val rest = -screenWidth - queue.first().startX
+            val tileset = getpossibleTileset(tilesetList, tilesetsCount)
+            tileset.startX = (screenWidth - rest)
+            insertTileset(
+                screenWidth - rest, tileset
+            )
+        }
     }
+
+    var random = 0
+    private fun getpossibleTileset(tilesetList: ArrayList<Tileset>, tilesetsCount: Int): Tileset {
+        do {
+            random = (0 until tilesetsCount).random()
+        } while (queue.last() == tilesetList[random])
+        return tilesetList[random]
+    }
+}

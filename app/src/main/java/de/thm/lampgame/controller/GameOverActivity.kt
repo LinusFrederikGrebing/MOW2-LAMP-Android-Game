@@ -20,13 +20,13 @@ class GameOverActivity : Activity() {
         mp.start()
     }
 
-    fun restart(view: View){
+    fun restart(view: View) {
         val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()
     }
 
-    fun mainMenu(view : View){
+    fun mainMenu(view: View) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
