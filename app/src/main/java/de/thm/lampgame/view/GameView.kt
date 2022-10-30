@@ -29,6 +29,9 @@ class GameView(context: Context) : View(context) {
     private val mp: MediaPlayer
     var tilesetList = ArrayList<Tileset>()
     private val tilesetsCount = 5
+    var newX = 0
+    var newY = 0
+    var possible = false
 
 
     init {
@@ -60,7 +63,7 @@ class GameView(context: Context) : View(context) {
     private var player = Player(context, screenHeight, screenWidth)
     private var map = GrassLandscapeMap(context, screenHeight, screenWidth)
     private var ground = BitmapGround(context, screenWidth, screenHeight)
-    private var torch = Torch(context, screenHeight, screenWidth, 2800, 200)
+    private var torch = Torch(context, screenHeight, screenWidth, -500, -500)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -68,7 +71,11 @@ class GameView(context: Context) : View(context) {
         if (gameStatus) {
             player.calkPoints()
             player.calkFire()
-            if (player.points % 200 == 0) multiplication++
+            if(player.fire <= 0.0F) { gameStatus = false; this.gameOver() }
+            if (player.points % 300 == 0) {
+                multiplication++
+                possible = true
+            }
             //draw background
             map.drawMap(
                 canvas,
@@ -84,14 +91,25 @@ class GameView(context: Context) : View(context) {
                 this.gameOver()
             }
 
-
             //Items Testing
-            torch.draw(canvas, 10 + multiplication)
-            torch.itemPickup(player, torch.activateEffect)
+            if(torch.x > 0){
+                torch.draw(canvas, 10 + multiplication)
+                torch.itemPickup(player, torch.activateEffect)
+
+            }
 
             //check If a new Tileset needs to be inserted into the Queue
-            tilesetQueue.insertTilesetifneedTo(screenWidth, tilesetList, tilesetsCount)
-
+            val insertet = tilesetQueue.insertTilesetifneedTo(screenWidth, tilesetList, tilesetsCount)
+            if (insertet) {
+                if (possible) {
+                    do {
+                        newX = torch.randX()
+                        newY = torch.randY()
+                    } while (tilesetQueue.tilesetCollision(torch.bmp, newX, newY))
+                    torch.initNewTorch(newX, newY)
+                    possible = false
+                }
+            }
             //draw Char
             player.setJumpStats(tilesetQueue.collision)
             player.drawChar(canvas)

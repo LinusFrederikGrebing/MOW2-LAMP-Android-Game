@@ -9,11 +9,13 @@ import de.thm.lampgame.model.ItemModel
 
 abstract class Item(
     context: Context,
+    screenHeight: Int,
+    screenWidth: Int,
     val height: Int,
     val width: Int,
-    var x: Int,
-    var y: Int
-) : ItemModel() {
+     x: Int,
+     y: Int
+) : ItemModel(screenHeight, screenWidth, x, y) {
 
     lateinit var unsizedBmp: Bitmap
     lateinit var bmp: Bitmap
@@ -30,11 +32,13 @@ abstract class Item(
             )
             val itemHitbox = Rect(x, y, (x + bmp.width), (y + bmp.height))
             if (Rect.intersects(playerHitbox, itemHitbox)) {
-                pickedUp = true
-                bmp.recycle()
+                resetTorch()
+                //bmp.recycle()
                 itemEffect(p)
             }
         }
     }
+
+
 
 }

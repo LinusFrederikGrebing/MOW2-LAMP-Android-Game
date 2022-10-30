@@ -1,6 +1,7 @@
 package de.thm.lampgame.controller
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -14,10 +15,25 @@ class GameOverActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
         val points = intent.extras!!.getInt("POINTS")
-        val viewPoints: TextView = findViewById(R.id.points) as TextView
-        viewPoints.setText("Punkte:  " + points)
+        val viewPoints: TextView = findViewById<TextView>(R.id.points)
+        val viewHighscore: TextView = findViewById<TextView>(R.id.highscore)
+
+        viewPoints.text = "Punkte: $points"
         val mp: MediaPlayer = MediaPlayer.create(this, R.raw.oohgameover)
         mp.start()
+
+        val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
+        val highScore = settings.getInt("HIGH_SCORE", 0)
+
+        if (points > highScore) {
+            viewHighscore.text = "High Score: $points"
+            val editor = settings.edit()
+            editor.putInt("HIGH_SCORE", points)
+            editor.apply()
+        } else {
+            viewHighscore.text = "High Score: $highScore"
+        }
+
     }
 
     fun restart(view: View) {

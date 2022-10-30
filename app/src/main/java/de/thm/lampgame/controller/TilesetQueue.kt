@@ -8,6 +8,8 @@ import de.thm.lampgame.model.TilesetQueueModel
 
 class TilesetQueue() : TilesetQueueModel() {
 
+    //Collision-Methode muss noch vereinfacht werden
+
     fun drawTilesetsAndCheckCollisions(
         canvas: Canvas,
         velocity: Int,
@@ -61,6 +63,52 @@ class TilesetQueue() : TilesetQueueModel() {
 
     }
 
+    fun tilesetCollision(bitmap: Bitmap, newX: Int, newY: Int): Boolean {
+        for (i in 0 until queue.first().obstacles.size) {
+            if (checkBitmapCollisions(
+                    queue.first().obstacles[i].bmp,
+                    queue.first().obstacles[i].changeableX,
+                    queue.first().obstacles[i].y,
+                    bitmap, newX, newY
+                )
+            ) return true
+        }
+        for (i in 0 until queue.last().obstacles.size) {
+            if (checkBitmapCollisions(
+                    queue.last().obstacles[i].bmp,
+                    queue.last().obstacles[i].changeableX,
+                    queue.last().obstacles[i].y,
+                    bitmap, newX, newY
+                )
+            ) return true
+        }
+
+        return false
+
+    }
+
+    fun checkBitmapCollisions(
+        bitmap1: Bitmap,
+        x1: Int,
+        y1: Int,
+        bitmap2: Bitmap,
+        x2: Int,
+        y2: Int
+    ): Boolean {
+        val hitboxRect1 = Rect(
+            x1, y1, (x1 + bitmap1.width),
+            (y1 + bitmap1.height)
+        )
+        val hitboxRect2 = Rect(
+            x2, y2, (x2 + bitmap2.width),
+            (y2 + bitmap2.height)
+        )
+        if (Rect.intersects(hitboxRect1, hitboxRect2)) {
+            return true
+        }
+
+        return false
+    }
 
     private fun checkCollisions(
         death: Boolean,

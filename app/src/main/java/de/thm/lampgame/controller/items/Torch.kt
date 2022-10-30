@@ -8,19 +8,25 @@ import de.thm.lampgame.R
 import de.thm.lampgame.controller.Player
 
 class Torch(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: Int) :
-    Item(context, (0.25 * screenHeight).toInt(), (0.1 * screenWidth).toInt(), x, y) {
+    Item(context, screenHeight, screenWidth, (0.25 * screenHeight).toInt(), (0.1 * screenWidth).toInt(), x, y) {
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.torch)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true)
     }
 
-    override fun draw(canvas: Canvas, velocity: Int) {
-        if (!pickedUp) {
+    fun initNewTorch(newX : Int, newY : Int){
+        x = newX
+        y = newY
+    }
+
+     override fun draw(canvas: Canvas, velocity: Int) {
+         if (!pickedUp) {
             x -= velocity
             canvas.drawBitmap(bmp, x.toFloat(), y.toFloat(), null)
         }
     }
 
     override var activateEffect: (Player) -> Unit = { p -> p.fire = 100F }
+
 
 }

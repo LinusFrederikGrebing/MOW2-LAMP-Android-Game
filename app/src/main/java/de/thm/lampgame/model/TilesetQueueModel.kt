@@ -32,7 +32,7 @@ open class TilesetQueueModel {
         screenWidth: Int,
         tilesetList: ArrayList<Tileset>,
         tilesetsCount: Int
-    ) {
+    ) : Boolean {
         if (queue.first().startX <= -screenWidth) {
             val rest = -screenWidth - queue.first().startX
             val tileset = getpossibleTileset(tilesetList, tilesetsCount)
@@ -40,7 +40,9 @@ open class TilesetQueueModel {
             insertTileset(
                 screenWidth - rest, tileset
             )
+            return true
         }
+        return false
     }
 
     var random = 0

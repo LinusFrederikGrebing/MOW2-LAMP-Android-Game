@@ -39,9 +39,9 @@ class Tileset(
                     BitmapWater(
                         context,
                         (0.15 * width).toInt(),
-                        (0.20 * height).toInt(),
-                        (0).toInt(),
-                        (0.80 * height).toInt()
+                        (0.2 * height).toInt(),
+                        (0.5 * width).toInt(),
+                        (0.8 * height).toInt()
                     )
                 )
             )
