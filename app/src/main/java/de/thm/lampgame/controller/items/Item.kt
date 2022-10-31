@@ -22,7 +22,9 @@ abstract class Item(
 
     abstract fun draw(canvas: Canvas, velocity: Int)
 
-    fun itemPickup(p: Player, itemEffect: (Player) -> Unit) {
+    abstract val activateEffect: (Player) -> Unit
+
+    fun itemPickup(p: Player, itemEffect: (Player) -> Unit){
         if (!pickedUp) {
             val playerHitbox = Rect(
                 p.charX,
@@ -32,13 +34,10 @@ abstract class Item(
             )
             val itemHitbox = Rect(x, y, (x + bmp.width), (y + bmp.height))
             if (Rect.intersects(playerHitbox, itemHitbox)) {
-                resetTorch()
-                //bmp.recycle()
+                pickedUp = true
                 itemEffect(p)
             }
         }
     }
-
-
 
 }

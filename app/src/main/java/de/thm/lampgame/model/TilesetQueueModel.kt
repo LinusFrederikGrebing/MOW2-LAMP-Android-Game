@@ -23,9 +23,11 @@ open class TilesetQueueModel {
         queue.first().obstacles.forEach {
             it.changeableX = it.x
         }
+        queue.first().hasItem = false
         queue.removeFirst()
         queue.add(t)
         queue.last().obstacles.forEach { it.changeableX += screenWidth }
+        queue.last().itemX += screenWidth
     }
 
     fun insertTilesetifneedTo(

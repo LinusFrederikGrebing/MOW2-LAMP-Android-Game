@@ -1,6 +1,8 @@
 package de.thm.lampgame.controller
-
 import android.content.Context
+import de.thm.lampgame.controller.items.DoublePoints
+import de.thm.lampgame.controller.items.Item
+import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.terrain.*
 import de.thm.lampgame.model.TilesetModel
 
@@ -13,10 +15,24 @@ class Tileset(
     val width: Int,
     val height: Int
 ) : TilesetModel(startX) {
+class Tileset(val tileset: Int, val context: Context, var startX: Int, var startY: Int, val width: Int, val height: Int) {
+    var obstacles: MutableList<Obstacles> = mutableListOf()
+    lateinit var item: Item
+    var hasItem = false
+    var itemX = 0
+    var itemY = 0
     init {
         randomTileset()
     }
 
+    fun drawTileset(terrainVelocity : Int){
+        startX -= terrainVelocity
+    }
+
+    fun placeTileset(startPos: Int) {
+        startX = startPos
+        setItemSpawnpoint()
+    }
 
     fun randomTileset() {
         when (tileset) {
@@ -96,6 +112,25 @@ class Tileset(
                 )
             )
             else -> println("Failed")
+        }
+    }
+
+    fun setItemSpawnpoint() {
+        when (tileset) {
+            1 -> {itemX = (0.9*width).toInt(); itemY = (0.1*height).toInt()}
+            2 -> {itemX = (0.55*width).toInt(); itemY = (0.5*height).toInt()}
+            else -> println("Error Torch Spawn Point")
+        }
+    }
+
+    fun randomItemSpawn(isTorch: Boolean){
+        if (isTorch) {
+            item = Torch(context,height,width,itemX,itemY)
+            hasItem = true
+        }
+        else when ((1..10).random()) {
+            1 -> { item = DoublePoints(context,height,width,itemX,itemY); hasItem = true}
+            else -> hasItem = false
         }
     }
 
