@@ -27,7 +27,6 @@ open abstract class Item(context: Context, val height: Int, val width: Int, var 
             val itemHitbox = Rect(x, y, (x + bmp.width), (y + bmp.height))
             if (Rect.intersects(playerHitbox, itemHitbox)) {
                 pickedUp = true
-                bmp.recycle()
                 itemEffect(p)
             }
         }

@@ -11,7 +11,7 @@ import de.thm.lampgame.R
 import de.thm.lampgame.controller.GameOverActivity
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.Tileset
-import de.thm.lampgame.controller.items.Torch
+import de.thm.lampgame.controller.items.DoublePoints
 import de.thm.lampgame.controller.terrain.BitmapGround
 import de.thm.lampgame.controller.terrain.GrassLandscapeMap
 import de.thm.lampgame.model.TilesetQueueModel
@@ -29,6 +29,8 @@ class GameView(context: Context) : View(context) {
     private val mp: MediaPlayer
     var tilesetList = ArrayList<Tileset>()
     val tilesetsCount = 5
+    val torchSpawnrate = 5
+    var torchSpawncounter = 2 // 2 anstatt 0 wegen den 2 initial-Tilesets
 
     private val feedingArray = ArrayDeque<Tileset>()
     init {
@@ -40,7 +42,7 @@ class GameView(context: Context) : View(context) {
             tilesetList.add(Tileset(i, context, screenWidth, 0, screenWidth, screenHeight))
         }
 
-        tilesetQueue.initQueue(Tileset((1..tilesetsCount).random(),context, screenWidth, 0, screenWidth, screenHeight), Tileset((1..tilesetsCount).random(),context,screenWidth*2, 0, screenWidth, screenHeight),screenWidth)
+        tilesetQueue.initQueue(Tileset(2,context, screenWidth, 0, screenWidth, screenHeight), Tileset(2,context,screenWidth*2, 0, screenWidth, screenHeight),screenWidth)
         runnable = Runnable { invalidate() }
         mp = MediaPlayer.create(context, R.raw.background)
         mp.start()
@@ -49,12 +51,12 @@ class GameView(context: Context) : View(context) {
     private var player = Player(context, screenHeight, screenWidth)
     private var map =  GrassLandscapeMap(context, screenHeight, screenWidth)
     private var ground = BitmapGround(context,screenWidth, screenHeight)
-    private var torch = Torch(context,screenHeight,screenWidth,2800,200)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         if (gameStatus) {
+            if (player.dblPtsDur > 0) player.dblPtsDur--
             player.calkPoints()
 
             if (player.points % 200 == 0) multiplication++
@@ -72,13 +74,14 @@ class GameView(context: Context) : View(context) {
             tilesetQueue.queue.first().obstacles.forEach {
                 it.draw(canvas, 10 + multiplication)
             }
-
+            if (tilesetQueue.queue.first().hasItem) tilesetQueue.queue.first().item.draw(canvas,10+multiplication)
             tilesetQueue.queue.last().drawTileset(10 + multiplication )
 
             //Alternative Lösung für die for-Schleife mit ClassCastException
             tilesetQueue.queue.last().obstacles.forEach {
                 it.draw(canvas, 10 + multiplication)
             }
+            if (tilesetQueue.queue.last().hasItem) tilesetQueue.queue.last().item.draw(canvas,10+multiplication)
 
             //check Map-Collision
             collision = this.checkCollisions(
@@ -106,17 +109,19 @@ class GameView(context: Context) : View(context) {
                     collision = true
             }
 
-            //Items Testing
-            torch.draw(canvas,10+multiplication)
-            torch.itemPickup(player,torch.activateEffect)
+            if (tilesetQueue.queue.first().hasItem) tilesetQueue.queue.first().item.itemPickup(player,tilesetQueue.queue.first().item.activateEffect)
+            if (tilesetQueue.queue.last().hasItem) tilesetQueue.queue.last().item.itemPickup(player,tilesetQueue.queue.last().item.activateEffect)
 
             //check If a new Tileset needs to be inserted into the Queue
             if (tilesetQueue.queue.first().startX <= -screenWidth) {
                     val rest = -screenWidth - tilesetQueue.queue.first().startX
                     val tileset =  getpossibleTileset()
-                    tileset.startX = (screenWidth - rest)
+                    tileset.placeTileset(screenWidth - rest)
                     tilesetQueue.insertTileset(
                         screenWidth - rest, tileset)
+                    torchSpawncounter++
+                    if (torchSpawncounter % torchSpawnrate == 0) tilesetQueue.queue.last().randomItemSpawn(true)
+                    else tilesetQueue.queue.last().randomItemSpawn(false)
             }
 
             //draw Char
@@ -141,7 +146,7 @@ class GameView(context: Context) : View(context) {
     var random = 0
     fun getpossibleTileset(): Tileset {
         do {
-            random = (0 until tilesetsCount).random()
+            random = (0 until 2).random()
         } while (tilesetQueue.queue.last()==tilesetList[random])
         return tilesetList[random]
     }

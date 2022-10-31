@@ -5,7 +5,7 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var charwidth: Double = 0.0
     var firebarFrame = 0
     var points = 0
-    var fire: Float = 0F
+    var fire: Float = 100F
     var charframe = 0
     var charY = (0.10*screenWidth).toInt()
     var charX = (0.15*screenWidth).toInt()
@@ -15,6 +15,8 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var jumpState = false
     var birdsneek = false
     val maxVelocity = 30
+    var hasDblPts = false
+    var dblPtsDur = 0
 
     fun getCharWidth() : Int{
         charwidth = 0.08*screenWidth
@@ -49,7 +51,8 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     }
 
     fun calkPoints(){
-        points++
+        if (!hasDblPts) points++
+        else points += 2
     }
 
     fun calkFire(){

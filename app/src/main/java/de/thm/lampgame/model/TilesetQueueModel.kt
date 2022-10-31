@@ -1,7 +1,6 @@
 package de.thm.lampgame.model
 
 import de.thm.lampgame.controller.Tileset
-import de.thm.lampgame.controller.terrain.Obstacles
 
 class TilesetQueueModel {
     var queue = ArrayDeque<Tileset>(2)
@@ -20,9 +19,11 @@ class TilesetQueueModel {
         queue.first().obstacles.forEach {
             it.changeableX = it.x
         }
+        queue.first().hasItem = false
         queue.removeFirst()
         queue.add(t)
         queue.last().obstacles.forEach { it.changeableX += screenWidth }
+        queue.last().itemX += screenWidth
     }
 
     }
