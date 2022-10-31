@@ -6,27 +6,13 @@ import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.terrain.*
 import de.thm.lampgame.model.TilesetModel
 
-
-class Tileset(
-    val tileset: Int,
-    val context: Context,
-    startX: Int,
-    var startY: Int,
-    val width: Int,
-    val height: Int
-) : TilesetModel(startX) {
-class Tileset(val tileset: Int, val context: Context, var startX: Int, var startY: Int, val width: Int, val height: Int) {
-    var obstacles: MutableList<Obstacles> = mutableListOf()
+class Tileset(val tileset: Int, val context: Context, startX : Int, var startY: Int, val width: Int, val height: Int) : TilesetModel(startX) {
     lateinit var item: Item
     var hasItem = false
     var itemX = 0
     var itemY = 0
     init {
         randomTileset()
-    }
-
-    fun drawTileset(terrainVelocity : Int){
-        startX -= terrainVelocity
     }
 
     fun placeTileset(startPos: Int) {

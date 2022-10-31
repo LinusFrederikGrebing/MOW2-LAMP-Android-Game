@@ -16,6 +16,15 @@ class TilesetQueue() : TilesetQueueModel() {
         player: Player,
         ground: BitmapGround
     ) {
+
+        //draw Items
+        if (queue.first().hasItem) queue.first().item.draw(canvas, velocity)
+        if (queue.last().hasItem) queue.last().item.draw(canvas,velocity)
+
+        if (queue.first().hasItem) queue.first().item.itemPickup(player, queue.first().item.activateEffect)
+        if (queue.last().hasItem) queue.last().item.itemPickup(player, queue.last().item.activateEffect)
+
+
         //draw first Tileset  and its Obstacles
         queue.first().drawTileset(velocity)
         queue.first().obstacles.forEach {

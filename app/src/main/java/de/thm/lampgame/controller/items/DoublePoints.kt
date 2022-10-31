@@ -7,7 +7,7 @@ import android.graphics.Canvas
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.Player
 
-class DoublePoints(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: Int ) : Item(context, (0.1*screenHeight).toInt(),(0.1*screenWidth).toInt(), x,y) {
+class DoublePoints(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: Int ) : Item(context, screenHeight, screenWidth, (0.1*screenHeight).toInt(),(0.1*screenWidth).toInt(), x,y) {
     var duration = 0
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.doublepoints)

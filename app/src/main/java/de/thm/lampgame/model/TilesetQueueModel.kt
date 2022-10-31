@@ -30,6 +30,10 @@ open class TilesetQueueModel {
         queue.last().itemX += screenWidth
     }
 
+    val torchSpawnrate = 5
+    var torchSpawncounter = 2
+
+
     fun insertTilesetifneedTo(
         screenWidth: Int,
         tilesetList: ArrayList<Tileset>,
@@ -38,10 +42,13 @@ open class TilesetQueueModel {
         if (queue.first().startX <= -screenWidth) {
             val rest = -screenWidth - queue.first().startX
             val tileset = getpossibleTileset(tilesetList, tilesetsCount)
-            tileset.startX = (screenWidth - rest)
+            tileset.placeTileset(screenWidth - rest)
             insertTileset(
-                screenWidth - rest, tileset
-            )
+                screenWidth - rest, tileset)
+            torchSpawncounter++
+            if (torchSpawncounter % torchSpawnrate == 0) queue.last().randomItemSpawn(true)
+            else queue.last().randomItemSpawn(false)
+
             return true
         }
         return false
