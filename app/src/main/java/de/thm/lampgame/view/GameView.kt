@@ -76,7 +76,7 @@ class GameView(context: Context) : View(context) {
 
             //draw tileset with obstacless
             tilesetQueue.drawTilesetsAndCheckCollisions(canvas, 15 + multiplication, player, ground)
-            if (tilesetQueue.gameover) {
+            if (tilesetQueue.gameover || player.fire <= 0F) {
                 gameStatus = false
                 this.gameOver()
             }
@@ -92,7 +92,7 @@ class GameView(context: Context) : View(context) {
             canvas.drawText("Punkte: " + player.points.toString(), 10F, 75F, paint)
 
 
-
+            tilesetQueue.iterations++
             // refresh
             handler!!.postDelayed(runnable!!, updateMillis)
 

@@ -6,6 +6,7 @@ open class TilesetQueueModel {
     var queue = ArrayDeque<Tileset>(2)
     var collision = false
     var gameover = false
+    var iterations = 0
 
     fun initQueue(t1: Tileset, t2: Tileset, screenWidth: Int) {
         queue.add(t1); queue.add(t2)
@@ -46,7 +47,10 @@ open class TilesetQueueModel {
             insertTileset(
                 screenWidth - rest, tileset)
             torchSpawncounter++
-            if (torchSpawncounter % torchSpawnrate == 0) queue.last().randomItemSpawn(true)
+            if (iterations >= 200) {
+                queue.last().randomItemSpawn(true)
+                iterations = 0
+            }
             else queue.last().randomItemSpawn(false)
 
             return true
