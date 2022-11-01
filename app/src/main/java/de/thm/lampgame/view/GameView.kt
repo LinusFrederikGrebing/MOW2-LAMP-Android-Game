@@ -74,8 +74,8 @@ class GameView(context: Context) : View(context) {
             map.drawMap(canvas,  0.1 + multiplication/4, 0.2 + multiplication/3, 0.3 + multiplication/2 )
 
 
-            //draw tileset with obstacles
-            tilesetQueue.drawTilesetsAndCheckCollisions(canvas, 5 + multiplication, player, ground)
+            //draw tileset with obstacless
+            tilesetQueue.drawTilesetsAndCheckCollisions(canvas, 15 + multiplication, player, ground)
             if (tilesetQueue.gameover) {
                 gameStatus = false
                 this.gameOver()

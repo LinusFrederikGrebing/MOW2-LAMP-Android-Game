@@ -1,23 +1,13 @@
 package de.thm.lampgame.controller
 import android.content.Context
 import de.thm.lampgame.controller.items.DoublePoints
-import de.thm.lampgame.controller.items.Item
 import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.terrain.*
 import de.thm.lampgame.model.TilesetModel
 
-class Tileset(val tileset: Int, val context: Context, startX : Int, var startY: Int, val width: Int, val height: Int) : TilesetModel(startX) {
-    lateinit var item: Item
-    var hasItem = false
-    var itemX = 0
-    var itemY = 0
+class Tileset(val tileset: Int, val context: Context, startX : Int, var startY: Int, width: Int, height: Int) : TilesetModel(startX, tileset, width, height) {
     init {
         randomTileset()
-    }
-
-    fun placeTileset(startPos: Int) {
-        startX = startPos
-        setItemSpawnpoint()
     }
 
     fun randomTileset() {
@@ -101,13 +91,6 @@ class Tileset(val tileset: Int, val context: Context, startX : Int, var startY: 
         }
     }
 
-    fun setItemSpawnpoint() {
-        when (tileset) {
-            1 -> {itemX = (0.9*width).toInt(); itemY = (0.1*height).toInt()}
-            2 -> {itemX = (0.55*width).toInt(); itemY = (0.5*height).toInt()}
-            else -> println("Error Torch Spawn Point")
-        }
-    }
 
     fun randomItemSpawn(isTorch: Boolean){
         if (isTorch) {
