@@ -12,8 +12,9 @@ import de.thm.lampgame.controller.GameOverActivity
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.Tileset
 import de.thm.lampgame.controller.TilesetQueue
-import de.thm.lampgame.controller.terrain.BitmapGround
 import de.thm.lampgame.controller.maps.GrassLandscapeMap
+import de.thm.lampgame.controller.maps.MountainLandscapeMap
+import de.thm.lampgame.controller.terrain.BitmapGround
 
 
 class GameView(context: Context) : View(context) {
@@ -28,6 +29,7 @@ class GameView(context: Context) : View(context) {
     private val mp: MediaPlayer
     var tilesetList = ArrayList<Tileset>()
     val tilesetsCount = 5
+
 
     init {
         paint.textSize = 75F
@@ -53,10 +55,14 @@ class GameView(context: Context) : View(context) {
         runnable = Runnable { invalidate() }
         mp = MediaPlayer.create(context, R.raw.background)
         mp.start()
+
     }
 
+
     private var player = Player(context, screenHeight, screenWidth)
-    private var map =  GrassLandscapeMap(context, screenHeight, screenWidth)
+    private val grassLandscapeMap =  GrassLandscapeMap(context, screenHeight, screenWidth)
+    private val mountainLandscapeMap =  MountainLandscapeMap(context, screenHeight, screenWidth)
+
     private var ground = BitmapGround(context,screenWidth, screenHeight)
 
     override fun onDraw(canvas: Canvas) {
@@ -71,7 +77,12 @@ class GameView(context: Context) : View(context) {
 
 
             //cloud background-fragment
-            map.drawMap(canvas,  0.1 + multiplication/4, 0.2 + multiplication/3, 0.3 + multiplication/2 )
+            if(GrassLandscapeMap.active){
+                grassLandscapeMap.drawMap(canvas,  0.1 + multiplication/4, 0.2 + multiplication/3, 0.3 + multiplication/2 )
+
+            } else {
+                mountainLandscapeMap.drawMap(canvas,  0.1 + multiplication/4, 0.2 + multiplication/3, 0.3 + multiplication/2 )
+            }
 
 
             //draw tileset with obstacless

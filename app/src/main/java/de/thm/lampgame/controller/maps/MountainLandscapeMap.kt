@@ -7,11 +7,11 @@ import android.graphics.Canvas
 import de.thm.lampgame.R
 import de.thm.lampgame.model.MapModel
 
-class GrassLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
+class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapModel(screenWidth, screenHeight) {
     companion object {
-         var name = "GrassLandscapeMap"
-         var active = false
+        var name = "MountainLandscapeMap"
+        var active = false
     }
 
     var mitte: Bitmap
@@ -20,8 +20,8 @@ class GrassLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
 
 
     init {
-        background = BitmapFactory.decodeResource(context.resources, R.drawable.himmel)
-        mitte = BitmapFactory.decodeResource(context.resources, R.drawable.clouds)
+        background = BitmapFactory.decodeResource(context.resources, R.drawable.berghinten)
+        mitte = BitmapFactory.decodeResource(context.resources, R.drawable.bergemitte)
         vorne = BitmapFactory.decodeResource(context.resources, R.drawable.bergevorne)
         height = background.getHeight().toFloat()
         width = background.getWidth().toFloat()

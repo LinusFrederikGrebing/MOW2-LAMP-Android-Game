@@ -41,6 +41,11 @@
             android:name=".controller.SettingsActivity"
             android:screenOrientation="landscape">
         </activity>
+        <activity
+            android:name=".controller.ShopActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
