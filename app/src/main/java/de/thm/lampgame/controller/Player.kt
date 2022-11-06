@@ -14,6 +14,11 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
     var rechar = arrayOfNulls<Bitmap>(6)
     var firebar = arrayOfNulls<Bitmap>(5)
 
+    var firebarBackgroundRect = Rect()
+    var firebarBackgroundPaint = Paint()
+    var firebarRect = Rect()
+    var firebarPaint = Paint()
+
     init {
         // init char-Bitmap
         char[0] = BitmapFactory.decodeResource(context.resources, R.drawable.legs_left)
