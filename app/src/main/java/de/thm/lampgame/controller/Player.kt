@@ -56,8 +56,8 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
             )
         }
     }
-
-    fun drawFirebar(canvas: Canvas) {
+//Altenative Version.
+  /*  fun drawFirebar(canvas: Canvas) {
         firebar[calkFirebar()]?.let {
             canvas.drawBitmap(
                 it,
@@ -66,6 +66,16 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
                 null
             )
         }
+    }
+    */
+//Neue Version.
+    fun drawFirebar(canvas: Canvas) {
+      firebarBackgroundRect.set(10, screenHeight/4, 86, screenHeight-screenHeight/4)
+      firebarBackgroundPaint.setARGB(90, 0, 0, 0)
+      firebarRect.set(10, (((screenHeight-screenHeight/4)-fire/50*screenHeight/4).toInt()), 86, screenHeight-screenHeight/4)
+      firebarPaint.setColor(Color.RED)
+      canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
+      canvas.drawRect(firebarRect, firebarPaint)
     }
 
     fun groundjumping(context: Context) {
