@@ -1,9 +1,7 @@
 package de.thm.lampgame.controller
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
+import android.graphics.*
 import android.media.MediaPlayer
 import de.thm.lampgame.R
 import de.thm.lampgame.model.PlayerModel
@@ -61,6 +59,7 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
             )
         }
     }
+
 //Altenative Version.
   /*  fun drawFirebar(canvas: Canvas) {
         firebar[calkFirebar()]?.let {
@@ -75,9 +74,9 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
     */
 //Neue Version.
     fun drawFirebar(canvas: Canvas) {
-      firebarBackgroundRect.set(10, screenHeight/4, 86, screenHeight-screenHeight/4)
+      firebarBackgroundRect.set(0+screenWidth/40, screenHeight/4, 0+screenWidth/15, screenHeight-screenHeight/4)
       firebarBackgroundPaint.setARGB(90, 0, 0, 0)
-      firebarRect.set(10, (((screenHeight-screenHeight/4)-fire/50*screenHeight/4).toInt()), 86, screenHeight-screenHeight/4)
+      firebarRect.set(0+screenWidth/40, (((screenHeight-screenHeight/4)-fire/50*screenHeight/4).toInt()), 0+screenWidth/15, screenHeight-screenHeight/4)
       firebarPaint.setColor(Color.RED)
       canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
       canvas.drawRect(firebarRect, firebarPaint)

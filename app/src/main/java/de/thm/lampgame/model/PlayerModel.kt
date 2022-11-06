@@ -3,7 +3,7 @@ package de.thm.lampgame.model
 abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var charHeight: Double = 0.0
     var charwidth: Double = 0.0
-    var firebarFrame = 0
+    //var firebarFrame = 0
     var points = 0
     var fire: Float = 100F
     var charframe = 0
@@ -32,10 +32,11 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
         return charframe
     }
 
-    fun calkFirebar() : Int{
+    //Alternativer Firebar-Ansatz
+    /*fun calkFirebar() : Int{
         firebarFrame = if(fire > 80) 0 else if (fire > 60) 1 else if (fire > 40) 2 else if (fire > 20) 3 else 4
         return firebarFrame
-    }
+    }*/
 
     fun setJumpStats(collision : Boolean){
 

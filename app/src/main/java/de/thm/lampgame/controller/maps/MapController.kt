@@ -5,6 +5,10 @@ import android.graphics.Canvas
 import de.thm.lampgame.model.MapModel
 
 abstract class MapController(screenWidth: Int, screenHeight: Int) : MapModel(screenWidth, screenHeight) {
+    lateinit var mitte: Bitmap
+    lateinit var background: Bitmap
+    lateinit var vorne: Bitmap
+
     fun drawMapHinten(canvas: Canvas, speed: Double, bmp: Bitmap) {
         setNewMapHintenXCoords(speed)
         canvas.drawBitmap(bmp, mapHinten.toFloat(), 0f, null)

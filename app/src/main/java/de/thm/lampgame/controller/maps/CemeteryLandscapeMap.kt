@@ -15,9 +15,6 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
          var active = false
     }
 
-    var mitte: Bitmap
-    var background: Bitmap
-    var vorne: Bitmap
 
 
     init {

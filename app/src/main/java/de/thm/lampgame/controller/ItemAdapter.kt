@@ -1,12 +1,13 @@
-package de.thm.lampgame
+package de.thm.lampgame.controller
 
-import android.content.ClipData.Item
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import de.thm.lampgame.R
+import de.thm.lampgame.model.ItemList
 
 class ItemAdapter(var context : Context, var arrayList: ArrayList<ItemList>) : BaseAdapter() {
     override fun getCount(): Int {
@@ -28,7 +29,7 @@ class ItemAdapter(var context : Context, var arrayList: ArrayList<ItemList>) : B
         val title:TextView = view.findViewById(R.id.title_text_view)
         val detail:TextView = view.findViewById(R.id.detail_text_view)
 
-        val items:ItemList = arrayList[position]
+        val items: ItemList = arrayList[position]
 
         icons.setImageResource(items.icons!!)
         title.text = items.title

@@ -15,11 +15,6 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         var active = true
     }
 
-    var mitte: Bitmap
-    var background: Bitmap
-    var vorne: Bitmap
-
-
     init {
         BitmapGround.texture = R.drawable.bodengras
         BitmapTerrain.texture = R.drawable.plattform2

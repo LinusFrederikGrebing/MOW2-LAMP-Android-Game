@@ -31,7 +31,6 @@ open class TilesetQueueModel {
         queue.last().itemX += screenWidth
     }
 
-    val torchSpawnrate = 5
     var torchSpawncounter = 2
 
 

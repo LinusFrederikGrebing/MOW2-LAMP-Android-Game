@@ -28,7 +28,7 @@ class GameView(context: Context) : View(context) {
     private var tilesetQueue = TilesetQueue()
     private val paint = Paint()
     private val mp: MediaPlayer
-    private lateinit var map: MapController
+    private var map: MapController
 
     var tilesetList = ArrayList<Tileset>()
     val tilesetsCount = 5
@@ -108,6 +108,7 @@ class GameView(context: Context) : View(context) {
 
             //pauseButton.layout(2000,2000,2400,2400)
             //pauseButton.draw(canvas)
+
             tilesetQueue.iterations++
             // refresh
             handler!!.postDelayed(runnable!!, updateMillis)

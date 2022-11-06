@@ -7,8 +7,7 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import de.thm.lampgame.ItemAdapter
-import de.thm.lampgame.ItemList
+import de.thm.lampgame.model.ItemList
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
@@ -16,7 +15,7 @@ import de.thm.lampgame.controller.maps.MountainLandscapeMap
 
 class ShopActivity : AppCompatActivity() , OnItemClickListener{
     private var listView:ListView? = null
-    private var itemAdapter: ItemAdapter ? = null
+    private var itemAdapter: ItemAdapter? = null
     private var arrayList:ArrayList<ItemList>? = null
     var listItem:ArrayList<ItemList> = ArrayList()
 
