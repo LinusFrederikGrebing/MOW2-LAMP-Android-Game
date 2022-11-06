@@ -7,9 +7,8 @@ import de.thm.lampgame.model.ObstacleModel
 
 
 abstract class Obstacles(
-    context: Context,
-    val height: Int,
     val width: Int,
+    val height: Int,
     x: Int,
     var y: Int,
     var death: Boolean

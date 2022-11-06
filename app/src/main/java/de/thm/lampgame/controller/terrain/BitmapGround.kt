@@ -6,18 +6,20 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
 
-class BitmapGround(context: Context, screenWidth: Int, screenHeight: Int) : Obstacles(
-    context,
-    (0.13 * screenHeight).toInt(),
-    screenWidth,
+class BitmapGround(context: Context, width: Int, height: Int) : Obstacles(
+    width,
+    (0.13 * height).toInt(),
     0,
-    (0.80 * screenHeight).toInt(),
+    (0.80 * height).toInt(),
     false
 ) {
+    companion object {
+        var texture = R.drawable.tilesground
+    }
 
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.bodengras)
-        bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
+        bmp = Bitmap.createScaledBitmap(unsizedBmp, this.width, this.height, true)
     }
 
     override fun draw(canvas: Canvas, velocity: Int) {

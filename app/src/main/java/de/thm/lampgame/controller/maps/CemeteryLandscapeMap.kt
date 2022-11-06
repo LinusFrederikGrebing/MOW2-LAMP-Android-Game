@@ -8,11 +8,11 @@ import de.thm.lampgame.R
 import de.thm.lampgame.controller.terrain.BitmapGround
 import de.thm.lampgame.controller.terrain.BitmapTerrain
 
-class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
+class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
     companion object {
-        var name = "MountainLandscapeMap"
-        var active = true
+         var name = "CemeteryLandscapeMap"
+         var active = false
     }
 
     var mitte: Bitmap
@@ -21,11 +21,11 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
 
 
     init {
-        BitmapGround.texture = R.drawable.bodengras
-        BitmapTerrain.texture = R.drawable.plattform2
-        background = BitmapFactory.decodeResource(context.resources, R.drawable.berghinten)
-        mitte = BitmapFactory.decodeResource(context.resources, R.drawable.bergemitte)
-        vorne = BitmapFactory.decodeResource(context.resources, R.drawable.bergevorne)
+        BitmapGround.texture = R.drawable.tilesground
+        BitmapTerrain.texture = R.drawable.cemetery_platform
+        background = BitmapFactory.decodeResource(context.resources, R.drawable.moon)
+        mitte = BitmapFactory.decodeResource(context.resources, R.drawable.background2)
+        vorne = BitmapFactory.decodeResource(context.resources, R.drawable.background1)
         height = background.getHeight().toFloat()
         width = background.getWidth().toFloat()
         ratio = width / height

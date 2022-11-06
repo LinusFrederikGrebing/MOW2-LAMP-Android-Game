@@ -5,7 +5,7 @@ import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.terrain.*
 import de.thm.lampgame.model.TilesetModel
 
-class Tileset(val tileset: Int, val context: Context, startX : Int, var startY: Int, width: Int, height: Int) : TilesetModel(startX, tileset, width, height) {
+class Tileset(val tileset: Int, val context: Context, startX : Int, screenWidth: Int, screenHeight: Int) : TilesetModel(startX, tileset, screenWidth, screenHeight) {
     init {
         randomTileset()
     }
@@ -18,9 +18,9 @@ class Tileset(val tileset: Int, val context: Context, startX : Int, var startY: 
                     BitmapGround(context, width, height),
                     BitmapTerrain(
                         context,
-                        (0.50 * width).toInt(),
-                        height,
-                        (0.20 * startX).toInt(),
+                        (0.60 * width).toInt(),
+                        (0.1 * height).toInt(),
+                        (0.20 * width).toInt(),
                         (0.45 * height).toInt()
                     )
                 )
@@ -31,9 +31,9 @@ class Tileset(val tileset: Int, val context: Context, startX : Int, var startY: 
                     BitmapWater(
                         context,
                         (0.15 * width).toInt(),
-                        (0.2 * height).toInt(),
+                        height,
                         (0.5 * width).toInt(),
-                        (0.8 * height).toInt()
+                        height
                     )
                 )
             )

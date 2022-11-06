@@ -6,12 +6,12 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
 
-class BitmapTube(context: Context, screenWidth: Int, screenHeight: Int, x: Int, y: Int) :
-    Obstacles(context, (0.40 * screenHeight).toInt(), (0.08 * screenWidth).toInt(), x, y, false) {
+class BitmapTube(context: Context, width: Int, height: Int, x: Int, y: Int) :
+    Obstacles((0.08 * width).toInt(),(0.40 * height).toInt(), x, y, false) {
 
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.bottomtube)
-        bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true)
+        bmp = Bitmap.createScaledBitmap(unsizedBmp, this.width, this.height, true)
     }
 
     override fun draw(canvas: Canvas, velocity: Int) {

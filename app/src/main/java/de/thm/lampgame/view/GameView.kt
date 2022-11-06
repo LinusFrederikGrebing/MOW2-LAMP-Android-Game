@@ -12,7 +12,8 @@ import de.thm.lampgame.controller.GameOverActivity
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.Tileset
 import de.thm.lampgame.controller.TilesetQueue
-import de.thm.lampgame.controller.maps.GrassLandscapeMap
+import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
+import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.terrain.BitmapGround
 
@@ -27,26 +28,32 @@ class GameView(context: Context) : View(context) {
     private var tilesetQueue = TilesetQueue()
     private val paint = Paint()
     private val mp: MediaPlayer
+    private lateinit var map: MapController
+
     var tilesetList = ArrayList<Tileset>()
     val tilesetsCount = 5
+   //var pauseButton = ImageButton(context)
+
 
 
     init {
+        //pauseButton.setImageResource(R.drawable.doublepoints)
+        //pauseButton.setOnClickListener { gameOver() }
         paint.textSize = 75F
         paint.color = Color.BLACK
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
+        map = if (CemeteryLandscapeMap.active) CemeteryLandscapeMap(context,screenHeight,screenWidth) else MountainLandscapeMap(context,screenHeight,screenWidth)
         for (i in 1 .. tilesetsCount){
-            tilesetList.add(Tileset(i, context, screenWidth, 0, screenWidth, screenHeight))
+            tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
         }
 
         tilesetQueue.initQueue(
-            Tileset(0, context, 0, 0, screenWidth, screenHeight),
+            Tileset(0, context, 0, screenWidth, screenHeight),
             Tileset(
                 (1..tilesetsCount).random(),
                 context,
                 screenWidth,
-                0,
                 screenWidth,
                 screenHeight
             ),
@@ -60,8 +67,6 @@ class GameView(context: Context) : View(context) {
 
 
     private var player = Player(context, screenHeight, screenWidth)
-    private val grassLandscapeMap =  GrassLandscapeMap(context, screenHeight, screenWidth)
-    private val mountainLandscapeMap =  MountainLandscapeMap(context, screenHeight, screenWidth)
 
     private var ground = BitmapGround(context,screenWidth, screenHeight)
 
@@ -72,17 +77,16 @@ class GameView(context: Context) : View(context) {
             if (player.dblPtsDur > 0) player.dblPtsDur--
             player.calkPoints()
 
-            if (player.points % 300 == 0) multiplication++
+            if (tilesetQueue.iterations == 200) {
+                multiplication++
+                println("Points: " + player.points + " Multi: " + multiplication)
+            }
             player.calkFire()
 
 
             //cloud background-fragment
-            if(GrassLandscapeMap.active){
-                grassLandscapeMap.drawMap(canvas,  0.1 + multiplication/4, 0.2 + multiplication/3, 0.3 + multiplication/2 )
+            map.drawMap(canvas,  0.1 + multiplication/4, 0.2 + multiplication/3, 0.3 + multiplication/2 )
 
-            } else {
-                mountainLandscapeMap.drawMap(canvas,  0.1 + multiplication/4, 0.2 + multiplication/3, 0.3 + multiplication/2 )
-            }
 
 
             //draw tileset with obstacless
@@ -102,7 +106,8 @@ class GameView(context: Context) : View(context) {
 
             canvas.drawText("Punkte: " + player.points.toString(), 10F, 75F, paint)
 
-
+            //pauseButton.layout(2000,2000,2400,2400)
+            //pauseButton.draw(canvas)
             tilesetQueue.iterations++
             // refresh
             handler!!.postDelayed(runnable!!, updateMillis)
