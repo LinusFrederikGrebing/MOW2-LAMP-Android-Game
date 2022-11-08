@@ -1,18 +1,18 @@
 package de.thm.lampgame.controller.terrain
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import de.thm.lampgame.model.ObstacleModel
 
 
 abstract class Obstacles(
-    val width: Int,
-    val height: Int,
+    name: String,
+    width: Int,
+    height: Int,
     x: Int,
-    var y: Int,
+    y: Int,
     var death: Boolean
-) : ObstacleModel(x) {
+) : ObstacleModel(name,width,height,x,y) {
 
     lateinit var unsizedBmp: Bitmap
     lateinit var bmp: Bitmap

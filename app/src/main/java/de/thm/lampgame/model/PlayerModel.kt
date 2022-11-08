@@ -63,7 +63,7 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     fun sprung(){
         if(jumpCount < 2 && !birdsneek){
             jumpCount++
-            velocity = -30
+            velocity = -screenHeight / 28
             jumpState = true
         }
     }

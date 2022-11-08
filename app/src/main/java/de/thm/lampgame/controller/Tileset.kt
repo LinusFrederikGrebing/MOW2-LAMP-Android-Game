@@ -8,89 +8,20 @@ import de.thm.lampgame.model.TilesetModel
 class Tileset(val tileset: Int, val context: Context, startX : Int, screenWidth: Int, screenHeight: Int) : TilesetModel(startX, tileset, screenWidth, screenHeight) {
     init {
         randomTileset()
+        addBitmaps()
     }
 
-    fun randomTileset() {
-        when (tileset) {
-            0 -> obstacles.addAll(listOf(BitmapGround(context, width, height)))
-            1 -> obstacles.addAll(
-                listOf(
-                    BitmapGround(context, width, height),
-                    BitmapTerrain(
-                        context,
-                        (0.60 * width).toInt(),
-                        (0.1 * height).toInt(),
-                        (0.20 * width).toInt(),
-                        (0.45 * height).toInt()
-                    )
-                )
-            )
-            2 -> obstacles.addAll(
-                listOf(
-                    BitmapGround(context, width, height),
-                    BitmapWater(
-                        context,
-                        (0.15 * width).toInt(),
-                        height,
-                        (0.5 * width).toInt(),
-                        height
-                    )
-                )
-            )
-            3 -> obstacles.addAll(
-                listOf(
-                    BitmapGround(context, width, height),
-                    BitmapTube(
-                        context,
-                        width,
-                        height,
-                        (0.30 * width).toInt(),
-                        (0.65 * height).toInt()
-                    ),
-                    BitmapTube(
-                        context,
-                        width,
-                        height,
-                        (0.9 * width).toInt(),
-                        (0.55 * height).toInt()
-                    )
-                )
-            )
-            4 -> obstacles.addAll(
-                listOf(
-                    BitmapGround(context, width, height),
-                    BitmapTube(
-                        context,
-                        width,
-                        height,
-                        (0.50 * width).toInt(),
-                        (0.65 * height).toInt()
-                    )
-                )
-            )
-            5 -> obstacles.addAll(
-                listOf(
-                    BitmapGround(context, width, height),
-                    BitmapTube(
-                        context,
-                        width,
-                        height,
-                        (0.40 * width).toInt(),
-                        (0.55 * height).toInt()
-                    ),
-                    BitmapTube(
-                        context,
-                        width,
-                        height,
-                        (0.75 * width).toInt(),
-                        (0.65 * height).toInt()
-                    )
-                )
-            )
-            else -> println("Failed")
+    private fun addBitmaps() {
+        obstaclesWithoutBitmaps.forEach {
+            when (it.name) {
+                "ground" -> obstacles.add(BitmapGround(context, width, height))
+                "terrain" -> obstacles.add(BitmapTerrain(context,it.width,it.height,it.x, it.y))
+                "tube" -> obstacles.add(BitmapTube(context,it.width,it.height,it.x, it.y))
+                "water" -> obstacles.add(BitmapWater(context,it.width,it.height,it.x, it.y))
+                else -> "No Bitmap Found"
+            }
         }
     }
-
 
     fun randomItemSpawn(isTorch: Boolean){
         if (isTorch) {

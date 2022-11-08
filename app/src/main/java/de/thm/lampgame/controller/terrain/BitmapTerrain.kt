@@ -8,7 +8,7 @@ import de.thm.lampgame.R
 
 
 class BitmapTerrain(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    Obstacles(width, height, x, y, false) {
+    Obstacles("terrain", width, height, x, y, false) {
 
     companion object {
         var texture = R.drawable.tilesground

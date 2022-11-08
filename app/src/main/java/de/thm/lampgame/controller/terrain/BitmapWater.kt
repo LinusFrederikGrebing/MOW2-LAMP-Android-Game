@@ -7,7 +7,7 @@ import android.graphics.Canvas
 import de.thm.lampgame.R
 
 class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    Obstacles(width,(0.13 * height).toInt(), x, (0.8 * y).toInt(), true) {
+    Obstacles("water", width,(0.13 * height).toInt(), x, (0.8 * y).toInt(), true) {
 
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.wasser)

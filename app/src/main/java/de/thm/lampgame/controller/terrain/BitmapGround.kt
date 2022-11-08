@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
 
-class BitmapGround(context: Context, width: Int, height: Int) : Obstacles(
+class BitmapGround(context: Context, width: Int, height: Int) : Obstacles("ground",
     width,
     (0.13 * height).toInt(),
     0,
