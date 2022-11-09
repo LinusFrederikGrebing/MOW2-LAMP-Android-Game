@@ -15,13 +15,11 @@ class MainActivity : Activity() {
     fun startGame(view: View?) {
         val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
-        finish()
     }
 
     fun buttonSettings(view: View?) {
         val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
-        finish()
     }
 
     fun shop(view: View?) {
