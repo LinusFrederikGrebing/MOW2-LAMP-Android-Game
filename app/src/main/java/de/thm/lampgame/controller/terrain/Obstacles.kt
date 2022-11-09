@@ -17,6 +17,6 @@ abstract class Obstacles(
     lateinit var unsizedBmp: Bitmap
     lateinit var bmp: Bitmap
 
-    abstract fun draw(canvas: Canvas, velocity: Int)
+    abstract fun draw(canvas: Canvas, velocityX: Int, velocityY: Int)
 
 }

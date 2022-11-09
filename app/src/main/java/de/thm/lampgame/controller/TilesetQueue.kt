@@ -28,13 +28,13 @@ class TilesetQueue() : TilesetQueueModel() {
         //draw first Tileset  and its Obstacles
         queue.first().drawTileset(velocity)
         queue.first().obstacles.forEach {
-            it.draw(canvas, velocity)
+            it.draw(canvas, velocity, velocity/2)
         }
 
         //draw first Tileset  and its Obstacles
         queue.last().drawTileset(velocity)
         queue.last().obstacles.forEach {
-            it.draw(canvas, velocity)
+            it.draw(canvas, velocity, velocity/2)
         }
 
         collision = this.checkCollisions(
@@ -51,7 +51,7 @@ class TilesetQueue() : TilesetQueueModel() {
                     queue.first().obstacles[i].death,
                     queue.first().obstacles[i].bmp,
                     queue.first().obstacles[i].changeableX,
-                    queue.first().obstacles[i].y,
+                    queue.first().obstacles[i].changeableY,
                     player
                 )
             )
@@ -63,7 +63,7 @@ class TilesetQueue() : TilesetQueueModel() {
                     queue.last().obstacles[i].death,
                     queue.last().obstacles[i].bmp,
                     queue.last().obstacles[i].changeableX,
-                    queue.last().obstacles[i].y,
+                    queue.last().obstacles[i].changeableY,
                     player
                 )
             )

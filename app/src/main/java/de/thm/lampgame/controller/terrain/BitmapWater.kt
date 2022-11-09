@@ -14,8 +14,8 @@ class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) :
         bmp = Bitmap.createScaledBitmap(unsizedBmp, this.width, this.height, true)
     }
 
-    override fun draw(canvas: Canvas, velocity: Int) {
-        changeableX -= velocity
-        canvas.drawBitmap(bmp, changeableX.toFloat(), y.toFloat(), null)
+    override fun draw(canvas: Canvas, velocityX: Int, velocityY: Int) {
+        changeableX -= velocityX
+        canvas.drawBitmap(bmp, changeableX.toFloat(), changeableY.toFloat(), null)
     }
 }

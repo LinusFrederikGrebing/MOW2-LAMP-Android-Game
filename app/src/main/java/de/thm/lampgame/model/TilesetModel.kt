@@ -19,11 +19,13 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
 
     fun setItemSpawnpoint() {
         when (tilesetNr) {
-            1 -> {itemX = (0.9*width).toInt(); itemY = (0.1*height).toInt()}
-            2 -> {itemX = (0.55*width).toInt(); itemY = (0.5*height).toInt()}
-            3 -> {itemX = (0.55*width).toInt(); itemY = (0.6*height).toInt()}
-            4 -> {itemX = (0.7*width).toInt(); itemY = (0.25*height).toInt()}
-            5 -> {itemX = (0.15*width).toInt(); itemY = (0.2*height).toInt()}
+            1 -> { itemX = (0.9*width).toInt();  itemY = (0.1*height).toInt() }
+            2 -> { itemX = (0.55*width).toInt(); itemY = (0.5*height).toInt() }
+            3 -> { itemX = (0.55*width).toInt(); itemY = (0.6*height).toInt() }
+            4 -> { itemX = (0.7*width).toInt();  itemY = (0.25*height).toInt() }
+            5 -> { itemX = (0.15*width).toInt(); itemY = (0.2*height).toInt() }
+            6 -> { itemX = (0.6*width).toInt();  itemY = (0.6*height).toInt() }
+            7 -> { itemX = (0.15*width).toInt(); itemY = (0.6*height).toInt() }
             else -> println("Error Torch Spawn Point")
         }
     }
@@ -102,6 +104,31 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
                         height,
                         (0.75 * width).toInt(),
                         (0.65 * height).toInt()
+                    )
+                )
+            )
+
+            6 -> obstaclesWithoutBitmaps.addAll(
+                listOf(
+                    ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
+                    ObstacleModel(
+                        "saw",
+                        width,
+                        height,
+                        width,
+                        (0.63 * height).toInt()
+                    )
+                )
+            )
+            7 -> obstaclesWithoutBitmaps.addAll(
+                listOf(
+                    ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
+                    ObstacleModel(
+                        "waterenemy",
+                        width,
+                        height,
+                        (0.5*width).toInt(),
+                        (0.63 * height).toInt()
                     )
                 )
             )

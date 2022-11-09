@@ -22,8 +22,8 @@ class BitmapGround(context: Context, width: Int, height: Int) : Obstacles("groun
         bmp = Bitmap.createScaledBitmap(unsizedBmp, this.width, this.height, true)
     }
 
-    override fun draw(canvas: Canvas, velocity: Int) {
-        changeableX -= velocity
-        canvas.drawBitmap(bmp, changeableX.toFloat(), this.y.toFloat(), null)
+    override fun draw(canvas: Canvas, velocityX: Int, velocityY: Int) {
+        changeableX -= velocityX
+        canvas.drawBitmap(bmp, changeableX.toFloat(), changeableY.toFloat(), null)
     }
 }

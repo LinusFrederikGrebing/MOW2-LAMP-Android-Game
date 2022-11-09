@@ -11,7 +11,6 @@ import android.graphics.PorterDuff
 import android.media.MediaPlayer
 import android.view.MotionEvent
 import android.view.View
-import android.widget.RelativeLayout
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
@@ -35,7 +34,7 @@ class GameView(context: Context) : View(context) {
     var pauseCalled: Boolean = false
 
     var tilesetList = ArrayList<Tileset>()
-    val tilesetsCount = 5
+    val tilesetsCount = 7
 
 
 

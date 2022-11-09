@@ -5,7 +5,7 @@ import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.terrain.*
 import de.thm.lampgame.model.TilesetModel
 
-class Tileset(val tileset: Int, val context: Context, startX : Int, screenWidth: Int, screenHeight: Int) : TilesetModel(startX, tileset, screenWidth, screenHeight) {
+class Tileset(tileset: Int, val context: Context, startX : Int, screenWidth: Int, screenHeight: Int) : TilesetModel(startX, tileset, screenWidth, screenHeight) {
     init {
         randomTileset()
         addBitmaps()
@@ -18,6 +18,8 @@ class Tileset(val tileset: Int, val context: Context, startX : Int, screenWidth:
                 "terrain" -> obstacles.add(BitmapTerrain(context,it.width,it.height,it.x, it.y))
                 "tube" -> obstacles.add(BitmapTube(context,it.width,it.height,it.x, it.y))
                 "water" -> obstacles.add(BitmapWater(context,it.width,it.height,it.x, it.y))
+                "saw" -> obstacles.add(BitmapSaw(context,it.width,it.height,it.x, it.y))
+                "waterenemy" -> obstacles.add(BitmapWaterEnemy(context,it.width,it.height,it.x, it.y))
                 else -> "No Bitmap Found"
             }
         }
