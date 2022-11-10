@@ -15,7 +15,7 @@ import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.terrain.BitmapGround
 
-
+//test
 class GameView(context: Context) : View(context) {
     private var screenWidth = 0
     private var screenHeight = 0
