@@ -30,7 +30,7 @@ class Tileset(tileset: Int, val context: Context, startX : Int, screenWidth: Int
             item = Torch(context,height,width,itemX,itemY)
             hasItem = true
         }
-        else when ((1..10).random()) {
+        else when ((1..2).random()) {
             1 -> { item = DoublePoints(context,height,width,itemX,itemY); hasItem = true}
             else -> hasItem = false
         }

@@ -22,7 +22,7 @@ class DoublePoints(context: Context, screenHeight: Int, screenWidth: Int, x: Int
 
     override var activateEffect: (Player) -> Unit = {p ->
         p.hasDblPts = true
-        p.dblPtsDur = 2000
+        p.dblPtsDur = 250
     }
 
 }

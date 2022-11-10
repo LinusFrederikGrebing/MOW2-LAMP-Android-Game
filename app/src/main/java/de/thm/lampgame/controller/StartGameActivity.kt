@@ -1,36 +1,36 @@
 package de.thm.lampgame.controller
 
-import android.R
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.LinearLayout
 import de.thm.lampgame.view.GameView
-
+import android.media.MediaPlayer
 
 class StartGameActivity : Activity() {
-    var gameView: GameView? = null
+    private var gameView: GameView? = null
+    var mp: MediaPlayer? = null
+    var length : Int? = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         gameView = GameView(this)
         setContentView(gameView)
+        mp = MediaPlayer.create(this, de.thm.lampgame.R.raw.background)
     }
 
     override fun onPause() {
-        if (gameView!!.gameStatus && !gameView!!.pauseCalled) {
-            super.onPause()
-            intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-            gameView!!.pauseCalled = true
-        }
-        else onResume()
+        super.onPause()
+            mp?.pause()
+            length = mp?.currentPosition
     }
 
     override fun onResume() {
         super.onResume()
-        gameView!!.pauseCalled = false
+        length?.let { mp?.seekTo(it) }
+        mp?.start()
+        gameView!!.gameStatus = true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mp?.stop()
     }
 }

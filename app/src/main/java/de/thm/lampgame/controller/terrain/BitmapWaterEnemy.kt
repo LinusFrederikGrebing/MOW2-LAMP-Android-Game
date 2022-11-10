@@ -7,7 +7,7 @@ import android.graphics.Canvas
 import de.thm.lampgame.R
 
 class BitmapWaterEnemy(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    Obstacles("waterenemy", (0.1 * width).toInt(),(0.2 * height).toInt(), x, y, true) {
+    Obstacles("waterenemy", (0.05 * width).toInt(),(0.1 * height).toInt(), x, y, true) {
     var falling = false
 
     init {

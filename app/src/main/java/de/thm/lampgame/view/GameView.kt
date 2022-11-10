@@ -7,11 +7,8 @@ import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.PorterDuff
-import android.media.MediaPlayer
 import android.view.MotionEvent
 import android.view.View
-import de.thm.lampgame.R
 import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MapController
@@ -28,10 +25,8 @@ class GameView(context: Context) : View(context) {
     private var multiplication = 0
     private var tilesetQueue = TilesetQueue()
     private val paint = Paint()
-    private val mp: MediaPlayer
     private var map: MapController
     private var pauseButton: PauseButton
-    var pauseCalled: Boolean = false
 
     var tilesetList = ArrayList<Tileset>()
     val tilesetsCount = 7
@@ -61,8 +56,6 @@ class GameView(context: Context) : View(context) {
             screenWidth
         )
         runnable = Runnable { invalidate() }
-        mp = MediaPlayer.create(context, R.raw.background)
-        mp.start()
 
     }
 
@@ -104,18 +97,15 @@ class GameView(context: Context) : View(context) {
             player.drawChar(canvas)
             player.drawFirebar(canvas)
 
+
+            if (player.dblPtsDur > 0) paint.color = Color.RED else paint.color = Color.BLACK
             canvas.drawText("Punkte: " + player.points.toString(), 10F, 75F, paint)
             pauseButton.draw(canvas)
 
             tilesetQueue.iterations++
             // refresh
             handler!!.postDelayed(runnable!!, updateMillis)
-
-        } else {
-            canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY)
-            mp.stop()
         }
-
     }
 
     // Start GameOver Activity
@@ -133,7 +123,7 @@ class GameView(context: Context) : View(context) {
                 if (pauseButton.checkIfClicked(event.x,event.y)) {
                     val intent = Intent(context, SettingsActivity::class.java)
                     context.startActivity(intent)
-                    pauseCalled = true
+                    gameStatus = false
                     return true
                 }
                 else if (player.jumpCount < 2) player.groundjumping(context)
