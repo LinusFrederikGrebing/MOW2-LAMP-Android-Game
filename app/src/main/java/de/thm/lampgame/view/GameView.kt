@@ -121,7 +121,7 @@ class GameView(context: Context) : View(context) {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 if (pauseButton.checkIfClicked(event.x,event.y)) {
-                    val intent = Intent(context, SettingsActivity::class.java)
+                    val intent = Intent(context, PauseActivity::class.java)
                     context.startActivity(intent)
                     gameStatus = false
                     return true

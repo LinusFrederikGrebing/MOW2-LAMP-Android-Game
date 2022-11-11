@@ -1,11 +1,13 @@
 package de.thm.lampgame.controller
 
-import android.app.Activity
-import android.os.Bundle
-import de.thm.lampgame.view.GameView
+import android.content.Intent
 import android.media.MediaPlayer
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import de.thm.lampgame.view.GameView
 
-class StartGameActivity : Activity() {
+
+class StartGameActivity : AppCompatActivity() {
     private var gameView: GameView? = null
     var mp: MediaPlayer? = null
     var length : Int? = 0
@@ -20,6 +22,10 @@ class StartGameActivity : Activity() {
         super.onPause()
             mp?.pause()
             length = mp?.currentPosition
+        if (gameView!!.gameStatus) {
+            val intent = Intent(this, PauseActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
