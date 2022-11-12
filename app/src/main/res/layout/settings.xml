@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/backgroudn">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView"
@@ -27,7 +26,7 @@
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="100dp"
         android:progress="100"
         android:progressTint="#496289"
         android:thumbTint="#496289"
@@ -36,10 +35,11 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/lautst_rke"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sound_symbol" />
@@ -48,8 +48,13 @@
         android:id="@+id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#2898BF"
+        android:fontFamily="@font/bangers"
+        android:letterSpacing="0.25"
         android:src="@android:drawable/ic_media_play"
         android:text="@string/test"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.024"
@@ -57,20 +62,17 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.104" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="#00FFFFFF"
-        android:onClick="backToMenu"
-        android:scaleX="2"
-        android:scaleY="2"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toStartOf="parent"
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/zur_ck_zum_hauptmen"
+        android:onClick="mainMenu"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307"
-        app:srcCompat="@drawable/arrow_left_svgrepo_com" />
+        app:srcCompat="@drawable/exit" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

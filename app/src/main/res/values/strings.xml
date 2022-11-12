@@ -11,4 +11,6 @@
     <string name="continueStr">Continue</string>
     <string name="restart">Restart</string>
     <string name="home">Home</string>
+    <string name="zur_ck_zum_hauptmen">Zurück zum Hauptmenü</string>
+    <string name="lautst_rke">Lautstärke</string>
 </resources>

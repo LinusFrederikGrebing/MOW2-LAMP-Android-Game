@@ -206,7 +206,6 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
-
     }
 
     fun shop1(view: View) {
