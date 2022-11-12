@@ -1,5 +1,124 @@
 package de.thm.lampgame.controller
 
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import de.thm.lampgame.DataItem
+import de.thm.lampgame.Database.ACTIVE_TYPE
+import de.thm.lampgame.Database.LOCKED_TYPE
+import de.thm.lampgame.Database.UNLOCKED_TYPE
+import de.thm.lampgame.databinding.ActivedesignBinding
+import de.thm.lampgame.databinding.LockeddesignBinding
+import de.thm.lampgame.databinding.UnlockeddesignBinding
+
+
+class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+
+    class ActiveViewHolder(val activeBinding: ActivedesignBinding, val listener : OnItemClickListener) : RecyclerView.ViewHolder(activeBinding.root),
+        View.OnClickListener {
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        fun bind(item: DataItem.Active){
+            activeBinding.active = item
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
+    }
+
+    class LockedViewHolder(val lockedBinding: LockeddesignBinding, val listener : OnItemClickListener) : RecyclerView.ViewHolder(lockedBinding.root),
+        View.OnClickListener {
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        fun bind(item: DataItem.Locked){
+            lockedBinding.locked = item
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
+    }
+
+     class UnlockedViewHolder(val unlockedBinding: UnlockeddesignBinding, val listener : OnItemClickListener) : RecyclerView.ViewHolder(unlockedBinding.root),
+         View.OnClickListener {
+         init {
+             itemView.setOnClickListener(this)
+         }
+
+         fun bind(item: DataItem.Unlocked){
+             unlockedBinding.unlocked = item
+         }
+
+         override fun onClick(v: View?) {
+             val position = adapterPosition
+             if (position != RecyclerView.NO_POSITION) {
+                 listener.onItemClick(position)
+             }
+         }
+    }
+
+
+
+    private val itemList = arrayListOf<Any>()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when(viewType){
+            UNLOCKED_TYPE -> LockedViewHolder(LockeddesignBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+                listener)
+            LOCKED_TYPE -> UnlockedViewHolder(UnlockeddesignBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+                listener)
+            ACTIVE_TYPE -> ActiveViewHolder(ActivedesignBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+                listener)
+            else -> throw java.lang.IllegalArgumentException("invalid test type")
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        Log.i("test", holder.toString())
+        when(holder){
+            is LockedViewHolder -> holder.bind(itemList[position] as DataItem.Locked)
+            is UnlockedViewHolder -> holder.bind(itemList[position] as DataItem.Unlocked)
+            is ActiveViewHolder -> holder.bind(itemList[position] as DataItem.Active)
+        }
+    }
+
+    override fun getItemCount(): Int = itemList.size
+
+    override fun getItemViewType(position: Int): Int {
+        return when(itemList[position]){
+            is DataItem.Locked -> UNLOCKED_TYPE
+            is DataItem.Unlocked -> LOCKED_TYPE
+            is DataItem.Active -> ACTIVE_TYPE
+            else -> throw IllegalArgumentException("invalid type")
+        }
+    }
+    fun updateList(updatedList: List<Any>){
+        itemList.clear()
+        itemList.addAll(updatedList)
+        notifyDataSetChanged()
+    }
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+}
+
+
+/*
+
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +128,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.thm.lampgame.model.Items
 import de.thm.lampgame.R
+
+
+
+
 
 class ItemsAdapter(
     private val exampleList: List<Items>,
@@ -54,3 +177,4 @@ class ItemsAdapter(
         fun onItemClick(position: Int)
     }
 }
+*/

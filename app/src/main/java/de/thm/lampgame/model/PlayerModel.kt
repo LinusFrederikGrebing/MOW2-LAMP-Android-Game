@@ -18,6 +18,11 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var hasDblPts = false
     var dblPtsDur = 0
 
+    companion object{
+        var coins = 50
+
+    }
+
     fun getCharWidth() : Int{
         charwidth = 0.08*screenWidth
         return charwidth.toInt()

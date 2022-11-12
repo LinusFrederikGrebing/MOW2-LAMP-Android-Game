@@ -1,5 +1,120 @@
 package de.thm.lampgame.controller
 
+import android.R.attr.data
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import de.thm.lampgame.DataItem
+import de.thm.lampgame.Database
+import de.thm.lampgame.R
+import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
+import de.thm.lampgame.controller.maps.MountainLandscapeMap
+import de.thm.lampgame.databinding.TestshoplayoutBinding
+import de.thm.lampgame.model.PlayerModel
+
+
+class ShopActivity : AppCompatActivity(),  ItemsAdapter.OnItemClickListener{
+   private lateinit var binding: TestshoplayoutBinding
+    private val adapterList by lazy { ItemsAdapter(this) }
+    var itemList : ArrayList<DataItem> = Database.getItemsMaps()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setList(itemList)
+        setPlayerCoinsTextView()
+    }
+
+    fun setList(itemList: ArrayList<DataItem>) {
+        binding = TestshoplayoutBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        adapterList.updateList(itemList)
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@ShopActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = adapterList
+        }
+    }
+
+
+
+    fun mainMenu(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+
+    }
+
+    fun shop1(view: View) {
+        itemList = Database.getItemsMaps()
+        setList(itemList)
+        setPlayerCoinsTextView()
+    }
+    fun shop2(view: View) {
+        itemList = Database.getItemsSkins()
+        setList(itemList)
+        setPlayerCoinsTextView()
+    }
+    fun shop3(view: View) {
+        itemList = Database.getItemsItems()
+        setList(itemList)
+        setPlayerCoinsTextView()
+    }
+
+    override fun onItemClick(position: Int) {
+        if(itemList[position] is DataItem.Locked){
+            if((itemList[position] as DataItem.Locked).text == CemeteryLandscapeMap.name){
+               if(PlayerModel.coins >= (itemList[position] as DataItem.Locked).price.toInt()){
+                   PlayerModel.coins -= (itemList[position] as DataItem.Locked).price.toInt()
+                   Log.i("test", PlayerModel.coins.toString())
+                   CemeteryLandscapeMap.buyStatus = true
+                   itemList = Database.getItemsMaps()
+                   setList(itemList)
+               } else {
+                   Toast.makeText(
+                       this, "Nicht genügend Coins vorhanden!",
+                       Toast.LENGTH_LONG
+                   ).show()
+               }
+            }
+        } else {
+           if(itemList[position] is DataItem.Unlocked){
+               if((itemList[position] as DataItem.Unlocked).text == CemeteryLandscapeMap.name){
+                    CemeteryLandscapeMap.active = true
+                    MountainLandscapeMap.active = false
+                   itemList = Database.getItemsMaps()
+                   setList(itemList)
+               } else if((itemList[position] as DataItem.Unlocked).text == MountainLandscapeMap.name) {
+                   MountainLandscapeMap.active = true
+                   CemeteryLandscapeMap.active = false
+                   itemList = Database.getItemsMaps()
+                   setList(itemList)
+               }
+           } else {
+               Toast.makeText(
+                   this, "Map schon aktiv!",
+                   Toast.LENGTH_LONG
+               ).show()
+           }
+        }
+
+
+        setPlayerCoinsTextView()
+    }
+
+    private fun setPlayerCoinsTextView(){
+        var playerCoins = findViewById<TextView>(R.id.playercoinstv)
+        playerCoins?.text = PlayerModel.coins.toString()
+    }
+}
+
+
+
+
+/*
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,6 +126,7 @@ import de.thm.lampgame.model.Items
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
+
 
 
 class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
@@ -115,5 +231,5 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         actualList = 3
     }
 }
-
+*/
 

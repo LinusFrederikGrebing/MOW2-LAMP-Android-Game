@@ -13,6 +13,7 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
     companion object {
          var name = "CemeteryLandscapeMap"
          var active = false
+         var buyStatus = false
     }
 
 
