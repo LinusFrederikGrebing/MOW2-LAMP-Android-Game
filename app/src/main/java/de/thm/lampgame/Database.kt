@@ -9,7 +9,7 @@ object Database {
     const val ACTIVE_TYPE = 2
 
     fun getItemsMaps() : ArrayList<DataItem>{
-        var itemList = arrayListOf<DataItem>()
+        val itemList = arrayListOf<DataItem>()
 
         if(MountainLandscapeMap.active){
             itemList.add(DataItem.Active(R.drawable.bergeicon, MountainLandscapeMap.name))
@@ -18,7 +18,7 @@ object Database {
         }
 
          if(!CemeteryLandscapeMap.buyStatus){
-            itemList.add(DataItem.Locked(R.drawable.cemetery, CemeteryLandscapeMap.name, "70"))
+            itemList.add(DataItem.Locked(R.drawable.cemetery, CemeteryLandscapeMap.name, "35"))
         } else {
              if(CemeteryLandscapeMap.active){
                  itemList.add(DataItem.Active(R.drawable.cemetery, CemeteryLandscapeMap.name))
@@ -32,22 +32,28 @@ object Database {
     }
 
     fun getItemsSkins() : ArrayList<DataItem>{
-        var itemList = arrayListOf<DataItem>()
-        itemList.add(DataItem.Unlocked(R.drawable.bergeicon, MountainLandscapeMap.name))
-        if(!CemeteryLandscapeMap.buyStatus){
-            itemList.add(DataItem.Locked(R.drawable.cemetery, CemeteryLandscapeMap.name, "35"))
+        val itemList = arrayListOf<DataItem>()
+        if(MountainLandscapeMap.active){
+            itemList.add(DataItem.Active(R.drawable.bergeicon, MountainLandscapeMap.name))
         } else {
-            itemList.add(DataItem.Unlocked(R.drawable.cemetery, CemeteryLandscapeMap.name))
+            itemList.add(DataItem.Unlocked(R.drawable.bergeicon, MountainLandscapeMap.name))
         }
 
-
+        if(!CemeteryLandscapeMap.buyStatus){
+            itemList.add(DataItem.Locked(R.drawable.cemetery, CemeteryLandscapeMap.name, "70"))
+        } else {
+            if(CemeteryLandscapeMap.active){
+                itemList.add(DataItem.Active(R.drawable.cemetery, CemeteryLandscapeMap.name))
+            } else {
+                itemList.add(DataItem.Unlocked(R.drawable.cemetery, CemeteryLandscapeMap.name))
+            }
+        }
         return itemList
-
     }
 
     fun getItemsItems() : ArrayList<DataItem> {
 
-        var itemList = arrayListOf<DataItem>()
+        val itemList = arrayListOf<DataItem>()
         itemList.add(DataItem.Unlocked(R.drawable.bergeicon, MountainLandscapeMap.name))
         itemList.add(DataItem.Locked(R.drawable.cemetery, "statisch Locked", "50"))
 

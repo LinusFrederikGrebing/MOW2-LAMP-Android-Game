@@ -1,6 +1,5 @@
 package de.thm.lampgame.controller
 
-import android.R.attr.data
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,12 +13,12 @@ import de.thm.lampgame.Database
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
-import de.thm.lampgame.databinding.TestshoplayoutBinding
+import de.thm.lampgame.databinding.ShopActivityLayoutBinding
 import de.thm.lampgame.model.PlayerModel
 
 
 class ShopActivity : AppCompatActivity(),  ItemsAdapter.OnItemClickListener{
-   private lateinit var binding: TestshoplayoutBinding
+   private lateinit var binding: ShopActivityLayoutBinding
     private val adapterList by lazy { ItemsAdapter(this) }
     var itemList : ArrayList<DataItem> = Database.getItemsMaps()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +28,7 @@ class ShopActivity : AppCompatActivity(),  ItemsAdapter.OnItemClickListener{
     }
 
     fun setList(itemList: ArrayList<DataItem>) {
-        binding = TestshoplayoutBinding.inflate(layoutInflater)
+        binding = ShopActivityLayoutBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         adapterList.updateList(itemList)
@@ -106,7 +105,7 @@ class ShopActivity : AppCompatActivity(),  ItemsAdapter.OnItemClickListener{
     }
 
     private fun setPlayerCoinsTextView(){
-        var playerCoins = findViewById<TextView>(R.id.playercoinstv)
+        val playerCoins = findViewById<TextView>(R.id.playercoinstv)
         playerCoins?.text = PlayerModel.coins.toString()
     }
 }
