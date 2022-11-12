@@ -33,18 +33,16 @@ class SettingsActivity : AppCompatActivity() {
             }
         })
 
-        //Musik bei Play-Button drücken (zum Testen)
+        //Testmusik zum Testen der Lautstärke
         val one: Button = findViewById<View>(de.thm.lampgame.R.id.playButton) as Button
         val mp: MediaPlayer = MediaPlayer.create(this, R.raw.musik)
         one.setOnClickListener { mp.start() }
 
     }
 
-    fun backToMenu(view : View){
-        /*val intent = Intent(this, MainActivity::class.java)
+    fun mainMenu(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish()*/
         finish()
-
     }
 }

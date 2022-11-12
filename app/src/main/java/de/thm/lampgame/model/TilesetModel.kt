@@ -107,7 +107,6 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
                     )
                 )
             )
-
             6 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
                     ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
