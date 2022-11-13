@@ -1,14 +1,13 @@
 package de.thm.lampgame.controller
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import de.thm.lampgame.DataItem
-import de.thm.lampgame.Database.ACTIVE_TYPE
-import de.thm.lampgame.Database.LOCKED_TYPE
-import de.thm.lampgame.Database.UNLOCKED_TYPE
+import de.thm.lampgame.model.DataItem
+import de.thm.lampgame.model.Database.ACTIVE_TYPE
+import de.thm.lampgame.model.Database.LOCKED_TYPE
+import de.thm.lampgame.model.Database.UNLOCKED_TYPE
 import de.thm.lampgame.databinding.ActivedesignBinding
 import de.thm.lampgame.databinding.LockeddesignBinding
 import de.thm.lampgame.databinding.UnlockeddesignBinding
@@ -88,7 +87,6 @@ class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        Log.i("test", holder.toString())
         when(holder){
             is LockedViewHolder -> holder.bind(itemList[position] as DataItem.Locked)
             is UnlockedViewHolder -> holder.bind(itemList[position] as DataItem.Unlocked)
@@ -112,6 +110,7 @@ class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
         notifyDataSetChanged()
     }
     interface OnItemClickListener {
+
         fun onItemClick(position: Int)
     }
 }

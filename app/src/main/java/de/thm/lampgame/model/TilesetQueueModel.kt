@@ -38,19 +38,19 @@ open class TilesetQueueModel {
         screenWidth: Int,
         tilesetList: ArrayList<Tileset>,
         tilesetsCount: Int
-    ) : Boolean {
+    ): Boolean {
         if (queue.first().startX <= -screenWidth) {
             val rest = -screenWidth - queue.first().startX
             val tileset = getpossibleTileset(tilesetList, tilesetsCount)
             tileset.placeTileset(screenWidth - rest)
             insertTileset(
-                screenWidth - rest, tileset)
+                screenWidth - rest, tileset
+            )
             torchSpawncounter++
             if (iterations >= 200) {
                 queue.last().randomItemSpawn(true)
                 iterations = 0
-            }
-            else queue.last().randomItemSpawn(false)
+            } else queue.last().randomItemSpawn(false)
 
             return true
         }

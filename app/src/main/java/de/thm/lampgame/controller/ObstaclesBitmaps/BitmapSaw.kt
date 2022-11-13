@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller.terrain
+package de.thm.lampgame.controller.ObstaclesBitmaps
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -16,7 +16,7 @@ class BitmapSaw(context: Context, width: Int, height: Int, x: Int, y: Int) :
     }
 
     override fun draw(canvas: Canvas, velocityX: Int, velocityY: Int){
-        changeableX -= velocityX*2
+        changeableX -= (velocityX*1.5).toInt()
         canvas.drawBitmap(bmp, changeableX.toFloat(), changeableY.toFloat(), null)
     }
 }

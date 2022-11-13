@@ -7,12 +7,41 @@
     android:background="@drawable/backgroudn"
     tools:context=".controller.MainActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="38dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleX="2"
+            android:contentDescription="Coins-Fakel"
+            app:srcCompat="@drawable/torch" />
+
+        <TextView
+            android:id="@+id/playercoinstv"
+            android:layout_width="83dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="34sp"
+            android:textStyle="bold|italic" />
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:onClick="startGame"
         android:src="@drawable/playbutton"
+        android:contentDescription="PlayButton"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
@@ -70,6 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/lamppic1"
+        android:contentDescription="LampName"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

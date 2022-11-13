@@ -13,9 +13,8 @@ import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
-import de.thm.lampgame.controller.terrain.BitmapGround
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 
-//test
 class GameView(context: Context) : View(context) {
     private var screenWidth = 0
     private var screenHeight = 0
@@ -32,15 +31,18 @@ class GameView(context: Context) : View(context) {
     val tilesetsCount = 7
 
 
-
     init {
         paint.textSize = 75F
         paint.color = Color.BLACK
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
-        pauseButton = PauseButton(context,screenWidth,screenHeight)
-        map = if (CemeteryLandscapeMap.active) CemeteryLandscapeMap(context,screenHeight,screenWidth) else MountainLandscapeMap(context,screenHeight,screenWidth)
-        for (i in 1 .. tilesetsCount){
+        pauseButton = PauseButton(context, screenWidth, screenHeight)
+        map = if (CemeteryLandscapeMap.active) CemeteryLandscapeMap(
+            context,
+            screenHeight,
+            screenWidth
+        ) else MountainLandscapeMap(context, screenHeight, screenWidth)
+        for (i in 1..tilesetsCount) {
             tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
         }
 
@@ -62,7 +64,7 @@ class GameView(context: Context) : View(context) {
 
     private var player = Player(context, screenHeight, screenWidth)
 
-    private var ground = BitmapGround(context,screenWidth, screenHeight)
+    private var ground = BitmapGround(context, screenWidth, screenHeight)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -78,8 +80,12 @@ class GameView(context: Context) : View(context) {
 
 
             //cloud background-fragment
-            map.drawMap(canvas,  0.1 + multiplication/4, 0.2 + multiplication/3, 0.3 + multiplication/2 )
-
+            map.drawMap(
+                canvas,
+                0.1 + multiplication / 4,
+                0.2 + multiplication / 3,
+                0.3 + multiplication / 2
+            )
 
 
             //draw tileset with obstacless
@@ -120,13 +126,12 @@ class GameView(context: Context) : View(context) {
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-                if (pauseButton.checkIfClicked(event.x,event.y)) {
+                if (pauseButton.checkIfClicked(event.x, event.y)) {
                     val intent = Intent(context, PauseActivity::class.java)
                     context.startActivity(intent)
                     gameStatus = false
                     return true
-                }
-                else if (player.jumpCount < 2) player.groundjumping(context)
+                } else if (player.jumpCount < 2) player.groundjumping(context)
                 player.sprung()
             }
             /*  MotionEvent.ACTION_MOVE -> {

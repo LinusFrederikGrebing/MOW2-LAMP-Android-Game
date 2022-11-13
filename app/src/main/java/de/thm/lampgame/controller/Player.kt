@@ -86,8 +86,5 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
         val mp: MediaPlayer = MediaPlayer.create(context, R.raw.groundjumping)
         mp.start()
     }
-    fun drawCoins(context: Context){
-
-    }
 
 }

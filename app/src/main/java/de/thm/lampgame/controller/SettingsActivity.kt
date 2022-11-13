@@ -1,6 +1,5 @@
 package de.thm.lampgame.controller
 
-import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -34,15 +33,13 @@ class SettingsActivity : AppCompatActivity() {
         })
 
         //Testmusik zum Testen der Lautstärke
-        val one: Button = findViewById<View>(de.thm.lampgame.R.id.playButton) as Button
+        val one: Button = findViewById<View>(R.id.playButton) as Button
         val mp: MediaPlayer = MediaPlayer.create(this, R.raw.musik)
         one.setOnClickListener { mp.start() }
 
     }
 
     fun mainMenu(view: View) {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
         finish()
     }
 }

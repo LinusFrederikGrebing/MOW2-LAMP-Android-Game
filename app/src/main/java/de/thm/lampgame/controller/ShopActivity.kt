@@ -8,19 +8,22 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import de.thm.lampgame.DataItem
-import de.thm.lampgame.Database
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.databinding.ShopActivityLayoutBinding
+import de.thm.lampgame.model.DataItem
+import de.thm.lampgame.model.Database
 import de.thm.lampgame.model.PlayerModel
 
 
-class ShopActivity : AppCompatActivity(),  ItemsAdapter.OnItemClickListener{
-   private lateinit var binding: ShopActivityLayoutBinding
+class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
+    private lateinit var binding: ShopActivityLayoutBinding
     private val adapterList by lazy { ItemsAdapter(this) }
-    var itemList : ArrayList<DataItem> = Database.getItemsMaps()
+    var itemList: ArrayList<DataItem> = Database.getItemsMaps()
+    var shop: Int = 1
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setList(itemList)
@@ -30,14 +33,15 @@ class ShopActivity : AppCompatActivity(),  ItemsAdapter.OnItemClickListener{
     fun setList(itemList: ArrayList<DataItem>) {
         binding = ShopActivityLayoutBinding.inflate(layoutInflater)
         val view = binding.root
-        setContentView(view)
+
         adapterList.updateList(itemList)
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@ShopActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(this@ShopActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = adapterList
         }
+        setContentView(view)
     }
-
 
 
     fun mainMenu(view: View) {
@@ -48,69 +52,94 @@ class ShopActivity : AppCompatActivity(),  ItemsAdapter.OnItemClickListener{
     }
 
     fun shop1(view: View) {
+        shop = 1
         itemList = Database.getItemsMaps()
         setList(itemList)
         setPlayerCoinsTextView()
     }
+
     fun shop2(view: View) {
+        shop = 2
         itemList = Database.getItemsSkins()
         setList(itemList)
         setPlayerCoinsTextView()
     }
+
     fun shop3(view: View) {
+        shop = 3
         itemList = Database.getItemsItems()
         setList(itemList)
         setPlayerCoinsTextView()
     }
 
     override fun onItemClick(position: Int) {
-        if(itemList[position] is DataItem.Locked){
-            if((itemList[position] as DataItem.Locked).text == CemeteryLandscapeMap.name){
-               if(PlayerModel.coins >= (itemList[position] as DataItem.Locked).price.toInt()){
-                   PlayerModel.coins -= (itemList[position] as DataItem.Locked).price.toInt()
-                   Log.i("test", PlayerModel.coins.toString())
-                   CemeteryLandscapeMap.buyStatus = true
-                   itemList = Database.getItemsMaps()
-                   setList(itemList)
-               } else {
-                   Toast.makeText(
-                       this, "Nicht genügend Coins vorhanden!",
-                       Toast.LENGTH_LONG
-                   ).show()
-               }
-            }
-        } else {
-           if(itemList[position] is DataItem.Unlocked){
-               if((itemList[position] as DataItem.Unlocked).text == CemeteryLandscapeMap.name){
-                    CemeteryLandscapeMap.active = true
-                    MountainLandscapeMap.active = false
-                   itemList = Database.getItemsMaps()
-                   setList(itemList)
-               } else if((itemList[position] as DataItem.Unlocked).text == MountainLandscapeMap.name) {
-                   MountainLandscapeMap.active = true
-                   CemeteryLandscapeMap.active = false
-                   itemList = Database.getItemsMaps()
-                   setList(itemList)
-               }
-           } else {
-               Toast.makeText(
-                   this, "Map schon aktiv!",
-                   Toast.LENGTH_LONG
-               ).show()
-           }
-        }
 
+        if (itemList[position] is DataItem.Locked) {
+            lockedCase(itemList[position] as DataItem.Locked)
+        } else if (itemList[position] is DataItem.Unlocked) {
+            unlockedCase(itemList[position] as DataItem.Unlocked)
+        } else {
+            activeCase(itemList[position] as DataItem.Active)
+        }
 
         setPlayerCoinsTextView()
     }
 
-    private fun setPlayerCoinsTextView(){
+    fun lockedCase(locked: DataItem.Locked) {
+        if (locked.text == CemeteryLandscapeMap.name) {
+            if (PlayerModel.coins >= locked.price.toInt()) {
+                PlayerModel.coins -= locked.price.toInt()
+                Log.i("test", PlayerModel.coins.toString())
+                CemeteryLandscapeMap.buyStatus = true
+
+                itemList =
+                    if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsItems()
+                setList(itemList)
+            } else {
+                Toast.makeText(
+                    this, "Nicht genügend Coins vorhanden!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        } else {
+            Toast.makeText(
+                this, "Nicht zu kaufen!",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    fun unlockedCase(unlocked: DataItem.Unlocked) {
+
+
+        if (unlocked.text == CemeteryLandscapeMap.name && !CemeteryLandscapeMap.active) {
+            CemeteryLandscapeMap.active = true
+            MountainLandscapeMap.active = false
+            itemList =
+                if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsItems()
+            setList(itemList)
+        } else if (unlocked.text == MountainLandscapeMap.name && !MountainLandscapeMap.active) {
+            MountainLandscapeMap.active = true
+            CemeteryLandscapeMap.active = false
+            itemList =
+                if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsItems()
+            setList(itemList)
+        }
+    }
+
+    fun activeCase(active: DataItem.Active) {
+        Toast.makeText(
+            this, "${active.text} schon aktiv!",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+
+    private fun setPlayerCoinsTextView() {
         val playerCoins = findViewById<TextView>(R.id.playercoinstv)
-        playerCoins?.text = PlayerModel.coins.toString()
+        playerCoins.text = PlayerModel.coins.toString()
     }
 }
-
-
 
 
 /*

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="active"
-            type="de.thm.lampgame.DataItem.Active" />
+            type="de.thm.lampgame.model.DataItem.Active" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -27,8 +27,8 @@
                 android:layout_width="0dp"
                 android:layout_height="125dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/bergeicon"
-                app:imageResource="@{active.text1}"
+                app:imageResource="@{active.image}"
+                android:contentDescription="Vorschaubild"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

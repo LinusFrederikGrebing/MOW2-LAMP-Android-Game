@@ -22,7 +22,7 @@ class Torch(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: In
         }
     }
 
-    override var activateEffect: (Player) -> Unit = { p -> p.fire = 100F }
+    override var activateEffect: (Player) -> Unit = { p -> p.fire = 100F; p.calkCoins() }
 
 
 }

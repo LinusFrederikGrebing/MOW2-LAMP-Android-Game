@@ -3,13 +3,17 @@ package de.thm.lampgame.controller
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
+import de.thm.lampgame.model.PlayerModel
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mainmenu)
+        val playerCoins = findViewById<TextView>(R.id.playercoinstv)
+        playerCoins.text = PlayerModel.coins.toString()
     }
 
     fun startGame(view: View?) {

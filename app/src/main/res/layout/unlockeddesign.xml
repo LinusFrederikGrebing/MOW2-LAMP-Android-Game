@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="unlocked"
-            type="de.thm.lampgame.DataItem.Unlocked" />
+            type="de.thm.lampgame.model.DataItem.Unlocked" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -27,8 +27,7 @@
                 android:layout_width="0dp"
                 android:layout_height="125dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/bergeicon"
-                app:imageResource="@{unlocked.text1}"
+                app:imageResource="@{unlocked.image}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

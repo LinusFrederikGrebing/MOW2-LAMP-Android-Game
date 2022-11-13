@@ -5,8 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
-import de.thm.lampgame.controller.terrain.BitmapGround
-import de.thm.lampgame.controller.terrain.BitmapTerrain
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTerrain
 
 class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {

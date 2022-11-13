@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller.terrain
+package de.thm.lampgame.controller.ObstaclesBitmaps
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,11 +6,16 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
 
-class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    Obstacles("water", width,(0.13 * height).toInt(), x, (0.8 * y).toInt(), true) {
+
+class BitmapTerrain(context: Context, width: Int, height: Int, x: Int, y: Int) :
+    Obstacles("terrain", width, height, x, y, false) {
+
+    companion object {
+        var texture = R.drawable.tilesground
+    }
 
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.wasser)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, this.width, this.height, true)
     }
 
@@ -18,4 +23,5 @@ class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) :
         changeableX -= velocityX
         canvas.drawBitmap(bmp, changeableX.toFloat(), changeableY.toFloat(), null)
     }
+
 }

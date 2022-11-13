@@ -3,10 +3,10 @@ package de.thm.lampgame.controller
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
-import de.thm.lampgame.controller.terrain.BitmapGround
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.model.TilesetQueueModel
 
-class TilesetQueue() : TilesetQueueModel() {
+class TilesetQueue : TilesetQueueModel() {
 
     //Collision-Methode muss noch vereinfacht werden
 
@@ -19,22 +19,28 @@ class TilesetQueue() : TilesetQueueModel() {
 
         //draw Items
         if (queue.first().hasItem) queue.first().item.draw(canvas, velocity)
-        if (queue.last().hasItem) queue.last().item.draw(canvas,velocity)
+        if (queue.last().hasItem) queue.last().item.draw(canvas, velocity)
 
-        if (queue.first().hasItem) queue.first().item.itemPickup(player, queue.first().item.activateEffect)
-        if (queue.last().hasItem) queue.last().item.itemPickup(player, queue.last().item.activateEffect)
+        if (queue.first().hasItem) queue.first().item.itemPickup(
+            player,
+            queue.first().item.activateEffect
+        )
+        if (queue.last().hasItem) queue.last().item.itemPickup(
+            player,
+            queue.last().item.activateEffect
+        )
 
 
         //draw first Tileset  and its Obstacles
         queue.first().drawTileset(velocity)
         queue.first().obstacles.forEach {
-            it.draw(canvas, velocity, velocity/2)
+            it.draw(canvas, velocity, velocity / 2)
         }
 
         //draw first Tileset  and its Obstacles
         queue.last().drawTileset(velocity)
         queue.last().obstacles.forEach {
-            it.draw(canvas, velocity, velocity/2)
+            it.draw(canvas, velocity, velocity / 2)
         }
 
         collision = this.checkCollisions(

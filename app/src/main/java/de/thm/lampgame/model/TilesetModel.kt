@@ -1,7 +1,7 @@
 package de.thm.lampgame.model
 
 import de.thm.lampgame.controller.items.Item
-import de.thm.lampgame.controller.terrain.Obstacles
+import de.thm.lampgame.controller.ObstaclesBitmaps.Obstacles
 
 open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var height: Int) {
     var obstacles: MutableList<Obstacles> = mutableListOf()
@@ -19,23 +19,47 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
 
     fun setItemSpawnpoint() {
         when (tilesetNr) {
-            1 -> { itemX = (0.9*width).toInt();  itemY = (0.1*height).toInt() }
-            2 -> { itemX = (0.55*width).toInt(); itemY = (0.5*height).toInt() }
-            3 -> { itemX = (0.55*width).toInt(); itemY = (0.6*height).toInt() }
-            4 -> { itemX = (0.7*width).toInt();  itemY = (0.25*height).toInt() }
-            5 -> { itemX = (0.15*width).toInt(); itemY = (0.2*height).toInt() }
-            6 -> { itemX = (0.6*width).toInt();  itemY = (0.6*height).toInt() }
-            7 -> { itemX = (0.15*width).toInt(); itemY = (0.6*height).toInt() }
+            1 -> {
+                itemX = (0.9 * width).toInt(); itemY = (0.1 * height).toInt()
+            }
+            2 -> {
+                itemX = (0.55 * width).toInt(); itemY = (0.5 * height).toInt()
+            }
+            3 -> {
+                itemX = (0.55 * width).toInt(); itemY = (0.6 * height).toInt()
+            }
+            4 -> {
+                itemX = (0.7 * width).toInt(); itemY = (0.25 * height).toInt()
+            }
+            5 -> {
+                itemX = (0.15 * width).toInt(); itemY = (0.2 * height).toInt()
+            }
+            6 -> {
+                itemX = (0.6 * width).toInt(); itemY = (0.6 * height).toInt()
+            }
+            7 -> {
+                itemX = (0.15 * width).toInt(); itemY = (0.6 * height).toInt()
+            }
             else -> println("Error Torch Spawn Point")
         }
     }
 
     fun randomTileset() {
         when (tilesetNr) {
-            0 -> obstaclesWithoutBitmaps.addAll(listOf(ObstacleModel("ground", width, height,0,(0.80 * height).toInt())))
+            0 -> obstaclesWithoutBitmaps.addAll(
+                listOf(
+                    ObstacleModel(
+                        "ground",
+                        width,
+                        height,
+                        0,
+                        (0.9 * height).toInt()
+                    )
+                )
+            )
             1 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
+                    ObstacleModel("ground", width, height, 0, (0.90 * height).toInt()),
                     ObstacleModel(
                         "terrain",
                         (0.60 * width).toInt(),
@@ -47,7 +71,7 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
             )
             2 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
+                    ObstacleModel("ground", width, height, 0, (0.90 * height).toInt()),
                     ObstacleModel(
                         "water",
                         (0.15 * width).toInt(),
@@ -59,7 +83,7 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
             )
             3 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
+                    ObstacleModel("ground", width, height, 0, (0.90 * height).toInt()),
                     ObstacleModel(
                         "tube",
                         width,
@@ -78,7 +102,7 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
             )
             4 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
+                    ObstacleModel("ground", width, height, 0, (0.90 * height).toInt()),
                     ObstacleModel(
                         "tube",
                         width,
@@ -90,7 +114,7 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
             )
             5 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
+                    ObstacleModel("ground", width, height, 0, (0.90 * height).toInt()),
                     ObstacleModel(
                         "tube",
                         width,
@@ -109,7 +133,7 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
             )
             6 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
+                    ObstacleModel("ground", width, height, 0, (0.90 * height).toInt()),
                     ObstacleModel(
                         "saw",
                         width,
@@ -121,12 +145,12 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
             )
             7 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel("ground", width, height,0,(0.80 * height).toInt()),
+                    ObstacleModel("ground", width, height, 0, (0.90 * height).toInt()),
                     ObstacleModel(
                         "waterenemy",
                         width,
                         height,
-                        (0.5*width).toInt(),
+                        (0.5 * width).toInt(),
                         (0.63 * height).toInt()
                     )
                 )
