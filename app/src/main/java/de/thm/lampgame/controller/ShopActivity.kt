@@ -2,13 +2,14 @@ package de.thm.lampgame.controller
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.Skins.BlueLampSkin
+import de.thm.lampgame.controller.Skins.LampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.databinding.ShopActivityLayoutBinding
@@ -20,27 +21,23 @@ import de.thm.lampgame.model.PlayerModel
 class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     private lateinit var binding: ShopActivityLayoutBinding
     private val adapterList by lazy { ItemsAdapter(this) }
-    var itemList: ArrayList<DataItem> = Database.getItemsMaps()
     var shop: Int = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setList(itemList)
+        inflateList()
         setPlayerCoinsTextView()
     }
 
-    fun setList(itemList: ArrayList<DataItem>) {
+    private fun inflateList() {
         binding = ShopActivityLayoutBinding.inflate(layoutInflater)
-        val view = binding.root
 
-        adapterList.updateList(itemList)
         binding.recyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(this@ShopActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(this@ShopActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = adapterList
         }
-        setContentView(view)
+        setContentView(binding.root)
     }
 
 
@@ -53,33 +50,33 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
 
     fun shop1(view: View) {
         shop = 1
-        itemList = Database.getItemsMaps()
-        setList(itemList)
+        ItemsAdapter.itemList = Database.getItemsMaps()
+        inflateList()
         setPlayerCoinsTextView()
     }
 
     fun shop2(view: View) {
         shop = 2
-        itemList = Database.getItemsSkins()
-        setList(itemList)
+        ItemsAdapter.itemList = Database.getItemsSkins()
+        inflateList()
         setPlayerCoinsTextView()
     }
 
     fun shop3(view: View) {
         shop = 3
-        itemList = Database.getItemsItems()
-        setList(itemList)
+        ItemsAdapter.itemList = Database.getItemsItems()
+        inflateList()
         setPlayerCoinsTextView()
     }
 
     override fun onItemClick(position: Int) {
 
-        if (itemList[position] is DataItem.Locked) {
-            lockedCase(itemList[position] as DataItem.Locked)
-        } else if (itemList[position] is DataItem.Unlocked) {
-            unlockedCase(itemList[position] as DataItem.Unlocked)
+        if (ItemsAdapter.itemList[position] is DataItem.Locked) {
+            lockedCase(ItemsAdapter.itemList[position] as DataItem.Locked)
+        } else if (ItemsAdapter.itemList[position] is DataItem.Unlocked) {
+            unlockedCase(ItemsAdapter.itemList[position] as DataItem.Unlocked)
         } else {
-            activeCase(itemList[position] as DataItem.Active)
+            activeCase(ItemsAdapter.itemList[position] as DataItem.Active)
         }
 
         setPlayerCoinsTextView()
@@ -89,47 +86,68 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         if (locked.text == CemeteryLandscapeMap.name) {
             if (PlayerModel.coins >= locked.price.toInt()) {
                 PlayerModel.coins -= locked.price.toInt()
-                Log.i("test", PlayerModel.coins.toString())
                 CemeteryLandscapeMap.buyStatus = true
-
-                itemList =
-                    if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsItems()
-                setList(itemList)
+                getRightList()
+                toast("Gekauft!")
             } else {
-                Toast.makeText(
-                    this, "Nicht genügend Coins vorhanden!",
-                    Toast.LENGTH_LONG
-                ).show()
+                toast("Nicht genügend Coins vorhanden!")
             }
-        } else {
-            Toast.makeText(
-                this, "Nicht zu kaufen!",
-                Toast.LENGTH_LONG
-            ).show()
+        } else if(locked.text == BlueLampSkin.name) {
+            if (PlayerModel.coins >= locked.price.toInt()) {
+                PlayerModel.coins -= locked.price.toInt()
+                BlueLampSkin.buyStatus = true
+                getRightList()
+                toast("Gekauft!")
+            } else {
+                toast("Nicht genügend Coins vorhanden!")
+            }
+        }
+
+        else {
+            toast("Nicht zu kaufen!")
         }
     }
 
     fun unlockedCase(unlocked: DataItem.Unlocked) {
-
-
         if (unlocked.text == CemeteryLandscapeMap.name && !CemeteryLandscapeMap.active) {
             CemeteryLandscapeMap.active = true
             MountainLandscapeMap.active = false
-            itemList =
-                if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsItems()
-            setList(itemList)
+            getRightList()
+            toast("${unlocked.text} ist jetzt aktiv!")
         } else if (unlocked.text == MountainLandscapeMap.name && !MountainLandscapeMap.active) {
             MountainLandscapeMap.active = true
             CemeteryLandscapeMap.active = false
-            itemList =
-                if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsItems()
-            setList(itemList)
+            getRightList()
+            toast("${unlocked.text} ist jetzt aktiv!")
         }
+
+        if(unlocked.text == BlueLampSkin.name) {
+            LampSkin.active = false
+            BlueLampSkin.active = true
+            getRightList()
+            toast("${unlocked.text} ist jetzt aktiv!")
+            } else if (unlocked.text == LampSkin.name ) {
+            LampSkin.active = true
+            BlueLampSkin.active = false
+            getRightList()
+            toast("${unlocked.text} ist jetzt aktiv!")
+        }
+
+
     }
 
     fun activeCase(active: DataItem.Active) {
+        toast("${active.text} schon aktiv!")
+    }
+
+    fun getRightList(){
+        ItemsAdapter.itemList = if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsItems()
+        inflateList()
+    }
+
+    fun toast(text: String){
         Toast.makeText(
-            this, "${active.text} schon aktiv!",
+            this, text,
             Toast.LENGTH_LONG
         ).show()
     }

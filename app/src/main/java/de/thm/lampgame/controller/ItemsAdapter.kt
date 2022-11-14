@@ -11,12 +11,17 @@ import de.thm.lampgame.model.Database.UNLOCKED_TYPE
 import de.thm.lampgame.databinding.ActivedesignBinding
 import de.thm.lampgame.databinding.LockeddesignBinding
 import de.thm.lampgame.databinding.UnlockeddesignBinding
+import de.thm.lampgame.model.Database
 
 
 class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
-    class ActiveViewHolder(val activeBinding: ActivedesignBinding, val listener : OnItemClickListener) : RecyclerView.ViewHolder(activeBinding.root),
+    companion object{
+        var itemList = Database.getItemsMaps()
+    }
+
+    class ActiveViewHolder(private val activeBinding: ActivedesignBinding, private val listener : OnItemClickListener) : RecyclerView.ViewHolder(activeBinding.root),
         View.OnClickListener {
         init {
             itemView.setOnClickListener(this)
@@ -27,14 +32,14 @@ class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
         }
 
         override fun onClick(v: View?) {
-            val position = adapterPosition
+            val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onItemClick(position)
             }
         }
     }
 
-    class LockedViewHolder(val lockedBinding: LockeddesignBinding, val listener : OnItemClickListener) : RecyclerView.ViewHolder(lockedBinding.root),
+    class LockedViewHolder(private val lockedBinding: LockeddesignBinding, private val listener : OnItemClickListener) : RecyclerView.ViewHolder(lockedBinding.root),
         View.OnClickListener {
         init {
             itemView.setOnClickListener(this)
@@ -45,14 +50,14 @@ class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
         }
 
         override fun onClick(v: View?) {
-            val position = adapterPosition
+            val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onItemClick(position)
             }
         }
     }
 
-     class UnlockedViewHolder(val unlockedBinding: UnlockeddesignBinding, val listener : OnItemClickListener) : RecyclerView.ViewHolder(unlockedBinding.root),
+     class UnlockedViewHolder(private val unlockedBinding: UnlockeddesignBinding, private val listener : OnItemClickListener) : RecyclerView.ViewHolder(unlockedBinding.root),
          View.OnClickListener {
          init {
              itemView.setOnClickListener(this)
@@ -63,16 +68,12 @@ class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
          }
 
          override fun onClick(v: View?) {
-             val position = adapterPosition
+             val position = bindingAdapterPosition
              if (position != RecyclerView.NO_POSITION) {
                  listener.onItemClick(position)
              }
          }
     }
-
-
-
-    private val itemList = arrayListOf<Any>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType){
@@ -101,16 +102,10 @@ class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
             is DataItem.Locked -> UNLOCKED_TYPE
             is DataItem.Unlocked -> LOCKED_TYPE
             is DataItem.Active -> ACTIVE_TYPE
-            else -> throw IllegalArgumentException("invalid type")
         }
     }
-    fun updateList(updatedList: List<Any>){
-        itemList.clear()
-        itemList.addAll(updatedList)
-        notifyDataSetChanged()
-    }
-    interface OnItemClickListener {
 
+    interface OnItemClickListener {
         fun onItemClick(position: Int)
     }
 }

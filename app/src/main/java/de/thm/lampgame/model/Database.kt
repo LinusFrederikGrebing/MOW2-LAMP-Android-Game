@@ -1,6 +1,8 @@
 package de.thm.lampgame.model
 
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.Skins.BlueLampSkin
+import de.thm.lampgame.controller.Skins.LampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 
@@ -40,6 +42,34 @@ object Database {
 
     fun getItemsSkins(): ArrayList<DataItem> {
         val itemList = arrayListOf<DataItem>()
+
+        if (LampSkin.active) {
+            itemList.add(DataItem.Active(R.drawable.skin1, LampSkin.name))
+        } else {
+            itemList.add(DataItem.Unlocked(R.drawable.skin1, LampSkin.name))
+        }
+        if (!BlueLampSkin.buyStatus) {
+            itemList.add(
+                DataItem.Locked(
+                    R.drawable.skin2,
+                    BlueLampSkin.name,
+                    "35"
+                )
+            )
+        } else {
+            if (BlueLampSkin.active) {
+                itemList.add(DataItem.Active(R.drawable.skin2, BlueLampSkin.name))
+            } else {
+                itemList.add(DataItem.Unlocked(R.drawable.skin2, BlueLampSkin.name))
+            }
+        }
+
+        return itemList
+    }
+
+    fun getItemsItems(): ArrayList<DataItem> {
+
+        val itemList = arrayListOf<DataItem>()
         if (MountainLandscapeMap.active) {
             itemList.add(DataItem.Active(R.drawable.exit, MountainLandscapeMap.name))
         } else {
@@ -63,21 +93,9 @@ object Database {
         }
         return itemList
     }
-
-    fun getItemsItems(): ArrayList<DataItem> {
-
-        val itemList = arrayListOf<DataItem>()
-        itemList.add(DataItem.Unlocked(R.drawable.exit, MountainLandscapeMap.name))
-        itemList.add(DataItem.Locked(R.drawable.exit, "statisch Locked", "50"))
-        itemList.add(DataItem.Locked(R.drawable.exit, "statisch Locked", "50"))
-        itemList.add(DataItem.Locked(R.drawable.exit, "statisch Locked", "50"))
-        itemList.add(DataItem.Locked(R.drawable.exit, "statisch Locked", "50"))
-        itemList.add(DataItem.Locked(R.drawable.exit, "statisch Locked", "50"))
-
-        return itemList
-    }
-
 }
+
+
 
 
 
