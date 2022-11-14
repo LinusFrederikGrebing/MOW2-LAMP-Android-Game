@@ -12,7 +12,7 @@ import de.thm.lampgame.R
 
 
 class SettingsActivity : AppCompatActivity() {
-
+    private var mp: MediaPlayer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
@@ -34,12 +34,14 @@ class SettingsActivity : AppCompatActivity() {
 
         //Testmusik zum Testen der Lautstärke
         val one: Button = findViewById<View>(R.id.playButton) as Button
-        val mp: MediaPlayer = MediaPlayer.create(this, R.raw.musik)
-        one.setOnClickListener { mp.start() }
+        //val mp: MediaPlayer = MediaPlayer.create(this, R.raw.musik)
+         mp = MediaPlayer.create(this, R.raw.musik)
+        one.setOnClickListener { mp?.start() }
 
     }
 
     fun mainMenu(view: View) {
+        mp?.stop()
         finish()
     }
 }
