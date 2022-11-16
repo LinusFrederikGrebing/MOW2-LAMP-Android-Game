@@ -12,52 +12,27 @@ object Database {
     const val UNLOCKED_TYPE = 1
     const val ACTIVE_TYPE = 2
 
-
-
-
+    val listOfMaps = listOf(MountainLandscapeMap,CemeteryLandscapeMap,MarsLandscapeMap)
 
     fun getItemsMaps(): ArrayList<DataItem> {
         val itemList = arrayListOf<DataItem>()
 
-
-
-        if (MountainLandscapeMap.active) {
-            itemList.add(DataItem.Active(R.drawable.bergeicon, MountainLandscapeMap.name))
-        } else {
-            itemList.add(DataItem.Unlocked(R.drawable.bergeicon, MountainLandscapeMap.name))
-        }
-
-        if (!CemeteryLandscapeMap.buyStatus) {
-            itemList.add(
-                DataItem.Locked(
-                    R.drawable.cemetery,
-                    CemeteryLandscapeMap.name,
-                    "35"
+        listOfMaps.forEach {
+            if (!it.buyStatus) {
+                itemList.add(
+                    DataItem.Locked(
+                        R.drawable.bergeicon,
+                        it.name,
+                        "35"
+                    )
                 )
-            )
-        } else {
-            if (CemeteryLandscapeMap.active) {
-                itemList.add(DataItem.Active(R.drawable.cemetery, CemeteryLandscapeMap.name))
-            } else {
-                itemList.add(DataItem.Unlocked(R.drawable.cemetery, CemeteryLandscapeMap.name))
             }
-        }
-        if (!MarsLandscapeMap.buyStatus) {
-            itemList.add(
-                DataItem.Locked(
-                    R.drawable.cemetery,
-                    MarsLandscapeMap.name,
-                    "35"
-                )
-            )
-        } else {
-            if (MarsLandscapeMap.active) {
-                itemList.add(DataItem.Active(R.drawable.cemetery, MarsLandscapeMap.name))
-            } else {
-                itemList.add(DataItem.Unlocked(R.drawable.cemetery, MarsLandscapeMap.name))
+            else if (it.active) {
+                itemList.add(DataItem.Active(R.drawable.bergeicon, it.name))
             }
+            else itemList.add(DataItem.Unlocked(R.drawable.bergeicon, it.name))
         }
-        itemList.add(DataItem.Locked(R.drawable.exit, "ExitMap", "70"))
+
         return itemList
 
     }

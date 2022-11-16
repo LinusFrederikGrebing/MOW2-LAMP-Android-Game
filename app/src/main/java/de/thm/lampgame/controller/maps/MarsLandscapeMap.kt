@@ -5,15 +5,17 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.MapInterface
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTerrain
 
 class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
-    companion object {
-         var name = "MarsLandscapeMap"
-         var active = false
-         var buyStatus = false
+
+    companion object : MapInterface {
+        override var active = false
+        override var name = "MarsLandscapeMap"
+        override var buyStatus = false
     }
 
 

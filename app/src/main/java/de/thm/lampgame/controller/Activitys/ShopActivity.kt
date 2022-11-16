@@ -121,32 +121,11 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     fun unlockedCase(unlocked: DataItem.Unlocked) {
-        val map = mapOf("CemeteryLandscapeMap" to CemeteryLandscapeMap, "MountainLandscapeMap" to MountainLandscapeMap)
-        map.forEach {
-            if (unlocked.text == it.key) {
-                it.value
-            }
+        Database.listOfMaps.forEach {
+            it.active = unlocked.text == it.name
         }
-        if (unlocked.text == CemeteryLandscapeMap.name ) {
-            CemeteryLandscapeMap.active = true
-            MountainLandscapeMap.active = false
-            MarsLandscapeMap.active = false
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-        } else if (unlocked.text == MountainLandscapeMap.name) {
-            MountainLandscapeMap.active = true
-            CemeteryLandscapeMap.active = false
-            MarsLandscapeMap.active = false
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-        }
-        else if (unlocked.text == MarsLandscapeMap.name) {
-            MountainLandscapeMap.active = false
-            CemeteryLandscapeMap.active = false
-            MarsLandscapeMap.active = true
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-        }
+        getRightList()
+        toast("${unlocked.text} ist jetzt aktiv!")
 
         if(unlocked.text == BlueLampSkin.name) {
             LampSkin.active = false
