@@ -5,6 +5,7 @@ import de.thm.lampgame.controller.Skins.BlueLampSkin
 import de.thm.lampgame.controller.Skins.LampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
+import de.thm.lampgame.controller.maps.MarsLandscapeMap
 
 object Database {
     const val LOCKED_TYPE = 0
@@ -39,6 +40,21 @@ object Database {
                 itemList.add(DataItem.Active(R.drawable.cemetery, CemeteryLandscapeMap.name))
             } else {
                 itemList.add(DataItem.Unlocked(R.drawable.cemetery, CemeteryLandscapeMap.name))
+            }
+        }
+        if (!MarsLandscapeMap.buyStatus) {
+            itemList.add(
+                DataItem.Locked(
+                    R.drawable.cemetery,
+                    MarsLandscapeMap.name,
+                    "35"
+                )
+            )
+        } else {
+            if (MarsLandscapeMap.active) {
+                itemList.add(DataItem.Active(R.drawable.cemetery, MarsLandscapeMap.name))
+            } else {
+                itemList.add(DataItem.Unlocked(R.drawable.cemetery, MarsLandscapeMap.name))
             }
         }
         itemList.add(DataItem.Locked(R.drawable.exit, "ExitMap", "70"))

@@ -16,6 +16,7 @@ import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
+import de.thm.lampgame.controller.maps.MarsLandscapeMap
 import de.thm.lampgame.controller.tileset.Tileset
 import de.thm.lampgame.controller.tileset.TilesetQueue
 
@@ -45,7 +46,9 @@ class GameView(context: Context) : View(context) {
             context,
             screenHeight,
             screenWidth
-        ) else MountainLandscapeMap(context, screenHeight, screenWidth)
+        )
+        else if (MarsLandscapeMap.active) MarsLandscapeMap(context, screenHeight, screenWidth)
+        else MountainLandscapeMap(context, screenHeight, screenWidth)
         for (i in 1..tilesetsCount) {
             tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
         }

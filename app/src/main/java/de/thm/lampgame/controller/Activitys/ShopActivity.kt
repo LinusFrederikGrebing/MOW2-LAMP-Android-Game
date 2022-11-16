@@ -12,6 +12,7 @@ import de.thm.lampgame.controller.ItemsAdapter
 import de.thm.lampgame.controller.Skins.BlueLampSkin
 import de.thm.lampgame.controller.Skins.LampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
+import de.thm.lampgame.controller.maps.MarsLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.databinding.ShopActivityLayoutBinding
 import de.thm.lampgame.model.DataItem
@@ -99,8 +100,18 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
                 BlueLampSkin.buyStatus = true
                 getRightList()
                 toast("Gekauft!")
-            } else {
+            }
+            else  {
                 toast("Nicht genügend Coins vorhanden!")
+            }
+        }
+
+        else if(locked.text == MarsLandscapeMap.name) {
+            if (PlayerModel.coins >= locked.price.toInt()) {
+                PlayerModel.coins -= locked.price.toInt()
+                MarsLandscapeMap.buyStatus = true
+                getRightList()
+                toast("Gekauft!")
             }
         }
 
@@ -119,11 +130,20 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         if (unlocked.text == CemeteryLandscapeMap.name ) {
             CemeteryLandscapeMap.active = true
             MountainLandscapeMap.active = false
+            MarsLandscapeMap.active = false
             getRightList()
             toast("${unlocked.text} ist jetzt aktiv!")
         } else if (unlocked.text == MountainLandscapeMap.name) {
             MountainLandscapeMap.active = true
             CemeteryLandscapeMap.active = false
+            MarsLandscapeMap.active = false
+            getRightList()
+            toast("${unlocked.text} ist jetzt aktiv!")
+        }
+        else if (unlocked.text == MarsLandscapeMap.name) {
+            MountainLandscapeMap.active = false
+            CemeteryLandscapeMap.active = false
+            MarsLandscapeMap.active = true
             getRightList()
             toast("${unlocked.text} ist jetzt aktiv!")
         }
