@@ -11,8 +11,14 @@ object Database {
     const val UNLOCKED_TYPE = 1
     const val ACTIVE_TYPE = 2
 
+
+
+
+
     fun getItemsMaps(): ArrayList<DataItem> {
         val itemList = arrayListOf<DataItem>()
+
+
 
         if (MountainLandscapeMap.active) {
             itemList.add(DataItem.Active(R.drawable.bergeicon, MountainLandscapeMap.name))

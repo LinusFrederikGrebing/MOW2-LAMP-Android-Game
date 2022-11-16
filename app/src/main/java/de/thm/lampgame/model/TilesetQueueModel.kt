@@ -1,6 +1,6 @@
 package de.thm.lampgame.model
 
-import de.thm.lampgame.controller.Tileset
+import de.thm.lampgame.controller.tileset.Tileset
 
 open class TilesetQueueModel {
     var queue = ArrayDeque<Tileset>(2)

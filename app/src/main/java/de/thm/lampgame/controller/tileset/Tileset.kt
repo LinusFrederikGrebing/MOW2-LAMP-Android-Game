@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.controller.tileset
 
 import android.content.Context
 import de.thm.lampgame.controller.items.DoublePoints

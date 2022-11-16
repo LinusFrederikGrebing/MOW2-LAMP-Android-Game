@@ -10,10 +10,14 @@ import android.graphics.Paint
 import android.view.MotionEvent
 import android.view.View
 import de.thm.lampgame.controller.*
+import de.thm.lampgame.controller.Activitys.GameOverActivity
+import de.thm.lampgame.controller.Activitys.PauseActivity
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
+import de.thm.lampgame.controller.tileset.Tileset
+import de.thm.lampgame.controller.tileset.TilesetQueue
 
 class GameView(context: Context) : View(context) {
     private var screenWidth = 0

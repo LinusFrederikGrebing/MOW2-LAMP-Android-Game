@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.controller.Activitys
 
 import android.media.AudioManager
 import android.media.MediaPlayer

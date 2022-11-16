@@ -10,10 +10,12 @@ import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTerrain
 
 class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
-    companion object {
+   companion object {
         var name = "MountainLandscapeMap"
         var active = true
+
     }
+
 
     init {
         BitmapGround.texture = R.drawable.bodengras

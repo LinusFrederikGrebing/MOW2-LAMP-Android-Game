@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.controller.Activitys
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.ItemsAdapter
 import de.thm.lampgame.controller.Skins.BlueLampSkin
 import de.thm.lampgame.controller.Skins.LampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
@@ -109,12 +110,18 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     fun unlockedCase(unlocked: DataItem.Unlocked) {
-        if (unlocked.text == CemeteryLandscapeMap.name && !CemeteryLandscapeMap.active) {
+        val map = mapOf("CemeteryLandscapeMap" to CemeteryLandscapeMap, "MountainLandscapeMap" to MountainLandscapeMap)
+        map.forEach {
+            if (unlocked.text == it.key) {
+                it.value
+            }
+        }
+        if (unlocked.text == CemeteryLandscapeMap.name ) {
             CemeteryLandscapeMap.active = true
             MountainLandscapeMap.active = false
             getRightList()
             toast("${unlocked.text} ist jetzt aktiv!")
-        } else if (unlocked.text == MountainLandscapeMap.name && !MountainLandscapeMap.active) {
+        } else if (unlocked.text == MountainLandscapeMap.name) {
             MountainLandscapeMap.active = true
             CemeteryLandscapeMap.active = false
             getRightList()

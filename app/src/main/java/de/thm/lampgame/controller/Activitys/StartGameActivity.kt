@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.controller.Activitys
 
 import android.content.Intent
 import android.media.MediaPlayer

@@ -1,9 +1,10 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.controller.tileset
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
+import de.thm.lampgame.controller.Player
 import de.thm.lampgame.model.TilesetQueueModel
 
 class TilesetQueue : TilesetQueueModel() {
