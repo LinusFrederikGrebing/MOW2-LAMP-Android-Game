@@ -13,7 +13,7 @@
     <string name="home">Home</string>
     <string name="mainmenu">Main Menu</string>
     <string name="lautst_rke">Lautstärke</string>
-    <string name="coins_fackel">Coins-Fackel</string>
+    <string name="fackel">Fackel-Items</string>
     <string name="textview">TextView</string>
     <string name="playbutton">Start Game</string>
     <string name="lampgame">Lamp Game</string>
