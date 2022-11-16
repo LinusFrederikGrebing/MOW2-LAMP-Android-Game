@@ -21,4 +21,9 @@
     <string name="maps_shop">Maps Shop</string>
     <string name="item_shop">Item Shop</string>
     <string name="shop">Shop</string>
+    <string name="preview">Preview</string>
+    <string name="price">Price</string>
+    <string name="gesperrt">Gesperrt</string>
+    <string name="highscore">Highscore:</string>
+    <string name="punkte">Punkte:</string>
 </resources>
