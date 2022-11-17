@@ -20,7 +20,7 @@ class DoublePoints(context: Context, screenHeight: Int, screenWidth: Int, x: Int
     }
 
     override var activateEffect: (Player) -> Unit = {p ->
-        ActiveItem.texture = R.drawable.doublepoints
+        ActiveItem.texture = R.drawable.doublepoints_icon
         p.hasDblPts = true
         p.dblPtsDur = 250
     }

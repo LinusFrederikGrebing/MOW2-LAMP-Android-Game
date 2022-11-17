@@ -116,7 +116,7 @@ class GameView(context: Context) : View(context) {
 
             if (player.dblPtsDur > 0) paint.color = Color.RED else paint.color = Color.BLACK
             canvas.drawText("Punkte: " + player.points.toString(), 10F, 75F, paint)
-            canvas.drawText("Fakeln: " + player.coinsPerRound.toString(), 10F, 135F, paint)
+            canvas.drawText("Fackeln: " + player.coinsPerRound.toString(), 10F, 135F, paint)
             tilesetQueue.iterations++
             activeItem.drawbg(canvas)
             pauseButton.draw(canvas)
