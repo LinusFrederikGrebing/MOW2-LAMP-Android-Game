@@ -41,51 +41,51 @@ object Database {
         val itemList = arrayListOf<DataItem>()
 
         if (LampSkin.active) {
-            itemList.add(DataItem.Active(R.drawable.skin1, LampSkin.name))
+            itemList.add(DataItem.Active(R.drawable.skin_standard, LampSkin.name))
         } else {
-            itemList.add(DataItem.Unlocked(R.drawable.skin1, LampSkin.name))
+            itemList.add(DataItem.Unlocked(R.drawable.skin_standard, LampSkin.name))
         }
         if (!BlueLampSkin.buyStatus) {
             itemList.add(
                 DataItem.Locked(
-                    R.drawable.skin2,
+                    R.drawable.skin_blau,
                     BlueLampSkin.name,
                     "35"
                 )
             )
         } else {
             if (BlueLampSkin.active) {
-                itemList.add(DataItem.Active(R.drawable.skin2, BlueLampSkin.name))
+                itemList.add(DataItem.Active(R.drawable.skin_blau, BlueLampSkin.name))
             } else {
-                itemList.add(DataItem.Unlocked(R.drawable.skin2, BlueLampSkin.name))
+                itemList.add(DataItem.Unlocked(R.drawable.skin_blau, BlueLampSkin.name))
             }
         }
 
         return itemList
     }
 
-    fun getItemsItems(): ArrayList<DataItem> {
+    fun getItemsMusik(): ArrayList<DataItem> {
 
         val itemList = arrayListOf<DataItem>()
         if (MountainLandscapeMap.active) {
-            itemList.add(DataItem.Active(R.drawable.exit, MountainLandscapeMap.name))
+            itemList.add(DataItem.Active(R.drawable.exit_icon, MountainLandscapeMap.name))
         } else {
-            itemList.add(DataItem.Unlocked(R.drawable.exit, MountainLandscapeMap.name))
+            itemList.add(DataItem.Unlocked(R.drawable.exit_icon, MountainLandscapeMap.name))
         }
 
         if (!CemeteryLandscapeMap.buyStatus) {
             itemList.add(
                 DataItem.Locked(
-                    R.drawable.exit,
+                    R.drawable.exit_icon,
                     CemeteryLandscapeMap.name,
                     "70"
                 )
             )
         } else {
             if (CemeteryLandscapeMap.active) {
-                itemList.add(DataItem.Active(R.drawable.exit, CemeteryLandscapeMap.name))
+                itemList.add(DataItem.Active(R.drawable.exit_icon, CemeteryLandscapeMap.name))
             } else {
-                itemList.add(DataItem.Unlocked(R.drawable.exit, CemeteryLandscapeMap.name))
+                itemList.add(DataItem.Unlocked(R.drawable.exit_icon, CemeteryLandscapeMap.name))
             }
         }
         return itemList
