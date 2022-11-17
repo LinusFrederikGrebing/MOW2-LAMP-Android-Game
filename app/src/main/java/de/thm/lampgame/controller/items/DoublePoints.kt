@@ -9,7 +9,7 @@ import de.thm.lampgame.controller.Player
 class DoublePoints(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: Int ) : Item(context, screenHeight, screenWidth, (0.1*screenHeight).toInt(),(0.1*screenWidth).toInt(), x,y) {
 
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.doublepoints)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.doublepoints_icon)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true) }
 
     override fun draw(canvas: Canvas, velocity: Int) {
