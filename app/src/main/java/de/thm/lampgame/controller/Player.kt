@@ -35,17 +35,17 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
 
         // resize char
         rechar[0] =
-            char[0]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
+            char[0]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
         rechar[1] =
-            char[1]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
+            char[1]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
         rechar[2] =
-            char[2]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
+            char[2]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
         rechar[3] =
-            char[3]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
+            char[3]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
         rechar[4] =
-            char[4]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
+            char[4]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
         rechar[5] =
-            char[5]?.let { Bitmap.createScaledBitmap(it, getCharWidth(), getCharHeight(), true) }
+            char[5]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
     }
 
 
@@ -81,6 +81,7 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
       canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
       canvas.drawRect(firebarRect, firebarPaint)
     }
+
 
     fun groundjumping(context: Context) {
         val mp: MediaPlayer = MediaPlayer.create(context, R.raw.groundjumping)

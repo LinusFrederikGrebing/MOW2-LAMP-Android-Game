@@ -4,6 +4,8 @@ import android.content.Context
 import de.thm.lampgame.controller.items.DoublePoints
 import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.ObstaclesBitmaps.*
+import de.thm.lampgame.controller.items.BonusJump
+import de.thm.lampgame.controller.items.Immortality
 import de.thm.lampgame.model.TilesetModel
 
 class Tileset(
@@ -43,9 +45,15 @@ class Tileset(
         if (isTorch) {
             item = Torch(context, height, width, itemX, itemY)
             hasItem = true
-        } else when ((1..2).random()) {
+        } else when ((1..9).random()) {
             1 -> {
                 item = DoublePoints(context, height, width, itemX, itemY); hasItem = true
+            }
+            2 -> {
+                item = BonusJump(context, height, width, itemX, itemY); hasItem = true
+            }
+            3 -> {
+                item = Immortality(context, height, width, itemX, itemY); hasItem = true
             }
             else -> hasItem = false
         }

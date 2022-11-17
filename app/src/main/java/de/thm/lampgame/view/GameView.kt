@@ -7,6 +7,7 @@ import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import de.thm.lampgame.controller.*
@@ -31,6 +32,7 @@ class GameView(context: Context) : View(context) {
     private val paint = Paint()
     private var map: MapController
     private var pauseButton: PauseButton
+    private var activeItem: ActiveItem
 
     var tilesetList = ArrayList<Tileset>()
     val tilesetsCount = 7
@@ -42,6 +44,7 @@ class GameView(context: Context) : View(context) {
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
         pauseButton = PauseButton(context, screenWidth, screenHeight)
+        activeItem = ActiveItem(context, screenWidth, screenHeight)
         map = if (CemeteryLandscapeMap.active) CemeteryLandscapeMap(
             context,
             screenHeight,
@@ -76,9 +79,8 @@ class GameView(context: Context) : View(context) {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (gameStatus) {
-            if (player.dblPtsDur > 0) player.dblPtsDur--
-            player.calkPoints()
 
+            player.calkPoints()
             if (tilesetQueue.iterations == 200) {
                 multiplication++
                 println("Points: " + player.points + " Multi: " + multiplication)
@@ -94,9 +96,9 @@ class GameView(context: Context) : View(context) {
                 0.3 + multiplication / 2
             )
 
-
+            player.drawChar(canvas)
             //draw tileset with obstacless
-            tilesetQueue.drawTilesetsAndCheckCollisions(canvas, 15 + multiplication, player, ground)
+            tilesetQueue.drawTilesetsAndCheckCollisions(canvas, (screenWidth/200) + multiplication, player, ground)
             if (tilesetQueue.gameover || player.fire <= 0F) {
                 gameStatus = false
                 this.gameOver()
@@ -107,17 +109,26 @@ class GameView(context: Context) : View(context) {
 
             //draw Char
             player.setJumpStats(tilesetQueue.collision)
-            player.drawChar(canvas)
+
             player.drawFirebar(canvas)
+
 
 
             if (player.dblPtsDur > 0) paint.color = Color.RED else paint.color = Color.BLACK
             canvas.drawText("Punkte: " + player.points.toString(), 10F, 75F, paint)
-            pauseButton.draw(canvas)
-
+            canvas.drawText("Fakeln: " + player.coinsPerRound.toString(), 10F, 135F, paint)
             tilesetQueue.iterations++
+            activeItem.drawbg(canvas)
+            pauseButton.draw(canvas)
+            if (player.dblPtsDur > 0) { player.dblPtsDur-- ; activeItem.draw(canvas) }
+            if (player.dblJumpDur > 0) { player.dblJumpDur-- ; activeItem.draw(canvas) } else player.maxJump = 2
+            if (player.immortalDur > 0) { player.immortalDur-- ; activeItem.draw(canvas) } else player.immortal = false
+
+
             // refresh
             handler!!.postDelayed(runnable!!, updateMillis)
+
+            Log.i("testCoins", player.coinsPerRound.toString())
         }
     }
 
