@@ -2,8 +2,7 @@ package de.thm.lampgame.controller.maps
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import de.thm.lampgame.controller.MapInterface
-import de.thm.lampgame.model.Database
+import de.thm.lampgame.model.MapInterface
 import de.thm.lampgame.model.MapModel
 
 abstract class MapController(screenWidth: Int, screenHeight: Int) : MapModel(screenWidth, screenHeight) {

@@ -35,7 +35,7 @@ class GameView(context: Context) : View(context) {
     private var activeItem: ActiveItem
 
     var tilesetList = ArrayList<Tileset>()
-    val tilesetsCount = 7
+    val tilesetsCount = 10
 
 
     init {

@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.model
 
 interface MapInterface {
     var active: Boolean
