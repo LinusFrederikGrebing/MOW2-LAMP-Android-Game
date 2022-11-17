@@ -63,7 +63,7 @@
                 android:contentDescription="@string/maps_shop"
                 android:scaleX="0.9"
                 android:scaleY="0.9"
-                app:srcCompat="@drawable/shop_maps" />
+                app:srcCompat="@drawable/shop_maps_icon" />
 
             <ImageView
                 android:id="@+id/shop2"
@@ -76,7 +76,7 @@
                 android:contentDescription="@string/skin_shop"
                 android:scaleX="1"
                 android:scaleY="1"
-                app:srcCompat="@drawable/shop_skins" />
+                app:srcCompat="@drawable/shop_skins_icon" />
 
             <ImageView
                 android:id="@+id/shop3"
@@ -86,10 +86,10 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/item_shop"
-                android:onClick="shopMusik"
+                android:onClick="shopMusic"
                 android:scaleX="0.9"
                 android:scaleY="0.9"
-                app:srcCompat="@drawable/shop_musik" />
+                app:srcCompat="@drawable/shop_music_icon" />
         </LinearLayout>
 
         <ImageView

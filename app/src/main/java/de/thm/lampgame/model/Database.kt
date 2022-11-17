@@ -64,7 +64,7 @@ object Database {
         return itemList
     }
 
-    fun getItemsMusik(): ArrayList<DataItem> {
+    fun getItemsMusic(): ArrayList<DataItem> {
 
         val itemList = arrayListOf<DataItem>()
         if (MountainLandscapeMap.active) {

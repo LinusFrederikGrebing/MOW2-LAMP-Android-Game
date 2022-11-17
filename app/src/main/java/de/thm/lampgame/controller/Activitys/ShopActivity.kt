@@ -63,9 +63,9 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         setPlayerCoinsTextView()
     }
 
-    fun shopMusik(view: View) {
+    fun shopMusic(view: View) {
         shop = 3
-        ItemsAdapter.itemList = Database.getItemsMusik()
+        ItemsAdapter.itemList = Database.getItemsMusic()
         inflateList()
         setPlayerCoinsTextView()
     }
@@ -146,7 +146,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     fun getRightList(){
-        ItemsAdapter.itemList = if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsMusik()
+        ItemsAdapter.itemList = if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsMusic()
         inflateList()
     }
 
