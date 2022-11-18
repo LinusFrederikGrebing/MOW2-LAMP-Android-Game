@@ -13,11 +13,8 @@ import android.view.View
 import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.Activitys.GameOverActivity
 import de.thm.lampgame.controller.Activitys.PauseActivity
-import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MapController
-import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
-import de.thm.lampgame.controller.maps.MarsLandscapeMap
 import de.thm.lampgame.controller.tileset.Tileset
 import de.thm.lampgame.controller.tileset.TilesetQueue
 import de.thm.lampgame.model.Database
@@ -52,9 +49,9 @@ class GameView(context: Context) : View(context) {
         }
 
         tilesetQueue.initQueue(
-            Tileset(0, context, 0, screenWidth, screenHeight),
+            Tileset(15, context, 0, screenWidth, screenHeight),
             Tileset(
-                (1..tilesetsCount).random(),
+                16,
                 context,
                 screenWidth,
                 screenWidth,

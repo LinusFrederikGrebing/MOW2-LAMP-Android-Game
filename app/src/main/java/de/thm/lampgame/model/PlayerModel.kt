@@ -20,7 +20,7 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var dblPtsDur = 0
     var dblJumpDur = 0
     var maxJump = 2
-    var immortal = false
+    var immortal = true
     var immortalDur = 0
     var coinsPerRound = 0
     companion object {
