@@ -16,6 +16,11 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
         override var active = false
         override var name = "MarsLandscapeMap"
         override var buyStatus = false
+        override val price = "100"
+        override val icon = R.drawable.bergeicon //TODO Mars Icon
+        override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): MarsLandscapeMap {
+            return MarsLandscapeMap(context as Context,screenHeight,screenWidth)
+        }
     }
 
 

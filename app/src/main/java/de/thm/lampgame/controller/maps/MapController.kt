@@ -2,19 +2,12 @@ package de.thm.lampgame.controller.maps
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import de.thm.lampgame.model.MapInterface
 import de.thm.lampgame.model.MapModel
 
 abstract class MapController(screenWidth: Int, screenHeight: Int) : MapModel(screenWidth, screenHeight) {
     lateinit var mitte: Bitmap
     lateinit var background: Bitmap
     lateinit var vorne: Bitmap
-
-    companion object : MapInterface {
-        override var active = false
-        override var name = ""
-        override var buyStatus = false
-    }
 
     fun drawMapHinten(canvas: Canvas, speed: Double, bmp: Bitmap) {
         setNewMapHintenXCoords(speed)

@@ -20,6 +20,7 @@ import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.maps.MarsLandscapeMap
 import de.thm.lampgame.controller.tileset.Tileset
 import de.thm.lampgame.controller.tileset.TilesetQueue
+import de.thm.lampgame.model.Database
 
 class GameView(context: Context) : View(context) {
     private var screenWidth = 0
@@ -30,7 +31,7 @@ class GameView(context: Context) : View(context) {
     private var multiplication = 0
     private var tilesetQueue = TilesetQueue()
     private val paint = Paint()
-    private var map: MapController
+    private lateinit var map: MapController
     private var pauseButton: PauseButton
     private var activeItem: ActiveItem
 
@@ -45,13 +46,7 @@ class GameView(context: Context) : View(context) {
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
         pauseButton = PauseButton(context, screenWidth, screenHeight)
         activeItem = ActiveItem(context, screenWidth, screenHeight)
-        map = if (CemeteryLandscapeMap.active) CemeteryLandscapeMap(
-            context,
-            screenHeight,
-            screenWidth
-        )
-        else if (MarsLandscapeMap.active) MarsLandscapeMap(context, screenHeight, screenWidth)
-        else MountainLandscapeMap(context, screenHeight, screenWidth)
+        Database.listOfMaps.forEach { if (it.active) map = it.createMap(context,screenHeight,screenWidth) }
         for (i in 1..tilesetsCount) {
             tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
         }

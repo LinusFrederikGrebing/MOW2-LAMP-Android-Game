@@ -24,7 +24,7 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var immortalDur = 0
     var coinsPerRound = 0
     companion object {
-        var coins = 50
+        var coins = 500
 
     }
 

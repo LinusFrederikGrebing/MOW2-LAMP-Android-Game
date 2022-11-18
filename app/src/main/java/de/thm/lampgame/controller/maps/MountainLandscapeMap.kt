@@ -15,6 +15,11 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         override var active = true
         override var name = "MountainLandscapeMap"
         override var buyStatus = true
+        override val price = "0"
+        override val icon = R.drawable.bergeicon
+        override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): MountainLandscapeMap {
+            return MountainLandscapeMap(context as Context,screenHeight,screenWidth)
+        }
     }
 
     init {

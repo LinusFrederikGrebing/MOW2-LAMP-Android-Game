@@ -15,6 +15,11 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         override var active = false
         override var name = "CemeteryLandscapeMap"
         override var buyStatus = false
+        override val price = "50"
+        override val icon = R.drawable.cemetery
+        override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): CemeteryLandscapeMap {
+            return CemeteryLandscapeMap(context as Context,screenHeight,screenWidth)
+        }
     }
 
     init {

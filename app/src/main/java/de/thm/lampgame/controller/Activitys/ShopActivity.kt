@@ -84,61 +84,34 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     fun lockedCase(locked: DataItem.Locked) {
-        if (locked.text == CemeteryLandscapeMap.name) {
-            if (PlayerModel.coins >= locked.price.toInt()) {
-                PlayerModel.coins -= locked.price.toInt()
-                CemeteryLandscapeMap.buyStatus = true
-                getRightList()
-                toast("Gekauft!")
-            } else {
-                toast("Nicht genügend Coins vorhanden!")
+        when (shop) {
+            1 -> Database.listOfMaps.forEach {
+                if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
+                    PlayerModel.coins -= it.price.toInt()
+                    it.buyStatus = true
+                }
             }
-        } else if(locked.text == BlueLampSkin.name) {
-            if (PlayerModel.coins >= locked.price.toInt()) {
-                PlayerModel.coins -= locked.price.toInt()
-                BlueLampSkin.buyStatus = true
-                getRightList()
-                toast("Gekauft!")
-            }
-            else  {
-                toast("Nicht genügend Coins vorhanden!")
+            2 -> Database.listOfSkins.forEach {
+                if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
+                    PlayerModel.coins -= it.price.toInt()
+                    it.buyStatus = true
+                }
             }
         }
-
-        else if(locked.text == MarsLandscapeMap.name) {
-            if (PlayerModel.coins >= locked.price.toInt()) {
-                PlayerModel.coins -= locked.price.toInt()
-                MarsLandscapeMap.buyStatus = true
-                getRightList()
-                toast("Gekauft!")
-            }
-        }
-
-        else {
-            toast("Nicht zu kaufen!")
-        }
+        getRightList()
     }
 
     fun unlockedCase(unlocked: DataItem.Unlocked) {
-        Database.listOfMaps.forEach {
-            it.active = unlocked.text == it.name
+        when(shop) {
+            1 -> Database.listOfMaps.forEach {
+                it.active = unlocked.text == it.name
+            }
+
+            2 -> Database . listOfSkins . forEach {
+                it.active = unlocked.text == it.name
+            }
         }
         getRightList()
-        toast("${unlocked.text} ist jetzt aktiv!")
-
-        if(unlocked.text == BlueLampSkin.name) {
-            LampSkin.active = false
-            BlueLampSkin.active = true
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-            } else if (unlocked.text == LampSkin.name ) {
-            LampSkin.active = true
-            BlueLampSkin.active = false
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-        }
-
-
     }
 
     fun activeCase(active: DataItem.Active) {

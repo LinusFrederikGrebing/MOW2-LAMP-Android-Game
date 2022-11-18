@@ -3,6 +3,7 @@ package de.thm.lampgame.model
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.Skins.BlueLampSkin
 import de.thm.lampgame.controller.Skins.LampSkin
+import de.thm.lampgame.controller.Skins.PurpleLampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.maps.MarsLandscapeMap
@@ -13,58 +14,33 @@ object Database {
     const val ACTIVE_TYPE = 2
 
     val listOfMaps = listOf(MountainLandscapeMap,CemeteryLandscapeMap,MarsLandscapeMap)
+    val listOfSkins = listOf(LampSkin,BlueLampSkin,PurpleLampSkin)
 
     fun getItemsMaps(): ArrayList<DataItem> {
         val itemList = arrayListOf<DataItem>()
 
         listOfMaps.forEach {
-            if (!it.buyStatus) {
-                itemList.add(
-                    DataItem.Locked(
-                        R.drawable.bergeicon,
-                        it.name,
-                        "35"
-                    )
-                )
-            }
-            else if (it.active) {
-                itemList.add(DataItem.Active(R.drawable.bergeicon, it.name))
-            }
-            else itemList.add(DataItem.Unlocked(R.drawable.bergeicon, it.name))
+            if (!it.buyStatus) itemList.add(DataItem.Locked(it.icon, it.name, it.price))
+            else if (it.active) itemList.add(DataItem.Active(it.icon, it.name))
+                 else itemList.add(DataItem.Unlocked(it.icon, it.name))
         }
 
         return itemList
-
     }
 
     fun getItemsSkins(): ArrayList<DataItem> {
         val itemList = arrayListOf<DataItem>()
 
-        if (LampSkin.active) {
-            itemList.add(DataItem.Active(R.drawable.skin_standard, LampSkin.name))
-        } else {
-            itemList.add(DataItem.Unlocked(R.drawable.skin_standard, LampSkin.name))
-        }
-        if (!BlueLampSkin.buyStatus) {
-            itemList.add(
-                DataItem.Locked(
-                    R.drawable.skin_blau,
-                    BlueLampSkin.name,
-                    "35"
-                )
-            )
-        } else {
-            if (BlueLampSkin.active) {
-                itemList.add(DataItem.Active(R.drawable.skin_blau, BlueLampSkin.name))
-            } else {
-                itemList.add(DataItem.Unlocked(R.drawable.skin_blau, BlueLampSkin.name))
-            }
+        listOfSkins.forEach {
+            if (!it.buyStatus) itemList.add(DataItem.Locked(it.icon, it.name, it.price))
+            else if (it.active) itemList.add(DataItem.Active(it.icon, it.name))
+                 else itemList.add(DataItem.Unlocked(it.icon, it.name))
         }
 
         return itemList
     }
 
-    fun getItemsMusic(): ArrayList<DataItem> {
+    fun getItemsMusic(): ArrayList<DataItem> { //TODO wenn/falls kaufbare Musik implementiert wird
 
         val itemList = arrayListOf<DataItem>()
         if (MountainLandscapeMap.active) {
