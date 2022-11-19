@@ -34,7 +34,7 @@ class SettingsActivity : AppCompatActivity() {
 
         //Testmusik zum Testen der Lautstärke
         val one: Button = findViewById<View>(R.id.playButton) as Button
-         mp = MediaPlayer.create(this, R.raw.background)
+         mp = MediaPlayer.create(this, R.raw.backgroundmusic_password_infinity)
         one.setOnClickListener { mp?.start() }
 
     }

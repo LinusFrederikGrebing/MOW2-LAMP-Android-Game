@@ -1,12 +1,14 @@
 package de.thm.lampgame.model
 
-import de.thm.lampgame.R
 import de.thm.lampgame.controller.Skins.BlueLampSkin
 import de.thm.lampgame.controller.Skins.LampSkin
 import de.thm.lampgame.controller.Skins.PurpleLampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.maps.MarsLandscapeMap
+import de.thm.lampgame.controller.music.BackgroundMusic_password_Infinity
+import de.thm.lampgame.controller.music.BackgroundMusic_Island
+import de.thm.lampgame.controller.music.BackgroundMusic_Christmas_is_here
 
 object Database {
     const val LOCKED_TYPE = 0
@@ -15,6 +17,7 @@ object Database {
 
     val listOfMaps = listOf(MountainLandscapeMap,CemeteryLandscapeMap,MarsLandscapeMap)
     val listOfSkins = listOf(LampSkin,BlueLampSkin,PurpleLampSkin)
+    val listOfMusic = listOf(BackgroundMusic_password_Infinity, BackgroundMusic_Island, BackgroundMusic_Christmas_is_here)
 
     fun getItemsMaps(): ArrayList<DataItem> {
         val itemList = arrayListOf<DataItem>()
@@ -40,28 +43,44 @@ object Database {
         return itemList
     }
 
-    fun getItemsMusic(): ArrayList<DataItem> { //TODO wenn/falls kaufbare Musik implementiert wird
+    fun getItemsMusic(): ArrayList<DataItem> {
 
         val itemList = arrayListOf<DataItem>()
-        if (MountainLandscapeMap.active) {
-            itemList.add(DataItem.Active(R.drawable.exit_icon, MountainLandscapeMap.name))
+        if (BackgroundMusic_password_Infinity.active) {
+            itemList.add(DataItem.Active(BackgroundMusic_password_Infinity.icon, BackgroundMusic_password_Infinity.name))
         } else {
-            itemList.add(DataItem.Unlocked(R.drawable.exit_icon, MountainLandscapeMap.name))
+            itemList.add(DataItem.Unlocked(BackgroundMusic_password_Infinity.icon, BackgroundMusic_password_Infinity.name))
         }
 
-        if (!CemeteryLandscapeMap.buyStatus) {
+        if (!BackgroundMusic_Island.buyStatus) {
             itemList.add(
                 DataItem.Locked(
-                    R.drawable.exit_icon,
-                    CemeteryLandscapeMap.name,
-                    "70"
+                    BackgroundMusic_Island.icon,
+                    BackgroundMusic_Island.name,
+                    BackgroundMusic_Island.price
                 )
             )
         } else {
-            if (CemeteryLandscapeMap.active) {
-                itemList.add(DataItem.Active(R.drawable.exit_icon, CemeteryLandscapeMap.name))
+            if (BackgroundMusic_Island.active) {
+                itemList.add(DataItem.Active(BackgroundMusic_Island.icon, BackgroundMusic_Island.name))
             } else {
-                itemList.add(DataItem.Unlocked(R.drawable.exit_icon, CemeteryLandscapeMap.name))
+                itemList.add(DataItem.Unlocked(BackgroundMusic_Island.icon, BackgroundMusic_Island.name))
+            }
+        }
+
+        if (!BackgroundMusic_Christmas_is_here.buyStatus) {
+            itemList.add(
+                DataItem.Locked(
+                    BackgroundMusic_Christmas_is_here.icon,
+                    BackgroundMusic_Christmas_is_here.name,
+                    BackgroundMusic_Christmas_is_here.price
+                )
+            )
+        } else {
+            if (BackgroundMusic_Christmas_is_here.active) {
+                itemList.add(DataItem.Active(BackgroundMusic_Christmas_is_here.icon, BackgroundMusic_Christmas_is_here.name))
+            } else {
+                itemList.add(DataItem.Unlocked(BackgroundMusic_Christmas_is_here.icon, BackgroundMusic_Christmas_is_here.name))
             }
         }
         return itemList
