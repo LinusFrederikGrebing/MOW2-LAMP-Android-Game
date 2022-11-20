@@ -3,11 +3,12 @@ package de.thm.lampgame.controller.items
 import android.content.Context
 import android.graphics.*
 import de.thm.lampgame.R
-import de.thm.lampgame.controller.ActiveItem
 import de.thm.lampgame.controller.Player
 
 class DoublePoints(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: Int ) : Item(context, screenHeight, screenWidth, (0.1*screenHeight).toInt(),(0.1*screenWidth).toInt(), x,y) {
-
+    companion object{
+        val doublepointsduration = 250
+    }
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.doublepoints_icon)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true) }
@@ -21,8 +22,9 @@ class DoublePoints(context: Context, screenHeight: Int, screenWidth: Int, x: Int
 
     override var activateEffect: (Player) -> Unit = {p ->
         ActiveItem.texture = R.drawable.doublepoints_icon
+        ActiveItem.speedMultiplyer = 360F
         p.hasDblPts = true
-        p.dblPtsDur = 250
+        p.dblPtsDur = doublepointsduration
     }
 
 }

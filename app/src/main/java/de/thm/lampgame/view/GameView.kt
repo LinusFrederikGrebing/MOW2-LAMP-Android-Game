@@ -7,17 +7,21 @@ import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.Activitys.GameOverActivity
 import de.thm.lampgame.controller.Activitys.PauseActivity
-import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
+import de.thm.lampgame.controller.items.ActiveItem
+import de.thm.lampgame.controller.items.BonusJump
+import de.thm.lampgame.controller.items.DoublePoints
+import de.thm.lampgame.controller.items.Immortality
+import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.tileset.Tileset
 import de.thm.lampgame.controller.tileset.TilesetQueue
 import de.thm.lampgame.model.Database
+
 
 class GameView(context: Context) : View(context) {
     private var screenWidth = 0
@@ -31,9 +35,8 @@ class GameView(context: Context) : View(context) {
     private lateinit var map: MapController
     private var pauseButton: PauseButton
     private var activeItem: ActiveItem
-
     var tilesetList = ArrayList<Tileset>()
-    val tilesetsCount = 10
+    val tilesetsCount = 16
 
 
     init {
@@ -49,9 +52,9 @@ class GameView(context: Context) : View(context) {
         }
 
         tilesetQueue.initQueue(
-            Tileset(15, context, 0, screenWidth, screenHeight),
+            Tileset(0, context, 0, screenWidth, screenHeight),
             Tileset(
-                16,
+                (1..15).random(),
                 context,
                 screenWidth,
                 screenWidth,
@@ -61,12 +64,16 @@ class GameView(context: Context) : View(context) {
         )
         runnable = Runnable { invalidate() }
 
+        
+
     }
 
 
     private var player = Player(context, screenHeight, screenWidth)
 
     private var ground = BitmapGround(context, screenWidth, screenHeight)
+
+
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -110,17 +117,26 @@ class GameView(context: Context) : View(context) {
             canvas.drawText("Punkte: " + player.points.toString(), 10F, 75F, paint)
             canvas.drawText("Fackeln: " + player.coinsPerRound.toString(), 10F, 135F, paint)
             tilesetQueue.iterations++
-            activeItem.drawbg(canvas)
+            //activeItem.drawbg(canvas)
             pauseButton.draw(canvas)
-            if (player.dblPtsDur > 0) { player.dblPtsDur-- ; activeItem.draw(canvas) }
-            if (player.dblJumpDur > 0) { player.dblJumpDur-- ; activeItem.draw(canvas) } else player.maxJump = 2
-            if (player.immortalDur > 0) { player.immortalDur-- ; activeItem.draw(canvas) } else player.immortal = false
+            if (player.dblPtsDur > 0) {
+                player.dblPtsDur--
+                activeItem.drawCircle(canvas, DoublePoints.doublepointsduration)
+            }
+            if (player.dblJumpDur > 0) {
+                player.dblJumpDur--
+                activeItem.drawCircle(canvas, BonusJump.bonusjumpduration)
+            } else player.maxJump = 2
+            if (player.immortalDur > 0) {
+                player.immortalDur--
+                activeItem.drawCircle(canvas, Immortality.immortalduration)
+            } else player.immortal = false
 
 
             // refresh
             handler!!.postDelayed(runnable!!, updateMillis)
 
-            Log.i("testCoins", player.coinsPerRound.toString())
+
         }
     }
 

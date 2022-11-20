@@ -45,7 +45,7 @@ class Tileset(
         if (isTorch) {
             item = Torch(context, height, width, itemX, itemY)
             hasItem = true
-        } else when ((1..9).random()) {
+        } else when ((1..6).random()) {
             1 -> {
                 item = DoublePoints(context, height, width, itemX, itemY); hasItem = true
             }

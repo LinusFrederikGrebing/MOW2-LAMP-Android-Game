@@ -3,10 +3,12 @@ package de.thm.lampgame.controller.items
 import android.content.Context
 import android.graphics.*
 import de.thm.lampgame.R
-import de.thm.lampgame.controller.ActiveItem
 import de.thm.lampgame.controller.Player
 
 class Immortality(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: Int ) : Item(context, screenHeight, screenWidth, (0.1*screenHeight).toInt(),(0.05*screenWidth).toInt(), x,y) {
+   companion object{
+       val immortalduration = 100
+   }
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.immortality)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true) }
@@ -18,11 +20,11 @@ class Immortality(context: Context, screenHeight: Int, screenWidth: Int, x: Int,
         }
     }
 
-
     override var activateEffect: (Player) -> Unit = {p ->
         ActiveItem.texture = R.drawable.immortality
+        ActiveItem.speedMultiplyer = 360F
         p.immortal = true
-        p.immortalDur = 100
+        p.immortalDur = immortalduration
     }
 
 
