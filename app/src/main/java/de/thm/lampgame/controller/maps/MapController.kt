@@ -40,5 +40,6 @@ abstract class MapController(screenWidth: Int, screenHeight: Int) : MapModel(scr
             canvas.drawBitmap(bmp, (mapMitte + newWidth).toFloat(), 0f, null)
         }
     }
+
     abstract fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double)
 }

@@ -1,8 +1,8 @@
 package de.thm.lampgame.model
 
 abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
-    var charHeight: Double = 0.0
-    var charwidth: Double = 0.0
+    var charHeight  = (0.18 * screenHeight).toInt()
+    var charwidth =  (0.16 * screenHeight).toInt()
 
     //var firebarFrame = 0
     var points = 0
@@ -11,27 +11,25 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var charY = (0.10 * screenWidth).toInt()
     var charX = (0.15 * screenWidth).toInt()
     var velocity = 0
-    var gravity = 2
+    var gravity = 3
     var jumpCount = 0
     var jumpState = false
     var birdsneek = false
-    val maxVelocity = 30
+    val maxVelocity = 40
     var hasDblPts = false
     var dblPtsDur = 0
-
+    var dblJumpDur = 0
+    var maxJump = 2
+    var immortal = true
+    var immortalDur = 0
+    var coinsPerRound = 0
     companion object {
-        var coins = 50
+        var coins = 500
 
     }
 
-    fun getCharWidth(): Int {
-        charwidth = 0.08 * screenWidth
-        return charwidth.toInt()
-    }
-
-    fun getCharHeight(): Int {
-        charHeight = 0.18 * screenHeight
-        return charHeight.toInt()
+    init {
+        coinsPerRound = 0
     }
 
     fun calkCharframe(): Int {
@@ -47,7 +45,6 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     }*/
 
     fun setJumpStats(collision: Boolean) {
-
         if (!collision || velocity <= 0) {
             jumpState = true
             if (velocity < maxVelocity) velocity += gravity
@@ -56,7 +53,6 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
             jumpCount = 0
             jumpState = false
         }
-
     }
 
     fun calkCoins() {
@@ -73,9 +69,9 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     }
 
     fun sprung() {
-        if (jumpCount < 2 && !birdsneek) {
+        if (jumpCount < maxJump && !birdsneek) {
             jumpCount++
-            velocity = -screenHeight / 28
+            velocity = -40
             jumpState = true
         }
     }

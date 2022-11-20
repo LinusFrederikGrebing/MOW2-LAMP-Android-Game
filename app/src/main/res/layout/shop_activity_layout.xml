@@ -59,11 +59,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:onClick="shop1"
+                android:onClick="shopMaps"
                 android:contentDescription="@string/maps_shop"
                 android:scaleX="0.9"
                 android:scaleY="0.9"
-                app:srcCompat="@drawable/shop_maps" />
+                app:srcCompat="@drawable/shop_maps_icon" />
 
             <ImageView
                 android:id="@+id/shop2"
@@ -72,11 +72,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:onClick="shop2"
+                android:onClick="shopSkins"
                 android:contentDescription="@string/skin_shop"
                 android:scaleX="1"
                 android:scaleY="1"
-                app:srcCompat="@drawable/shop_skins" />
+                app:srcCompat="@drawable/shop_skins_icon" />
 
             <ImageView
                 android:id="@+id/shop3"
@@ -85,11 +85,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:onClick="shop3"
                 android:contentDescription="@string/item_shop"
+                android:onClick="shopMusic"
                 android:scaleX="0.9"
                 android:scaleY="0.9"
-                app:srcCompat="@drawable/shop_items" />
+                app:srcCompat="@drawable/shop_music_icon" />
         </LinearLayout>
 
         <ImageView
@@ -104,7 +104,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/shopicon" />
+            app:srcCompat="@drawable/shop_headline" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -129,7 +129,7 @@
             android:onClick="mainMenu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/exit" />
+            app:srcCompat="@drawable/exit_icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

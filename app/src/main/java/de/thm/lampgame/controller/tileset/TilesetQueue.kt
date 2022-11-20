@@ -5,19 +5,20 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.Player
+import de.thm.lampgame.model.PlayerModel
 import de.thm.lampgame.model.TilesetQueueModel
 
 class TilesetQueue : TilesetQueueModel() {
 
     //Collision-Methode muss noch vereinfacht werden
-
+    var actplayer : PlayerModel? = null
     fun drawTilesetsAndCheckCollisions(
         canvas: Canvas,
         velocity: Int,
         player: Player,
         ground: BitmapGround
     ) {
-
+        actplayer = player
         //draw Items
         if (queue.first().hasItem) queue.first().item.draw(canvas, velocity)
         if (queue.last().hasItem) queue.last().item.draw(canvas, velocity)
@@ -35,13 +36,13 @@ class TilesetQueue : TilesetQueueModel() {
         //draw first Tileset  and its Obstacles
         queue.first().drawTileset(velocity)
         queue.first().obstacles.forEach {
-            it.draw(canvas, velocity, velocity / 2)
+            it.draw(canvas, velocity, velocity / 4)
         }
 
         //draw first Tileset  and its Obstacles
         queue.last().drawTileset(velocity)
         queue.last().obstacles.forEach {
-            it.draw(canvas, velocity, velocity / 2)
+            it.draw(canvas, velocity, velocity / 4)
         }
 
         collision = this.checkCollisions(
@@ -109,7 +110,9 @@ class TilesetQueue : TilesetQueueModel() {
             (obstacleY + obstacleBitmap.height)
         )
         if (Rect.intersects(obstacleHitbox, playerHitbox)) {
-            gameover = true
+            if(!actplayer!!.immortal){
+                gameover = true
+            }
         }
         return false
     }
@@ -134,9 +137,13 @@ class TilesetQueue : TilesetQueueModel() {
             (obstacleY + obstacleBitmap.height - player.maxVelocity + 5)
         )
         if (Rect.intersects(obstacleHitboxUnten, playerHitbox)) {
-            gameover = true
-        } else if (Rect.intersects(obstacleHitboxOben, playerHitbox)) {
+            if(!actplayer!!.immortal){
+                gameover = true
+            }
 
+        } else if (Rect.intersects(obstacleHitboxOben, playerHitbox)) {
+            player.charY = obstacleY-player.rechar[1]!!.height+1
+            player.jumpState = false
             return true
         }
         return false

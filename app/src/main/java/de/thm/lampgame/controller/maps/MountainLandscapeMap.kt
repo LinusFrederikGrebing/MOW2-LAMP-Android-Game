@@ -5,17 +5,22 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
+import de.thm.lampgame.model.MapInterface
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTerrain
 
 class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
-   companion object {
-        var name = "MountainLandscapeMap"
-        var active = false
-
+    companion object : MapInterface {
+        override var active = true
+        override var name = "MountainLandscapeMap"
+        override var buyStatus = true
+        override val price = "0"
+        override val icon = R.drawable.bergeicon
+        override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): MountainLandscapeMap {
+            return MountainLandscapeMap(context as Context,screenHeight,screenWidth)
+        }
     }
-
 
     init {
         BitmapGround.texture = R.drawable.bodengras

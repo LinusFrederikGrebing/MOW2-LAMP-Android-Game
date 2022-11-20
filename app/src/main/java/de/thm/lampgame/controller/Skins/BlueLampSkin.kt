@@ -4,14 +4,19 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import de.thm.lampgame.R
+import de.thm.lampgame.model.SkinInterface
 
-class BlueLampSkin(context: Context) {
-    var char = arrayOfNulls<Bitmap>(6)
+class BlueLampSkin(context: Context) : SkinController() {
 
-    companion object{
-        var name = "BlueLampSkin"
-        var active = false
-        var buyStatus = false
+    companion object : SkinInterface {
+        override var name = "BlueLampSkin"
+        override var active = false
+        override var buyStatus = false
+        override val price = "30"
+        override val icon = R.drawable.skin_blau
+        override fun createSkin(context: Any): BlueLampSkin {
+            return BlueLampSkin(context as Context)
+        }
     }
     init {
         char[0] = BitmapFactory.decodeResource(context.resources, R.drawable.legs_leftskin2)
@@ -20,9 +25,5 @@ class BlueLampSkin(context: Context) {
         char[3] = BitmapFactory.decodeResource(context.resources, R.drawable.aussenskin2)
         char[4] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_sneek)
         char[5] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_jump_fireskin2)
-    }
-
-    fun getSkin(): Array<Bitmap?> {
-        return char
     }
 }

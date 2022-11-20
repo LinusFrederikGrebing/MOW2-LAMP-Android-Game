@@ -43,7 +43,7 @@
         android:contentDescription="@string/lautst_rke"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sound_symbol" />
+        app:srcCompat="@drawable/settings_volume" />
 
     <Button
         android:id="@+id/playButton"
@@ -73,7 +73,7 @@
         android:onClick="mainMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/exit" />
+        app:srcCompat="@drawable/exit_icon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

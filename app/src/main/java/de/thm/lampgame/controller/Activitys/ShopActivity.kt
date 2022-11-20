@@ -50,23 +50,23 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
 
     }
 
-    fun shop1(view: View) {
+    fun shopMaps(view: View) {
         shop = 1
         ItemsAdapter.itemList = Database.getItemsMaps()
         inflateList()
         setPlayerCoinsTextView()
     }
 
-    fun shop2(view: View) {
+    fun shopSkins(view: View) {
         shop = 2
         ItemsAdapter.itemList = Database.getItemsSkins()
         inflateList()
         setPlayerCoinsTextView()
     }
 
-    fun shop3(view: View) {
+    fun shopMusic(view: View) {
         shop = 3
-        ItemsAdapter.itemList = Database.getItemsItems()
+        ItemsAdapter.itemList = Database.getItemsMusic()
         inflateList()
         setPlayerCoinsTextView()
     }
@@ -85,82 +85,43 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     fun lockedCase(locked: DataItem.Locked) {
-        if (locked.text == CemeteryLandscapeMap.name) {
-            if (PlayerModel.coins >= locked.price.toInt()) {
-                PlayerModel.coins -= locked.price.toInt()
-                CemeteryLandscapeMap.buyStatus = true
-                getRightList()
-                toast("Gekauft!")
-            } else {
-                toast("Nicht genügend Coins vorhanden!")
+        when (shop) {
+            1 -> Database.listOfMaps.forEach {
+                if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
+                    PlayerModel.coins -= it.price.toInt()
+                    it.buyStatus = true
+                }
             }
-        } else if(locked.text == BlueLampSkin.name) {
-            if (PlayerModel.coins >= locked.price.toInt()) {
-                PlayerModel.coins -= locked.price.toInt()
-                BlueLampSkin.buyStatus = true
-                getRightList()
-                toast("Gekauft!")
+            2 -> Database.listOfSkins.forEach {
+                if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
+                    PlayerModel.coins -= it.price.toInt()
+                    it.buyStatus = true
+                }
             }
-            else  {
-                toast("Nicht genügend Coins vorhanden!")
-            }
-        }
-
-        else if(locked.text == MarsLandscapeMap.name) {
-            if (PlayerModel.coins >= locked.price.toInt()) {
-                PlayerModel.coins -= locked.price.toInt()
-                MarsLandscapeMap.buyStatus = true
-                getRightList()
-                toast("Gekauft!")
+            3 -> Database.listOfMusic.forEach {
+                if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
+                    PlayerModel.coins -= it.price.toInt()
+                    it.buyStatus = true
+                }
             }
         }
-
-        else {
-            toast("Nicht zu kaufen!")
-        }
+        getRightList()
     }
 
     fun unlockedCase(unlocked: DataItem.Unlocked) {
-        val map = mapOf("CemeteryLandscapeMap" to CemeteryLandscapeMap, "MountainLandscapeMap" to MountainLandscapeMap)
-        map.forEach {
-            if (unlocked.text == it.key) {
-                it.value
+        when(shop) {
+            1 -> Database.listOfMaps.forEach {
+                it.active = unlocked.text == it.name
+            }
+
+            2 -> Database . listOfSkins . forEach {
+                it.active = unlocked.text == it.name
+            }
+            3 -> Database.listOfMusic.forEach {
+                it.active = unlocked.text == it.name
             }
         }
-        if (unlocked.text == CemeteryLandscapeMap.name ) {
-            CemeteryLandscapeMap.active = true
-            MountainLandscapeMap.active = false
-            MarsLandscapeMap.active = false
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-        } else if (unlocked.text == MountainLandscapeMap.name) {
-            MountainLandscapeMap.active = true
-            CemeteryLandscapeMap.active = false
-            MarsLandscapeMap.active = false
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-        }
-        else if (unlocked.text == MarsLandscapeMap.name) {
-            MountainLandscapeMap.active = false
-            CemeteryLandscapeMap.active = false
-            MarsLandscapeMap.active = true
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-        }
-
-        if(unlocked.text == BlueLampSkin.name) {
-            LampSkin.active = false
-            BlueLampSkin.active = true
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-            } else if (unlocked.text == LampSkin.name ) {
-            LampSkin.active = true
-            BlueLampSkin.active = false
-            getRightList()
-            toast("${unlocked.text} ist jetzt aktiv!")
-        }
-
-
+        getRightList()
     }
 
     fun activeCase(active: DataItem.Active) {
@@ -168,7 +129,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     fun getRightList(){
-        ItemsAdapter.itemList = if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsItems()
+        ItemsAdapter.itemList = if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsMusic()
         inflateList()
     }
 
@@ -185,123 +146,3 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         playerCoins.text = PlayerModel.coins.toString()
     }
 }
-
-
-/*
-import android.content.Intent
-import android.os.Bundle
-import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import de.thm.lampgame.model.Items
-import de.thm.lampgame.R
-import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
-import de.thm.lampgame.controller.maps.MountainLandscapeMap
-
-
-
-class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
-    private var exampleList = generateDummyList()
-    private var exampleList2 = generateDummyList2()
-    private var exampleList3 = generateDummyList3()
-    private val adapter = ItemsAdapter(exampleList, this)
-    private val adapter2 = ItemsAdapter(exampleList2, this)
-    private val adapter3 = ItemsAdapter(exampleList3, this)
-    var actualList = 1
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.shop_activity_layout)
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-        recyclerView.setHasFixedSize(true)
-    }
-
-
-    override fun onItemClick(position: Int) {
-        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
-        val clickedItem = if(actualList == 1) exampleList[position] else if(actualList == 2) exampleList2[position] else exampleList3[position]
-        val adapter = if(actualList == 1) adapter else if(actualList == 2) adapter2 else adapter3
-        if(clickedItem.itemName == CemeteryLandscapeMap.name) {
-            clickedItem.itemName = "Clicked"
-            CemeteryLandscapeMap.active = true
-            MountainLandscapeMap.active = false
-        }
-        else if(clickedItem.itemName == MountainLandscapeMap.name){
-            clickedItem.itemName = "Clicked"
-            MountainLandscapeMap.active = true
-            CemeteryLandscapeMap.active = false
-        }
-        adapter.notifyItemChanged(position)
-    }
-
-    private fun generateDummyList(): ArrayList<Items> {
-
-        val list = ArrayList<Items>()
-
-        list.add(Items(R.drawable.bergeicon, MountainLandscapeMap.name, true))
-        list.add(Items(R.drawable.cemetery, CemeteryLandscapeMap.name, false))
-        list.add(Items(R.drawable.bergeicon, MountainLandscapeMap.name, true))
-        list.add(Items(R.drawable.cemetery, CemeteryLandscapeMap.name, false))
-
-        return list
-    }
-
-    private fun generateDummyList2(): ArrayList<Items> {
-
-        val list = ArrayList<Items>()
-
-        list.add(Items(R.drawable.bergeicon, MountainLandscapeMap.name, true))
-        list.add(Items(R.drawable.bergeicon, MountainLandscapeMap.name, false))
-        list.add(Items(R.drawable.bergeicon, MountainLandscapeMap.name, true))
-        list.add(Items(R.drawable.bergeicon, MountainLandscapeMap.name, false))
-
-        return list
-    }
-
-    private fun generateDummyList3(): ArrayList<Items> {
-
-        val list = ArrayList<Items>()
-
-        list.add(Items(R.drawable.cemetery, CemeteryLandscapeMap.name, true))
-        list.add(Items(R.drawable.cemetery, CemeteryLandscapeMap.name, false))
-        list.add(Items(R.drawable.cemetery, CemeteryLandscapeMap.name, true))
-        list.add(Items(R.drawable.cemetery, CemeteryLandscapeMap.name, false))
-        list.add(Items(R.drawable.cemetery, CemeteryLandscapeMap.name, false))
-        list.add(Items(R.drawable.cemetery, CemeteryLandscapeMap.name, false))
-
-        return list
-    }
-
-    fun mainMenu(view: View) {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    fun shop1(view: View) {
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-        recyclerView.setHasFixedSize(true)
-        actualList = 1
-    }
-    fun shop2(view: View) {
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        recyclerView.adapter = adapter2
-        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-        recyclerView.setHasFixedSize(true)
-        actualList = 2
-    }
-    fun shop3(view: View) {
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        recyclerView.adapter = adapter3
-        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-        recyclerView.setHasFixedSize(true)
-        actualList = 3
-    }
-}
-*/
-

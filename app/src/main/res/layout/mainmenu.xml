@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.775"
-        app:srcCompat="@drawable/playbutton2" />
+        app:srcCompat="@drawable/playbutton" />
 
     <ImageButton
         android:id="@+id/button"
@@ -60,7 +60,7 @@
         android:drawableStart="@drawable/ic_launcher_foreground"
         android:onClick="shop"
         android:scaleType="centerInside"
-        android:src="@drawable/shop"
+        android:src="@drawable/shop_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.012"
@@ -92,7 +92,7 @@
         android:drawableStart="@drawable/ic_launcher_foreground"
         android:onClick="buttonSettings"
         android:scaleType="centerInside"
-        android:src="@drawable/settings"
+        android:src="@drawable/settings_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -101,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/lampgame"
-        android:src="@drawable/lamppic1"
+        android:src="@drawable/mainmenu_headline"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
