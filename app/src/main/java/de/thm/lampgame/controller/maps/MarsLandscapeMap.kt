@@ -8,6 +8,8 @@ import de.thm.lampgame.R
 import de.thm.lampgame.model.MapInterface
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTerrain
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTube
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapWater
 
 class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
@@ -28,6 +30,8 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     init {
         BitmapGround.texture = R.drawable.groundmars
         BitmapTerrain.texture = R.drawable.platformmars
+        BitmapWater.texture = R.drawable.waternew
+        BitmapTube.texture = R.drawable.obstaclestonewall
         background = BitmapFactory.decodeResource(context.resources, R.drawable.letzerbackgroundmars)
         mitte = BitmapFactory.decodeResource(context.resources, R.drawable.mittebackgroundmars)
         vorne = BitmapFactory.decodeResource(context.resources, R.drawable.vornebackgroundmars)

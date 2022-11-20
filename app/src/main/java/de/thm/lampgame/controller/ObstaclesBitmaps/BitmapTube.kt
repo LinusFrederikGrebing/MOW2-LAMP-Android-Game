@@ -8,9 +8,11 @@ import de.thm.lampgame.R
 
 class BitmapTube(context: Context, width: Int, height: Int, x: Int, y: Int) :
     Obstacles("tube", (0.08 * width).toInt(),(0.47 * height).toInt(), x, y, false) {
-
+    companion object {
+        var texture = R.drawable.obstaclestonewall
+    }
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.obstaclestonewall)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, this.width, this.height, true)
     }
 

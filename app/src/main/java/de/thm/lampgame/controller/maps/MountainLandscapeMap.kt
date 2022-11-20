@@ -8,6 +8,8 @@ import de.thm.lampgame.R
 import de.thm.lampgame.model.MapInterface
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTerrain
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTube
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapWater
 
 class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
@@ -24,6 +26,8 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
 
     init {
         BitmapGround.texture = R.drawable.bodengras
+        BitmapWater.texture = R.drawable.wasser
+        BitmapTube.texture = R.drawable.bottomtube
         BitmapTerrain.texture = R.drawable.plattform2
         background = BitmapFactory.decodeResource(context.resources, R.drawable.berghinten)
         mitte = BitmapFactory.decodeResource(context.resources, R.drawable.bergemitte)

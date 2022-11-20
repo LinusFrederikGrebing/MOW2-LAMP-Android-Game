@@ -28,25 +28,23 @@ class GameView(context: Context) : View(context) {
     private var screenWidth = 0
     private var screenHeight = 0
     private var runnable: Runnable? = null
-    private val updateMillis: Long = 5
+    private val updateMillis: Long = 2
     var gameStatus = true
     private var multiplication = 0
     private var tilesetQueue = TilesetQueue()
     private val paint = Paint()
     private lateinit var map: MapController
-    private var pauseButton: PauseButton
-    private var activeItem: ActiveItem
     var tilesetList = ArrayList<Tileset>()
     val tilesetsCount = 16
 
 
     init {
-        paint.textSize = 75F
+
         paint.color = Color.BLACK
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
-        pauseButton = PauseButton(context, screenWidth, screenHeight)
-        activeItem = ActiveItem(context, screenWidth, screenHeight)
+        paint.textSize = screenHeight*0.07.toFloat()
+
         Database.listOfMaps.forEach { if (it.active) map = it.createMap(context,screenHeight,screenWidth) }
         for (i in 1..tilesetsCount) {
             tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
@@ -71,7 +69,9 @@ class GameView(context: Context) : View(context) {
 
 
     private var player = Player(context, screenHeight, screenWidth)
-
+    private var pauseButton = PauseButton(context, screenWidth, screenHeight)
+    private var drawTorch = drawTorchIcon(context, screenWidth, screenHeight)
+    private var activeItem = ActiveItem(context, screenWidth, screenHeight)
     private var ground = BitmapGround(context, screenWidth, screenHeight)
 
 
@@ -113,17 +113,16 @@ class GameView(context: Context) : View(context) {
             player.drawFirebar(canvas)
 
 
+            canvas.drawText("Punkte: " + player.points.roundToInt().toString(),  (screenWidth*0.01).toFloat(), (screenHeight*0.075).toFloat(), paint)
 
-            if (player.dblPtsDur > 0) paint.color = Color.RED else paint.color = Color.BLACK
-            canvas.drawText("Punkte: " + player.points.roundToInt().toString(), 10F, 75F, paint)
-            canvas.drawText("Fackeln: " + player.coinsPerRound.toString(), 10F, 135F, paint)
+            drawTorch.draw(canvas, player.coinsPerRound)
             tilesetQueue.iterations++
-            //activeItem.drawbg(canvas)
             pauseButton.draw(canvas)
             if (player.dblPtsDur > 0) {
+                paint.color = Color.RED
                 player.dblPtsDur--
                 activeItem.drawCircle(canvas, DoublePoints.doublepointsduration)
-            }
+            } else paint.color = Color.BLACK
             if (player.dblJumpDur > 0) {
                 player.dblJumpDur--
                 activeItem.drawCircle(canvas, BonusJump.bonusjumpduration)

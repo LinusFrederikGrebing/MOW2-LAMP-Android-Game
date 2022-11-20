@@ -33,7 +33,7 @@ init {
 
     fun drawCircle(canvas: Canvas, duration : Int) {
         speed = (360/duration.toFloat())
-        if(speedMultiplyer <= 0F) speedMultiplyer = 360F else speedMultiplyer -= speed
+        speedMultiplyer -= speed
 
         myPaint.color = if(speedMultiplyer > 180) Color.GREEN else if(speedMultiplyer < 60) Color.RED else Color.YELLOW
         canvas.drawArc(
