@@ -5,7 +5,7 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var charwidth =  (0.16 * screenHeight).toInt()
 
     //var firebarFrame = 0
-    var points = 0
+    var points: Double = 0.0
     var fire: Float = 100F
     var charframe = 0
     var charY = (0.10 * screenWidth).toInt()
@@ -59,9 +59,9 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
         coins++
     }
 
-    fun calkPoints() {
-        if (!hasDblPts) points++
-        else points += 2
+    fun calkPoints(addPts: Double) {
+        if (!hasDblPts) points += addPts
+        else points += (addPts * 2.0)
     }
 
     fun calkFire() {
