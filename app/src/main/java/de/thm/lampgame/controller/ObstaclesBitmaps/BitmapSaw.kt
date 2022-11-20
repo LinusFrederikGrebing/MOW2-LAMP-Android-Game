@@ -8,7 +8,7 @@ import de.thm.lampgame.R
 
 
 class BitmapSaw(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    Obstacles("saw", (0.1 * width).toInt(),(0.2 * height).toInt(), x, y, true) {
+    Obstacles("saw", (0.1 * width).toInt(),(0.25 * height).toInt(), x, y, true) {
 
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.saw)

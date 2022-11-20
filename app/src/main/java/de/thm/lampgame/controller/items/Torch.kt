@@ -9,7 +9,7 @@ class Torch(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: In
     Item(context, screenHeight, screenWidth, (0.15 * screenHeight).toInt(), (0.075 * screenWidth).toInt(), x, y) {
 
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.torch)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.torch_highlight)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true)
     }
 
