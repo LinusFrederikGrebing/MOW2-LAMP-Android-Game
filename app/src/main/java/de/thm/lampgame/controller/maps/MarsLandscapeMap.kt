@@ -12,8 +12,8 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
     companion object {
          var name = "MarsLandscapeMap"
-         var active = false
-         var buyStatus = false
+         var active = true
+         var buyStatus = true
     }
 
 
@@ -34,7 +34,7 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     }
 
     override fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double) {
-        drawMapHinten(canvas, speedHinten, background)
+        drawMapHintenMars(canvas, speedHinten, background)
         drawMapMitte(canvas, speedMitte, mitte)
         drawMapVorne(canvas, speedVorne, vorne)
     }

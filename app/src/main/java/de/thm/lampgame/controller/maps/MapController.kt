@@ -17,6 +17,14 @@ abstract class MapController(screenWidth: Int, screenHeight: Int) : MapModel(scr
         }
     }
 
+    fun drawMapHintenMars(canvas: Canvas, speed: Double, bmp: Bitmap) {
+        setNewMapHintenXCoords(speed)
+        canvas.drawBitmap(bmp, -700f, 0f, null)
+        if (needToRepeatPartHinten()) {
+            canvas.drawBitmap(bmp, (mapHinten + newWidth).toFloat(), 0f, null)
+        }
+    }
+
     fun drawMapVorne(canvas: Canvas, speed: Double, bmp: Bitmap) {
         setNewMapVorneXCoords(speed)
         canvas.drawBitmap(bmp, mapVorne.toFloat(), 0f, null)

@@ -12,7 +12,7 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
     MapController(screenWidth, screenHeight) {
    companion object {
         var name = "MountainLandscapeMap"
-        var active = true
+        var active = false
 
     }
 

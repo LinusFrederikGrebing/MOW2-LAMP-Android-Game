@@ -45,16 +45,16 @@ object Database {
         if (!MarsLandscapeMap.buyStatus) {
             itemList.add(
                 DataItem.Locked(
-                    R.drawable.cemetery,
+                    R.drawable.map_mars,
                     MarsLandscapeMap.name,
                     "35"
                 )
             )
         } else {
             if (MarsLandscapeMap.active) {
-                itemList.add(DataItem.Active(R.drawable.cemetery, MarsLandscapeMap.name))
+                itemList.add(DataItem.Active(R.drawable.map_mars, MarsLandscapeMap.name))
             } else {
-                itemList.add(DataItem.Unlocked(R.drawable.cemetery, MarsLandscapeMap.name))
+                itemList.add(DataItem.Unlocked(R.drawable.map_mars, MarsLandscapeMap.name))
             }
         }
         itemList.add(DataItem.Locked(R.drawable.exit, "ExitMap", "70"))
