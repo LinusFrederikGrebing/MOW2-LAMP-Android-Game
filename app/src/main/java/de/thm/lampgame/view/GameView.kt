@@ -21,6 +21,7 @@ import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.tileset.Tileset
 import de.thm.lampgame.controller.tileset.TilesetQueue
 import de.thm.lampgame.model.Database
+import kotlin.math.roundToInt
 
 
 class GameView(context: Context) : View(context) {
@@ -79,7 +80,7 @@ class GameView(context: Context) : View(context) {
         super.onDraw(canvas)
         if (gameStatus) {
 
-            player.calkPoints()
+            player.calkPoints(1.0 + (multiplication * 0.02))
             if (tilesetQueue.iterations == 200) {
                 multiplication++
                 println("Points: " + player.points + " Multi: " + multiplication)
@@ -114,7 +115,7 @@ class GameView(context: Context) : View(context) {
 
 
             if (player.dblPtsDur > 0) paint.color = Color.RED else paint.color = Color.BLACK
-            canvas.drawText("Punkte: " + player.points.toString(), 10F, 75F, paint)
+            canvas.drawText("Punkte: " + player.points.roundToInt().toString(), 10F, 75F, paint)
             canvas.drawText("Fackeln: " + player.coinsPerRound.toString(), 10F, 135F, paint)
             tilesetQueue.iterations++
             //activeItem.drawbg(canvas)
@@ -143,7 +144,7 @@ class GameView(context: Context) : View(context) {
     // Start GameOver Activity
     fun gameOver() {
         val intent = Intent(context, GameOverActivity::class.java)
-        intent.putExtra("POINTS", player.points)
+        intent.putExtra("POINTS", player.points.roundToInt())
         context.startActivity(intent)
         (context as Activity).finish()
     }

@@ -7,10 +7,10 @@ import android.graphics.Canvas
 import de.thm.lampgame.R
 
 class BitmapTube(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    Obstacles("tube", (0.08 * width).toInt(),(0.40 * height).toInt(), x, y, false) {
+    Obstacles("tube", (0.08 * width).toInt(),(0.47 * height).toInt(), x, y, false) {
 
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.bottomtube)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.obstaclestonewall)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, this.width, this.height, true)
     }
 

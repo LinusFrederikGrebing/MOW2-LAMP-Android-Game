@@ -13,6 +13,7 @@ import de.thm.lampgame.controller.Skins.BlueLampSkin
 import de.thm.lampgame.controller.Skins.LampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MarsLandscapeMap
+import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.databinding.ShopActivityLayoutBinding
 import de.thm.lampgame.model.DataItem
 import de.thm.lampgame.model.Database
@@ -97,6 +98,12 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
                     it.buyStatus = true
                 }
             }
+            3 -> Database.listOfMusic.forEach {
+                if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
+                    PlayerModel.coins -= it.price.toInt()
+                    it.buyStatus = true
+                }
+            }
         }
         getRightList()
     }
@@ -108,6 +115,9 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
             }
 
             2 -> Database . listOfSkins . forEach {
+                it.active = unlocked.text == it.name
+            }
+            3 -> Database.listOfMusic.forEach {
                 it.active = unlocked.text == it.name
             }
         }

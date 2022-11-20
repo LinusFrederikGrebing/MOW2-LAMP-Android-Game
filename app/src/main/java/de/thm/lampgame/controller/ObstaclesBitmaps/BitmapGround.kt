@@ -10,7 +10,7 @@ class BitmapGround(context: Context, width: Int, height: Int) : Obstacles("groun
     width,
     (0.13 * height).toInt(),
     0,
-    (0.80 * height).toInt(),
+    (0.87 * height).toInt(),
     false
 ) {
     companion object {
