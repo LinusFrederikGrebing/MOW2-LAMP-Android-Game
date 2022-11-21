@@ -5,10 +5,11 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
+import de.thm.lampgame.model.ObstacleNames
 
 
 class BitmapTerrain(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    Obstacles("terrain", width, height, x, y, false) {
+    Obstacles(ObstacleNames.TERRAIN, width, height, x, y, false) {
 
     companion object {
         var texture = R.drawable.tilesground

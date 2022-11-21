@@ -3,10 +3,11 @@ package de.thm.lampgame.controller.ObstaclesBitmaps
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import de.thm.lampgame.model.ObstacleModel
+import de.thm.lampgame.model.ObstacleNames
 
 
 abstract class Obstacles(
-    name: String,
+    name: ObstacleNames,
     width: Int,
     height: Int,
     x: Int,

@@ -15,7 +15,7 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
 init {
     activetexture = texture
     unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
-    bmp = Bitmap.createScaledBitmap(unsizedBmp!!, screenHeight / 7, screenHeight / 7, true)
+    bmp = Bitmap.createScaledBitmap(unsizedBmp!!, screenHeight / 9, screenHeight / 9, true)
 }
 
     fun draw(canvas: Canvas) {

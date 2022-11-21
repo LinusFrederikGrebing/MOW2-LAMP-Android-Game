@@ -6,6 +6,7 @@ import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.ObstaclesBitmaps.*
 import de.thm.lampgame.controller.items.BonusJump
 import de.thm.lampgame.controller.items.Immortality
+import de.thm.lampgame.model.ObstacleNames
 import de.thm.lampgame.model.TilesetModel
 
 class Tileset(
@@ -23,12 +24,12 @@ class Tileset(
     private fun addBitmaps() {
         obstaclesWithoutBitmaps.forEach {
             when (it.name) {
-                "ground" -> obstacles.add(BitmapGround(context, width, height))
-                "terrain" -> obstacles.add(BitmapTerrain(context, it.width, it.height, it.x, it.y))
-                "tube" -> obstacles.add(BitmapTube(context, it.width, it.height, it.x, it.y))
-                "water" -> obstacles.add(BitmapWater(context, it.width, it.height, it.x, it.y))
-                "saw" -> obstacles.add(BitmapSaw(context, it.width, it.height, it.x, it.y))
-                "waterenemy" -> obstacles.add(
+                ObstacleNames.GROUND -> obstacles.add(BitmapGround(context, width, height))
+                ObstacleNames.TERRAIN  -> obstacles.add(BitmapTerrain(context, it.width, it.height, it.x, it.y))
+                ObstacleNames.TUBE  -> obstacles.add(BitmapTube(context, it.width, it.height, it.x, it.y))
+                ObstacleNames.WATER  -> obstacles.add(BitmapWater(context, it.width, it.height, it.x, it.y))
+                ObstacleNames.SAW  -> obstacles.add(BitmapSaw(context, it.width, it.height, it.x, it.y))
+                ObstacleNames.BOUNCINGSAW  -> obstacles.add(
                     BitmapBouncingSaw(
                         context,
                         it.width,

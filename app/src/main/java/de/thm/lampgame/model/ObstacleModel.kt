@@ -1,7 +1,7 @@
 package de.thm.lampgame.model
 
 open class ObstacleModel(
-    val name: String,
+    val name: ObstacleNames,
     val width: Int,
     val height: Int,
     var x: Int,
