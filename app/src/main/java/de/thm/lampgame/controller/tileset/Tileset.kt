@@ -6,8 +6,8 @@ import de.thm.lampgame.controller.items.Torch
 import de.thm.lampgame.controller.ObstaclesBitmaps.*
 import de.thm.lampgame.controller.items.BonusJump
 import de.thm.lampgame.controller.items.Immortality
-import de.thm.lampgame.model.ObstacleNames
-import de.thm.lampgame.model.TilesetModel
+import de.thm.lampgame.model.obstacles.ObstacleNames
+import de.thm.lampgame.model.tileset.TilesetModel
 
 class Tileset(
     tileset: Int,

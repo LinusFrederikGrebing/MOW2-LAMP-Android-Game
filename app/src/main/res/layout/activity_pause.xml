@@ -80,7 +80,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <de.thm.lampgame.controller.GreatestWidthHelper
+    <de.thm.lampgame.controller.helper.GreatestWidthHelper
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="continueButton,restartButton,settingsButton,homeButton"

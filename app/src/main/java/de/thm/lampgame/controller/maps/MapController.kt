@@ -2,7 +2,7 @@ package de.thm.lampgame.controller.maps
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import de.thm.lampgame.model.MapModel
+import de.thm.lampgame.model.map.MapModel
 
 abstract class MapController(screenWidth: Int, screenHeight: Int) : MapModel(screenWidth, screenHeight) {
     lateinit var mitte: Bitmap

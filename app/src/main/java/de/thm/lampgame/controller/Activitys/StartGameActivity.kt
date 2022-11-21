@@ -5,7 +5,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.view.GameView
-import de.thm.lampgame.model.Database
+import de.thm.lampgame.model.shop.Database
 
 
 class StartGameActivity : AppCompatActivity() {

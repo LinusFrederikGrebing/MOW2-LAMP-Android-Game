@@ -6,7 +6,7 @@
     <data>
         <variable
             name="active"
-            type="de.thm.lampgame.model.DataItem.Active" />
+            type="de.thm.lampgame.model.shop.DataItem.Active" />
     </data>
 
     <androidx.cardview.widget.CardView

@@ -1,4 +1,4 @@
-package de.thm.lampgame.model
+package de.thm.lampgame.model.shop
 
 interface MusicInterface {
     var active: Boolean

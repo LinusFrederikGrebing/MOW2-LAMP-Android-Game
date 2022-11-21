@@ -1,7 +1,7 @@
 package de.thm.lampgame.controller.music
 
 import de.thm.lampgame.R
-import de.thm.lampgame.model.MusicInterface
+import de.thm.lampgame.model.shop.MusicInterface
 
 class BackgroundMusic_password_Infinity {
     companion object : MusicInterface {

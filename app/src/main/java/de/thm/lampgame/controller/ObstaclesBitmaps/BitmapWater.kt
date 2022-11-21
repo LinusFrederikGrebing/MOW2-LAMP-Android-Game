@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
-import de.thm.lampgame.model.ObstacleNames
+import de.thm.lampgame.model.obstacles.ObstacleNames
 
 class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) :
     Obstacles(ObstacleNames.WATER, width,(0.13 * height).toInt(), x, (0.87 * y).toInt(), true) {

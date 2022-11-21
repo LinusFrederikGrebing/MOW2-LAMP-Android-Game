@@ -1,7 +1,9 @@
-package de.thm.lampgame.model
+package de.thm.lampgame.model.tileset
 
 import de.thm.lampgame.controller.items.Item
 import de.thm.lampgame.controller.ObstaclesBitmaps.Obstacles
+import de.thm.lampgame.model.obstacles.ObstacleModel
+import de.thm.lampgame.model.obstacles.ObstacleNames
 
 open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var height: Int) {
     var obstacles: MutableList<Obstacles> = mutableListOf()

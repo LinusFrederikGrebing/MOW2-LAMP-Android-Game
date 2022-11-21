@@ -1,16 +1,36 @@
 package de.thm.lampgame.controller.tileset
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.model.PlayerModel
-import de.thm.lampgame.model.TilesetQueueModel
+import de.thm.lampgame.model.tileset.TilesetQueueModel
 
-class TilesetQueue : TilesetQueueModel() {
+class TilesetQueue(screenWidth: Int, screenHeight: Int) : TilesetQueueModel(screenWidth, screenHeight) {
 
     //Collision-Methode muss noch vereinfacht werden
+    var tilesetList = ArrayList<Tileset>()
+    val tilesetsCount = 16
+    fun initialQueue(context: Context) {
+        for (i in 1..tilesetsCount) {
+            tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
+        }
+        initQueue(
+            Tileset(0, context, 0, screenWidth, screenHeight),
+            Tileset(
+                (1..15).random(),
+                context,
+                screenWidth,
+                screenWidth,
+                screenHeight
+            ),
+            screenWidth
+        )
+    }
+
     var actplayer : PlayerModel? = null
     fun drawTilesetsAndCheckCollisions(
         canvas: Canvas,
@@ -77,6 +97,10 @@ class TilesetQueue : TilesetQueueModel() {
             )
                 collision = true
         }
+
+
+        insertTilesetifneedTo(tilesetList, tilesetsCount)
+
     }
 
     private fun checkCollisions(

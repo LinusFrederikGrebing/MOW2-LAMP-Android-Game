@@ -1,4 +1,4 @@
-package de.thm.lampgame.model
+package de.thm.lampgame.model.shop
 
 import de.thm.lampgame.controller.Skins.BlueLampSkin
 import de.thm.lampgame.controller.Skins.LampSkin
@@ -47,9 +47,19 @@ object Database {
 
         val itemList = arrayListOf<DataItem>()
         if (BackgroundMusic_password_Infinity.active) {
-            itemList.add(DataItem.Active(BackgroundMusic_password_Infinity.icon, BackgroundMusic_password_Infinity.name))
+            itemList.add(
+                DataItem.Active(
+                    BackgroundMusic_password_Infinity.icon,
+                    BackgroundMusic_password_Infinity.name
+                )
+            )
         } else {
-            itemList.add(DataItem.Unlocked(BackgroundMusic_password_Infinity.icon, BackgroundMusic_password_Infinity.name))
+            itemList.add(
+                DataItem.Unlocked(
+                    BackgroundMusic_password_Infinity.icon,
+                    BackgroundMusic_password_Infinity.name
+                )
+            )
         }
 
         if (!BackgroundMusic_Island.buyStatus) {
@@ -62,9 +72,19 @@ object Database {
             )
         } else {
             if (BackgroundMusic_Island.active) {
-                itemList.add(DataItem.Active(BackgroundMusic_Island.icon, BackgroundMusic_Island.name))
+                itemList.add(
+                    DataItem.Active(
+                        BackgroundMusic_Island.icon,
+                        BackgroundMusic_Island.name
+                    )
+                )
             } else {
-                itemList.add(DataItem.Unlocked(BackgroundMusic_Island.icon, BackgroundMusic_Island.name))
+                itemList.add(
+                    DataItem.Unlocked(
+                        BackgroundMusic_Island.icon,
+                        BackgroundMusic_Island.name
+                    )
+                )
             }
         }
 
@@ -78,9 +98,19 @@ object Database {
             )
         } else {
             if (BackgroundMusic_Christmas_is_here.active) {
-                itemList.add(DataItem.Active(BackgroundMusic_Christmas_is_here.icon, BackgroundMusic_Christmas_is_here.name))
+                itemList.add(
+                    DataItem.Active(
+                        BackgroundMusic_Christmas_is_here.icon,
+                        BackgroundMusic_Christmas_is_here.name
+                    )
+                )
             } else {
-                itemList.add(DataItem.Unlocked(BackgroundMusic_Christmas_is_here.icon, BackgroundMusic_Christmas_is_here.name))
+                itemList.add(
+                    DataItem.Unlocked(
+                        BackgroundMusic_Christmas_is_here.icon,
+                        BackgroundMusic_Christmas_is_here.name
+                    )
+                )
             }
         }
         return itemList

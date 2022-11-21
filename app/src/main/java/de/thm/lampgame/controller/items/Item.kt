@@ -3,7 +3,7 @@ package de.thm.lampgame.controller.items
 import android.content.Context
 import android.graphics.*
 import de.thm.lampgame.controller.Player
-import de.thm.lampgame.model.ItemModel
+import de.thm.lampgame.model.item.ItemModel
 
 abstract class Item(
     context: Context,

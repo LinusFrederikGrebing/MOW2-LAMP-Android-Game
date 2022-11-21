@@ -1,4 +1,4 @@
-package de.thm.lampgame.model
+package de.thm.lampgame.model.obstacles
 
 open class ObstacleModel(
     val name: ObstacleNames,

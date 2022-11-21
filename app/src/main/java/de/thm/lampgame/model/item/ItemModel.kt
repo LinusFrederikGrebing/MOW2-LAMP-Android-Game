@@ -1,4 +1,4 @@
-package de.thm.lampgame.model
+package de.thm.lampgame.model.item
 
 import de.thm.lampgame.controller.Player
 

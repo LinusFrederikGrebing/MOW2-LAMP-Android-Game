@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.controller.helper
 
 import android.content.Context
 import android.util.AttributeSet

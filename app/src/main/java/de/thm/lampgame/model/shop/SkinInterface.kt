@@ -1,4 +1,4 @@
-package de.thm.lampgame.model
+package de.thm.lampgame.model.shop
 
 import de.thm.lampgame.controller.Skins.SkinController
 

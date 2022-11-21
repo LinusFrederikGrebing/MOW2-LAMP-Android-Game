@@ -2,8 +2,8 @@ package de.thm.lampgame.controller.ObstaclesBitmaps
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import de.thm.lampgame.model.ObstacleModel
-import de.thm.lampgame.model.ObstacleNames
+import de.thm.lampgame.model.obstacles.ObstacleModel
+import de.thm.lampgame.model.obstacles.ObstacleNames
 
 
 abstract class Obstacles(

@@ -9,14 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.ItemsAdapter
-import de.thm.lampgame.controller.Skins.BlueLampSkin
-import de.thm.lampgame.controller.Skins.LampSkin
-import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
-import de.thm.lampgame.controller.maps.MarsLandscapeMap
-import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.databinding.ShopActivityLayoutBinding
-import de.thm.lampgame.model.DataItem
-import de.thm.lampgame.model.Database
+import de.thm.lampgame.model.shop.DataItem
+import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.PlayerModel
 
 

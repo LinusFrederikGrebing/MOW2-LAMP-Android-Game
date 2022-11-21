@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
-import de.thm.lampgame.model.ObstacleNames
+import de.thm.lampgame.model.obstacles.ObstacleNames
 
 class BitmapTube(context: Context, width: Int, height: Int, x: Int, y: Int) :
     Obstacles(ObstacleNames.TUBE, (0.08 * width).toInt(),(0.47 * height).toInt(), x, y, false) {

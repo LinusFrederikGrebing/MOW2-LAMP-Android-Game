@@ -1,10 +1,9 @@
 package de.thm.lampgame.controller.Skins
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import de.thm.lampgame.R
-import de.thm.lampgame.model.SkinInterface
+import de.thm.lampgame.model.shop.SkinInterface
 
 class LampSkin(context: Context) : SkinController(){
 

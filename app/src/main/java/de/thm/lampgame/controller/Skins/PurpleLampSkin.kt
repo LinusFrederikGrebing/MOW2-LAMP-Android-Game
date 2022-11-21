@@ -3,7 +3,7 @@ package de.thm.lampgame.controller.Skins
 import android.content.Context
 import android.graphics.BitmapFactory
 import de.thm.lampgame.R
-import de.thm.lampgame.model.SkinInterface
+import de.thm.lampgame.model.shop.SkinInterface
 
 class PurpleLampSkin(context: Context) : SkinController(){
 

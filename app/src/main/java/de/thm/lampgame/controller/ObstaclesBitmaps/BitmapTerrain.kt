@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
-import de.thm.lampgame.model.ObstacleNames
+import de.thm.lampgame.model.obstacles.ObstacleNames
 
 
 class BitmapTerrain(context: Context, width: Int, height: Int, x: Int, y: Int) :

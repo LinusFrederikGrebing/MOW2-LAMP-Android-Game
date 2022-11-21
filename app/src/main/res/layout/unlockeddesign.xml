@@ -6,7 +6,7 @@
     <data>
         <variable
             name="unlocked"
-            type="de.thm.lampgame.model.DataItem.Unlocked" />
+            type="de.thm.lampgame.model.shop.DataItem.Unlocked" />
     </data>
 
     <androidx.cardview.widget.CardView

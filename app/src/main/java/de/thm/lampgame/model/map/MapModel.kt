@@ -1,4 +1,4 @@
-package de.thm.lampgame.model
+package de.thm.lampgame.model.map
 
 abstract class MapModel(val screenWidth: Int, screenHeight: Int) {
     var newWidth = 0

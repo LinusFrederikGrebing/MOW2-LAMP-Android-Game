@@ -1,8 +1,8 @@
-package de.thm.lampgame.model
+package de.thm.lampgame.model.tileset
 
 import de.thm.lampgame.controller.tileset.Tileset
 
-open class TilesetQueueModel {
+open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     var queue = ArrayDeque<Tileset>(2)
     var collision = false
     var gameover = false
@@ -35,7 +35,6 @@ open class TilesetQueueModel {
 
 
     fun insertTilesetifneedTo(
-        screenWidth: Int,
         tilesetList: ArrayList<Tileset>,
         tilesetsCount: Int
     ): Boolean {

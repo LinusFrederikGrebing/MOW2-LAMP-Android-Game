@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.view
 
 import android.content.Context
 import android.graphics.*

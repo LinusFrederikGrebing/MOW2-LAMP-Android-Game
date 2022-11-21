@@ -18,9 +18,8 @@ import de.thm.lampgame.controller.items.BonusJump
 import de.thm.lampgame.controller.items.DoublePoints
 import de.thm.lampgame.controller.items.Immortality
 import de.thm.lampgame.controller.maps.MapController
-import de.thm.lampgame.controller.tileset.Tileset
 import de.thm.lampgame.controller.tileset.TilesetQueue
-import de.thm.lampgame.model.Database
+import de.thm.lampgame.model.shop.Database
 import kotlin.math.roundToInt
 
 
@@ -31,40 +30,24 @@ class GameView(context: Context) : View(context) {
     private val updateMillis: Long = 2
     var gameStatus = true
     private var multiplication = 0
-    private var tilesetQueue = TilesetQueue()
+
     private val paint = Paint()
     private lateinit var map: MapController
-    var tilesetList = ArrayList<Tileset>()
-    val tilesetsCount = 16
-
+    private var tilesetQueue : TilesetQueue
 
     init {
-
-        paint.color = Color.BLACK
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
+
+        paint.color = Color.BLACK
         paint.textSize = screenHeight*0.07.toFloat()
 
         Database.listOfMaps.forEach { if (it.active) map = it.createMap(context,screenHeight,screenWidth) }
-        for (i in 1..tilesetsCount) {
-            tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
-        }
 
-        tilesetQueue.initQueue(
-            Tileset(0, context, 0, screenWidth, screenHeight),
-            Tileset(
-                (1..15).random(),
-                context,
-                screenWidth,
-                screenWidth,
-                screenHeight
-            ),
-            screenWidth
-        )
+        tilesetQueue = TilesetQueue(screenWidth, screenHeight)
+        tilesetQueue.initialQueue(context)
+
         runnable = Runnable { invalidate() }
-
-        
-
     }
 
 
@@ -79,45 +62,31 @@ class GameView(context: Context) : View(context) {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (gameStatus) {
-
-            player.calkPoints(1.0 + (multiplication * 0.02))
-            if (tilesetQueue.iterations == 200) {
-                multiplication++
-                println("Points: " + player.points + " Multi: " + multiplication)
-            }
-            player.calkFire()
+            tilesetQueue.iterations++
+            if (tilesetQueue.iterations == 200) multiplication++
 
 
             //cloud background-fragment
-            map.drawMap(
-                canvas,
-                0.1 + multiplication / 4,
-                0.2 + multiplication / 3,
-                0.3 + multiplication / 2
+            map.drawMap(canvas,
+                0.1 + multiplication*0.1,
+                0.2 + multiplication*0.2,
+                0.3 + multiplication*0.3
             )
 
-            player.drawChar(canvas)
             //draw tileset with obstacless
             tilesetQueue.drawTilesetsAndCheckCollisions(canvas, (screenWidth/200) + multiplication, player, ground)
+
             if (tilesetQueue.gameover || player.fire <= 0F) {
                 gameStatus = false
                 this.gameOver()
             }
 
-            //check If a new Tileset needs to be inserted into the Queue
-            tilesetQueue.insertTilesetifneedTo(screenWidth, tilesetList, tilesetsCount)
-
-            //draw Char
-            player.setJumpStats(tilesetQueue.collision)
-
-            player.drawFirebar(canvas)
-
-
             canvas.drawText("Punkte: " + player.points.roundToInt().toString(),  (screenWidth*0.01).toFloat(), (screenHeight*0.075).toFloat(), paint)
 
             drawTorch.draw(canvas, player.coinsPerRound)
-            tilesetQueue.iterations++
             pauseButton.draw(canvas)
+
+
             if (player.dblPtsDur > 0) {
                 paint.color = Color.RED
                 player.dblPtsDur--
@@ -132,11 +101,10 @@ class GameView(context: Context) : View(context) {
                 activeItem.drawCircle(canvas, Immortality.immortalduration)
             } else player.immortal = false
 
+            player.drawPlayer(canvas,1.0 + (multiplication * 0.02), tilesetQueue.collision)
 
             // refresh
             handler!!.postDelayed(runnable!!, updateMillis)
-
-
         }
     }
 
@@ -160,13 +128,7 @@ class GameView(context: Context) : View(context) {
                 } else if (player.jumpCount < 2) player.groundjumping(context)
                 player.sprung()
             }
-            /*  MotionEvent.ACTION_MOVE -> {
-                  player.birdsneek = true
-              }*/
         }
-        /* if (action == MotionEvent.ACTION_UP){
-             player.birdsneek = false
-         }*/
         return true
     }
 

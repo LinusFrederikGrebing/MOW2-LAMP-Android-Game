@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import de.thm.lampgame.model.DataItem
-import de.thm.lampgame.model.Database.ACTIVE_TYPE
-import de.thm.lampgame.model.Database.LOCKED_TYPE
-import de.thm.lampgame.model.Database.UNLOCKED_TYPE
+import de.thm.lampgame.model.shop.DataItem
+import de.thm.lampgame.model.shop.Database.ACTIVE_TYPE
+import de.thm.lampgame.model.shop.Database.LOCKED_TYPE
+import de.thm.lampgame.model.shop.Database.UNLOCKED_TYPE
 import de.thm.lampgame.databinding.ActivedesignBinding
 import de.thm.lampgame.databinding.LockeddesignBinding
 import de.thm.lampgame.databinding.UnlockeddesignBinding
-import de.thm.lampgame.model.Database
+import de.thm.lampgame.model.shop.Database
 
 
 class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
