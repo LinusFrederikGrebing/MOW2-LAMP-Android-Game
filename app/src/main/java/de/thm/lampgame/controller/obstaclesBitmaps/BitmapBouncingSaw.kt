@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller.ObstaclesBitmaps
+package de.thm.lampgame.controller.obstaclesBitmaps
 
 import android.content.Context
 import android.graphics.Bitmap

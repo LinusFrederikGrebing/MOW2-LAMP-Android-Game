@@ -3,7 +3,7 @@ package de.thm.lampgame.controller.tileset
 import android.content.Context
 import de.thm.lampgame.controller.items.DoublePoints
 import de.thm.lampgame.controller.items.Torch
-import de.thm.lampgame.controller.ObstaclesBitmaps.*
+import de.thm.lampgame.controller.obstaclesBitmaps.*
 import de.thm.lampgame.controller.items.BonusJump
 import de.thm.lampgame.controller.items.Immortality
 import de.thm.lampgame.model.obstacles.ObstacleNames

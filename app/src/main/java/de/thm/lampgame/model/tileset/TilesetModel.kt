@@ -1,7 +1,7 @@
 package de.thm.lampgame.model.tileset
 
 import de.thm.lampgame.controller.items.Item
-import de.thm.lampgame.controller.ObstaclesBitmaps.Obstacles
+import de.thm.lampgame.controller.obstaclesBitmaps.Obstacles
 import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 

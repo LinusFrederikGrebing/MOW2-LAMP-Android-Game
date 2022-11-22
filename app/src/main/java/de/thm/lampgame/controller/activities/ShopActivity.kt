@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller.Activitys
+package de.thm.lampgame.controller.activities
 
 import android.content.Intent
 import android.os.Bundle

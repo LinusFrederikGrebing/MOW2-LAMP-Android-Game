@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
-import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
+import de.thm.lampgame.controller.obstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.model.PlayerModel
 import de.thm.lampgame.model.tileset.TilesetQueueModel

@@ -1,18 +1,22 @@
-package de.thm.lampgame.controller.ObstaclesBitmaps
+package de.thm.lampgame.controller.obstaclesBitmaps
 
-import android.content.Context
+import  android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
-
-class BitmapSaw(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    Obstacles(ObstacleNames.SAW, (0.08 * width).toInt(),(0.15 * height).toInt(), x, y, true) {
-
+class BitmapGround(context: Context, width: Int, height: Int) : Obstacles(
+    ObstacleNames.GROUND,
+    width,
+    (0.13 * height).toInt(),
+    0,
+    (0.87 * height).toInt(),
+    false
+) {
     companion object {
-        var texture = R.drawable.saw
+        var texture = R.drawable.tilesground
     }
 
     init {
@@ -20,8 +24,8 @@ class BitmapSaw(context: Context, width: Int, height: Int, x: Int, y: Int) :
         bmp = Bitmap.createScaledBitmap(unsizedBmp, this.width, this.height, true)
     }
 
-    override fun draw(canvas: Canvas, velocityX: Int, velocityY: Int){
-        changeableX -= (velocityX*1.5).toInt()
+    override fun draw(canvas: Canvas, velocityX: Int, velocityY: Int) {
+        changeableX -= velocityX
         canvas.drawBitmap(bmp, changeableX.toFloat(), changeableY.toFloat(), null)
     }
 }
