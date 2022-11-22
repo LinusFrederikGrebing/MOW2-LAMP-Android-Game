@@ -10,16 +10,17 @@ import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTerrain
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTube
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapWater
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapSaw
 
 class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
 
     companion object : MapInterface {
-        override var active = false
+        override var active = true
         override var name = "MarsLandscapeMap"
-        override var buyStatus = false
+        override var buyStatus = true
         override val price = "100"
-        override val icon = R.drawable.bergeicon //TODO Mars Icon
+        override val icon = R.drawable.map_mars
         override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): MarsLandscapeMap {
             return MarsLandscapeMap(context as Context,screenHeight,screenWidth)
         }
@@ -28,6 +29,7 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
 
 
     init {
+        BitmapSaw.texture = R.drawable.saw_water
         BitmapGround.texture = R.drawable.groundmars
         BitmapTerrain.texture = R.drawable.platformmars
         BitmapWater.texture = R.drawable.waternew
@@ -45,7 +47,7 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     }
 
     override fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double) {
-        drawMapHinten(canvas, speedHinten, background)
+        drawMapHintenMars(canvas, speedHinten, background)
         drawMapMitte(canvas, speedMitte, mitte)
         drawMapVorne(canvas, speedVorne, vorne)
     }

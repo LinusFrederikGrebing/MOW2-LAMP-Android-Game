@@ -10,6 +10,8 @@ import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTerrain
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTube
 import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapWater
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapSaw
+import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapBouncingSaw
 
 class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
@@ -29,6 +31,7 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         BitmapTerrain.texture = R.drawable.cemetery_platform
         BitmapWater.texture = R.drawable.waternew
         BitmapTube.texture = R.drawable.obstaclestonewall
+        BitmapSaw.texture = R.drawable.saw_water
         background = BitmapFactory.decodeResource(context.resources, R.drawable.moon)
         mitte = BitmapFactory.decodeResource(context.resources, R.drawable.background2)
         vorne = BitmapFactory.decodeResource(context.resources, R.drawable.background1)

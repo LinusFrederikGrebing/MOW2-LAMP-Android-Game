@@ -11,8 +11,12 @@ import de.thm.lampgame.model.obstacles.ObstacleNames
 class BitmapSaw(context: Context, width: Int, height: Int, x: Int, y: Int) :
     Obstacles(ObstacleNames.SAW, (0.08 * width).toInt(),(0.15 * height).toInt(), x, y, true) {
 
+    companion object {
+        var texture = R.drawable.saw
+    }
+
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.saw)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, this.width, this.height, true)
     }
 

@@ -14,7 +14,7 @@ import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapWater
 class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
     companion object : MapInterface {
-        override var active = true
+        override var active = false
         override var name = "MountainLandscapeMap"
         override var buyStatus = true
         override val price = "0"
