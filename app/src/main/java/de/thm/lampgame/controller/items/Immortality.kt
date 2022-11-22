@@ -10,7 +10,7 @@ class Immortality(context: Context, screenHeight: Int, screenWidth: Int, x: Int,
        val immortalduration = 100
    }
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.immortality)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.immortality_highlight)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true) }
 
     override fun draw(canvas: Canvas, velocity: Int) {

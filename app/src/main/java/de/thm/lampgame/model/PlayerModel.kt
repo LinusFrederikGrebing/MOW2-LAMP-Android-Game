@@ -4,7 +4,6 @@ abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var charHeight  = (0.18 * screenHeight).toInt()
     var charwidth =  (0.16 * screenHeight).toInt()
 
-    //var firebarFrame = 0
     var points: Double = 0.0
     var fire: Float = 100F
     var charframe = 0

@@ -53,9 +53,9 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
 
 
     fun drawFirebar(canvas: Canvas) {
-      firebarBackgroundRect.set(0+screenWidth/40, screenHeight/4, 0+screenWidth/15, screenHeight-screenHeight/4)
+      firebarBackgroundRect.set(screenWidth/40, screenHeight/4, screenWidth/15, screenHeight-screenHeight/4)
       firebarBackgroundPaint.setARGB(90, 0, 0, 0)
-      firebarRect.set(0+screenWidth/40, (((screenHeight-screenHeight/4)-fire/50*screenHeight/4).toInt()), 0+screenWidth/15, screenHeight-screenHeight/4)
+      firebarRect.set(screenWidth/40, (((screenHeight-screenHeight/4)-fire/50*screenHeight/4).toInt()), screenWidth/15, screenHeight-screenHeight/4)
       firebarPaint.setColor(Color.RED)
       canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
       canvas.drawRect(firebarRect, firebarPaint)

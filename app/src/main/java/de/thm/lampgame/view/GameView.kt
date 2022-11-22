@@ -102,6 +102,7 @@ class GameView(context: Context) : View(context) {
             } else player.immortal = false
 
             player.drawPlayer(canvas,1.0 + (multiplication * 0.02), tilesetQueue.collision)
+            player.calkFire()
 
             // refresh
             handler!!.postDelayed(runnable!!, updateMillis)
