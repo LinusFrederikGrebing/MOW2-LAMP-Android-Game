@@ -1,177 +1,119 @@
 package de.thm.lampgame.controller.tileset
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
-import de.thm.lampgame.controller.obstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.Player
-import de.thm.lampgame.model.PlayerModel
+import de.thm.lampgame.controller.obstaclesBitmaps.Obstacles
 import de.thm.lampgame.model.tileset.TilesetQueueModel
 
-class TilesetQueue(screenWidth: Int, screenHeight: Int) : TilesetQueueModel(screenWidth, screenHeight) {
+class TilesetQueue(screenWidth: Int, screenHeight: Int) :
+    TilesetQueueModel(screenWidth, screenHeight) {
 
-    //Collision-Methode muss noch vereinfacht werden
-    var tilesetList = ArrayList<Tileset>()
-    val tilesetsCount = 16
+    var tilesetList = ArrayList<Tileset>()     // list in which all tileset variations are stored
+    private val possibleTilesetCount = 16      // possible variations of different tilesets
+
     fun initialQueue(context: Context) {
-        for (i in 1..tilesetsCount) {
+        // initialize each possible tileset once
+        for (i in 1..possibleTilesetCount) {
             tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
         }
+
+        // the tilesetqueue consists of two tilesets, first and last. Initialize the first two.
         initQueue(
-            Tileset(0, context, 0, screenWidth, screenHeight),
-            Tileset(
-                (1..15).random(),
-                context,
-                screenWidth,
-                screenWidth,
-                screenHeight
-            ),
-            screenWidth
+            Tileset(0, context, 0, screenWidth, screenHeight),      // the tileset with the number 0 has no obstacles
+            Tileset((1..possibleTilesetCount).random(), context, screenWidth, screenWidth, screenHeight)
         )
     }
 
-    var actplayer : PlayerModel? = null
-    fun drawTilesetsAndCheckCollisions(
-        canvas: Canvas,
-        velocity: Int,
-        player: Player,
-        ground: BitmapGround
-    ) {
-        actplayer = player
-        //draw Items
-        if (queue.first().hasItem) queue.first().item.draw(canvas, velocity)
-        if (queue.last().hasItem) queue.last().item.draw(canvas, velocity)
+    fun drawTilesetsAndCheckCollisions(canvas: Canvas, velocity: Int, player: Player) {
 
-        if (queue.first().hasItem) queue.first().item.itemPickup(
-            player,
-            queue.first().item.activateEffect
-        )
-        if (queue.last().hasItem) queue.last().item.itemPickup(
-            player,
-            queue.last().item.activateEffect
-        )
+        // draw the item if the tileset has one and check if the player picked up the item
+        if (queue.first().hasItem) {
+            queue.first().item.draw(canvas, velocity)
+            queue.first().item.itemPickup(player, queue.first().item.activateEffect)
+        }
+        if (queue.last().hasItem) {
+            queue.last().item.draw(canvas, velocity)
+            queue.last().item.itemPickup(player, queue.last().item.activateEffect)
+        }
 
 
-        //draw first Tileset  and its Obstacles
+        // draw the respective tileset and its obstacles
         queue.first().drawTileset(velocity)
         queue.first().obstacles.forEach {
             it.draw(canvas, velocity, velocity / 4)
         }
-
-        //draw first Tileset  and its Obstacles
         queue.last().drawTileset(velocity)
         queue.last().obstacles.forEach {
             it.draw(canvas, velocity, velocity / 4)
         }
 
-        collision = this.checkCollisions(
-            ground.death,
-            ground.bmp,
-            player.charX,
-            ground.y,
-            player
-        )
 
-        //check Tileset Obstacles-Collision
+        collision = false  // sets collision to false by default
+
+        //checks  if the player collides with an obstacle
         for (i in 0 until queue.first().obstacles.size) {
-            if (this.checkCollisions(
-                    queue.first().obstacles[i].death,
-                    queue.first().obstacles[i].bmp,
-                    queue.first().obstacles[i].changeableX,
-                    queue.first().obstacles[i].changeableY,
-                    player
-                )
-            )
-                collision = true
+            if (this.checkCollisions(queue.first().obstacles[i], player)) collision = true
         }
-
         for (i in 0 until queue.last().obstacles.size) {
-            if (this.checkCollisions(
-                    queue.last().obstacles[i].death,
-                    queue.last().obstacles[i].bmp,
-                    queue.last().obstacles[i].changeableX,
-                    queue.last().obstacles[i].changeableY,
-                    player
-                )
-            )
-                collision = true
+            if (this.checkCollisions(queue.last().obstacles[i], player)) collision = true
         }
 
-
-        insertTilesetifneedTo(tilesetList, tilesetsCount)
-
+        // checks if a new tileset needs to be added to the queue and if so, adds it
+        insertTilesetifneedTo(tilesetList, possibleTilesetCount)
     }
 
-    private fun checkCollisions(
-        death: Boolean,
-        obstacleBitmap: Bitmap,
-        obstacleX: Int,
-        obstacleY: Int,
-        player: Player
-    ): Boolean {
+    // Creates a hitbox from the player and one from the respective obstacle based on the bitmap
+    //   -> intersect checks collision
+
+    private fun checkCollisions(obstacle: Obstacles, player: Player): Boolean {
         val playerHitbox = Rect(
             player.charX,
             player.charY,
-            (player.charX + player.rechar[1]!!.width),
+            (player.charX + player.rechar[1]!!.width),  // each character's sprite is the same size
             (player.charY + player.rechar[1]!!.height)
         )
-        return if (death) checkDeathCollisions(playerHitbox, obstacleBitmap, obstacleX, obstacleY)
-        else checkObstacleCollisions(playerHitbox, obstacleBitmap, obstacleX, obstacleY, player)
-    }
-
-
-    private fun checkDeathCollisions(
-        playerHitbox: Rect,
-        obstacleBitmap: Bitmap,
-        obstacleX: Int,
-        obstacleY: Int
-    ): Boolean {
         val obstacleHitbox = Rect(
-            obstacleX,
-            obstacleY,
-            (obstacleX + obstacleBitmap.width),
-            (obstacleY + obstacleBitmap.height)
+            obstacle.changeableX,
+            obstacle.changeableY,
+            (obstacle.changeableX + obstacle.bmp.width),
+            (obstacle.changeableY + obstacle.bmp.height)
         )
         if (Rect.intersects(obstacleHitbox, playerHitbox)) {
-            if(!actplayer!!.immortal){
-                gameover = true
-            }
-        }
-        return false
-    }
-
-    private fun checkObstacleCollisions(
-        playerHitbox: Rect,
-        obstacleBitmap: Bitmap,
-        obstacleX: Int,
-        obstacleY: Int,
-        player: Player
-    ): Boolean {
-        val obstacleHitboxOben = Rect(
-            obstacleX,
-            obstacleY,
-            (obstacleX + obstacleBitmap.width),
-            (obstacleY + player.maxVelocity + 5)
-        )
-        val obstacleHitboxUnten = Rect(
-            obstacleX,
-            obstacleY + player.maxVelocity + 5,
-            (obstacleX + obstacleBitmap.width),
-            (obstacleY + obstacleBitmap.height - player.maxVelocity + 5)
-        )
-        if (Rect.intersects(obstacleHitboxUnten, playerHitbox)) {
-            if(!actplayer!!.immortal){
-                gameover = true
-            }
-
-        } else if (Rect.intersects(obstacleHitboxOben, playerHitbox)) {
-            player.charY = obstacleY-player.rechar[1]!!.height+1
-            player.jumpState = false
+            // deal with collision
+            setResult(
+                obstacle.death,
+                obstacle.changeableY,
+                player.charY + player.rechar[1]!!.height,
+                player
+            )
             return true
         }
         return false
     }
+ // Three different ways to deal with collision
+    // Case 1: Obstacle x is a death tileset
+    // Case 2: obstacle x is not a death tileset, the player touches the tileset from above
+    // Case 3: Obstacle x is not a death Tileset, the player is touching the tileset from below
 
+    private fun setResult(death: Boolean, obstacleY: Int, playerY: Int, player: Player) {
+        // case 1
+        if (death) {
+            if (!player.immortal) {         // checks if the player has immortality status or not
+                gameover = true
+            }
+        }
+        // case 2
+        else if (playerY >= obstacleY && playerY <= (obstacleY + player.maxVelocity)) {   // checks collision from above with a buffer of the player's maximum velocity
+            player.charY = obstacleY - player.rechar[1]!!.height + 1                      // sets the character's y-coordinate to the edge of the floor
+            player.jumpState = false
+        }
+        // case 3
+        else {
+            if (!player.immortal) {
+                gameover = true
+            }
+        }
+    }
 }
-

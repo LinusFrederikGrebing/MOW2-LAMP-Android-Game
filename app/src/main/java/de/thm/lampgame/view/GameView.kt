@@ -53,9 +53,8 @@ class GameView(context: Context) : View(context) {
 
     private var player = Player(context, screenHeight, screenWidth)
     private var pauseButton = PauseButton(context, screenWidth, screenHeight)
-    private var drawTorch = drawTorchIcon(context, screenWidth, screenHeight)
+    private var drawTorch = DrawTorchCount(context, screenWidth, screenHeight)
     private var activeItem = ActiveItem(context, screenWidth, screenHeight)
-    private var ground = BitmapGround(context, screenWidth, screenHeight)
 
 
 
@@ -74,7 +73,7 @@ class GameView(context: Context) : View(context) {
             )
 
             //draw tileset with obstacless
-            tilesetQueue.drawTilesetsAndCheckCollisions(canvas, (screenWidth/200) + multiplication, player, ground)
+            tilesetQueue.drawTilesetsAndCheckCollisions(canvas, (screenWidth/200) + multiplication, player)
 
             if (tilesetQueue.gameover || player.fire <= 0F) {
                 gameStatus = false

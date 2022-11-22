@@ -8,7 +8,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     var gameover = false
     var iterations = 0
 
-    fun initQueue(t1: Tileset, t2: Tileset, screenWidth: Int) {
+    fun initQueue(t1: Tileset, t2: Tileset) {
         queue.add(t1); queue.add(t2)
 
         queue.first().obstacles.forEach {

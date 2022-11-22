@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.*
 import de.thm.lampgame.R
 
-class drawTorchIcon(context: Context, val screenWidth : Int, val screenHeight : Int) {
+class DrawTorchCount(context: Context, val screenWidth : Int, val screenHeight : Int) {
     var unsizedBmp: Bitmap
     var bmp: Bitmap
     private val paint = Paint()
