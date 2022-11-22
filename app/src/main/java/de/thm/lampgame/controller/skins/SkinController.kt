@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller.Skins
+package de.thm.lampgame.controller.skins
 
 import android.graphics.Bitmap
 

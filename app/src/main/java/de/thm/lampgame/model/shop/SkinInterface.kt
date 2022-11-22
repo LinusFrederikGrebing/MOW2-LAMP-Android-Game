@@ -1,6 +1,6 @@
 package de.thm.lampgame.model.shop
 
-import de.thm.lampgame.controller.Skins.SkinController
+import de.thm.lampgame.controller.skins.SkinController
 
 interface SkinInterface {
     var active: Boolean

@@ -1,8 +1,8 @@
 package de.thm.lampgame.model.shop
 
-import de.thm.lampgame.controller.Skins.BlueLampSkin
-import de.thm.lampgame.controller.Skins.LampSkin
-import de.thm.lampgame.controller.Skins.PurpleLampSkin
+import de.thm.lampgame.controller.skins.BlueLampSkin
+import de.thm.lampgame.controller.skins.LampSkin
+import de.thm.lampgame.controller.skins.PurpleLampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.maps.MarsLandscapeMap

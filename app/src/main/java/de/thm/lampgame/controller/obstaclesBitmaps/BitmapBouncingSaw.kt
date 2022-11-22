@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller.ObstaclesBitmaps
+package de.thm.lampgame.controller.obstaclesBitmaps
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -7,12 +7,12 @@ import android.graphics.Canvas
 import de.thm.lampgame.R
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
-
-class BitmapTerrain(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    Obstacles(ObstacleNames.TERRAIN, width, height, x, y, false) {
+class BitmapBouncingSaw(context: Context, width: Int, height: Int, x: Int, y: Int) :
+    Obstacles(ObstacleNames.BOUNCINGSAW, (0.05 * width).toInt(),(0.1 * height).toInt(), x, y, true) {
+    var falling = false
 
     companion object {
-        var texture = R.drawable.tilesground
+        var texture = R.drawable.saw
     }
 
     init {
@@ -22,7 +22,17 @@ class BitmapTerrain(context: Context, width: Int, height: Int, x: Int, y: Int) :
 
     override fun draw(canvas: Canvas, velocityX: Int, velocityY: Int) {
         changeableX -= velocityX
+
+        if(changeableY >= y/4 && !falling) changeableY -= velocityY
+        else falling = true
+        if(changeableY <= y && falling) changeableY += velocityY
+        else falling = false
+
+
+
         canvas.drawBitmap(bmp, changeableX.toFloat(), changeableY.toFloat(), null)
     }
+
+
 
 }

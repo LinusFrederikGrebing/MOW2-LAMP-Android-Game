@@ -6,12 +6,11 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.MapInterface
-import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapGround
-import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTerrain
-import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapTube
-import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapWater
-import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapSaw
-import de.thm.lampgame.controller.ObstaclesBitmaps.BitmapBouncingSaw
+import de.thm.lampgame.controller.obstaclesBitmaps.BitmapGround
+import de.thm.lampgame.controller.obstaclesBitmaps.BitmapTerrain
+import de.thm.lampgame.controller.obstaclesBitmaps.BitmapTube
+import de.thm.lampgame.controller.obstaclesBitmaps.BitmapWater
+import de.thm.lampgame.controller.obstaclesBitmaps.BitmapSaw
 
 class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {

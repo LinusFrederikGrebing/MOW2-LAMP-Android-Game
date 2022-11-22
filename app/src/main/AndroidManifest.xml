@@ -14,7 +14,7 @@
 
         tools:targetApi="31">
         <activity
-            android:name=".controller.Activitys.MainActivity"
+            android:name=".controller.activities.MainActivity"
             android:exported="true"
             android:screenOrientation="landscape"
             android:turnScreenOn="true">
@@ -29,19 +29,19 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".controller.Activitys.StartGameActivity"
+            android:name=".controller.activities.StartGameActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".controller.Activitys.GameOverActivity"
+            android:name=".controller.activities.GameOverActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".controller.Activitys.SettingsActivity"
+            android:name=".controller.activities.SettingsActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".controller.Activitys.ShopActivity"
+            android:name=".controller.activities.ShopActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".controller.Activitys.PauseActivity"
+            android:name=".controller.activities.PauseActivity"
             android:screenOrientation="landscape" />
 
         <meta-data
