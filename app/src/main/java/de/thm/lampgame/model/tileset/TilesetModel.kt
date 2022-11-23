@@ -9,15 +9,13 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
     var obstacles: MutableList<Obstacles> = mutableListOf()
     var obstaclesWithoutBitmaps: MutableList<ObstacleModel> = mutableListOf()
     lateinit var item: Item
+    lateinit var dblPoints : Item
+    lateinit var bonusJump : Item
+    lateinit var immortality : Item
+    lateinit var torch : Item
     var hasItem = false
     var itemX = 0
     var itemY = 0
-
-
-    fun placeTileset(startPos: Int) {
-        startX = startPos
-        setItemSpawnpoint()
-    }
 
     fun setItemSpawnpoint() {
         when (tilesetNr) {
@@ -70,6 +68,24 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
                 itemX = (0.60 * width).toInt(); itemY = (0.5 * height).toInt()
             }
             else -> println("Error Torch Spawn Point")
+        }
+    }
+
+    fun randomItemSpawn(isTorch: Boolean) {
+        if (isTorch) {
+            item = torch ; item.x = itemX ; item.y = itemY ; hasItem = true ; item.pickedUp = false
+
+        } else when ((1..6).random()) {
+            1 -> {
+                item = dblPoints ; item.x = itemX; item.y = itemY; hasItem = true ; item.pickedUp = false
+            }
+            2 -> {
+                item = bonusJump ; item.x = itemX; item.y = itemY; hasItem = true ; item.pickedUp = false
+            }
+            3 -> {
+                item = immortality ; item.x = itemX; item.y = itemY; hasItem = true ; item.pickedUp = false
+            }
+            else -> hasItem = false
         }
     }
 
@@ -368,7 +384,13 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
         }
     }
 
+    fun placeTileset(startPos: Int) {
+        startX = startPos
+        setItemSpawnpoint()
+    }
     fun drawTileset(terrainVelocity: Int) {
         startX -= terrainVelocity
     }
+
+
 }

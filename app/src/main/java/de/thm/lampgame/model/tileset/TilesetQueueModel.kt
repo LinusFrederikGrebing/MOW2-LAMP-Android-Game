@@ -1,6 +1,8 @@
 package de.thm.lampgame.model.tileset
 
+import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.tileset.Tileset
+import de.thm.lampgame.view.GameView
 
 open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     var queue = ArrayDeque<Tileset>(2)       //the queue consists of 2 tilesets
@@ -68,4 +70,31 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         } while (queue.last() == tilesetList[random]) // because the tileset at the first of the queue is removed, the tileset at the first is allowed to be reallocated
         return tilesetList[random]
     }
+
+
+    // Three different ways to deal with collision
+    // Case 1: Obstacle x is a death tileset
+    // Case 2: obstacle x is not a death tileset, the player touches the tileset from above
+    // Case 3: Obstacle x is not a death Tileset, the player is touching the tileset from below
+
+    fun setCollisionResult(death: Boolean, obstacleY: Int, playerY: Int, player: Player) {
+        // case 1
+        if (death) {
+            if (!player.immortal) {         // checks if the player has immortality status or not
+                GameView.gameover = true
+            }
+        }
+        // case 2
+        else if (playerY >= obstacleY && playerY <= (obstacleY + player.maxVelocity+10)) {   // checks collision from above with a buffer of the player's maximum velocity
+            player.charY = obstacleY - player.rechar[1]!!.height + 1                      // sets the character's y-coordinate to the edge of the floor
+            player.jumpState = false
+        }
+        // case 3
+        else {
+            if (!player.immortal) {
+                GameView.gameover = true
+            }
+        }
+    }
+
 }

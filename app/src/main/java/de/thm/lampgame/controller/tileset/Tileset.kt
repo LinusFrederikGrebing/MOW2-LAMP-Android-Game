@@ -20,7 +20,15 @@ class Tileset(
         // first initializes all tileset variations and then adds the bitmaps
         initTilesetWithItsObstacles()
         addBitmaps()
+        initItems()
     }
+
+   private fun initItems(){
+        dblPoints = DoublePoints(context, height, width, itemX, itemY)
+        bonusJump = BonusJump(context, height, width, itemX, itemY)
+        immortality = Immortality(context, height, width, itemX, itemY)
+        torch = Torch(context, height, width, itemX, itemY)
+   }
 
     // assigns the associated bitmap to each tileset. The tileset name distinguishes them.
     private fun addBitmaps() {
@@ -44,24 +52,6 @@ class Tileset(
         }
     }
 
-    
-    fun randomItemSpawn(isTorch: Boolean) {
-        if (isTorch) {
-            item = Torch(context, height, width, itemX, itemY)
-            hasItem = true
 
-        } else when ((1..6).random()) {
-            1 -> {
-                item = DoublePoints(context, height, width, itemX, itemY); hasItem = true
-            }
-            2 -> {
-                item = BonusJump(context, height, width, itemX, itemY); hasItem = true
-            }
-            3 -> {
-                item = Immortality(context, height, width, itemX, itemY); hasItem = true
-            }
-            else -> hasItem = false
-        }
-    }
 
 }

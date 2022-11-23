@@ -11,14 +11,14 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
     PlayerModel(screenWidth, screenHeight) {
     var rechar = arrayOfNulls<Bitmap>(6)
 
-    var firebarBackgroundRect = Rect()
-    var firebarBackgroundPaint = Paint()
-    var firebarRect = Rect()
-    var firebarPaint = Paint()
-    val firebarPositionLeft = screenWidth/40
-    val firebarPositionTop = screenHeight/4
-    val firebarPositionRight = screenWidth/15
-    val firebarPositionBottom = screenHeight-screenHeight/4
+    private var firebarBackgroundRect = Rect()
+    private var firebarBackgroundPaint = Paint()
+    private var firebarRect = Rect()
+    private var firebarPaint = Paint()
+    private val firebarPositionLeft = screenWidth/40
+    private val firebarPositionTop = screenHeight/4
+    private val firebarPositionRight = screenWidth/15
+    private val firebarPositionBottom = screenHeight-screenHeight/4
     lateinit var char: Array<Bitmap?>
 
 
@@ -60,7 +60,7 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
         firebarBackgroundRect.set(firebarPositionLeft, firebarPositionTop, firebarPositionRight, firebarPositionBottom)
         firebarBackgroundPaint.setARGB(90, 0, 0, 0)
         firebarRect.set(firebarPositionLeft, (((firebarPositionBottom)-fire/50*firebarPositionTop).toInt()), firebarPositionRight, firebarPositionBottom)
-        firebarPaint.setShader(LinearGradient(firebarPositionLeft.toFloat(),firebarPositionTop.toFloat(),firebarPositionTop.toFloat(),firebarPositionBottom.toFloat(), Color.GREEN,Color.RED, Shader.TileMode.CLAMP))
+        firebarPaint.shader = LinearGradient(firebarPositionLeft.toFloat(),firebarPositionTop.toFloat(),firebarPositionTop.toFloat(),firebarPositionBottom.toFloat(), Color.YELLOW,Color.RED, Shader.TileMode.CLAMP)
         canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
         canvas.drawRect(firebarRect, firebarPaint)
     }

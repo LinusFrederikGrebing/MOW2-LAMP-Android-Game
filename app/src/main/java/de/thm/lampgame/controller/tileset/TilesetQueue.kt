@@ -6,12 +6,11 @@ import android.graphics.Rect
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.obstaclesBitmaps.Obstacles
 import de.thm.lampgame.model.tileset.TilesetQueueModel
-import de.thm.lampgame.view.GameView
 
 class TilesetQueue(screenWidth: Int, screenHeight: Int) :
     TilesetQueueModel(screenWidth, screenHeight) {
 
-    var tilesetList = ArrayList<Tileset>()     // list in which all tileset variations are stored
+    private var tilesetList = ArrayList<Tileset>()     // list in which all tileset variations are stored
     private val possibleTilesetCount = 16      // possible variations of different tilesets
 
     fun initialQueue(context: Context) {
@@ -74,7 +73,7 @@ class TilesetQueue(screenWidth: Int, screenHeight: Int) :
         val playerHitbox = Rect(
             player.charX,
             player.charY,
-            (player.charX + player.rechar[1]!!.width),  // each character's sprite is the same size
+            (player.charX + player.rechar[1]!!.width),  // each character's sprite has the same size
             (player.charY + player.rechar[1]!!.height)
         )
         val obstacleHitbox = Rect(
@@ -85,7 +84,7 @@ class TilesetQueue(screenWidth: Int, screenHeight: Int) :
         )
         if (Rect.intersects(obstacleHitbox, playerHitbox)) {
             // deal with collision
-            setResult(
+            setCollisionResult(
                 obstacle.death,
                 obstacle.changeableY,
                 player.charY + player.rechar[1]!!.height,
@@ -94,29 +93,5 @@ class TilesetQueue(screenWidth: Int, screenHeight: Int) :
             return true
         }
         return false
-    }
- // Three different ways to deal with collision
-    // Case 1: Obstacle x is a death tileset
-    // Case 2: obstacle x is not a death tileset, the player touches the tileset from above
-    // Case 3: Obstacle x is not a death Tileset, the player is touching the tileset from below
-
-    private fun setResult(death: Boolean, obstacleY: Int, playerY: Int, player: Player) {
-        // case 1
-        if (death) {
-            if (!player.immortal) {         // checks if the player has immortality status or not
-                GameView.gameover = true
-            }
-        }
-        // case 2
-        else if (playerY >= obstacleY && playerY <= (obstacleY + player.maxVelocity+10)) {   // checks collision from above with a buffer of the player's maximum velocity
-            player.charY = obstacleY - player.rechar[1]!!.height + 1                      // sets the character's y-coordinate to the edge of the floor
-            player.jumpState = false
-        }
-        // case 3
-        else {
-            if (!player.immortal) {
-                GameView.gameover = true
-            }
-        }
     }
 }
