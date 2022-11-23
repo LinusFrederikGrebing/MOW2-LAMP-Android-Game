@@ -38,9 +38,9 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         width = background.getWidth().toFloat()
         ratio = width / height
         newWidth = (ratio * screenHeight).toInt()
-        background = Bitmap.createScaledBitmap(background, newWidth, newHeigt, false)
-        mitte = Bitmap.createScaledBitmap(mitte, newWidth, newHeigt, false)
-        vorne = Bitmap.createScaledBitmap(vorne, newWidth, newHeigt, false)
+        background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
+        mitte = Bitmap.createScaledBitmap(mitte, newWidth, screenHeight, false)
+        vorne = Bitmap.createScaledBitmap(vorne, newWidth, screenHeight, false)
     }
 
     override fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double) {

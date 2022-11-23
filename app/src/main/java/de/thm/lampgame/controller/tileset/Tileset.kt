@@ -17,10 +17,12 @@ class Tileset(
     screenHeight: Int
 ) : TilesetModel(startX, tileset, screenWidth, screenHeight) {
     init {
-        randomTileset()
+        // first initializes all tileset variations and then adds the bitmaps
+        initTilesetWithItsObstacles()
         addBitmaps()
     }
 
+    // assigns the associated bitmap to each tileset. The tileset name distinguishes them.
     private fun addBitmaps() {
         obstaclesWithoutBitmaps.forEach {
             when (it.name) {
@@ -42,10 +44,12 @@ class Tileset(
         }
     }
 
+    
     fun randomItemSpawn(isTorch: Boolean) {
         if (isTorch) {
             item = Torch(context, height, width, itemX, itemY)
             hasItem = true
+
         } else when ((1..6).random()) {
             1 -> {
                 item = DoublePoints(context, height, width, itemX, itemY); hasItem = true

@@ -6,6 +6,7 @@ import android.graphics.Rect
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.obstaclesBitmaps.Obstacles
 import de.thm.lampgame.model.tileset.TilesetQueueModel
+import de.thm.lampgame.view.GameView
 
 class TilesetQueue(screenWidth: Int, screenHeight: Int) :
     TilesetQueueModel(screenWidth, screenHeight) {
@@ -27,6 +28,8 @@ class TilesetQueue(screenWidth: Int, screenHeight: Int) :
     }
 
     fun drawTilesetsAndCheckCollisions(canvas: Canvas, velocity: Int, player: Player) {
+        iterate()
+
 
         // draw the item if the tileset has one and check if the player picked up the item
         if (queue.first().hasItem) {
@@ -101,18 +104,18 @@ class TilesetQueue(screenWidth: Int, screenHeight: Int) :
         // case 1
         if (death) {
             if (!player.immortal) {         // checks if the player has immortality status or not
-                gameover = true
+                GameView.gameover = true
             }
         }
         // case 2
-        else if (playerY >= obstacleY && playerY <= (obstacleY + player.maxVelocity)) {   // checks collision from above with a buffer of the player's maximum velocity
+        else if (playerY >= obstacleY && playerY <= (obstacleY + player.maxVelocity+10)) {   // checks collision from above with a buffer of the player's maximum velocity
             player.charY = obstacleY - player.rechar[1]!!.height + 1                      // sets the character's y-coordinate to the edge of the floor
             player.jumpState = false
         }
         // case 3
         else {
             if (!player.immortal) {
-                gameover = true
+                GameView.gameover = true
             }
         }
     }

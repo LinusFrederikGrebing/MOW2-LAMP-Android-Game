@@ -12,7 +12,6 @@ import android.view.View
 import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.activities.GameOverActivity
 import de.thm.lampgame.controller.activities.PauseActivity
-import de.thm.lampgame.controller.obstaclesBitmaps.BitmapGround
 import de.thm.lampgame.controller.items.ActiveItem
 import de.thm.lampgame.controller.items.BonusJump
 import de.thm.lampgame.controller.items.DoublePoints
@@ -30,12 +29,16 @@ class GameView(context: Context) : View(context) {
     private val updateMillis: Long = 2
     var gameStatus = true
     private var multiplication = 0
-
     private val paint = Paint()
     private lateinit var map: MapController
     private var tilesetQueue : TilesetQueue
 
+    companion object{
+        var gameover = false
+    }
+
     init {
+        gameover = false
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
@@ -57,14 +60,11 @@ class GameView(context: Context) : View(context) {
     private var activeItem = ActiveItem(context, screenWidth, screenHeight)
 
 
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (gameStatus) {
-            tilesetQueue.iterations++
-            if (tilesetQueue.iterations == 200) multiplication++
 
-
+            if (tilesetQueue.iterations % 300 == 0) multiplication++
             //cloud background-fragment
             map.drawMap(canvas,
                 0.1 + multiplication*0.1,
@@ -75,8 +75,7 @@ class GameView(context: Context) : View(context) {
             //draw tileset with obstacless
             tilesetQueue.drawTilesetsAndCheckCollisions(canvas, (screenWidth/200) + multiplication, player)
 
-            if (tilesetQueue.gameover || player.fire <= 0F) {
-                gameStatus = false
+            if (gameover) {
                 this.gameOver()
             }
 
@@ -109,6 +108,7 @@ class GameView(context: Context) : View(context) {
 
     // Start GameOver Activity
     fun gameOver() {
+        gameStatus = false
         val intent = Intent(context, GameOverActivity::class.java)
         intent.putExtra("POINTS", player.points.roundToInt())
         context.startActivity(intent)

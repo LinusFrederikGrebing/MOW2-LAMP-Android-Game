@@ -22,7 +22,6 @@ class PurpleLampSkin(context: Context) : SkinController(){
         char[1] = BitmapFactory.decodeResource(context.resources, R.drawable.innen_skin3)
         char[2] = BitmapFactory.decodeResource(context.resources, R.drawable.legs_right_skin3)
         char[3] = BitmapFactory.decodeResource(context.resources, R.drawable.aussen_skin3)
-        char[4] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_sneek)
-        char[5] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_jump_fireskin3)
+        char[4] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_jump_fireskin3)
     }
 }

@@ -73,7 +73,7 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
         }
     }
 
-    fun randomTileset() {
+    fun initTilesetWithItsObstacles() {
         when (tilesetNr) {
             0 -> obstaclesWithoutBitmaps.addAll(
                 listOf(

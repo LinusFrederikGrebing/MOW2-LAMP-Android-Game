@@ -1,8 +1,7 @@
 package de.thm.lampgame.model.map
 
-abstract class MapModel(val screenWidth: Int, screenHeight: Int) {
+abstract class MapModel(val screenWidth: Int, val screenHeight: Int) {
     var newWidth = 0
-    var newHeigt = 0
     var mapHinten = 0.0
     var mapMitte = 0.0
     var mapVorne = 0.0
@@ -10,9 +9,6 @@ abstract class MapModel(val screenWidth: Int, screenHeight: Int) {
     var height = 0.0F
     var ratio = 0.0F
 
-    init {
-        newHeigt = screenHeight
-    }
 
     fun setNewMapHintenXCoords(speed: Double) {
         mapHinten -= speed
