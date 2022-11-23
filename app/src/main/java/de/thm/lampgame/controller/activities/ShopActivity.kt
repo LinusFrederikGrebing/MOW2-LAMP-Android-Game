@@ -23,6 +23,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ItemsAdapter.itemList = Database.getItemsMaps()
         inflateList()
         setPlayerCoinsTextView()
     }
@@ -67,7 +68,6 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-
         if (ItemsAdapter.itemList[position] is DataItem.Locked) {
             lockedCase(ItemsAdapter.itemList[position] as DataItem.Locked)
         } else if (ItemsAdapter.itemList[position] is DataItem.Unlocked) {
@@ -134,7 +134,6 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
             Toast.LENGTH_LONG
         ).show()
     }
-
 
     private fun setPlayerCoinsTextView() {
         val playerCoins = findViewById<TextView>(R.id.playercoinstv)

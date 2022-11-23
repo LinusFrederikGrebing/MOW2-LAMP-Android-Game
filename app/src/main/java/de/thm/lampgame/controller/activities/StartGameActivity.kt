@@ -13,6 +13,7 @@ class StartGameActivity : AppCompatActivity() {
     var mp: MediaPlayer? = null
     var length : Int? = 0
     var music: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         gameView = GameView(this)

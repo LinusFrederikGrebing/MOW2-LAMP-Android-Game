@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.view
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -7,9 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import de.thm.lampgame.R
 
-class PauseButton(context: Context, screenWidth: Int, screenHeight: Int) {
-    private val screenWidth: Int = screenWidth
-    private val screenHeight: Int = screenHeight
+class PauseButton(context: Context, val screenWidth: Int, val screenHeight: Int) {
     private var unsizedBmp: Bitmap
     var bmp: Bitmap
     var hitbox: Rect

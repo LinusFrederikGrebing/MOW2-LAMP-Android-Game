@@ -74,6 +74,7 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
     fun drawPlayer(canvas: Canvas, velocity : Double, collision : Boolean){
         setJumpStats(collision)
         drawFirebar(canvas)
+        //calkFire()
         calkPoints(velocity)
         drawChar(canvas)
     }
