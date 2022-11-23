@@ -19,7 +19,7 @@ class GameOverActivity : AppCompatActivity() {
         val viewHighscore: TextView = findViewById<TextView>(R.id.highscore)
 
         viewPoints.text = "Punkte: $points"
-        val mp: MediaPlayer = MediaPlayer.create(this, R.raw.oohgameover)
+        val mp: MediaPlayer = MediaPlayer.create(this, R.raw.pixeldeath66829pixabay)
         mp.start()
 
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)

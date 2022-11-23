@@ -11,7 +11,7 @@ class BonusJump(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y
     }
     init {
 
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.bonusjump)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.bonusjump_highlight)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true) }
 
     override fun draw(canvas: Canvas, velocity: Int) {

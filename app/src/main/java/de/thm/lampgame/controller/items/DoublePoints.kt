@@ -10,7 +10,7 @@ class DoublePoints(context: Context, screenHeight: Int, screenWidth: Int, x: Int
         val doublepointsduration = 250
     }
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.doublepoints_icon)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.doublepoints)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, width, height, true) }
 
     override fun draw(canvas: Canvas, velocity: Int) {
