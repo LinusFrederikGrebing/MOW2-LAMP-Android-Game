@@ -11,6 +11,7 @@ import de.thm.lampgame.controller.obstaclesBitmaps.BitmapTerrain
 import de.thm.lampgame.controller.obstaclesBitmaps.BitmapTube
 import de.thm.lampgame.controller.obstaclesBitmaps.BitmapWater
 import de.thm.lampgame.controller.obstaclesBitmaps.BitmapSaw
+import de.thm.lampgame.controller.obstaclesBitmaps.BitmapBouncingSaw
 
 class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {

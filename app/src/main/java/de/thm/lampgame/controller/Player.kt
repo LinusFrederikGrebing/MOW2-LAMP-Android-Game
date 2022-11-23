@@ -15,8 +15,12 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
     var firebarBackgroundPaint = Paint()
     var firebarRect = Rect()
     var firebarPaint = Paint()
-
+    val firebarPositionLeft = screenWidth/40
+    val firebarPositionTop = screenHeight/4
+    val firebarPositionRight = screenWidth/15
+    val firebarPositionBottom = screenHeight-screenHeight/4
     lateinit var char: Array<Bitmap?>
+
 
 
     init {
@@ -53,17 +57,17 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
 
 
     fun drawFirebar(canvas: Canvas) {
-      firebarBackgroundRect.set(screenWidth/40, screenHeight/4, screenWidth/15, screenHeight-screenHeight/4)
-      firebarBackgroundPaint.setARGB(90, 0, 0, 0)
-      firebarRect.set(screenWidth/40, (((screenHeight-screenHeight/4)-fire/50*screenHeight/4).toInt()), screenWidth/15, screenHeight-screenHeight/4)
-      firebarPaint.setColor(Color.RED)
-      canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
-      canvas.drawRect(firebarRect, firebarPaint)
+        firebarBackgroundRect.set(firebarPositionLeft, firebarPositionTop, firebarPositionRight, firebarPositionBottom)
+        firebarBackgroundPaint.setARGB(90, 0, 0, 0)
+        firebarRect.set(firebarPositionLeft, (((firebarPositionBottom)-fire/50*firebarPositionTop).toInt()), firebarPositionRight, firebarPositionBottom)
+        firebarPaint.setShader(LinearGradient(firebarPositionLeft.toFloat(),firebarPositionTop.toFloat(),firebarPositionTop.toFloat(),firebarPositionBottom.toFloat(), Color.GREEN,Color.RED, Shader.TileMode.CLAMP))
+        canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
+        canvas.drawRect(firebarRect, firebarPaint)
     }
 
 
     fun groundjumping(context: Context) {
-        val mp: MediaPlayer = MediaPlayer.create(context, R.raw.groundjumping)
+        val mp: MediaPlayer = MediaPlayer.create(context, R.raw.mixkitplayerjumpinginavideogame2043)
         mp.start()
     }
 

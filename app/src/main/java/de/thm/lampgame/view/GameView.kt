@@ -12,7 +12,7 @@ import android.view.View
 import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.activities.GameOverActivity
 import de.thm.lampgame.controller.activities.PauseActivity
-import de.thm.lampgame.controller.obstaclesBitmaps.BitmapGround
+import de.thm.lampgame.controller.obstaclesBitmaps.*
 import de.thm.lampgame.controller.items.ActiveItem
 import de.thm.lampgame.controller.items.BonusJump
 import de.thm.lampgame.controller.items.DoublePoints
