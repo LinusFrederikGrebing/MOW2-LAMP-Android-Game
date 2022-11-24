@@ -29,7 +29,6 @@ class TilesetQueue(screenWidth: Int, screenHeight: Int) :
     fun drawTilesetsAndCheckCollisions(canvas: Canvas, velocity: Int, player: Player) {
         iterate()
 
-
         // draw the item if the tileset has one and check if the player picked up the item
         if (queue.first().hasItem) {
             queue.first().item.draw(canvas, velocity)

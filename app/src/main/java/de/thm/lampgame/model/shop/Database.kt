@@ -4,11 +4,13 @@ import de.thm.lampgame.controller.skins.BlueLampSkin
 import de.thm.lampgame.controller.skins.LampSkin
 import de.thm.lampgame.controller.skins.PurpleLampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
+import de.thm.lampgame.controller.maps.ChristmasLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.maps.MarsLandscapeMap
 import de.thm.lampgame.controller.music.BackgroundMusic_password_Infinity
 import de.thm.lampgame.controller.music.BackgroundMusic_Island
 import de.thm.lampgame.controller.music.BackgroundMusic_Christmas_is_here
+import de.thm.lampgame.controller.skins.ChristmasLampSkin
 
 object Database {
     // the type of data item decides which ViewHolder is used and which design has to be loaded in the shop
@@ -17,8 +19,8 @@ object Database {
     const val ACTIVE_TYPE = 2
 
     // initialize a list of all maps, skins and music
-    val listOfMaps = listOf(MountainLandscapeMap,CemeteryLandscapeMap,MarsLandscapeMap)
-    val listOfSkins = listOf(LampSkin,BlueLampSkin,PurpleLampSkin)
+    val listOfMaps = listOf(MountainLandscapeMap,CemeteryLandscapeMap,MarsLandscapeMap, ChristmasLandscapeMap)
+    val listOfSkins = listOf(LampSkin,BlueLampSkin,PurpleLampSkin, ChristmasLampSkin)
     val listOfMusic = listOf(BackgroundMusic_password_Infinity, BackgroundMusic_Island, BackgroundMusic_Christmas_is_here)
 
     // the lists are filled based on the status
