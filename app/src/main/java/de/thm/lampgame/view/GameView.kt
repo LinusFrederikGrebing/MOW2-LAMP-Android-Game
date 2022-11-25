@@ -13,11 +13,11 @@ import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.activities.GameOverActivity
 import de.thm.lampgame.controller.activities.PauseActivity
 import de.thm.lampgame.controller.items.ActiveItem
-import de.thm.lampgame.controller.items.BonusJump
-import de.thm.lampgame.controller.items.DoublePoints
-import de.thm.lampgame.controller.items.Immortality
 import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.tileset.TilesetQueue
+import de.thm.lampgame.model.item.BonusJumpModel
+import de.thm.lampgame.model.item.DoublePointsModel
+import de.thm.lampgame.model.item.ImmortalityModel
 import de.thm.lampgame.model.shop.Database
 import kotlin.math.roundToInt
 
@@ -33,7 +33,7 @@ class GameView(context: Context) : View(context) {
     private lateinit var map: MapController
     private var tilesetQueue : TilesetQueue
 
-    companion object{
+    companion object {
         var gameover = false
     }
 
@@ -88,15 +88,15 @@ class GameView(context: Context) : View(context) {
             if (player.dblPtsDur > 0) {
                 paint.color = Color.RED
                 player.dblPtsDur--
-                activeItem.drawCircle(canvas, DoublePoints.doublepointsduration)
+                activeItem.drawCircle(canvas, DoublePointsModel.doublepointsduration)
             } else paint.color = Color.BLACK
             if (player.dblJumpDur > 0) {
                 player.dblJumpDur--
-                activeItem.drawCircle(canvas, BonusJump.bonusjumpduration)
+                activeItem.drawCircle(canvas, BonusJumpModel.bonusjumpduration)
             } else player.maxJump = 2
             if (player.immortalDur > 0) {
                 player.immortalDur--
-                activeItem.drawCircle(canvas, Immortality.immortalduration)
+                activeItem.drawCircle(canvas, ImmortalityModel.immortalduration)
             } else player.immortal = false
 
             player.drawPlayer(canvas,1.0 + (multiplication * 0.02), tilesetQueue.collision)

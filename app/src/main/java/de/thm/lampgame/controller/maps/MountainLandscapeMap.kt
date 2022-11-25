@@ -32,8 +32,8 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         background = BitmapFactory.decodeResource(context.resources, R.drawable.berghinten)
         mitte = BitmapFactory.decodeResource(context.resources, R.drawable.bergemitte)
         vorne = BitmapFactory.decodeResource(context.resources, R.drawable.bergevorne)
-        height = background.getHeight().toFloat()
-        width = background.getWidth().toFloat()
+        height = background.height.toFloat()
+        width = background.width.toFloat()
         ratio = width / height
         newWidth = (ratio * screenHeight).toInt()
         background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)

@@ -1,12 +1,12 @@
-package de.thm.lampgame.controller.items
+package de.thm.lampgame.view.item
 
 import android.content.Context
 import android.graphics.*
 import de.thm.lampgame.R
-import de.thm.lampgame.controller.Player
+import de.thm.lampgame.model.item.TorchModel
 
 class Torch(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: Int) :
-    Item(context, screenHeight, screenWidth, (0.10 * screenHeight).toInt(), (0.05 * screenWidth).toInt(), x, y) {
+    TorchModel(screenHeight, screenWidth, (0.10 * screenHeight).toInt(), (0.05 * screenWidth).toInt(), x, y) {
 
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.torch_highlight)
@@ -20,8 +20,6 @@ class Torch(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: In
             canvas.drawBitmap(bmp, x.toFloat(), y.toFloat(), null)
         }
     }
-
-    override var activateEffect: (Player) -> Unit = { p -> p.fire = 100F; p.calkCoins(); p.coinsPerRound++ }
 
 
 }

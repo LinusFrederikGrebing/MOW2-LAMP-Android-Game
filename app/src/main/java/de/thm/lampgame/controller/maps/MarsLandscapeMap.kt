@@ -39,8 +39,8 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
         background = BitmapFactory.decodeResource(context.resources, R.drawable.letzerbackgroundmars)
         mitte = BitmapFactory.decodeResource(context.resources, R.drawable.mittebackgroundmars)
         vorne = BitmapFactory.decodeResource(context.resources, R.drawable.vornebackgroundmars)
-        height = background.getHeight().toFloat()
-        width = background.getWidth().toFloat()
+        height = background.height.toFloat()
+        width = background.width.toFloat()
         ratio = width / height
         newWidth = (ratio * screenHeight).toInt()
         background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
