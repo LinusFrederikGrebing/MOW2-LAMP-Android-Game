@@ -5,10 +5,9 @@ import android.graphics.Canvas
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.model.tileset.TilesetQueueModel
 
-class TilesetQueue(screenWidth: Int, screenHeight: Int) :
+class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) :
     TilesetQueueModel(screenWidth, screenHeight) {
-
-    fun initialQueue(context: Context) {
+    init {
         // initialize each possible tileset once
         for (i in 1..possibleTilesetCount) {
             tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))

@@ -6,6 +6,10 @@ import android.media.MediaPlayer
 import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.PlayerModel
+import de.thm.lampgame.model.item.BonusJumpModel
+import de.thm.lampgame.model.item.DoublePointsModel
+import de.thm.lampgame.model.item.ImmortalityModel
+import de.thm.lampgame.view.item.ActiveItem
 
 class Player(context: Context, screenHeight: Int, screenWidth: Int) :
     PlayerModel(screenWidth, screenHeight) {
@@ -15,12 +19,11 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
     private var firebarBackgroundPaint = Paint()
     private var firebarRect = Rect()
     private var firebarPaint = Paint()
-    private val firebarPositionLeft = screenWidth/40
-    private val firebarPositionTop = screenHeight/4
-    private val firebarPositionRight = screenWidth/15
-    private val firebarPositionBottom = screenHeight-screenHeight/4
+    private val firebarPositionLeft = screenWidth / 40
+    private val firebarPositionTop = screenHeight / 4
+    private val firebarPositionRight = screenWidth / 15
+    private val firebarPositionBottom = screenHeight - screenHeight / 4
     lateinit var char: Array<Bitmap?>
-
 
 
     init {
@@ -57,10 +60,28 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
 
 
     fun drawFirebar(canvas: Canvas) {
-        firebarBackgroundRect.set(firebarPositionLeft, firebarPositionTop, firebarPositionRight, firebarPositionBottom)
+        firebarBackgroundRect.set(
+            firebarPositionLeft,
+            firebarPositionTop,
+            firebarPositionRight,
+            firebarPositionBottom
+        )
         firebarBackgroundPaint.setARGB(90, 0, 0, 0)
-        firebarRect.set(firebarPositionLeft, (((firebarPositionBottom)-fire/50*firebarPositionTop).toInt()), firebarPositionRight, firebarPositionBottom)
-        firebarPaint.shader = LinearGradient(firebarPositionLeft.toFloat(),firebarPositionTop.toFloat(),firebarPositionTop.toFloat(),firebarPositionBottom.toFloat(), Color.YELLOW,Color.RED, Shader.TileMode.CLAMP)
+        firebarRect.set(
+            firebarPositionLeft,
+            (((firebarPositionBottom) - fire / 50 * firebarPositionTop).toInt()),
+            firebarPositionRight,
+            firebarPositionBottom
+        )
+        firebarPaint.shader = LinearGradient(
+            firebarPositionLeft.toFloat(),
+            firebarPositionTop.toFloat(),
+            firebarPositionTop.toFloat(),
+            firebarPositionBottom.toFloat(),
+            Color.YELLOW,
+            Color.RED,
+            Shader.TileMode.CLAMP
+        )
         canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
         canvas.drawRect(firebarRect, firebarPaint)
     }
@@ -71,7 +92,23 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
         mp.start()
     }
 
-    fun drawPlayer(canvas: Canvas, velocity : Double, collision : Boolean){
+    fun checkItemDurAndSetItemEffect(canvas: Canvas, paint: Paint, activeItem: ActiveItem) {
+        if (dblPtsDur > 0) {
+            paint.color = Color.RED
+            dblPtsDur--
+            activeItem.drawCircle(canvas, DoublePointsModel.doublepointsduration)
+        } else paint.color = Color.BLACK
+        if (dblJumpDur > 0) {
+            dblJumpDur--
+            activeItem.drawCircle(canvas, BonusJumpModel.bonusjumpduration)
+        } else maxJump = 2
+        if (immortalDur > 0) {
+            immortalDur--
+            activeItem.drawCircle(canvas, ImmortalityModel.immortalduration)
+        } else immortal = false
+    }
+
+    fun drawPlayer(canvas: Canvas, velocity: Double, collision: Boolean) {
         setJumpStats(collision)
         drawFirebar(canvas)
         calkFire()
