@@ -29,32 +29,32 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="100dp"
         android:progress="100"
-        android:progressTint="#496289"
-        android:thumbTint="#496289"
+        android:progressTint="#000000"
+        android:thumbTint="#000000"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="100dp"
         android:contentDescription="@string/lautst_rke"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/settings_volume" />
+        app:srcCompat="@drawable/sound_on_svgrepo_com" />
 
     <Button
         android:id="@+id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#2898BF"
+        android:backgroundTint="@color/fire_red"
         android:fontFamily="@font/bangers"
         android:letterSpacing="0.25"
         android:src="@android:drawable/ic_media_play"
         android:text="@string/test"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         android:onClick="mainMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/exit_icon" />
+        app:srcCompat="@drawable/exit_icon_red" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

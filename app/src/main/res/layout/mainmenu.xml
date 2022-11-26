@@ -60,7 +60,7 @@
         android:drawableStart="@drawable/ic_launcher_foreground"
         android:onClick="shop"
         android:scaleType="centerInside"
-        android:src="@drawable/shop_icon"
+        android:src="@drawable/shop_icon_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.012"
@@ -92,7 +92,7 @@
         android:drawableStart="@drawable/ic_launcher_foreground"
         android:onClick="buttonSettings"
         android:scaleType="centerInside"
-        android:src="@drawable/settings_icon"
+        android:src="@drawable/settings_icon_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -9,10 +9,12 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
+import de.thm.lampgame.model.shop.Database
 
 
 class SettingsActivity : AppCompatActivity() {
     private var mp: MediaPlayer? = null
+    var music: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
@@ -33,9 +35,14 @@ class SettingsActivity : AppCompatActivity() {
         })
 
         //Testmusik zum Testen der Lautstärke
-        val one: Button = findViewById<View>(R.id.playButton) as Button
-         mp = MediaPlayer.create(this, R.raw.backgroundmusic_password_infinity)
-        one.setOnClickListener { mp?.start() }
+        val buttonTest: Button = findViewById<View>(R.id.playButton) as Button
+        Database.listOfMusic.forEach {
+            if (it.active) {
+                music = it.song
+            }
+        }
+        mp = MediaPlayer.create(this, music)
+        buttonTest.setOnClickListener { mp?.start() }
 
     }
 

@@ -129,7 +129,7 @@
             android:onClick="mainMenu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/exit_icon" />
+            app:srcCompat="@drawable/exit_icon_red" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
