@@ -1,9 +1,9 @@
-package de.thm.lampgame.controller.music
+package de.thm.lampgame.model.music
 
 import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.MusicInterface
 
-class BackgroundMusic_password_Infinity {
+class BackgroundMusicPasswordInfinity {
     companion object : MusicInterface {
         override var active = true
         override var name = "Password Infinity"

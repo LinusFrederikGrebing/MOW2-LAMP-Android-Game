@@ -5,7 +5,7 @@ import de.thm.lampgame.view.GameView
 abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     // player size and starting position
     var charHeight  = (0.16 * screenHeight).toInt()
-    var charwidth =  (0.14 * screenHeight).toInt()
+    var charWidth =  (0.07 * screenWidth).toInt()
     var charY = (0.10 * screenWidth).toInt()
     var charX = (0.15 * screenWidth).toInt()
 

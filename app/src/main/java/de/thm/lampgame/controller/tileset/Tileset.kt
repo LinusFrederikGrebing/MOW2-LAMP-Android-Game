@@ -3,11 +3,11 @@ package de.thm.lampgame.controller.tileset
 import android.content.Context
 import de.thm.lampgame.view.item.DoublePoints
 import de.thm.lampgame.view.item.Torch
-import de.thm.lampgame.controller.obstaclesBitmaps.*
 import de.thm.lampgame.view.item.BonusJump
 import de.thm.lampgame.view.item.Immortality
 import de.thm.lampgame.model.obstacles.ObstacleNames
 import de.thm.lampgame.model.tileset.TilesetModel
+import de.thm.lampgame.view.obstacles.*
 
 class Tileset(
     tileset: Int,
@@ -39,19 +39,9 @@ class Tileset(
                 ObstacleNames.TUBE  -> obstacles.add(BitmapTube(context, it.width, it.height, it.x, it.y))
                 ObstacleNames.WATER  -> obstacles.add(BitmapWater(context, it.width, it.height, it.x, it.y))
                 ObstacleNames.SAW  -> obstacles.add(BitmapSaw(context, it.width, it.height, it.x, it.y))
-                ObstacleNames.BOUNCINGSAW  -> obstacles.add(
-                    BitmapBouncingSaw(
-                        context,
-                        it.width,
-                        it.height,
-                        it.x,
-                        it.y
-                    )
-                )
+                ObstacleNames.BOUNCINGSAW  -> obstacles.add(BitmapBouncingSaw(context, it.width, it.height, it.x, it.y))
             }
         }
     }
-
-
 
 }

@@ -1,18 +1,17 @@
 package de.thm.lampgame.model.tileset
 
-import de.thm.lampgame.controller.items.Item
-import de.thm.lampgame.controller.obstaclesBitmaps.Obstacles
+import de.thm.lampgame.model.item.ItemModel
 import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
 open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var height: Int) {
-    var obstacles: MutableList<Obstacles> = mutableListOf()
+    var obstacles: MutableList<ObstacleModel> = mutableListOf()
     var obstaclesWithoutBitmaps: MutableList<ObstacleModel> = mutableListOf()
-    lateinit var item: Item
-    lateinit var dblPoints : Item
-    lateinit var bonusJump : Item
-    lateinit var immortality : Item
-    lateinit var torch : Item
+    lateinit var item: ItemModel
+    lateinit var dblPoints : ItemModel
+    lateinit var bonusJump : ItemModel
+    lateinit var immortality : ItemModel
+    lateinit var torch : ItemModel
     var hasItem = false
     var itemX = 0
     var itemY = 0
@@ -98,257 +97,283 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
                         width,
                         height,
                         0,
-                        (0.9 * height).toInt()
+                        (0.9 * height).toInt(),
+                        false
                     )
                 )
             )
             1 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.60 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.20 * width).toInt(),
-                        (0.45 * height).toInt()
+                        (0.45 * height).toInt(),
+                        false
                     )
                 )
             )
             2 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.15 * width).toInt(),
                         height,
                         (0.5 * width).toInt(),
-                        height
+                        height,
+                        true
                     )
                 )
             )
             3 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
                         (0.30 * width).toInt(),
-                        (0.65 * height).toInt()
+                        (0.65 * height).toInt(),
+                        false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
                         (0.9 * width).toInt(),
-                        (0.55 * height).toInt()
+                        (0.55 * height).toInt(),
+                        false
                     )
                 )
             )
             4 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
                         (0.50 * width).toInt(),
-                        (0.65 * height).toInt()
+                        (0.65 * height).toInt(),
+                        false
                     )
                 )
             )
             5 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
                         (0.40 * width).toInt(),
-                        (0.55 * height).toInt()
+                        (0.55 * height).toInt(),
+                        false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
                         (0.75 * width).toInt(),
-                        (0.65 * height).toInt()
+                        (0.65 * height).toInt(),
+                        false
                     )
                 )
             )
             6 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.SAW,
                         width,
                         height,
                         width,
-                        (0.63 * height).toInt()
+                        (0.63 * height).toInt(),
+                        true
                     )
                 )
             )
             7 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.BOUNCINGSAW,
                         width,
                         height,
                         (0.5 * width).toInt(),
-                        (0.63 * height).toInt()
+                        (0.63 * height).toInt(),
+                        true
                     )
                 )
             )
             8 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.60 * width).toInt(),
-                        (0.45 * height).toInt()
+                        (0.45 * height).toInt(),
+                        false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.10 * width).toInt(),
-                        (0.45 * height).toInt()
+                        (0.45 * height).toInt(),
+                        false
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.30 * width).toInt(),
                          height,
                         (0.3 * width).toInt(),
-                        height
+                        height,
+                        true
                     )
                 )
             )
             9 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.SAW,
                         width,
                         height,
                         width,
-                        (0.33 * height).toInt()
+                        (0.33 * height).toInt(),
+                        true
                     )
                 )
             )
             10 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.20 * width).toInt(),
-                        (0.65 * height).toInt()
+                        (0.65 * height).toInt(),
+                        false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.60 * width).toInt(),
-                        (0.45 * height).toInt()
+                        (0.45 * height).toInt(),
+                        false
                     ),
                 )
             )
             11 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.25 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.1 * width).toInt(),
-                        (0.65 * height).toInt()
+                        (0.65 * height).toInt(),
+                        false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.25 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.40 * width).toInt(),
-                        (0.45 * height).toInt()
+                        (0.45 * height).toInt(),
+                        false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.25 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.70 * width).toInt(),
-                        (0.25 * height).toInt()
+                        (0.25 * height).toInt(),
+                        false
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.8 * width).toInt(),
                         height,
                         (0.1 * width).toInt(),
-                        height
+                        height,
+                        true
                     )
                 )
             )
             12 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.80 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.20 * width).toInt(),
-                        (0.15 * height).toInt()
+                        (0.15 * height).toInt(),
+                        false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
                         (0.45 * width).toInt(),
-                        (0.55 * height).toInt()
+                        (0.55 * height).toInt(),
+                        false
                     ),
                 )
             )
             13 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
                         (0.45 * width).toInt(),
-                        (0.35 * height).toInt()
+                        (0.35 * height).toInt(),
+                        false
                     ),
                 )
             )
             14 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.10 * width).toInt(),
                         height,
                         (0.1 * width).toInt(),
-                        height
+                        height,
+                        true
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.10 * width).toInt(),
                         height,
                         (0.7 * width).toInt(),
-                        height
+                        height,
+                        true
                     )
                 )
             )
             15 -> obstaclesWithoutBitmaps.addAll(
                 listOf(
-                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
                         (0.20 * width).toInt(),
-                        (0.45 * height).toInt()
+                        (0.45 * height).toInt(),
+                        false
                     ),
 
                     ObstacleModel(
@@ -356,26 +381,29 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
                         width,
                         height,
                         (0.7 * width).toInt(),
-                        (0.55 * height).toInt()
+                        (0.55 * height).toInt(),
+                        false
                     ),
                 )
             )
             16 -> obstaclesWithoutBitmaps.addAll(
             listOf(
-                ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt()),
+                ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
                 ObstacleModel(
                     ObstacleNames.TUBE,
                     width,
                     height,
                     (0.7 * width).toInt(),
-                    (0.65 * height).toInt()
+                    (0.65 * height).toInt(),
+                    false
                 ),
                 ObstacleModel(
                     ObstacleNames.TUBE,
                     width,
                     height,
                     (0.5 * width).toInt(),
-                    (0.55 * height).toInt()
+                    (0.55 * height).toInt(),
+                    false
                 ),
             )
         )

@@ -12,7 +12,7 @@ import android.view.View
 import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.activities.GameOverActivity
 import de.thm.lampgame.controller.activities.PauseActivity
-import de.thm.lampgame.controller.items.ActiveItem
+import de.thm.lampgame.view.item.ActiveItem
 import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.tileset.TilesetQueue
 import de.thm.lampgame.model.item.BonusJumpModel

@@ -7,9 +7,9 @@ import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.ChristmasLandscapeMap
 import de.thm.lampgame.controller.maps.MountainLandscapeMap
 import de.thm.lampgame.controller.maps.MarsLandscapeMap
-import de.thm.lampgame.controller.music.BackgroundMusic_password_Infinity
-import de.thm.lampgame.controller.music.BackgroundMusic_Island
-import de.thm.lampgame.controller.music.BackgroundMusic_Christmas_is_here
+import de.thm.lampgame.model.music.BackgroundMusicPasswordInfinity
+import de.thm.lampgame.model.music.BackgroundMusicIsland
+import de.thm.lampgame.model.music.BackgroundMusicChristmasIsHere
 import de.thm.lampgame.controller.skins.ChristmasLampSkin
 
 object Database {
@@ -21,7 +21,7 @@ object Database {
     // initialize a list of all maps, skins and music
     val listOfMaps = listOf(MountainLandscapeMap,CemeteryLandscapeMap,MarsLandscapeMap, ChristmasLandscapeMap)
     val listOfSkins = listOf(LampSkin,BlueLampSkin,PurpleLampSkin, ChristmasLampSkin)
-    val listOfMusic = listOf(BackgroundMusic_password_Infinity, BackgroundMusic_Island, BackgroundMusic_Christmas_is_here)
+    val listOfMusic = listOf(BackgroundMusicPasswordInfinity, BackgroundMusicIsland, BackgroundMusicChristmasIsHere)
 
     // the lists are filled based on the status
     fun getItemsMaps(): ArrayList<DataItem> {

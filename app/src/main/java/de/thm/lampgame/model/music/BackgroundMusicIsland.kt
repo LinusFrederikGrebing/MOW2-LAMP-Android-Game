@@ -1,9 +1,9 @@
-package de.thm.lampgame.controller.music
+package de.thm.lampgame.model.music
 
 import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.MusicInterface
 
-class BackgroundMusic_Island {
+class BackgroundMusicIsland {
     companion object : MusicInterface {
         override var active = false
         override var name = "Island"

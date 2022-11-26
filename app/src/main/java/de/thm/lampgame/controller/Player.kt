@@ -30,17 +30,17 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
 
         // resize char
         rechar[0] =
-            char[0]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
+            char[0]?.let { Bitmap.createScaledBitmap(it, charWidth, charHeight, true) }
         rechar[1] =
-            char[1]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
+            char[1]?.let { Bitmap.createScaledBitmap(it, charWidth, charHeight, true) }
         rechar[2] =
-            char[2]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
+            char[2]?.let { Bitmap.createScaledBitmap(it, charWidth, charHeight, true) }
         rechar[3] =
-            char[3]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
+            char[3]?.let { Bitmap.createScaledBitmap(it, charWidth, charHeight, true) }
         rechar[4] =
-            char[4]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
+            char[4]?.let { Bitmap.createScaledBitmap(it, charWidth, charHeight, true) }
         rechar[5] =
-            char[5]?.let { Bitmap.createScaledBitmap(it, charwidth, charHeight, true) }
+            char[5]?.let { Bitmap.createScaledBitmap(it, charWidth, charHeight, true) }
     }
 
 
