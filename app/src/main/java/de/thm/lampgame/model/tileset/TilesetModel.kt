@@ -416,9 +416,8 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
         startX = startPos
         setItemSpawnpoint()
     }
+
     fun drawTileset(terrainVelocity: Int) {
         startX -= terrainVelocity
     }
-
-
 }

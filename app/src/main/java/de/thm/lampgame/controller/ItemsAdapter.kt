@@ -16,7 +16,6 @@ import de.thm.lampgame.model.shop.Database
 
 class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-
     companion object{
         var itemList = Database.getItemsMaps()
     }
@@ -110,10 +109,8 @@ class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
     }
 }
 
-
+//TODO auskommentierten Code entfernen, wenn nicht mehr benötigt
 /*
-
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

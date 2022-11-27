@@ -16,5 +16,4 @@ class BonusJump(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y
             (canvas as Canvas).drawBitmap(bmp as Bitmap, x.toFloat(), y.toFloat(), null)
         }
     }
-
 }

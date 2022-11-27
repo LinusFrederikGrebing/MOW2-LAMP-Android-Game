@@ -4,6 +4,7 @@ import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.MusicInterface
 
 class BackgroundMusicChristmasIsHere {
+
     companion object : MusicInterface {
         override var active = false
         override var name = "Christmas is here"

@@ -4,6 +4,7 @@ import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.MusicInterface
 
 class BackgroundMusicPasswordInfinity {
+
     companion object : MusicInterface {
         override var active = true
         override var name = "Password Infinity"

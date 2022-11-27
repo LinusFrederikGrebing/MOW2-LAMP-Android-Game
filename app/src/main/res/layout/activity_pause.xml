@@ -86,5 +86,4 @@
         app:constraint_referenced_ids="continueButton,restartButton,settingsButton,homeButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

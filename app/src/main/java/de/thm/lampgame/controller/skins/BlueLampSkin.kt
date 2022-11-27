@@ -17,6 +17,7 @@ class BlueLampSkin(context: Context) : SkinController() {
             return BlueLampSkin(context as Context)
         }
     }
+
     init {
         char[0] = BitmapFactory.decodeResource(context.resources, R.drawable.legs_leftskin2)
         char[1] = BitmapFactory.decodeResource(context.resources, R.drawable.innenskin2)

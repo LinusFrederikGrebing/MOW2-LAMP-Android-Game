@@ -2,10 +2,6 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,10 +29,9 @@
                 android:id="@+id/playercoinstv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="@string/textview"
                 android:textSize="34sp"
                 android:textStyle="bold|italic" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -130,6 +125,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/exit_icon_red" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

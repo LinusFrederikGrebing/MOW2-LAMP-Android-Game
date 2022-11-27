@@ -19,6 +19,7 @@ abstract class ItemModel(val screenHeight: Int, val screenWidth: Int, val width 
                     itemEffect(p)
                 }
             }
+            //TODO auskommentierten Code entfernen, wenn nicht mehr bneötigt
             /*
              val playerHitbox = Rect(
                 p.charX,

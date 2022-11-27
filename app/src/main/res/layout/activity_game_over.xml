@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"
         android:layout_width="wrap_content"
@@ -15,7 +14,7 @@
         android:adjustViewBounds="false"
         android:scaleX="0.9"
         android:scaleY="0.9"
-        android:src="@drawable/death_skull_animtion"
+        android:src="@drawable/death_skull_animation"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -51,7 +50,8 @@
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
+        android:contentDescription="@string/mainmenu" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -86,5 +86,4 @@
             android:textSize="16sp" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

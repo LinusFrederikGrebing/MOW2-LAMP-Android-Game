@@ -56,7 +56,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         queue.removeFirst()
         // add the new tileset
         queue.add(t)
-        // set the start positon to the new value
+        // set the start position to the new value
         queue.last().obstacles.forEach { it.changeableX += startX }
         queue.last().itemX += startX
     }
@@ -81,7 +81,6 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         }
     }
 
-//
     private fun returnCollision(obstacle: ObstacleModel, player: Player): Boolean {
         if (player.charX + player.charWidth > obstacle.changeableX && player.charX + player.charWidth < obstacle.changeableX + obstacle.width
             || player.charX > obstacle.changeableX && player.charX < obstacle.changeableX + obstacle.width
@@ -127,5 +126,4 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
             }
         }
     }
-
 }

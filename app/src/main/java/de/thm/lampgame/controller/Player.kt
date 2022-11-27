@@ -58,7 +58,6 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
         }
     }
 
-
     fun drawFirebar(canvas: Canvas) {
         firebarBackgroundRect.set(
             firebarPositionLeft,
@@ -85,7 +84,6 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) :
         canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
         canvas.drawRect(firebarRect, firebarPaint)
     }
-
 
     fun groundjumping(context: Context) {
         val mp: MediaPlayer = MediaPlayer.create(context, R.raw.mixkitplayerjumpinginavideogame2043)

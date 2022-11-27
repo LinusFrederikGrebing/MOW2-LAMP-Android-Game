@@ -1,5 +1,6 @@
 package de.thm.lampgame.view
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -65,7 +66,7 @@ class GameView(context: Context) : View(context) {
             // draw the background. There are three background layers. Each layer can have a different velocity, usually the backmost level is the slowest
             map.drawMap(canvas, 0.1 + multiplication*0.1, 0.2 + multiplication*0.2, 0.3 + multiplication*0.3)
 
-            // draw tileset with obstacless
+            // draw tileset with obstacles
             tilesetQueue.drawTilesetsAndCheckCollisions(canvas, (screenWidth/200) + multiplication, player)
 
             // draw canvas-elements
@@ -95,6 +96,7 @@ class GameView(context: Context) : View(context) {
     }
 
     // jump if action up, count for double jump, check action move for sneek
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {

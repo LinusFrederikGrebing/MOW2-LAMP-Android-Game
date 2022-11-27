@@ -32,7 +32,6 @@
             android:text="@string/textview"
             android:textSize="34sp"
             android:textStyle="bold|italic" />
-
     </LinearLayout>
 
     <ImageView
@@ -108,6 +107,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.192" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

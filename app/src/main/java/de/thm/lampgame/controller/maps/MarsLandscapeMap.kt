@@ -27,8 +27,6 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
         }
     }
 
-
-
     init {
         BitmapGround.texture = R.drawable.groundmars
         BitmapTerrain.texture = R.drawable.platformmars

@@ -8,6 +8,7 @@ class DrawTorchCount(context: Context, val screenWidth : Int, val screenHeight :
     var unsizedBmp: Bitmap
     var bmp: Bitmap
     private val paint = Paint()
+
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.torch)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, (screenWidth*0.05).toInt(), (screenHeight*0.1).toInt(), true)

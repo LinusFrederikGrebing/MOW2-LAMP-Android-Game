@@ -31,5 +31,4 @@ class BitmapBouncingSaw(context: Context, width: Int, height: Int, x: Int, y: In
 
         (canvas as Canvas).drawBitmap(bmp as Bitmap, changeableX.toFloat(), changeableY.toFloat(), null)
     }
-
 }

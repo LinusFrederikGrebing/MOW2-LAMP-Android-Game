@@ -15,7 +15,7 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
 
     companion object {
         var texture = R.drawable.himmel
-        var speedMultiplyer: Float = 360F
+        var speedMultiplier: Float = 360F
     }
 
     init {
@@ -41,9 +41,9 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
 
     fun drawCircle(canvas: Canvas, duration: Int) {
         speed = (360 / duration.toFloat())
-        speedMultiplyer -= speed
+        speedMultiplier -= speed
 
-        myPaint.color = if (speedMultiplyer > 180) Color.GREEN else if (speedMultiplyer < 60) Color.RED else Color.YELLOW
+        myPaint.color = if (speedMultiplier > 180) Color.GREEN else if (speedMultiplier < 60) Color.RED else Color.YELLOW
 
         canvas.drawArc(
             screenWidth * 0.01.toFloat(),
@@ -51,7 +51,7 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
             screenWidth * 0.1.toFloat(),
             screenHeight * 0.98.toFloat(),
             270F,
-            speedMultiplyer,
+            speedMultiplier,
             true,
             myPaint
         )

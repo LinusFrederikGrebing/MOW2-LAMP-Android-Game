@@ -13,6 +13,7 @@ class BitmapTube(context: Context, width: Int, height: Int, x: Int, y: Int) :
     companion object {
         var texture = R.drawable.obstaclestonewall
     }
+
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
         bmp = Bitmap.createScaledBitmap(unsizedBmp as Bitmap, this.width, this.height, true)

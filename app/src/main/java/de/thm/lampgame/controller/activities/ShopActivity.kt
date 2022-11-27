@@ -120,7 +120,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     fun activeCase(active: DataItem.Active) {
-        toast("${active.text} schon aktiv!")
+        toast("${active.text} bereits aktiv!")
     }
 
     fun getRightList(){
