@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
+import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.MapInterface
 import de.thm.lampgame.view.obstacles.BitmapGround
 import de.thm.lampgame.view.obstacles.BitmapTerrain
@@ -17,11 +18,7 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
 
     companion object : MapInterface {
-        override var active = true
-        override var name = "MarsLandscapeMap"
-        override var buyStatus = true
-        override val price = "100"
-        override val icon = R.drawable.map_mars
+        override var itemInfo = Database.mapMarsLandscape
         override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): MarsLandscapeMap {
             return MarsLandscapeMap(context as Context,screenHeight,screenWidth)
         }

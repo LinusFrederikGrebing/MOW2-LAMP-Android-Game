@@ -46,7 +46,7 @@ class GameView(context: Context) : View(context) {
         paint.textSize = screenHeight*0.07.toFloat()
 
         // the active status is used to check which map needs to be loaded
-        Database.listOfMaps.forEach { if (it.active) map = it.createMap(context,screenHeight,screenWidth) }
+        Database.listOfMaps.forEach { if (it.itemInfo.active) map = it.createMap(context,screenHeight,screenWidth) }
 
         runnable = Runnable { invalidate() }
     }

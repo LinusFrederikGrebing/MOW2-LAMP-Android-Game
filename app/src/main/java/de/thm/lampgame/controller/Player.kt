@@ -21,7 +21,7 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatA
 
     init {
         Database.listOfSkins.forEach {
-            if (it.active) char = it.createSkin(context).getSkin()
+            if (it.itemInfo.active) char = it.createSkin(context).getSkin()
         }
 
         // resize char
