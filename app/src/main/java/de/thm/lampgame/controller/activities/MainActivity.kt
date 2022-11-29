@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val viewHighscore: TextView = findViewById<TextView>(R.id.highscore)
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val highScore = settings.getInt("HIGH_SCORE", 0)
-        viewHighscore.text = "High Score: $highScore"
+        viewHighscore.text = getString(R.string.highScoreValues, highScore)
 
         // check which value for the attributes buystatus and active is saved for the respective item in the shared preferences, if no value was saved, take the default value from the database
         Database.listOfMusic.forEach {

@@ -51,7 +51,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
-        android:contentDescription="@string/mainmenu" />
+        android:contentDescription="@string/mainMenu" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="@string/punkte"
+            android:text="@string/points"
             android:textColor="#FFFFFF"
             android:textSize="34sp" />
 
@@ -81,9 +81,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="@string/highscore"
+            android:text="@string/highScore"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

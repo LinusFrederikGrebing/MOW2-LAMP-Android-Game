@@ -116,7 +116,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
                 putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
             }
 
-            2 -> Database . listOfSkins . forEach {
+            2 -> Database.listOfSkins.forEach {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
                 putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
             }

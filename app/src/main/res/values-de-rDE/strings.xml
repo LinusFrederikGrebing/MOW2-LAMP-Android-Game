@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Einstellungen</string>
+    <string name="continueStr">Weiter</string>
+    <string name="restart">Neu Starten</string>
+    <string name="mainMenu">Hauptmenü</string>
+    <string name="volume">Lautstärke</string>
+    <string name="torches">Fackeln</string>
+    <string name="playButton">Spiel starten</string>
+    <string name="skin_shop">Kostüm Shop</string>
+    <string name="maps_shop">Karten Shop</string>
+    <string name="item_shop">Gegenstände Shop</string>
+    <string name="price">Preis</string>
+    <string name="points">Punkte</string>
+    <string name="previewPicture">Vorschaubild</string>
+    <string name="volumeTest">Lautstärke testen</string>
+    <string name="torchNumber">Fackelanzahl</string>
+    <string name="lock">Schloss</string>
+    <string name="pointsValues">Punkte: %1$d</string>
+</resources>

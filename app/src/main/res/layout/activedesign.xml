@@ -28,7 +28,7 @@
                 android:layout_height="125dp"
                 android:scaleType="fitXY"
                 app:imageResource="@{active.image}"
-                android:contentDescription="@string/vorschaubild"
+                android:contentDescription="@string/previewPicture"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

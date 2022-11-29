@@ -21,7 +21,7 @@ object Database {
 
     // init all ShopItemInfos
     var musicChristmasInfo = ShopItemInfo("Christmas is here", false, false, "50",  R.drawable.shop_music_christmas)
-    var musicPasswordInfinityInfo = ShopItemInfo("Password Infinity",true,true, "0", R.drawable.shop_music_icon)
+    var musicPasswordInfinityInfo = ShopItemInfo("Password Infinity",true,true, "0", R.drawable.shop_music_passwordinfinity)
     var musicIslandInfo = ShopItemInfo("Island",false,false, "30", R.drawable.shop_music_island)
 
     var mapMountainLandscape = ShopItemInfo("MountainLandscapeMap", false, false, "50",   R.drawable.bergeicon)
