@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
 import de.thm.lampgame.model.PlayerModel
+import de.thm.lampgame.model.shop.Database
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val highScore = settings.getInt("HIGH_SCORE", 0)
         viewHighscore.text = "High Score: $highScore"
+
+        Database.listOfMusic.forEach {
+            it.mapInfo.buyStatus = getSharedPref(it.mapInfo.name + "BuyStatus",it.mapInfo.buyStatus)
+            it.mapInfo.active = getSharedPref(it.mapInfo.name + "Active",it.mapInfo.active)
+        }
     }
 
     fun startGame(view: View?) {
@@ -39,5 +45,10 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ShopActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun getSharedPref(identifier: String, value: Boolean) : Boolean {
+        val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
+        return settings.getBoolean(identifier,value)
     }
 }

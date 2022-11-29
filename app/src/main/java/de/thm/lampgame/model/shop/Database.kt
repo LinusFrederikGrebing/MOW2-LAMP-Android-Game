@@ -23,6 +23,11 @@ object Database {
     val listOfSkins = listOf(LampSkin,BlueLampSkin,PurpleLampSkin, ChristmasLampSkin)
     val listOfMusic = listOf(BackgroundMusicPasswordInfinity, BackgroundMusicIsland, BackgroundMusicChristmasIsHere)
 
+    // Music Infos
+    val musicChristmasInfo = ShopItemInfo("Christmas is here", false, false, "50")
+    val musicPasswordInfinityInfo = ShopItemInfo("Password Infinity",true,true, "0")
+    val musicIslandInfo = ShopItemInfo("Island",false,false, "30")
+
     // the lists are filled based on the status
     fun getItemsMaps(): ArrayList<DataItem> {
         val itemList = arrayListOf<DataItem>()
@@ -53,9 +58,9 @@ object Database {
         val itemList = arrayListOf<DataItem>()
 
         listOfMusic.forEach {
-            if (!it.buyStatus) itemList.add(DataItem.Locked(it.icon, it.name, it.price))
-            else if (it.active) itemList.add(DataItem.Active(it.icon, it.name))
-            else itemList.add(DataItem.Unlocked(it.icon, it.name))
+            if (!it.mapInfo.buyStatus) itemList.add(DataItem.Locked(it.icon, it.mapInfo.name, it.mapInfo.price))
+            else if (it.mapInfo.active) itemList.add(DataItem.Active(it.icon, it.mapInfo.name))
+            else itemList.add(DataItem.Unlocked(it.icon, it.mapInfo.name))
         }
 
         return itemList

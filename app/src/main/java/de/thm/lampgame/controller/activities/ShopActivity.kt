@@ -1,6 +1,8 @@
 package de.thm.lampgame.controller.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -13,6 +15,7 @@ import de.thm.lampgame.databinding.ShopActivityLayoutBinding
 import de.thm.lampgame.model.shop.DataItem
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.PlayerModel
+import de.thm.lampgame.model.music.BackgroundMusicChristmasIsHere
 
 
 class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
@@ -23,6 +26,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         ItemsAdapter.itemList = Database.getItemsMaps()
         inflateList()
         setPlayerCoinsTextView()
@@ -80,6 +84,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     fun lockedCase(locked: DataItem.Locked) {
+
         when (shop) {
             1 -> Database.listOfMaps.forEach {
                 if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
@@ -94,9 +99,10 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
                 }
             }
             3 -> Database.listOfMusic.forEach {
-                if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
-                    PlayerModel.coins -= it.price.toInt()
-                    it.buyStatus = true
+                if (locked.text == it.mapInfo.name && PlayerModel.coins >= it.mapInfo.price.toInt()) {
+                    PlayerModel.coins -= it.mapInfo.price.toInt()
+                    it.mapInfo.buyStatus = true
+                    putSharedPref(it.mapInfo.name + "BuyStatus",it.mapInfo.buyStatus)
                 }
             }
         }
@@ -113,7 +119,8 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
                 it.active = unlocked.text == it.name
             }
             3 -> Database.listOfMusic.forEach {
-                it.active = unlocked.text == it.name
+                it.mapInfo.active = unlocked.text == it.mapInfo.name
+                putSharedPref(it.mapInfo.name + "Active",it.mapInfo.active)
             }
         }
         getRightList()
@@ -138,5 +145,12 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     private fun setPlayerCoinsTextView() {
         val playerCoins = findViewById<TextView>(R.id.playercoinstv)
         playerCoins.text = PlayerModel.coins.toString()
+    }
+
+    private fun putSharedPref(identifier: String, value: Boolean) {
+        val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
+        val editor = settings.edit()
+        editor.putBoolean(identifier,value)
+        editor.apply()
     }
 }

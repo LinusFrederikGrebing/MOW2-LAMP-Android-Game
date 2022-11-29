@@ -19,7 +19,7 @@ class StartGameActivity : AppCompatActivity() {
         gameView = GameView(this)
         setContentView(gameView)
         Database.listOfMusic.forEach {
-            if (it.active) {
+            if (it.mapInfo.active) {
                 music = it.song
             }
         }
