@@ -17,6 +17,7 @@ import de.thm.lampgame.view.item.ActiveItem
 import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.tileset.TilesetQueue
 import de.thm.lampgame.model.shop.Database
+import de.thm.lampgame.view.player.DrawTorchCount
 import kotlin.math.roundToInt
 
 class GameView(context: Context) : View(context) {
@@ -70,8 +71,8 @@ class GameView(context: Context) : View(context) {
             tilesetQueue.drawTilesetsAndCheckCollisions(canvas, (screenWidth/200) + multiplication, player)
 
             // draw canvas-elements
-            canvas.drawText("Punkte: ${player.points.roundToInt()}",  (screenWidth*0.01).toFloat(), (screenHeight*0.075).toFloat(), paint)
-            drawTorch.draw(canvas, player.coinsPerRound)
+            canvas.drawText("Punkte: ${player.playerModel.points.roundToInt()}",  (screenWidth*0.01).toFloat(), (screenHeight*0.075).toFloat(), paint)
+            drawTorch.draw(canvas, player.playerModel.coinsPerRound)
             pauseButton.draw(canvas)
 
             // draw the player and if an item is picked up, draw the item
@@ -90,7 +91,7 @@ class GameView(context: Context) : View(context) {
     fun gameOver() {
         gameStatus = false
         val intent = Intent(context, GameOverActivity::class.java)
-        intent.putExtra("POINTS", player.points.roundToInt())
+        intent.putExtra("POINTS", player.playerModel.points.roundToInt())
         context.startActivity(intent)
         (context as Activity).finish()
     }
@@ -104,9 +105,9 @@ class GameView(context: Context) : View(context) {
                     val intent = Intent(context, PauseActivity::class.java)
                     context.startActivity(intent)
                     gameStatus = false
-                } else if (player.jumpCount < player.maxJump) {
+                } else if (player.playerModel.jumpCount < player.playerModel.maxJump) {
                     player.groundjumping(context)
-                    player.sprung()
+                    player.playerModel.sprung()
                 }
                 return true
             }

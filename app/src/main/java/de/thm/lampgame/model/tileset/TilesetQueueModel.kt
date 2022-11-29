@@ -82,16 +82,16 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     }
 
     private fun returnCollision(obstacle: ObstacleModel, player: Player): Boolean {
-        if (player.charX + player.charWidth > obstacle.changeableX && player.charX + player.charWidth < obstacle.changeableX + obstacle.width
-            || player.charX > obstacle.changeableX && player.charX < obstacle.changeableX + obstacle.width
+        if (player.playerModel.charX + player.playerModel.charWidth > obstacle.changeableX && player.playerModel.charX + player.playerModel.charWidth < obstacle.changeableX + obstacle.width
+            || player.playerModel.charX > obstacle.changeableX && player.playerModel.charX < obstacle.changeableX + obstacle.width
         ) {
-            if (player.charY > obstacle.changeableY && player.charY < obstacle.changeableY + obstacle.height
-                || player.charY + player.charHeight > obstacle.changeableY && player.charY + player.charHeight < obstacle.changeableY + obstacle.height
+            if (player.playerModel.charY > obstacle.changeableY && player.playerModel.charY < obstacle.changeableY + obstacle.height
+                || player.playerModel.charY + player.playerModel.charHeight > obstacle.changeableY && player.playerModel.charY + player.playerModel.charHeight < obstacle.changeableY + obstacle.height
             ) {
                 setCollisionResult(
                     obstacle.death,
                     obstacle.changeableY,
-                    player.charY + player.charHeight,
+                    player.playerModel.charY + player.playerModel.charHeight,
                     player
                 )
                 return true
@@ -109,19 +109,19 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     fun setCollisionResult(death: Boolean, obstacleY: Int, playerY: Int, player: Player) {
         // case 1
         if (death) {
-            if (!player.immortal) {         // checks if the player has immortality status or not
+            if (!player.playerModel.immortal) {         // checks if the player has immortality status or not
                 GameView.gameover = true
             }
         }
         // case 2
-        else if (playerY >= obstacleY && playerY <= (obstacleY + player.maxVelocity + 10)) {   // checks collision from above with a buffer of the player's maximum velocity
-            player.charY =
+        else if (playerY >= obstacleY && playerY <= (obstacleY + player.playerModel.maxVelocity + 10)) {   // checks collision from above with a buffer of the player's maximum velocity
+            player.playerModel.charY =
                 obstacleY - player.rechar[1]!!.height + 1                      // sets the character's y-coordinate to the edge of the floor
-            player.jumpState = false
+            player.playerModel.jumpState = false
         }
         // case 3
         else {
-            if (!player.immortal) {
+            if (!player.playerModel.immortal) {
                 GameView.gameover = true
             }
         }

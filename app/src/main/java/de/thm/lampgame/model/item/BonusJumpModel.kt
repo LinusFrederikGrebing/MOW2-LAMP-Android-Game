@@ -12,7 +12,7 @@ abstract class BonusJumpModel(screenHeight: Int, screenWidth: Int, height : Int,
     override var activateEffect: (Player) -> Unit = { p ->
         ActiveItem.texture = R.drawable.bonusjump
         ActiveItem.speedMultiplier = 360F
-        p.maxJump = 3
-        p.dblJumpDur = bonusjumpduration
+        p.playerModel.maxJump = 3
+        p.playerModel.dblJumpDur = bonusjumpduration
     }
 }

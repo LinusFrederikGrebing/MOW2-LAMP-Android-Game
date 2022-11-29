@@ -13,8 +13,8 @@ abstract class DoublePointsModel(screenHeight: Int, screenWidth: Int, height : I
     override var activateEffect: (Player) -> Unit = {p ->
         ActiveItem.texture = R.drawable.doublepoints_icon
         ActiveItem.speedMultiplier = 360F
-        p.hasDblPts = true
-        p.dblPtsDur = doublepointsduration
+        p.playerModel.hasDblPts = true
+        p.playerModel.dblPtsDur = doublepointsduration
     }
 
 }
