@@ -11,10 +11,10 @@ abstract class ItemModel(val screenHeight: Int, val screenWidth: Int, val width 
 
     open fun itemPickup(p: Player, itemEffect: (Player) -> Unit){
         if (!pickedUp) {
-            if (p.charX+p.charWidth >= x && p.charX+p.charWidth <= x + width
-                || p.charX >= x && p.charX <= x + width){
-                if (p.charY >= y && p.charY <= y + height
-                    || p.charY+p.charWidth >= y && p.charY+p.charWidth <= y + height) {
+            if (p.playerModel.charX+p.playerModel.charWidth >= x && p.playerModel.charX+p.playerModel.charWidth <= x + width
+                || p.playerModel.charX >= x && p.playerModel.charX <= x + width){
+                if (p.playerModel.charY >= y && p.playerModel.charY <= y + height
+                    || p.playerModel.charY+p.playerModel.charWidth >= y && p.playerModel.charY+p.playerModel.charWidth <= y + height) {
                     pickedUp = true
                     itemEffect(p)
                 }

@@ -2,7 +2,7 @@ package de.thm.lampgame.model
 
 import de.thm.lampgame.view.GameView
 
-abstract class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
+class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     
     // player size and starting position
     var charHeight  = (0.16 * screenHeight).toInt()

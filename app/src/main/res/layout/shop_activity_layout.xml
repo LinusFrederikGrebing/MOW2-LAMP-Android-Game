@@ -19,7 +19,7 @@
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="36dp"
-                android:contentDescription="@string/fackel"
+                android:contentDescription="@string/torches"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleX="2"
@@ -29,7 +29,7 @@
                 android:id="@+id/playercoinstv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/textview"
+                android:text="@string/torchNumber"
                 android:textSize="34sp"
                 android:textStyle="bold|italic" />
         </LinearLayout>
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:contentDescription="@string/mainmenu"
+            android:contentDescription="@string/mainMenu"
             android:onClick="mainMenu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

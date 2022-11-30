@@ -1,30 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LAMPGAME</string>
-    <string name="settings">Settings</string>
-    <string name="button">LAMPGAME</string>
-    <string name="button1">LAMPGAME</string>
-    <string name="highscores">Highscores</string>
-    <string name="perma_lamp">LAMPGAME</string>
-    <string name="start">Start</string>
-    <string name="test">Test</string>
-    <string name="pause">Pause</string>
+    <string name="app_name" translatable="false">LAMPGAME</string>
     <string name="continueStr">Continue</string>
-    <string name="restart">Restart</string>
-    <string name="home">Home</string>
-    <string name="mainmenu">Main Menu</string>
-    <string name="lautst_rke">Lautstärke</string>
-    <string name="fackel">Fackel-Items</string>
-    <string name="textview">TextView</string>
-    <string name="playbutton">Start Game</string>
-    <string name="lampgame">Lamp Game</string>
-    <string name="skin_shop">Skin Shop</string>
-    <string name="maps_shop">Maps Shop</string>
+    <string name="highScore" translatable="false">Highscore:</string>
+    <string name="highScoreValues" translatable="false">Highscore: %1$d</string>
     <string name="item_shop">Item Shop</string>
-    <string name="shop">Shop</string>
-    <string name="preview">Preview</string>
+    <string name="lampGame" translatable="false">Lamp Game</string>
+    <string name="lock">Lock</string>
+    <string name="mainMenu">Main Menu</string>
+    <string name="maps_shop">Map Shop</string>
+    <string name="pause" translatable="false">Pause</string>
+    <string name="playButton">Start Game</string>
+    <string name="points">Points:</string>
+    <string name="pointsValues">Points: %1$d</string>
+    <string name="previewPicture">Preview Picture</string>
     <string name="price">Price</string>
-    <string name="gesperrt">Gesperrt</string>
-    <string name="highscore">Highscore:</string>
-    <string name="punkte">Punkte:</string>
-    <string name="vorschaubild">Vorschaubild</string>
+    <string name="restart">Restart</string>
+    <string name="settings">Settings</string>
+    <string name="shop" translatable="false">Shop</string>
+    <string name="skin_shop">Skin Shop</string>
+    <string name="torches">Torches</string>
+    <string name="torchNumber">Number of Torches</string>
+    <string name="volume">Volume</string>
+    <string name="volumeTest">Test Volume</string>
 </resources>

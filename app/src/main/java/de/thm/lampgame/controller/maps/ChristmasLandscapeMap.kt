@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
+import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.MapInterface
 import de.thm.lampgame.view.obstacles.BitmapGround
 import de.thm.lampgame.view.obstacles.BitmapTerrain
@@ -16,11 +17,7 @@ import de.thm.lampgame.view.obstacles.BitmapBouncingSaw
 class ChristmasLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
     companion object : MapInterface {
-        override var active = false
-        override var name = "ChristmasLandscapeMap"
-        override var buyStatus = false
-        override val price = "50"
-        override val icon = R.drawable.christmasmap
+        override var itemInfo = Database.mapChristmasLandscape
         override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): ChristmasLandscapeMap {
             return ChristmasLandscapeMap(context as Context,screenHeight,screenWidth)
         }

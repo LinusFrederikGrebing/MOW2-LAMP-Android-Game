@@ -38,7 +38,7 @@
                     android:layout_height="125dp"
                     android:scaleType="fitXY"
                     app:imageResource="@{locked.image}"
-                    android:contentDescription="@string/preview"
+                    android:contentDescription="@string/previewPicture"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -59,14 +59,13 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imageView" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:contentDescription="@string/gesperrt"
+                android:contentDescription="@string/lock"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

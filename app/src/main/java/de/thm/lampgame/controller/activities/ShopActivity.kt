@@ -2,7 +2,6 @@ package de.thm.lampgame.controller.activities
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -15,7 +14,6 @@ import de.thm.lampgame.databinding.ShopActivityLayoutBinding
 import de.thm.lampgame.model.shop.DataItem
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.PlayerModel
-import de.thm.lampgame.model.music.BackgroundMusicChristmasIsHere
 
 
 class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
@@ -87,22 +85,24 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
 
         when (shop) {
             1 -> Database.listOfMaps.forEach {
-                if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
-                    PlayerModel.coins -= it.price.toInt()
-                    it.buyStatus = true
+                if (locked.text == it.itemInfo.name && PlayerModel.coins >= it.itemInfo.price.toInt()) {
+                    PlayerModel.coins -= it.itemInfo.price.toInt()
+                    it.itemInfo.buyStatus = true
+                    putSharedPref(it.itemInfo.name + "BuyStatus", it.itemInfo.buyStatus)
                 }
             }
             2 -> Database.listOfSkins.forEach {
-                if (locked.text == it.name && PlayerModel.coins >= it.price.toInt()) {
-                    PlayerModel.coins -= it.price.toInt()
-                    it.buyStatus = true
+                if (locked.text == it.itemInfo.name && PlayerModel.coins >= it.itemInfo.price.toInt()) {
+                    PlayerModel.coins -= it.itemInfo.price.toInt()
+                    it.itemInfo.buyStatus = true
+                    putSharedPref(it.itemInfo.name + "BuyStatus", it.itemInfo.buyStatus)
                 }
             }
             3 -> Database.listOfMusic.forEach {
-                if (locked.text == it.mapInfo.name && PlayerModel.coins >= it.mapInfo.price.toInt()) {
-                    PlayerModel.coins -= it.mapInfo.price.toInt()
-                    it.mapInfo.buyStatus = true
-                    putSharedPref(it.mapInfo.name + "BuyStatus",it.mapInfo.buyStatus)
+                if (locked.text == it.itemInfo.name && PlayerModel.coins >= it.itemInfo.price.toInt()) {
+                    PlayerModel.coins -= it.itemInfo.price.toInt()
+                    it.itemInfo.buyStatus = true
+                    putSharedPref(it.itemInfo.name + "BuyStatus", it.itemInfo.buyStatus)
                 }
             }
         }
@@ -112,15 +112,17 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     fun unlockedCase(unlocked: DataItem.Unlocked) {
         when(shop) {
             1 -> Database.listOfMaps.forEach {
-                it.active = unlocked.text == it.name
+                it.itemInfo.active = unlocked.text == it.itemInfo.name
+                putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
             }
 
-            2 -> Database . listOfSkins . forEach {
-                it.active = unlocked.text == it.name
+            2 -> Database.listOfSkins.forEach {
+                it.itemInfo.active = unlocked.text == it.itemInfo.name
+                putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
             }
             3 -> Database.listOfMusic.forEach {
-                it.mapInfo.active = unlocked.text == it.mapInfo.name
-                putSharedPref(it.mapInfo.name + "Active",it.mapInfo.active)
+                it.itemInfo.active = unlocked.text == it.itemInfo.name
+                putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
             }
         }
         getRightList()

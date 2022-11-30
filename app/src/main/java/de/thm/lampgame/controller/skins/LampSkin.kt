@@ -3,16 +3,13 @@ package de.thm.lampgame.controller.skins
 import android.content.Context
 import android.graphics.BitmapFactory
 import de.thm.lampgame.R
+import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.SkinInterface
 
 class LampSkin(context: Context) : SkinController(){
 
     companion object : SkinInterface {
-        override var name = "LampSkin"
-        override var active = true
-        override var buyStatus = true
-        override val price = "0"
-        override val icon = R.drawable.skin_standard
+        override var itemInfo = Database.skinLamp
         override fun createSkin(context: Any): LampSkin {
             return LampSkin(context as Context)
         }

@@ -9,11 +9,10 @@ abstract class ImmortalityModel(screenHeight: Int, screenWidth: Int, height : In
     companion object{
         val immortalduration = 100
     }
-
     override var activateEffect: (Player) -> Unit = {p ->
         ActiveItem.texture = R.drawable.immortality
         ActiveItem.speedMultiplier = 360F
-        p.immortal = true
-        p.immortalDur = immortalduration
+        p.playerModel.immortal = true
+        p.playerModel.immortalDur = immortalduration
     }
 }

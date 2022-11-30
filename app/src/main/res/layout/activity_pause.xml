@@ -64,7 +64,7 @@
         android:background="#FFFC0100"
         android:gravity="center"
         android:onClick="buttonHome"
-        android:text="@string/home"
+        android:text="@string/mainMenu"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -37,7 +37,7 @@ class SettingsActivity : AppCompatActivity() {
         //Testmusik zum Testen der Lautstärke
         val buttonTest: Button = findViewById<View>(R.id.playButton) as Button
         Database.listOfMusic.forEach {
-            if (it.mapInfo.active) {
+            if (it.itemInfo.active) {
                 music = it.song
             }
         }

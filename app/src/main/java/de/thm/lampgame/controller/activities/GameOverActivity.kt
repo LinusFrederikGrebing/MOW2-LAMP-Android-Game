@@ -1,5 +1,6 @@
 package de.thm.lampgame.controller.activities
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
@@ -11,6 +12,7 @@ import de.thm.lampgame.R
 
 class GameOverActivity : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
@@ -18,7 +20,7 @@ class GameOverActivity : AppCompatActivity() {
         val viewPoints: TextView = findViewById<TextView>(R.id.points)
         val viewHighscore: TextView = findViewById<TextView>(R.id.highscore)
 
-        viewPoints.text = "Punkte: $points"
+        viewPoints.text = getString(R.string.pointsValues, points)
         val mp: MediaPlayer = MediaPlayer.create(this, R.raw.pixeldeath66829pixabay)
         mp.start()
 
@@ -26,12 +28,12 @@ class GameOverActivity : AppCompatActivity() {
         val highScore = settings.getInt("HIGH_SCORE", 0)
 
         if (points > highScore) {
-            viewHighscore.text = "High Score: $points"
+            viewHighscore.text = getString(R.string.highScoreValues, points)
             val editor = settings.edit()
             editor.putInt("HIGH_SCORE", points)
             editor.apply()
         } else {
-            viewHighscore.text = "High Score: $highScore"
+            viewHighscore.text = getString(R.string.highScoreValues, highScore)
         }
 
     }
