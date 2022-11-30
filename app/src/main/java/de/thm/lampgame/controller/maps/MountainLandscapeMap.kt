@@ -7,10 +7,7 @@ import android.graphics.Canvas
 import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.MapInterface
-import de.thm.lampgame.view.obstacles.BitmapGround
-import de.thm.lampgame.view.obstacles.BitmapTerrain
-import de.thm.lampgame.view.obstacles.BitmapTube
-import de.thm.lampgame.view.obstacles.BitmapWater
+import de.thm.lampgame.view.obstacles.*
 
 class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
@@ -26,6 +23,8 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         BitmapWater.texture = R.drawable.wasser
         BitmapTube.texture = R.drawable.bottomtube
         BitmapTerrain.texture = R.drawable.plattform2
+        BitmapSaw.texture = R.drawable.saw_water
+        BitmapBouncingSaw.texture = R.drawable.bouncingsaw_water
         background = BitmapFactory.decodeResource(context.resources, R.drawable.berghinten)
         mitte = BitmapFactory.decodeResource(context.resources, R.drawable.bergemitte)
         vorne = BitmapFactory.decodeResource(context.resources, R.drawable.bergevorne)
