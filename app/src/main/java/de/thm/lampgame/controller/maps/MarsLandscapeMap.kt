@@ -30,7 +30,7 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     init {
         BitmapGround.texture = R.drawable.groundmars
         BitmapTerrain.texture = R.drawable.platformmars
-        BitmapWater.texture = R.drawable.waternew
+        BitmapWater.texture = R.drawable.test_water
         BitmapTube.texture = R.drawable.obstaclestonewall
         BitmapSaw.texture = R.drawable.saw_water
         BitmapBouncingSaw.texture = R.drawable.bouncingsaw_water
