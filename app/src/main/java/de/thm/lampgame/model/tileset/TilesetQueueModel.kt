@@ -11,7 +11,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     val possibleTilesetCount = 16      // possible variations of different tilesets
     var collision = false
     var iterations = 0
-    var nextTilesethasTorch = false
+    private var nextTilesethasTorch = false
 
     fun initQueue(t1: Tileset, t2: Tileset) {
         // add the first two tilesets to the queue
@@ -46,7 +46,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         }
     }
 
-    fun insertTileset(startX: Int, t: Tileset) {
+    private fun insertTileset(startX: Int, t: Tileset) {
         // reset the coordinates of the old tileset
         queue.first().tilesetModel.obstacles.forEach {
             it.changeableX = it.x
@@ -106,7 +106,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     // Case 2: obstacle x is not a death tileset, the player touches the tileset from above
     // Case 3: Obstacle x is not a death Tileset, the player is touching the tileset from below
 
-    fun setCollisionResult(death: Boolean, obstacleY: Int, playerY: Int, player: Player) {
+    private fun setCollisionResult(death: Boolean, obstacleY: Int, playerY: Int, player: Player) {
         // case 1
         if (death) {
             if (!player.playerModel.immortal) {         // checks if the player has immortality status or not

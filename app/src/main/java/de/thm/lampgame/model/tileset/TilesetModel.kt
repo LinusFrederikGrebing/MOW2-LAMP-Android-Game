@@ -4,7 +4,7 @@ import de.thm.lampgame.model.item.ItemModel
 import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
-open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var height: Int) {
+open class TilesetModel(var startX: Int, private var tilesetNr: Int, var width: Int, var height: Int) {
     var obstacles: MutableList<ObstacleModel> = mutableListOf()
     var obstaclesWithoutBitmaps: MutableList<ObstacleModel> = mutableListOf()
     lateinit var item: ItemModel
@@ -16,7 +16,7 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
     var itemX = 0
     var itemY = 0
 
-    fun setItemSpawnpoint() {
+    private fun setItemSpawnpoint() {
         when (tilesetNr) {
             1 -> {
                 itemX = (0.9 * width).toInt(); itemY = (0.1 * height).toInt()

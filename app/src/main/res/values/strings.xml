@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">LAMPGAME</string>
+    <string name="appName" translatable="false">LAMPGAME</string>
     <string name="continueStr">Continue</string>
     <string name="highScore" translatable="false">Highscore:</string>
     <string name="highScoreValues" translatable="false">Highscore: %1$d</string>
-    <string name="item_shop">Item Shop</string>
+    <string name="alreadyActive">%1$s is already active!</string>
+    <string name="itemShop">Item Shop</string>
     <string name="lampGame" translatable="false">Lamp Game</string>
     <string name="lock">Lock</string>
     <string name="mainMenu">Main Menu</string>
@@ -18,9 +19,20 @@
     <string name="restart">Restart</string>
     <string name="settings">Settings</string>
     <string name="shop" translatable="false">Shop</string>
-    <string name="skin_shop">Skin Shop</string>
+    <string name="skinShop">Skin Shop</string>
     <string name="torches">Torches</string>
     <string name="torchNumber">Number of Torches</string>
     <string name="volume">Volume</string>
     <string name="volumeTest">Test Volume</string>
+    <string name="mountainMap">Mountain</string>
+    <string name="cemeteryMap">Cemetery</string>
+    <string name="marsMap" translatable="false">Mars</string>
+    <string name="christmasMap">Christmas</string>
+    <string name="islandMusic" translatable="false">Island</string>
+    <string name="passwordInfinityMusic" translatable="false">Password Infinity</string>
+    <string name="christmasIsHereMusic" translatable="false">Christmas is here</string>
+    <string name="lampSkin">Lamp</string>
+    <string name="blueLampSkin">Blue Lamp</string>
+    <string name="purpleLampSkin">Purple Lamp</string>
+    <string name="christmasLampSkin">Christmas Lamp</string>
 </resources>

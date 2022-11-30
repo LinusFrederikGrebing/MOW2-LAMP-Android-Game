@@ -28,7 +28,7 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
         BitmapGround.texture = R.drawable.groundmars
         BitmapTerrain.texture = R.drawable.platformmars
         BitmapWater.texture = R.drawable.waternew
-        BitmapTube.texture = R.drawable.obstaclestonewall
+        BitmapTube.texture = R.drawable.marswall2
         BitmapSaw.texture = R.drawable.saw_water
         BitmapBouncingSaw.texture = R.drawable.bouncingsaw_water
         background = BitmapFactory.decodeResource(context.resources, R.drawable.letzerbackgroundmars)

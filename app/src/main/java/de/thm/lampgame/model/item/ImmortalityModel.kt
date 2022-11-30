@@ -7,7 +7,7 @@ import de.thm.lampgame.view.item.ActiveItem
 abstract class ImmortalityModel(screenHeight: Int, screenWidth: Int, height : Int, width: Int, x: Int, y: Int) : ItemModel(screenHeight, screenWidth, height, width, x,y) {
 
     companion object{
-        val immortalduration = 100
+        const val immortalduration = 100
         var immortalDur = 0
     }
     override var activateEffect: (Player) -> Unit = {p ->

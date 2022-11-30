@@ -88,7 +88,7 @@ class GameView(context: Context) : View(context) {
     }
 
     // Start GameOver Activity
-    fun gameOver() {
+    private fun gameOver() {
         gameStatus = false
         val intent = Intent(context, GameOverActivity::class.java)
         intent.putExtra("POINTS", player.playerModel.points.roundToInt())

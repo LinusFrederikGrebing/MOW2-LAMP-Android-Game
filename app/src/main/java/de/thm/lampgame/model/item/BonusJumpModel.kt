@@ -6,7 +6,7 @@ import de.thm.lampgame.view.item.ActiveItem
 
 abstract class BonusJumpModel(screenHeight: Int, screenWidth: Int, height : Int, width: Int, x: Int, y: Int) : ItemModel(screenHeight, screenWidth, height, width, x,y) {
     companion object{
-        val bonusjumpduration = 250
+        const val bonusjumpduration = 250
         var dblJumpDur = 0
     }
 

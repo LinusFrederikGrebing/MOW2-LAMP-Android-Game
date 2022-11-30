@@ -6,7 +6,7 @@ import de.thm.lampgame.view.item.ActiveItem
 
 abstract class DoublePointsModel(screenHeight: Int, screenWidth: Int, height : Int, width: Int, x: Int, y: Int) : ItemModel(screenHeight, screenWidth, height, width, x,y) {
     companion object{
-        val doublepointsduration = 250
+        const val doublepointsduration = 250
         var dblPtsDur = 0
     }
 

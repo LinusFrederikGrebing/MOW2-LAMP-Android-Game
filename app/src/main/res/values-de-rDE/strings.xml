@@ -7,9 +7,9 @@
     <string name="volume">Lautstärke</string>
     <string name="torches">Fackeln</string>
     <string name="playButton">Spiel starten</string>
-    <string name="skin_shop">Kostüm Shop</string>
+    <string name="skinShop">Kostüm Shop</string>
     <string name="maps_shop">Karten Shop</string>
-    <string name="item_shop">Gegenstände Shop</string>
+    <string name="itemShop">Gegenstände Shop</string>
     <string name="price">Preis</string>
     <string name="points">Punkte</string>
     <string name="previewPicture">Vorschaubild</string>
@@ -17,4 +17,12 @@
     <string name="torchNumber">Fackelanzahl</string>
     <string name="lock">Schloss</string>
     <string name="pointsValues">Punkte: %1$d</string>
+    <string name="mountainMap">Landschaft</string>
+    <string name="cemeteryMap">Friedhof</string>
+    <string name="christmasMap">Weihnachten</string>
+    <string name="lampSkin">Lampe</string>
+    <string name="blueLampSkin">Blaue Lampe</string>
+    <string name="purpleLampSkin">Lila Lampe</string>
+    <string name="christmasLampSkin">Weihnachts Lampe</string>
+    <string name="alreadyActive">%1$s ist bereits aktiv!</string>
 </resources>

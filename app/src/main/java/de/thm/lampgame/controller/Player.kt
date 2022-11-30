@@ -11,9 +11,9 @@ import de.thm.lampgame.view.player.DrawFirebar
 
 class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatActivity() {
     var playerModel = PlayerModel(screenWidth, screenHeight)
-    var firebar = DrawFirebar(screenWidth, screenHeight)
+    private var firebar = DrawFirebar(screenWidth, screenHeight)
     var rechar = arrayOfNulls<Bitmap>(6)
-    lateinit var char: Array<Bitmap?>
+    private lateinit var char: Array<Bitmap?>
 
     init {
         Database.listOfSkins.forEach {
@@ -36,7 +36,7 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatA
     }
 
 
-    fun drawChar(canvas: Canvas) {
+    private fun drawChar(canvas: Canvas) {
         rechar[playerModel.calkCharframe()]?.let {
             canvas.drawBitmap(
                 it,

@@ -81,62 +81,62 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         setPlayerCoinsTextView()
     }
 
-    fun lockedCase(locked: DataItem.Locked) {
+    private fun lockedCase(locked: DataItem.Locked) {
 
         when (shop) {
             1 -> Database.listOfMaps.forEach {
                 if (locked.text == it.itemInfo.name && PlayerModel.coins >= it.itemInfo.price.toInt()) {
                     PlayerModel.coins -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
-                    putSharedPref(it.itemInfo.name + "BuyStatus", it.itemInfo.buyStatus)
+                    putSharedPref((it.itemInfo.name).toString() + "BuyStatus", it.itemInfo.buyStatus)
                 }
             }
             2 -> Database.listOfSkins.forEach {
                 if (locked.text == it.itemInfo.name && PlayerModel.coins >= it.itemInfo.price.toInt()) {
                     PlayerModel.coins -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
-                    putSharedPref(it.itemInfo.name + "BuyStatus", it.itemInfo.buyStatus)
+                    putSharedPref((it.itemInfo.name).toString() + "BuyStatus", it.itemInfo.buyStatus)
                 }
             }
             3 -> Database.listOfMusic.forEach {
                 if (locked.text == it.itemInfo.name && PlayerModel.coins >= it.itemInfo.price.toInt()) {
                     PlayerModel.coins -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
-                    putSharedPref(it.itemInfo.name + "BuyStatus", it.itemInfo.buyStatus)
+                    putSharedPref((it.itemInfo.name).toString() + "BuyStatus", it.itemInfo.buyStatus)
                 }
             }
         }
         getRightList()
     }
 
-    fun unlockedCase(unlocked: DataItem.Unlocked) {
+    private fun unlockedCase(unlocked: DataItem.Unlocked) {
         when(shop) {
             1 -> Database.listOfMaps.forEach {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
-                putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
+                putSharedPref((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
             }
             2 -> Database.listOfSkins.forEach {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
-                putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
+                putSharedPref((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
             }
             3 -> Database.listOfMusic.forEach {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
-                putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
+                putSharedPref((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
             }
         }
         getRightList()
     }
 
-    fun activeCase(active: DataItem.Active) {
-        toast("${active.text} bereits aktiv!")
+    private fun activeCase(active: DataItem.Active) {
+        toast(getString(R.string.alreadyActive, "${active.text}"))
     }
 
-    fun getRightList(){
+    private fun getRightList(){
         ItemsAdapter.itemList = if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsMusic()
         inflateList()
     }
 
-    fun toast(text: String){
+    private fun toast(text: String){
         Toast.makeText(
             this, text,
             Toast.LENGTH_LONG

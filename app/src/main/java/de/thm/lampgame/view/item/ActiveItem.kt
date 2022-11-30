@@ -7,11 +7,11 @@ import de.thm.lampgame.R
 class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: Int) {
     private var unsizedBmp: Bitmap? = null
     var bmp: Bitmap? = null
-    var activetexture = 0
+    private var activetexture = 0
     private val backgroundPaint: Paint = Paint()
     private val myPaint: Paint = Paint()
 
-    var speed: Float = 0.0F
+    private var speed: Float = 0.0F
 
     companion object {
         var texture = R.drawable.himmel

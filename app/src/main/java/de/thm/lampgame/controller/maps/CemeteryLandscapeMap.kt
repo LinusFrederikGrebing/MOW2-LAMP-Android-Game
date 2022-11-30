@@ -27,7 +27,7 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         BitmapGround.texture = R.drawable.tilesground
         BitmapTerrain.texture = R.drawable.cemetery_platform
         BitmapWater.texture = R.drawable.waternew
-        BitmapTube.texture = R.drawable.obstaclestonewall
+        BitmapTube.texture = R.drawable.cemeterywall
         BitmapSaw.texture = R.drawable.saw_water
         BitmapBouncingSaw.texture = R.drawable.bouncingsaw_water
         background = BitmapFactory.decodeResource(context.resources, R.drawable.moon)

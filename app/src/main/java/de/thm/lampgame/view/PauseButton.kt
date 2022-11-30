@@ -10,7 +10,7 @@ import de.thm.lampgame.R
 class PauseButton(context: Context, val screenWidth: Int, val screenHeight: Int) {
     private var unsizedBmp: Bitmap
     var bmp: Bitmap
-    var hitbox: Rect
+    private var hitbox: Rect
 
     init {
         unsizedBmp = BitmapFactory.decodeResource(context.resources,  R.drawable.pausebutton)

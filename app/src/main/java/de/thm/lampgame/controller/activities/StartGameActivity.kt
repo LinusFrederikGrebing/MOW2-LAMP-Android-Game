@@ -10,9 +10,9 @@ import de.thm.lampgame.model.shop.Database
 
 class StartGameActivity : AppCompatActivity() {
     private var gameView: GameView? = null
-    var mp: MediaPlayer? = null
-    var length : Int? = 0
-    var music: Int = 0
+    private var mp: MediaPlayer? = null
+    private var length : Int? = 0
+    private var music: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

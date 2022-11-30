@@ -14,7 +14,7 @@ import de.thm.lampgame.model.shop.Database
 
 class   SettingsActivity : AppCompatActivity() {
     private var mp: MediaPlayer? = null
-    var music: Int = 0
+    private var music: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)

@@ -12,7 +12,7 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
 
     var points: Double = 0.0
     var fire: Float = 100F
-    var charframe = 0
+    private var charframe = 0
 
     var jumpState = false   // if jumpState is true the jumpskin-sprite should be loaded
 
@@ -20,7 +20,7 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var immortal = false
 
     var velocity = 0
-    var gravity = (screenHeight * 0.003).toInt()
+    private var gravity = (screenHeight * 0.003).toInt()
     val maxVelocity = (screenHeight * 0.04).toInt()
 
 
@@ -62,8 +62,8 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
 
     // the points are the equivalent of meters and can be temporarily doubled by an item
     fun calkPoints(addPts: Double) {
-        if (hasDblPts) points += (addPts * 2.0)
-        else points += addPts
+        points += if (hasDblPts) (addPts * 2.0)
+        else addPts
     }
 
     // decrease player's fire by 0.15F, when it reaches zero, the player dies

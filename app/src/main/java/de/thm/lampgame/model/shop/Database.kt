@@ -13,6 +13,7 @@ import de.thm.lampgame.model.music.BackgroundMusicIsland
 import de.thm.lampgame.model.music.BackgroundMusicChristmasIsHere
 import de.thm.lampgame.controller.skins.ChristmasLampSkin
 
+@Suppress("BooleanLiteralArgument")
 object Database {
     // the type of data item decides which ViewHolder is used and which design has to be loaded in the shop
     const val LOCKED_TYPE = 0
@@ -20,19 +21,19 @@ object Database {
     const val ACTIVE_TYPE = 2
 
     // init all ShopItemInfos
-    var musicChristmasInfo = ShopItemInfo("Christmas is here", false, false, "50",  R.drawable.shop_music_christmas)
-    var musicPasswordInfinityInfo = ShopItemInfo("Password Infinity",true,true, "0", R.drawable.shop_music_passwordinfinity)
-    var musicIslandInfo = ShopItemInfo("Island",false,false, "30", R.drawable.shop_music_island)
+    var musicChristmasInfo = ShopItemInfo(R.string.christmasIsHereMusic, false, false, "50",  R.drawable.shop_music_christmas)
+    var musicPasswordInfinityInfo = ShopItemInfo(R.string.passwordInfinityMusic,true,true, "0", R.drawable.shop_music_passwordinfinity)
+    var musicIslandInfo = ShopItemInfo(R.string.islandMusic,false,false, "30", R.drawable.shop_music_island)
 
-    var mapMountainLandscape = ShopItemInfo("MountainLandscapeMap", false, false, "50",   R.drawable.bergeicon)
-    var mapCemeteryLandscape = ShopItemInfo("CemeteryLandscapeMap", true, true, "0",   R.drawable.cemetery)
-    var mapMarsLandscape = ShopItemInfo("MarsLandscapeMap",false,false, "100", R.drawable.map_mars)
-    var mapChristmasLandscape = ShopItemInfo("ChristmasLandscapeMap",false,false, "50", R.drawable.christmasmap)
+    var mapMountainLandscape = ShopItemInfo(R.string.mountainMap, false, false, "50",   R.drawable.shop_map_mountain)
+    var mapCemeteryLandscape = ShopItemInfo(R.string.cemeteryMap, true, true, "0",   R.drawable.shop_map_cemetery)
+    var mapMarsLandscape = ShopItemInfo(R.string.marsMap,false,false, "100", R.drawable.shop_map_mars)
+    var mapChristmasLandscape = ShopItemInfo(R.string.christmasMap,false,false, "150", R.drawable.shop_map_christmas)
 
-    var skinLamp = ShopItemInfo("LampSkin", true, true, "0",   R.drawable.skin_standard)
-    var skinBlueLamp = ShopItemInfo("BlueLampSkin", false, false, "50",   R.drawable.skin_blau)
-    var skinPurpleLamp = ShopItemInfo("PurpleLampSkin",false,false, "100", R.drawable.skin_lila)
-    var skinChristmasLamp = ShopItemInfo("ChristmasLampSkin",false,false, "50", R.drawable.skin_christmas)
+    var skinLamp = ShopItemInfo(R.string.lampSkin, true, true, "0",   R.drawable.shop_skin_standard)
+    var skinBlueLamp = ShopItemInfo(R.string.blueLampSkin, false, false, "30",   R.drawable.shop_skin_blau)
+    var skinPurpleLamp = ShopItemInfo(R.string.purpleLampSkin,false,false, "50", R.drawable.shop_skin_lila)
+    var skinChristmasLamp = ShopItemInfo(R.string.christmasLampSkin,false,false, "70", R.drawable.shop_skin_christmas)
 
     // initialize a list of all maps, skins and music
     val listOfMaps = listOf(CemeteryLandscapeMap, MountainLandscapeMap, MarsLandscapeMap, ChristmasLandscapeMap)

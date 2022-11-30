@@ -31,16 +31,16 @@ class MainActivity : AppCompatActivity() {
         playerCoins.text = PlayerModel.coins.toString()
         // check which value for the attributes buystatus and active is saved for the respective item in the shared preferences, if no value was saved, take the default value from the database
         Database.listOfMusic.forEach {
-            it.itemInfo.buyStatus = settings.getBoolean(it.itemInfo.name + "BuyStatus",it.itemInfo.buyStatus)
-            it.itemInfo.active = settings.getBoolean(it.itemInfo.name + "Active",it.itemInfo.active)
+            it.itemInfo.buyStatus = settings.getBoolean((it.itemInfo.name).toString() + "BuyStatus",it.itemInfo.buyStatus)
+            it.itemInfo.active = settings.getBoolean((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
         }
         Database.listOfMaps.forEach {
-            it.itemInfo.buyStatus = settings.getBoolean(it.itemInfo.name + "BuyStatus",it.itemInfo.buyStatus)
-            it.itemInfo.active = settings.getBoolean(it.itemInfo.name + "Active",it.itemInfo.active)
+            it.itemInfo.buyStatus = settings.getBoolean((it.itemInfo.name).toString() + "BuyStatus",it.itemInfo.buyStatus)
+            it.itemInfo.active = settings.getBoolean((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
         }
         Database.listOfSkins.forEach {
-            it.itemInfo.buyStatus = settings.getBoolean(it.itemInfo.name + "BuyStatus",it.itemInfo.buyStatus)
-            it.itemInfo.active = settings.getBoolean(it.itemInfo.name + "Active",it.itemInfo.active)
+            it.itemInfo.buyStatus = settings.getBoolean((it.itemInfo.name).toString() + "BuyStatus",it.itemInfo.buyStatus)
+            it.itemInfo.active = settings.getBoolean((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
         }
     }
 

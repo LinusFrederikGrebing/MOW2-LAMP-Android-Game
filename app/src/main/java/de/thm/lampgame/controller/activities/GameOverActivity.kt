@@ -16,11 +16,11 @@ class GameOverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
         val points = intent.extras!!.getInt("POINTS")
-        val viewPoints: TextView = findViewById<TextView>(R.id.points)
-        val viewHighscore: TextView = findViewById<TextView>(R.id.highscore)
+        val viewPoints: TextView = findViewById(R.id.points)
+        val viewHighscore: TextView = findViewById(R.id.highscore)
 
         viewPoints.text = getString(R.string.pointsValues, points)
-        val mp: MediaPlayer = MediaPlayer.create(this, R.raw.pixeldeath66829pixabay)
+        val mp: MediaPlayer = MediaPlayer.create(this, R.raw.death_sound)
         mp.start()
 
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
