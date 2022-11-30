@@ -66,6 +66,12 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
             16 -> {
                 itemX = (0.60 * width).toInt(); itemY = (0.5 * height).toInt()
             }
+            17 -> {
+                itemX = 0; itemY = (0.5 * height).toInt()
+            }
+            18 -> {
+                itemX = width; itemY = (0.1 * height).toInt()
+            }
             else -> println("Error Torch Spawn Point")
         }
     }
@@ -301,9 +307,33 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
-                        (0.8 * width).toInt(),
+                        (0.267 * width).toInt(),
                         height,
                         (0.1 * width).toInt(),
+                        height,
+                        true
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.WATER,
+                        (0.267 * width).toInt(),
+                        height,
+                        (0.3 * width).toInt(),
+                        height,
+                        true
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.WATER,
+                        (0.267 * width).toInt(),
+                        height,
+                        (0.5 * width).toInt(),
+                        height,
+                        true
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.WATER,
+                        (0.267 * width).toInt(),
+                        height,
+                        (0.7 * width).toInt(),
                         height,
                         true
                     )
@@ -406,8 +436,57 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
                     false
                 ),
             )
-        )
-
+            )
+            17 -> obstaclesWithoutBitmaps.addAll(
+                listOf(
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
+                    ObstacleModel(
+                        ObstacleNames.TUBE,
+                        width,
+                        height,
+                        (0.2 * width).toInt(),
+                        (0.2 * height).toInt(),
+                        false
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.WATER,
+                        (0.2 * width).toInt(),
+                        height,
+                        (0.5 * width).toInt(),
+                        height,
+                        false
+                    )
+                )
+            )
+            18 -> obstaclesWithoutBitmaps.addAll(
+                listOf(
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
+                    ObstacleModel(
+                        ObstacleNames.TUBE,
+                        width,
+                        height,
+                        (0.2 * width).toInt(),
+                        (0.2 * height).toInt(),
+                        false
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.WATER,
+                        (0.13 * width).toInt(),
+                        height,
+                        (0.5 * width).toInt(),
+                        height,
+                        false
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.TERRAIN,
+                        (0.1 * width).toInt(),
+                        (0.1 * height).toInt(),
+                        (0.9 * width).toInt(),
+                        (0.5 * height).toInt(),
+                        false
+                    )
+                )
+            )
             else -> println("Failed")
         }
     }

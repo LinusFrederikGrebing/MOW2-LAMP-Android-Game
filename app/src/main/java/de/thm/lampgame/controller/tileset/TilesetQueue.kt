@@ -11,12 +11,14 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
         // initialize each possible tileset once
         for (i in 1..tilesetQueueModel.possibleTilesetCount) {
             tilesetQueueModel.tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
+            //TEST durch ersetzen der "i" Variable.
         }
 
         // the tilesetqueue consists of two tilesets, first and last. Initialize the first two.
         tilesetQueueModel.initQueue(
-            Tileset(0, context, 0, screenWidth, screenHeight),      // the tileset with the number 0 has no obstacles
-            Tileset((1..tilesetQueueModel.possibleTilesetCount).random(), context, screenWidth, screenWidth, screenHeight)
+            Tileset(0, context, 0, screenWidth, screenHeight),      // the tileset with the number 0 has no obstacles // TEST DURCH das ändern des 0
+            Tileset((1..tilesetQueueModel.possibleTilesetCount).random(), context, screenWidth, screenWidth, screenHeight) // TEST DURCH ändern der maximalen Anzahl
+        // 1. Tileset auf 0 lassne und das 2. Tileset auf "neue Tileset nummer" setzen.
         )
     }
 
