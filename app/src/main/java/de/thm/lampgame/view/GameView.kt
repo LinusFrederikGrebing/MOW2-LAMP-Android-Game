@@ -10,10 +10,10 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.view.MotionEvent
 import android.view.View
+import de.thm.lampgame.controller.ActiveItemController
 import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.activities.GameOverActivity
 import de.thm.lampgame.controller.activities.PauseActivity
-import de.thm.lampgame.view.item.ActiveItem
 import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.tileset.TilesetQueue
 import de.thm.lampgame.model.shop.Database
@@ -56,14 +56,14 @@ class GameView(context: Context) : View(context) {
     private var player = Player(context, screenHeight, screenWidth)
     private var pauseButton = PauseButton(context, screenWidth, screenHeight)
     private var drawTorch = DrawTorchCount(context, screenWidth, screenHeight)
-    private var activeItem = ActiveItem(context, screenWidth, screenHeight)
+    private var activeItemController = ActiveItemController(context, screenWidth, screenHeight)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         // redraw the game elements only when the game status is active
         if (gameStatus) {
             // every 300 iterations the game speed is increased
-            if (tilesetQueue.iterations % 300 == 0) multiplication++
+            if (tilesetQueue.tilesetQueueModel.iterations % 300 == 0) multiplication++
             // draw the background. There are three background layers. Each layer can have a different velocity, usually the backmost level is the slowest
             map.drawMap(canvas, 0.1 + multiplication*0.1, 0.2 + multiplication*0.2, 0.3 + multiplication*0.3)
 
@@ -76,8 +76,8 @@ class GameView(context: Context) : View(context) {
             pauseButton.draw(canvas)
 
             // draw the player and if an item is picked up, draw the item
-            player.checkItemDurAndSetItemEffect(canvas, paint, activeItem)
-            player.drawPlayer(canvas,1.0 + (multiplication * 0.01), tilesetQueue.collision)
+            activeItemController.checkItemDurAndSetItemEffect(canvas, paint, player)
+            player.drawPlayer(canvas,1.0 + (multiplication * 0.01), tilesetQueue.tilesetQueueModel.collision)
 
             // check if the game is lost yet
             if (gameover) { this.gameOver() }

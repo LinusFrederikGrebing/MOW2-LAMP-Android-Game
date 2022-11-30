@@ -36,7 +36,7 @@ object Database {
 
     // initialize a list of all maps, skins and music
     val listOfMaps = listOf(CemeteryLandscapeMap, MountainLandscapeMap, MarsLandscapeMap, ChristmasLandscapeMap)
-    val listOfSkins = listOf(LampSkin, BlueLampSkin, PurpleLampSkin, ChristmasLampSkin)
+    val listOfSkins = listOf(LampSkin, BlueLampSkin, ChristmasLampSkin, PurpleLampSkin)
     val listOfMusic = listOf(BackgroundMusicPasswordInfinity, BackgroundMusicIsland, BackgroundMusicChristmasIsHere)
 
     // the lists are filled based on the status

@@ -115,7 +115,6 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
                 putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
             }
-
             2 -> Database.listOfSkins.forEach {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
                 putSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
@@ -153,6 +152,14 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
         editor.putBoolean(identifier,value)
+        editor.apply()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
+        val editor = settings.edit()
+        editor.putInt("coins", PlayerModel.coins)
         editor.apply()
     }
 }

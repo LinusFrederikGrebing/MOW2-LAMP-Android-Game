@@ -15,31 +15,32 @@ class Tileset(
     startX: Int,
     screenWidth: Int,
     screenHeight: Int
-) : TilesetModel(startX, tileset, screenWidth, screenHeight) {
+) {
+    val tilesetModel = TilesetModel(startX, tileset, screenWidth, screenHeight)
     init {
         // first initializes all tileset variations and then adds the bitmaps
-        initTilesetWithItsObstacles()
+        tilesetModel.initTilesetWithItsObstacles()
         addBitmaps()
         initItems()
     }
 
    private fun initItems(){
-        dblPoints = DoublePoints(context, height, width, itemX, itemY)
-        bonusJump = BonusJump(context, height, width, itemX, itemY)
-        immortality = Immortality(context, height, width, itemX, itemY)
-        torch = Torch(context, height, width, itemX, itemY)
+       tilesetModel.dblPoints = DoublePoints(context, tilesetModel.height, tilesetModel.width, tilesetModel.itemX, tilesetModel.itemY)
+       tilesetModel.bonusJump = BonusJump(context, tilesetModel.height, tilesetModel.width, tilesetModel.itemX, tilesetModel.itemY)
+       tilesetModel.immortality = Immortality(context, tilesetModel.height, tilesetModel.width, tilesetModel.itemX, tilesetModel.itemY)
+       tilesetModel.torch = Torch(context, tilesetModel.height, tilesetModel.width, tilesetModel.itemX, tilesetModel.itemY)
    }
 
     // assigns the associated bitmap to each tileset. The tileset name distinguishes them.
     private fun addBitmaps() {
-        obstaclesWithoutBitmaps.forEach {
+        tilesetModel.obstaclesWithoutBitmaps.forEach {
             when (it.name) {
-                ObstacleNames.GROUND -> obstacles.add(BitmapGround(context, width, height))
-                ObstacleNames.TERRAIN  -> obstacles.add(BitmapTerrain(context, it.width, it.height, it.x, it.y))
-                ObstacleNames.TUBE  -> obstacles.add(BitmapTube(context, it.width, it.height, it.x, it.y))
-                ObstacleNames.WATER  -> obstacles.add(BitmapWater(context, it.width, it.height, it.x, it.y))
-                ObstacleNames.SAW  -> obstacles.add(BitmapSaw(context, it.width, it.height, it.x, it.y))
-                ObstacleNames.BOUNCINGSAW  -> obstacles.add(BitmapBouncingSaw(context, it.width, it.height, it.x, it.y))
+                ObstacleNames.GROUND -> tilesetModel.obstacles.add(BitmapGround(context, tilesetModel.width, tilesetModel.height))
+                ObstacleNames.TERRAIN  -> tilesetModel.obstacles.add(BitmapTerrain(context, it.width, it.height, it.x, it.y))
+                ObstacleNames.TUBE  -> tilesetModel.obstacles.add(BitmapTube(context, it.width, it.height, it.x, it.y))
+                ObstacleNames.WATER  -> tilesetModel.obstacles.add(BitmapWater(context, it.width, it.height, it.x, it.y))
+                ObstacleNames.SAW  -> tilesetModel.obstacles.add(BitmapSaw(context, it.width, it.height, it.x, it.y))
+                ObstacleNames.BOUNCINGSAW  -> tilesetModel.obstacles.add(BitmapBouncingSaw(context, it.width, it.height, it.x, it.y))
             }
         }
     }
