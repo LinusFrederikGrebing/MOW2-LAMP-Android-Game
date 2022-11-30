@@ -18,24 +18,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mainmenu)
         val playerCoins = findViewById<TextView>(R.id.playercoinstv)
-        playerCoins.text = PlayerModel.coins.toString()
-        val viewHighscore: TextView = findViewById<TextView>(R.id.highscore)
+
+        val viewHighscore: TextView = findViewById(R.id.highscore)
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val highScore = settings.getInt("HIGH_SCORE", 0)
         viewHighscore.text = getString(R.string.highScoreValues, highScore)
 
+
+        println("create" + settings.getInt("coins", PlayerModel.coins))
+        PlayerModel.coins = settings.getInt("coins", PlayerModel.coins)
+        println("create" + settings.getInt("coins", PlayerModel.coins))
+        playerCoins.text = PlayerModel.coins.toString()
         // check which value for the attributes buystatus and active is saved for the respective item in the shared preferences, if no value was saved, take the default value from the database
         Database.listOfMusic.forEach {
-            it.itemInfo.buyStatus = getSharedPref(it.itemInfo.name + "BuyStatus",it.itemInfo.buyStatus)
-            it.itemInfo.active = getSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
+            it.itemInfo.buyStatus = settings.getBoolean(it.itemInfo.name + "BuyStatus",it.itemInfo.buyStatus)
+            it.itemInfo.active = settings.getBoolean(it.itemInfo.name + "Active",it.itemInfo.active)
         }
         Database.listOfMaps.forEach {
-            it.itemInfo.buyStatus = getSharedPref(it.itemInfo.name + "BuyStatus",it.itemInfo.buyStatus)
-            it.itemInfo.active = getSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
+            it.itemInfo.buyStatus = settings.getBoolean(it.itemInfo.name + "BuyStatus",it.itemInfo.buyStatus)
+            it.itemInfo.active = settings.getBoolean(it.itemInfo.name + "Active",it.itemInfo.active)
         }
         Database.listOfSkins.forEach {
-            it.itemInfo.buyStatus = getSharedPref(it.itemInfo.name + "BuyStatus",it.itemInfo.buyStatus)
-            it.itemInfo.active = getSharedPref(it.itemInfo.name + "Active",it.itemInfo.active)
+            it.itemInfo.buyStatus = settings.getBoolean(it.itemInfo.name + "BuyStatus",it.itemInfo.buyStatus)
+            it.itemInfo.active = settings.getBoolean(it.itemInfo.name + "Active",it.itemInfo.active)
         }
     }
 
@@ -56,8 +61,11 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun getSharedPref(identifier: String, value: Boolean) : Boolean {
+    override fun onPause() {
+        super.onPause()
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
-        return settings.getBoolean(identifier,value)
+        val editor = settings.edit()
+        editor.putInt("coins", PlayerModel.coins)
+        editor.apply()
     }
 }

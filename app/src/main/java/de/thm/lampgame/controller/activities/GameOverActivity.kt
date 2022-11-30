@@ -1,6 +1,5 @@
 package de.thm.lampgame.controller.activities
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
@@ -9,10 +8,10 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
+import de.thm.lampgame.model.PlayerModel
 
 class GameOverActivity : AppCompatActivity() {
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
@@ -48,6 +47,13 @@ class GameOverActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
 
+    override fun onPause() {
+        super.onPause()
+        val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
+        val editor = settings.edit()
+        editor.putInt("coins", PlayerModel.coins)
+        editor.apply()
     }
 }

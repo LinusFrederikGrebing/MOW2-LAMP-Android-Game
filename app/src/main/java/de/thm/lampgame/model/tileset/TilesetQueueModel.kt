@@ -18,11 +18,11 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         queue.add(t1); queue.add(t2)
         // each tileset is the width of the device
         // the first tileset starts at x = 0
-        queue.first().obstacles.forEach {
+        queue.first().tilesetModel.obstacles.forEach {
             it.changeableX += 0
         }
         // the secound tileset starts at x = screenWidth
-        queue.last().obstacles.forEach {
+        queue.last().tilesetModel.obstacles.forEach {
             it.changeableX += screenWidth
         }
     }
@@ -34,13 +34,13 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
 
     fun insertTilesetifneedTo() {
         // check if the end of the first tileset has been reached
-        if (queue.first().startX <= -screenWidth) {
+        if (queue.first().tilesetModel.startX <= -screenWidth) {
             val rest =
-                -screenWidth - queue.first().startX // buffer to close gaps between added tilesets
+                -screenWidth - queue.first().tilesetModel.startX // buffer to close gaps between added tilesets
             val tileset = getpossibleTileset()
-            tileset.placeTileset(screenWidth - rest)    // add the new start point to the tileset and set its respective item spawn
+            tileset.tilesetModel.placeTileset(screenWidth - rest)    // add the new start point to the tileset and set its respective item spawn
             insertTileset((screenWidth - rest), tileset)
-            queue.last()
+            queue.last().tilesetModel
                 .randomItemSpawn(nextTilesethasTorch)  // spawn a Torch when it's time otherwise with a probability of 1 in 4 another item
             if (nextTilesethasTorch) nextTilesethasTorch = false
         }
@@ -48,17 +48,17 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
 
     fun insertTileset(startX: Int, t: Tileset) {
         // reset the coordinates of the old tileset
-        queue.first().obstacles.forEach {
+        queue.first().tilesetModel.obstacles.forEach {
             it.changeableX = it.x
         }
-        queue.first().hasItem = false
+        queue.first().tilesetModel.hasItem = false
         // remove the old tileset
         queue.removeFirst()
         // add the new tileset
         queue.add(t)
         // set the start position to the new value
-        queue.last().obstacles.forEach { it.changeableX += startX }
-        queue.last().itemX += startX
+        queue.last().tilesetModel.obstacles.forEach { it.changeableX += startX }
+        queue.last().tilesetModel.itemX += startX
     }
 
 
@@ -73,11 +73,11 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
 
     fun collisionCheck(player: Player) {
         collision = false  // sets collision to false by default
-        for (i in 0 until queue.first().obstacles.size) {
-            if (this.returnCollision(queue.first().obstacles[i], player)) collision = true
+        for (i in 0 until queue.first().tilesetModel.obstacles.size) {
+            if (this.returnCollision(queue.first().tilesetModel.obstacles[i], player)) collision = true
         }
-        for (i in 0 until queue.last().obstacles.size) {
-            if (this.returnCollision(queue.last().obstacles[i], player)) collision = true
+        for (i in 0 until queue.last().tilesetModel.obstacles.size) {
+            if (this.returnCollision(queue.last().tilesetModel.obstacles[i], player)) collision = true
         }
     }
 

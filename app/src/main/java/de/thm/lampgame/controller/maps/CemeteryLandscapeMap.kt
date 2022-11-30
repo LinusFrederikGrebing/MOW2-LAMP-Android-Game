@@ -33,10 +33,12 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         background = BitmapFactory.decodeResource(context.resources, R.drawable.moon)
         mitte = BitmapFactory.decodeResource(context.resources, R.drawable.background2)
         vorne = BitmapFactory.decodeResource(context.resources, R.drawable.background1)
+
         height = background.height.toFloat()
         width = background.width.toFloat()
         ratio = width / height
         newWidth = (ratio * screenHeight).toInt()
+
         background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
         mitte = Bitmap.createScaledBitmap(mitte, newWidth, screenHeight, false)
         vorne = Bitmap.createScaledBitmap(vorne, newWidth, screenHeight, false)

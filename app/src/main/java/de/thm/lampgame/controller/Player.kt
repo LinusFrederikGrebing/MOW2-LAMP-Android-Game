@@ -7,11 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.PlayerModel
-import de.thm.lampgame.model.item.BonusJumpModel
-import de.thm.lampgame.model.item.DoublePointsModel
-import de.thm.lampgame.model.item.ImmortalityModel
 import de.thm.lampgame.view.player.DrawFirebar
-import de.thm.lampgame.view.item.ActiveItem
 
 class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatActivity() {
     var playerModel = PlayerModel(screenWidth, screenHeight)
@@ -51,26 +47,9 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatA
         }
     }
 
-
     fun groundjumping(context: Context) {
         val mp: MediaPlayer = MediaPlayer.create(context, R.raw.mixkitplayerjumpinginavideogame2043)
         mp.start()
-    }
-
-    fun checkItemDurAndSetItemEffect(canvas: Canvas, paint: Paint, activeItem: ActiveItem) {
-        if (playerModel.dblPtsDur > 0) {
-            paint.color = Color.RED
-            playerModel.dblPtsDur--
-            activeItem.drawCircle(canvas, DoublePointsModel.doublepointsduration)
-        } else paint.color = Color.BLACK
-        if (playerModel.dblJumpDur > 0) {
-            playerModel.dblJumpDur--
-            activeItem.drawCircle(canvas, BonusJumpModel.bonusjumpduration)
-        } else playerModel.maxJump = 2
-        if (playerModel.immortalDur > 0) {
-            playerModel.immortalDur--
-            activeItem.drawCircle(canvas, ImmortalityModel.immortalduration)
-        } else playerModel.immortal = false
     }
 
     fun drawPlayer(canvas: Canvas, velocity: Double, collision: Boolean) {

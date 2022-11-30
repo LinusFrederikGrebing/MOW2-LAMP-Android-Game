@@ -23,11 +23,6 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var gravity = (screenHeight * 0.003).toInt()
     val maxVelocity = (screenHeight * 0.04).toInt()
 
-    // itemduration
-    var immortalDur = 0
-    var dblPtsDur = 0
-    var dblJumpDur = 0
-
 
     var jumpCount = 0    // counts the number of jumps without ground collision
     var maxJump = 2     // the maximum number of jumps is 2 by default, but can increase to 3 with an item
@@ -36,7 +31,7 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     var coinsPerRound = 0  // saves the torches collected per round
 
     companion object {
-        var coins = 500
+        var coins = 0
     }
 
     init {
