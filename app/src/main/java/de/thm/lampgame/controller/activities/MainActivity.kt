@@ -8,15 +8,19 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.helper.LocaleHelper
 import de.thm.lampgame.model.PlayerModel
 import de.thm.lampgame.model.shop.Database
 
 class MainActivity : AppCompatActivity() {
-
+    val localHelper = LocaleHelper()
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mainmenu)
+
+
+
         val playerCoins = findViewById<TextView>(R.id.playercoinstv)
 
         val viewHighscore: TextView = findViewById(R.id.highscore)
@@ -42,7 +46,15 @@ class MainActivity : AppCompatActivity() {
             it.itemInfo.buyStatus = settings.getBoolean((it.itemInfo.name).toString() + "BuyStatus",it.itemInfo.buyStatus)
             it.itemInfo.active = settings.getBoolean((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
         }
+        getPersistedLanguageData()
     }
+
+    fun getPersistedLanguageData() {
+        val settings = getSharedPreferences("NEW-DATA", Context.MODE_PRIVATE)
+        println((settings.getString("SELECTED_LANGUAGE", "en")))
+        localHelper.setLocale(this, (settings.getString("SELECTED_LANGUAGE", "en")))
+    }
+
 
     fun startGame(view: View?) {
         val intent = Intent(this, StartGameActivity::class.java)

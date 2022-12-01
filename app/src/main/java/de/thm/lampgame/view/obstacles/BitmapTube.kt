@@ -9,7 +9,7 @@ import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
 class BitmapTube(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    ObstacleModel(ObstacleNames.TUBE, (0.08 * width).toInt(),(0.47 * height).toInt(), x, y, false) {
+    ObstacleModel(ObstacleNames.TUBE, (0.08 * width).toInt(),(0.65 * height).toInt(), x, y, false) {
     companion object {
         var texture = R.drawable.obstaclestonewall
     }

@@ -1,5 +1,6 @@
 package de.thm.lampgame.controller.activities
 
+import android.content.Context
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -9,16 +10,24 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.helper.LocaleHelper
 import de.thm.lampgame.model.shop.Database
 
 
-class   SettingsActivity : AppCompatActivity() {
+class  SettingsActivity : AppCompatActivity() {
     private var mp: MediaPlayer? = null
     private var music: Int = 0
+    val localHelper = LocaleHelper()
+    var buttonClicked = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
+        getPersistedLanguageData()
+        musikVolumeTest()
+    }
 
+    fun musikVolumeTest(){
         //Lautstärkeregler
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
@@ -41,8 +50,11 @@ class   SettingsActivity : AppCompatActivity() {
                 music = it.song
             }
         }
-        mp = MediaPlayer.create(this, music)
-        buttonTest.setOnClickListener { mp?.start() }
+
+        buttonTest.setOnClickListener {
+            buttonClicked = if(!buttonClicked) {  mp = MediaPlayer.create(this, music); mp?.start() ; true
+            } else { mp?.stop() ; false }
+        }
 
     }
 
@@ -50,4 +62,30 @@ class   SettingsActivity : AppCompatActivity() {
         mp?.stop()
         finish()
     }
+
+    fun getPersistedLanguageData() {
+        val settings = getSharedPreferences("NEW-DATA", Context.MODE_PRIVATE)
+        println((settings.getString("SELECTED_LANGUAGE", "en")))
+        localHelper.setLocale(this, (settings.getString("SELECTED_LANGUAGE", "en")))
+    }
+
+    fun changeLang(view: View) {
+        saveNewLanguage("en")
+        localHelper.setLocale(this, "en")
+        this.recreate()
+    }
+
+    fun changeLangDe(view: View) {
+        saveNewLanguage("de")
+        localHelper.setLocale(this, "de")
+        this.recreate()
+    }
+
+    fun saveNewLanguage(language: String){
+        val settings = getSharedPreferences("NEW-DATA", Context.MODE_PRIVATE)
+        val editor = settings.edit()
+        editor.putString("SELECTED_LANGUAGE", language)
+        editor.apply()
+    }
+
 }

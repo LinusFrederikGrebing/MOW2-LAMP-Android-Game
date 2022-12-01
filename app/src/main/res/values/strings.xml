@@ -18,6 +18,7 @@
     <string name="price">Price</string>
     <string name="restart">Restart</string>
     <string name="settings">Settings</string>
+    <string name="language">Language :</string>
     <string name="shop" translatable="false">Shop</string>
     <string name="skinShop">Skin Shop</string>
     <string name="torches">Torches</string>
@@ -35,4 +36,6 @@
     <string name="blueLampSkin">Blue Lamp</string>
     <string name="purpleLampSkin">Purple Lamp</string>
     <string name="christmasLampSkin">Christmas Lamp</string>
+    <string name="german">German</string>
+    <string name="english">English</string>
 </resources>

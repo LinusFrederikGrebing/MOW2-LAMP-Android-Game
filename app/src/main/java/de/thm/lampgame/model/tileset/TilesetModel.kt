@@ -49,7 +49,7 @@ open class TilesetModel(var startX: Int, private var tilesetNr: Int, var width: 
                 itemX = (0.52 * width).toInt(); itemY = (0.45 * height).toInt()
             }
             11 -> {
-                itemX = (0.6 * width).toInt(); itemY = (0.6 * height).toInt()
+                itemX = (0.4 * width).toInt(); itemY = (0.3 * height).toInt()
             }
             12 -> {
                 itemX = (0.15 * width).toInt(); itemY = (0.6 * height).toInt()
@@ -368,7 +368,7 @@ open class TilesetModel(var startX: Int, private var tilesetNr: Int, var width: 
                         width,
                         height,
                         (0.45 * width).toInt(),
-                        (0.35 * height).toInt(),
+                        (0.4 * height).toInt(),
                         false
                     ),
                 )
