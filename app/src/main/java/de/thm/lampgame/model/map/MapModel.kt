@@ -2,44 +2,43 @@ package de.thm.lampgame.model.map
 
 class MapModel(val screenWidth: Int, val screenHeight: Int) {
     var newWidth = 0
-    var mapHinten = 0.0
-    var mapMitte = 0.0
-    var mapVorne = 0.0
+    var mapBack = 0.0
+    var mapMiddle = 0.0
+    var mapFront = 0.0
     var width = 0.0F
     var height = 0.0F
     var ratio = 0.0F
 
-
-    fun setNewMapHintenXCoords(speed: Double) {
-        mapHinten -= speed
-        if (mapHinten < -newWidth) {
-            mapHinten = 0.0
+    fun setNewMapBackXCoords(speed: Double) {
+        mapBack -= speed
+        if (mapBack <- newWidth) {
+            mapBack = 0.0
         }
     }
 
-    fun setNewMapMitteXCoords(speed: Double) {
-        mapMitte -= speed
-        if (mapMitte < -newWidth) {
-            mapMitte = 0.0
+    fun setNewMapMiddleXCoords(speed: Double) {
+        mapMiddle -= speed
+        if (mapMiddle <- newWidth) {
+            mapMiddle = 0.0
         }
     }
 
-    fun setNewMapVorneXCoords(speed: Double) {
-        mapVorne -= speed
-        if (mapVorne < -newWidth) {
-            mapVorne = 0.0
+    fun setNewMapFrontXCoords(speed: Double) {
+        mapFront -= speed
+        if (mapFront <- newWidth) {
+            mapFront = 0.0
         }
     }
 
-    fun needToRepeatPartHinten(): Boolean {
-        return mapHinten < screenWidth - newWidth
+    fun needToRepeatPartBack(): Boolean {
+        return mapBack < screenWidth - newWidth
     }
 
-    fun needToRepeatPartMitte(): Boolean {
-        return mapMitte < screenWidth - newWidth
+    fun needToRepeatPartMiddle(): Boolean {
+        return mapMiddle < screenWidth - newWidth
     }
 
-    fun needToRepeatPartVorne(): Boolean {
-        return mapVorne < screenWidth - newWidth
+    fun needToRepeatPartFront(): Boolean {
+        return mapFront < screenWidth - newWidth
     }
 }

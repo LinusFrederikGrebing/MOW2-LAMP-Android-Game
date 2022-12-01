@@ -11,7 +11,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     val possibleTilesetCount = 16      // possible variations of different tilesets
     var collision = false
     var iterations = 0
-    private var nextTilesethasTorch = false
+    private var nextTilesetHasTorch = false
 
     fun initQueue(t1: Tileset, t2: Tileset) {
         // add the first two tilesets to the queue
@@ -21,28 +21,28 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         queue.first().tilesetModel.obstacles.forEach {
             it.obstacleModel.changeableX += 0
         }
-        // the secound tileset starts at x = screenWidth
+        // the second tileset starts at x = screenWidth
         queue.last().tilesetModel.obstacles.forEach {
             it.obstacleModel.changeableX += screenWidth
         }
     }
 
     fun iterate() {
-        iterations++ // each time a tileset is redrawn counts up once
-        if (iterations % 300 == 0) nextTilesethasTorch = true
+        iterations++ // counts up once each time a tileset is redrawn
+        if (iterations % 300 == 0) nextTilesetHasTorch = true
     }
 
-    fun insertTilesetifneedTo() {
+    fun insertTilesetIfNeeded() {
         // check if the end of the first tileset has been reached
         if (queue.first().tilesetModel.startX <= -screenWidth) {
             val rest =
                 -screenWidth - queue.first().tilesetModel.startX // buffer to close gaps between added tilesets
-            val tileset = getpossibleTileset()
+            val tileset = getPossibleTileset()
             tileset.tilesetModel.placeTileset(screenWidth - rest)    // add the new start point to the tileset and set its respective item spawn
             insertTileset((screenWidth - rest), tileset)
             queue.last().tilesetModel
-                .randomItemSpawn(nextTilesethasTorch)  // spawn a Torch when it's time otherwise with a probability of 1 in 4 another item
-            if (nextTilesethasTorch) nextTilesethasTorch = false
+                .randomItemSpawn(nextTilesetHasTorch)  // spawn a Torch when it's time otherwise with a probability of 1 in 4 another item
+            if (nextTilesetHasTorch) nextTilesetHasTorch = false
         }
     }
 
@@ -61,9 +61,8 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         queue.last().tilesetModel.itemX += startX
     }
 
-
     // get a random new tileset as long as the new tileset is not already in the queue
-    private fun getpossibleTileset() : Tileset {
+    private fun getPossibleTileset() : Tileset {
         var random: Int
         do {
             random = (0 until possibleTilesetCount).random()
@@ -99,7 +98,6 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         }
         return false
     }
-
 
 // Three different ways to deal with collision
     // Case 1: Obstacle x is a death tileset

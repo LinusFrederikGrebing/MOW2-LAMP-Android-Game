@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller.item
+package de.thm.lampgame.controller
 
 import android.content.Context
 import android.graphics.Canvas
@@ -14,7 +14,7 @@ class ActiveItemController(context: Context, screenWidth : Int, screenHeight: In
     private var bonusJumpItem = ActiveItem(context, screenWidth, screenHeight)
     private var Immortality = ActiveItem(context, screenWidth, screenHeight)
 
-    fun checkItemDurAndSetItemEffect(canvas: Canvas, paint: Paint, player: Player) {
+    fun checkItemDurationAndSetItemEffect(canvas: Canvas, paint: Paint, player: Player) {
         if (DoublePointsModel.dblPtsDur > 0) {
             paint.color = Color.RED
             DoublePointsModel.dblPtsDur--

@@ -6,7 +6,7 @@ import de.thm.lampgame.controller.item.ActiveItem
 
 class DoublePointsModel(screenHeight: Int, screenWidth: Int, height : Int, width: Int, x: Int, y: Int) : ItemModel(screenHeight, screenWidth, height, width, x,y) {
     companion object{
-        const val doublepointsduration = 250
+        const val doublePointsDuration = 250
         var dblPtsDur = 0
     }
 
@@ -14,7 +14,7 @@ class DoublePointsModel(screenHeight: Int, screenWidth: Int, height : Int, width
         ActiveItem.texture = R.drawable.doublepoints_icon
         ActiveItem.speedMultiplier = 360F
         p.playerModel.hasDblPts = true
-        dblPtsDur = doublepointsduration
+        dblPtsDur = doublePointsDuration
     }
 
 }

@@ -10,26 +10,24 @@ import de.thm.lampgame.model.shop.Database
 
 class StartGameActivity : AppCompatActivity() {
     private var gameView: GameView? = null
-    private var mp: MediaPlayer? = null
+    private var mediaPlayer: MediaPlayer? = null
     private var length : Int? = 0
-    private var music: Int = 0
+    private var activeMusic: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         gameView = GameView(this)
         setContentView(gameView)
         Database.listOfMusic.forEach {
-            if (it.itemInfo.active) {
-                music = it.song
-            }
+            if (it.itemInfo.active) { activeMusic = it.song }
         }
-        mp = MediaPlayer.create(this, music)
+        mediaPlayer = MediaPlayer.create(this, activeMusic)
     }
 
     override fun onPause() {
         super.onPause()
-            mp?.pause()
-            length = mp?.currentPosition
+            mediaPlayer?.pause()
+            length = mediaPlayer?.currentPosition
         if (gameView!!.gameStatus) {
             val intent = Intent(this, PauseActivity::class.java)
             startActivity(intent)
@@ -38,13 +36,13 @@ class StartGameActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        length?.let { mp?.seekTo(it) }
-        mp?.start()
+        length?.let { mediaPlayer?.seekTo(it) }
+        mediaPlayer?.start()
         gameView!!.gameStatus = true
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mp?.stop()
+        mediaPlayer?.stop()
     }
 }

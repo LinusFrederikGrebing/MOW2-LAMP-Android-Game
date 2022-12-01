@@ -8,6 +8,7 @@ import de.thm.lampgame.R
 import de.thm.lampgame.controller.obstacles.*
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.MapInterface
+import de.thm.lampgame.view.obstacles.*
 
 class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
@@ -19,28 +20,28 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
     }
 
     init {
-        BitmapGround.texture = R.drawable.bodengras
-        BitmapWater.texture = R.drawable.wasser
-        BitmapTube.texture = R.drawable.bottomtube
-        BitmapTerrain.texture = R.drawable.plattform2
-        BitmapSaw.texture = R.drawable.saw_water
-        BitmapBouncingSaw.texture = R.drawable.bouncingsaw_water
-        background = BitmapFactory.decodeResource(context.resources, R.drawable.berghinten)
-        mitte = BitmapFactory.decodeResource(context.resources, R.drawable.bergemitte)
-        vorne = BitmapFactory.decodeResource(context.resources, R.drawable.bergevorne)
-        mapController.height = background.height.toFloat()
-        mapController.width = background.width.toFloat()
-        mapController.ratio = mapController.width / mapController.height
-        mapController.newWidth = (mapController.ratio * screenHeight).toInt()
-        background = Bitmap.createScaledBitmap(background, mapController.newWidth, screenHeight, false)
-        mitte = Bitmap.createScaledBitmap(mitte, mapController.newWidth, screenHeight, false)
-        vorne = Bitmap.createScaledBitmap(vorne, mapController.newWidth, screenHeight, false)
+        BitmapGround.texture = R.drawable.mountain_landscape_ground
+        BitmapTerrain.texture = R.drawable.mountain_landscape_platform
+        BitmapWater.texture = R.drawable.mountain_landscape_water
+        BitmapTube.texture = R.drawable.mountain_landscape_wall
+        BitmapSaw.texture = R.drawable.water_projectile
+        BitmapBouncingSaw.texture = R.drawable.water_bouncing_projectile
+        background = BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_background)
+        middle = BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_middle)
+        front = BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_front)
+        height = background.height.toFloat()
+        width = background.width.toFloat()
+        ratio = width / height
+        newWidth = (ratio * screenHeight).toInt()
+        background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
+        middle = Bitmap.createScaledBitmap(middle, newWidth, screenHeight, false)
+        front = Bitmap.createScaledBitmap(front, newWidth, screenHeight, false)
     }
 
-    override fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double) {
-        drawMapHinten(canvas, speedHinten, background)
-        drawMapMitte(canvas, speedMitte, mitte)
-        drawMapVorne(canvas, speedVorne, vorne)
+    override fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double) {
+        drawMapBack(canvas, speedBack, background)
+        drawMapMiddle(canvas, speedMiddle, middle)
+        drawMapFront(canvas, speedFront, front)
     }
 }
 

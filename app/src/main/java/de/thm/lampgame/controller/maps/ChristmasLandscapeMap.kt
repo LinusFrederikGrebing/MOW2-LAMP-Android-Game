@@ -24,28 +24,28 @@ class ChristmasLandscapeMap(context: Context, screenHeight: Int, screenWidth: In
     }
 
     init {
-        BitmapGround.texture = R.drawable.bodengrasschnee
+        BitmapGround.texture = R.drawable.christmas_ground
         BitmapTerrain.texture = R.drawable.cemetery_platform
-        BitmapWater.texture = R.drawable.waternew
+        BitmapWater.texture = R.drawable.water_ground
         BitmapTube.texture = R.drawable.obstaclestonewall
-        BitmapSaw.texture = R.drawable.saw_water
-        BitmapBouncingSaw.texture = R.drawable.bouncingsaw_water
-        background = BitmapFactory.decodeResource(context.resources, R.drawable.hinten_christmas)
-        mitte = BitmapFactory.decodeResource(context.resources, R.drawable.mittechristmas)
-        vorne = BitmapFactory.decodeResource(context.resources, R.drawable.vorne_christmas)
+        BitmapSaw.texture = R.drawable.water_projectile
+        BitmapBouncingSaw.texture = R.drawable.water_bouncing_projectile
+        background = BitmapFactory.decodeResource(context.resources, R.drawable.christmas_background)
+        middle = BitmapFactory.decodeResource(context.resources, R.drawable.christmas_middle)
+        front = BitmapFactory.decodeResource(context.resources, R.drawable.christmas_front)
         mapController.height = background.height.toFloat()
         mapController.width = background.width.toFloat()
         mapController.ratio = mapController.width / mapController.height
         mapController.newWidth = (mapController.ratio * screenHeight).toInt()
-        background = Bitmap.createScaledBitmap(background, mapController.newWidth, screenHeight, false)
-        mitte = Bitmap.createScaledBitmap(mitte, mapController.newWidth, screenHeight, false)
-        vorne = Bitmap.createScaledBitmap(vorne, mapController.newWidth, screenHeight, false)
+        background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
+        middle = Bitmap.createScaledBitmap(middle, newWidth, screenHeight, false)
+        front = Bitmap.createScaledBitmap(front, newWidth, screenHeight, false)
     }
 
-    override fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double) {
-        drawMapHinten(canvas, speedHinten, background)
-        drawMapMitte(canvas, speedMitte, mitte)
-        drawMapVorne(canvas, speedVorne, vorne)
+    override fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double) {
+        drawMapBack(canvas, speedBack, background)
+        drawMapMiddle(canvas, speedMiddle, middle)
+        drawMapFront(canvas, speedFront, front)
     }
 }
 

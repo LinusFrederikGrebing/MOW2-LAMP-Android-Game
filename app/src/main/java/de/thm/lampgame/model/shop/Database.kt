@@ -2,7 +2,7 @@ package de.thm.lampgame.model.shop
 
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.skins.BlueLampSkin
-import de.thm.lampgame.controller.skins.LampSkin
+import de.thm.lampgame.controller.skins.OriginalLampSkin
 import de.thm.lampgame.controller.skins.PurpleLampSkin
 import de.thm.lampgame.controller.maps.CemeteryLandscapeMap
 import de.thm.lampgame.controller.maps.ChristmasLandscapeMap
@@ -20,7 +20,7 @@ object Database {
     const val UNLOCKED_TYPE = 1
     const val ACTIVE_TYPE = 2
 
-    // init all ShopItemInfos
+    // init all ShopItemInfo's
     var musicChristmasInfo = ShopItemInfo(R.string.christmasIsHereMusic, false, false, "50",  R.drawable.shop_music_christmas)
     var musicPasswordInfinityInfo = ShopItemInfo(R.string.passwordInfinityMusic,true,true, "0", R.drawable.shop_music_passwordinfinity)
     var musicIslandInfo = ShopItemInfo(R.string.islandMusic,false,false, "30", R.drawable.shop_music_island)
@@ -37,7 +37,7 @@ object Database {
 
     // initialize a list of all maps, skins and music
     val listOfMaps = listOf(CemeteryLandscapeMap, MountainLandscapeMap, MarsLandscapeMap, ChristmasLandscapeMap)
-    val listOfSkins = listOf(LampSkin, BlueLampSkin, ChristmasLampSkin, PurpleLampSkin)
+    val listOfSkins = listOf(OriginalLampSkin, BlueLampSkin, ChristmasLampSkin, PurpleLampSkin)
     val listOfMusic = listOf(BackgroundMusicPasswordInfinity, BackgroundMusicIsland, BackgroundMusicChristmasIsHere)
 
     // the lists are filled based on the status
@@ -48,7 +48,6 @@ object Database {
             else if (it.itemInfo.active) itemList.add(DataItem.Active(it.itemInfo.icon, it.itemInfo.name))
             else itemList.add(DataItem.Unlocked(it.itemInfo.icon, it.itemInfo.name))
         }
-
         return itemList
     }
 
@@ -59,7 +58,6 @@ object Database {
             else if (it.itemInfo.active) itemList.add(DataItem.Active(it.itemInfo.icon, it.itemInfo.name))
                  else itemList.add(DataItem.Unlocked(it.itemInfo.icon, it.itemInfo.name))
         }
-
         return itemList
     }
 
@@ -70,12 +68,6 @@ object Database {
             else if (it.itemInfo.active) itemList.add(DataItem.Active(it.itemInfo.icon, it.itemInfo.name))
             else itemList.add(DataItem.Unlocked(it.itemInfo.icon, it.itemInfo.name))
         }
-
         return itemList
     }
 }
-
-
-
-
-

@@ -19,7 +19,7 @@ class GameOverActivity : AppCompatActivity() {
         val viewPoints: TextView = findViewById(R.id.points)
         val viewHighscore: TextView = findViewById(R.id.highscore)
 
-        viewPoints.text = getString(R.string.pointsValues, points)
+        viewPoints.text = getString(R.string.pointsValuesDecimal, points)
         val mp: MediaPlayer = MediaPlayer.create(this, R.raw.death_sound)
         mp.start()
 
@@ -34,24 +34,23 @@ class GameOverActivity : AppCompatActivity() {
         } else {
             viewHighscore.text = getString(R.string.highScoreValues, highScore)
         }
-
     }
 
     fun restart(view: View) {
-        setloadingScreen()
+        setLoadingScreen()
         val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()
     }
-    fun setloadingScreen(){
+    private fun setLoadingScreen(){
         setContentView(R.layout.loadingscreenlayout)
         val tippView: TextView = findViewById(R.id.textViewTipp)
         val text =  when ((1 .. 4).random()) {
-            1 -> getString(R.string.tipp1)
-            2 -> getString(R.string.tipp2)
-            3 -> getString(R.string.tipp3)
-            4 -> getString(R.string.tipp4)
-            else -> { getString(R.string.tippnotfound) }
+            1 -> getString(R.string.tip1)
+            2 -> getString(R.string.tip2)
+            3 -> getString(R.string.tip3)
+            4 -> getString(R.string.tip4)
+            else -> { getString(R.string.tipNotFound) }
         }
         tippView.text = text
     }
@@ -66,7 +65,7 @@ class GameOverActivity : AppCompatActivity() {
         super.onPause()
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
-        editor.putInt("coins", PlayerModel.coins)
+        editor.putInt("coins", PlayerModel.torches)
         editor.apply()
     }
 }

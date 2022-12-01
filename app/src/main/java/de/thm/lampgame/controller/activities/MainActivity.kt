@@ -12,7 +12,7 @@ import de.thm.lampgame.model.PlayerModel
 import de.thm.lampgame.model.shop.Database
 
 class MainActivity : AppCompatActivity() {
-    val localHelper = LocaleHelper()
+    private val localHelper = LocaleHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,19 +24,18 @@ class MainActivity : AppCompatActivity() {
         getAndSetPersistedLanguageData()
     }
 
-    fun getAndSetPersistedCoinsAndHighscoreData(){
+    private fun getAndSetPersistedCoinsAndHighscoreData(){
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
-        val playerCoins = findViewById<TextView>(R.id.playercoinstv)
+        val playerTorches = findViewById<TextView>(R.id.playertorchestv)
         val viewHighscore: TextView = findViewById(R.id.highscore)
-
         val highScore = settings.getInt("HIGH_SCORE", 0)
-        PlayerModel.coins = settings.getInt("coins", PlayerModel.coins)
+        PlayerModel.torches = settings.getInt("coins", PlayerModel.torches)
 
         viewHighscore.text = getString(R.string.highScoreValues, highScore)
-        playerCoins.text = PlayerModel.coins.toString()
+        playerTorches.text = PlayerModel.torches.toString()
     }
 
-    fun getAndSetPersistedShopItemData() {
+    private fun getAndSetPersistedShopItemData() {
         // check which value for the attributes buystatus and active is saved for the respective item in the shared preferences, if no value was saved, take the default value from the database
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         Database.listOfMusic.forEach {
@@ -53,27 +52,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun getAndSetPersistedLanguageData() {
+    private fun getAndSetPersistedLanguageData() {
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         println((settings.getString("SELECTED_LANGUAGE", "en")))
         localHelper.setLocale(this, (settings.getString("SELECTED_LANGUAGE", "en")))
     }
 
-    fun setloadingScreen(){
+    private fun setLoadingScreen(){
         setContentView(R.layout.loadingscreenlayout)
-        val tippView: TextView = findViewById(R.id.textViewTipp)
+        val tipView: TextView = findViewById(R.id.textViewTipp)
         val text =  when ((1 .. 4).random()) {
-            1 -> getString(R.string.tipp1)
-            2 -> getString(R.string.tipp2)
-            3 -> getString(R.string.tipp3)
-            4 -> getString(R.string.tipp4)
-           else -> { getString(R.string.tippnotfound) }
+            1 -> getString(R.string.tip1)
+            2 -> getString(R.string.tip2)
+            3 -> getString(R.string.tip3)
+            4 -> getString(R.string.tip4)
+           else -> { getString(R.string.tipNotFound) }
         }
-        tippView.text = text
+        tipView.text = text
     }
 
     fun startGame(view: View?) {
-        setloadingScreen()
+        setLoadingScreen()
         val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()
@@ -94,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
-        editor.putInt("coins", PlayerModel.coins)
+        editor.putInt("coins", PlayerModel.torches)
         editor.apply()
     }
 }

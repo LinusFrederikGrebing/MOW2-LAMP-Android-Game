@@ -40,11 +40,11 @@ class PauseActivity : AppCompatActivity() {
         setContentView(R.layout.loadingscreenlayout)
         val tippView: TextView = findViewById(R.id.textViewTipp)
         val text = when ((1 .. 4).random()) {
-            1 -> getString(R.string.tipp1)
-            2 -> getString(R.string.tipp2)
-            3 -> getString(R.string.tipp3)
-            4 -> getString(R.string.tipp4)
-            else -> { getString(R.string.tippnotfound) }
+            1 -> getString(R.string.tip1)
+            2 -> getString(R.string.tip2)
+            3 -> getString(R.string.tip3)
+            4 -> getString(R.string.tip4)
+            else -> { getString(R.string.tipNotFound) }
         }
         tippView.text = text
     }

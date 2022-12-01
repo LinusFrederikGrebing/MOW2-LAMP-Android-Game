@@ -35,9 +35,8 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatA
             char[5]?.let { Bitmap.createScaledBitmap(it, playerModel.charWidth, playerModel.charHeight, true) }
     }
 
-
     private fun drawChar(canvas: Canvas) {
-        rechar[playerModel.calkCharframe()]?.let {
+        rechar[playerModel.calkCharFrame()]?.let {
             canvas.drawBitmap(
                 it,
                 playerModel.charX.toFloat(),
@@ -47,8 +46,8 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatA
         }
     }
 
-    fun groundjumping(context: Context) {
-        val mp: MediaPlayer = MediaPlayer.create(context, R.raw.mixkitplayerjumpinginavideogame2043)
+    fun groundJumping(context: Context) {
+        val mp: MediaPlayer = MediaPlayer.create(context, R.raw.jump_sound)
         mp.start()
     }
 

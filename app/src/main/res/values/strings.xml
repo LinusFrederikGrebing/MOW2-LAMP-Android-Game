@@ -13,7 +13,7 @@
     <string name="pause" translatable="false">Pause</string>
     <string name="playButton">Start Game</string>
     <string name="points">Points:</string>
-    <string name="pointsValues">Points: %1$d</string>
+    <string name="pointsValuesDecimal">Points: %1$d</string>
     <string name="previewPicture">Preview Picture</string>
     <string name="price">Price</string>
     <string name="restart">Restart</string>
@@ -38,11 +38,10 @@
     <string name="christmasLampSkin">Christmas Lamp</string>
     <string name="german">German</string>
     <string name="english">English</string>
-    <string name="tipp1">Tip: Pick up torches before you run out of fire!</string>
-    <string name="tipp2">Tip: You can also jump twice!</string>
-    <string name="tipp3">Tip: jump carefully!</string>
-    <string name="tipp4">Tip: Water is particularly dangerous. Stay away!</string>
-    <string name="tippnotfound">No tip found!</string>
-
-
+    <string name="tip1">Tip: Pick up torches before you run out of fire!</string>
+    <string name="tip2">Tip: You can also jump twice!</string>
+    <string name="tip3">Tip: Jump carefully!</string>
+    <string name="tip4">Tip: Water is particularly dangerous. Stay away!</string>
+    <string name="tipNotFound">No tip found!</string>
+    <string name="pointsValuesString">Points: %1$s</string>
 </resources>

@@ -21,13 +21,11 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     private val adapterList by lazy { ItemsAdapter(this) }
     var shop: Int = 1
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         ItemsAdapter.itemList = Database.getItemsMaps()
         inflateList()
-        setPlayerCoinsTextView()
+        setPlayerTorchesTextView()
     }
 
     private fun inflateList() {
@@ -45,28 +43,27 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
-
     }
 
     fun shopMaps(view: View) {
         shop = 1
         ItemsAdapter.itemList = Database.getItemsMaps()
         inflateList()
-        setPlayerCoinsTextView()
+        setPlayerTorchesTextView()
     }
 
     fun shopSkins(view: View) {
         shop = 2
         ItemsAdapter.itemList = Database.getItemsSkins()
         inflateList()
-        setPlayerCoinsTextView()
+        setPlayerTorchesTextView()
     }
 
     fun shopMusic(view: View) {
         shop = 3
         ItemsAdapter.itemList = Database.getItemsMusic()
         inflateList()
-        setPlayerCoinsTextView()
+        setPlayerTorchesTextView()
     }
 
     override fun onItemClick(position: Int) {
@@ -77,30 +74,29 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         } else {
             activeCase(ItemsAdapter.itemList[position] as DataItem.Active)
         }
-
-        setPlayerCoinsTextView()
+        setPlayerTorchesTextView()
     }
 
     private fun lockedCase(locked: DataItem.Locked) {
 
         when (shop) {
             1 -> Database.listOfMaps.forEach {
-                if (locked.text == it.itemInfo.name && PlayerModel.coins >= it.itemInfo.price.toInt()) {
-                    PlayerModel.coins -= it.itemInfo.price.toInt()
+                if (locked.text == it.itemInfo.name && PlayerModel.torches >= it.itemInfo.price.toInt()) {
+                    PlayerModel.torches -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
                     putSharedPref((it.itemInfo.name).toString() + "BuyStatus", it.itemInfo.buyStatus)
                 }
             }
             2 -> Database.listOfSkins.forEach {
-                if (locked.text == it.itemInfo.name && PlayerModel.coins >= it.itemInfo.price.toInt()) {
-                    PlayerModel.coins -= it.itemInfo.price.toInt()
+                if (locked.text == it.itemInfo.name && PlayerModel.torches >= it.itemInfo.price.toInt()) {
+                    PlayerModel.torches -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
                     putSharedPref((it.itemInfo.name).toString() + "BuyStatus", it.itemInfo.buyStatus)
                 }
             }
             3 -> Database.listOfMusic.forEach {
-                if (locked.text == it.itemInfo.name && PlayerModel.coins >= it.itemInfo.price.toInt()) {
-                    PlayerModel.coins -= it.itemInfo.price.toInt()
+                if (locked.text == it.itemInfo.name && PlayerModel.torches >= it.itemInfo.price.toInt()) {
+                    PlayerModel.torches -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
                     putSharedPref((it.itemInfo.name).toString() + "BuyStatus", it.itemInfo.buyStatus)
                 }
@@ -128,7 +124,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     private fun activeCase(active: DataItem.Active) {
-        toast(getString(R.string.alreadyActive, "${active.text}"))
+        createToast(getString(R.string.alreadyActive, "${active.text}"))
     }
 
     private fun getRightList(){
@@ -136,16 +132,16 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         inflateList()
     }
 
-    private fun toast(text: String){
+    private fun createToast(text: String){
         Toast.makeText(
             this, text,
             Toast.LENGTH_LONG
         ).show()
     }
 
-    private fun setPlayerCoinsTextView() {
-        val playerCoins = findViewById<TextView>(R.id.playercoinstv)
-        playerCoins.text = PlayerModel.coins.toString()
+    private fun setPlayerTorchesTextView() {
+        val playerTorches = findViewById<TextView>(R.id.playertorchestv)
+        playerTorches.text = PlayerModel.torches.toString()
     }
 
     private fun putSharedPref(identifier: String, value: Boolean) {
@@ -159,7 +155,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         super.onPause()
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
-        editor.putInt("coins", PlayerModel.coins)
+        editor.putInt("coins", PlayerModel.torches)
         editor.apply()
     }
 }

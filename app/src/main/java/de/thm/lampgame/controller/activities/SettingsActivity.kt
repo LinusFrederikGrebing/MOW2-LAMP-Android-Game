@@ -15,20 +15,21 @@ import de.thm.lampgame.model.shop.Database
 
 
 class  SettingsActivity : AppCompatActivity() {
-    private var mp: MediaPlayer? = null
+    private var mediaPlayer: MediaPlayer? = null
     private var music: Int = 0
-    val localHelper = LocaleHelper()
-    var buttonClicked = false
+    private val localHelper = LocaleHelper()
+    private var buttonClicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
         getPersistedLanguageData()
-        musikVolumeTest()
+        musicVolume()
+        volumeTest()
     }
 
-    fun musikVolumeTest(){
-        //Lautstärkeregler
+    fun musicVolume() {
+        //volume slider
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
         val curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
@@ -42,8 +43,10 @@ class  SettingsActivity : AppCompatActivity() {
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, arg1, 0)
             }
         })
+    }
 
-        //Testmusik zum Testen der Lautstärke
+    private fun volumeTest() {
+        //button plays music to test volume
         val buttonTest: Button = findViewById<View>(R.id.playButton) as Button
         Database.listOfMusic.forEach {
             if (it.itemInfo.active) {
@@ -52,18 +55,18 @@ class  SettingsActivity : AppCompatActivity() {
         }
 
         buttonTest.setOnClickListener {
-            buttonClicked = if(!buttonClicked) {  mp = MediaPlayer.create(this, music); mp?.start() ; true
-            } else { mp?.stop() ; false }
+            buttonClicked = if(!buttonClicked) {
+                mediaPlayer = MediaPlayer.create(this, music); mediaPlayer?.start(); true
+            } else { mediaPlayer?.stop(); false }
         }
-
     }
 
     fun mainMenu(view: View) {
-        mp?.stop()
+        mediaPlayer?.stop()
         finish()
     }
 
-    fun getPersistedLanguageData() {
+    private fun getPersistedLanguageData() {
         val settings = getSharedPreferences("NEW-DATA", Context.MODE_PRIVATE)
         println((settings.getString("SELECTED_LANGUAGE", "en")))
         localHelper.setLocale(this, (settings.getString("SELECTED_LANGUAGE", "en")))
@@ -81,7 +84,7 @@ class  SettingsActivity : AppCompatActivity() {
         this.recreate()
     }
 
-    fun saveNewLanguage(language: String){
+    private fun saveNewLanguage(language: String){
         val settings = getSharedPreferences("NEW-DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
         editor.putString("SELECTED_LANGUAGE", language)

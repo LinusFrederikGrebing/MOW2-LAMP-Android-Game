@@ -1,6 +1,6 @@
 package de.thm.lampgame.model.obstacles
 
-class ObstacleModel (
+open class ObstacleModel (
     val name: ObstacleNames,
     val width: Int,
     val height: Int,
