@@ -5,41 +5,41 @@ import android.graphics.Canvas
 import de.thm.lampgame.model.map.MapModel
 
 abstract class MapController(screenWidth: Int, screenHeight: Int) : MapModel(screenWidth, screenHeight) {
-    lateinit var mitte: Bitmap
+    lateinit var middle: Bitmap
     lateinit var background: Bitmap
-    lateinit var vorne: Bitmap
+    lateinit var front: Bitmap
 
-    fun drawMapHinten(canvas: Canvas, speed: Double, bmp: Bitmap) {
-        setNewMapHintenXCoords(speed)
-        canvas.drawBitmap(bmp, mapHinten.toFloat(), 0f, null)
-        if (needToRepeatPartHinten()) {
-            canvas.drawBitmap(bmp, (mapHinten + newWidth).toFloat(), 0f, null)
+    fun drawMapBack(canvas: Canvas, speed: Double, bmp: Bitmap) {
+        setNewMapBackXCoords(speed)
+        canvas.drawBitmap(bmp, mapBack.toFloat(), 0f, null)
+        if (needToRepeatPartBack()) {
+            canvas.drawBitmap(bmp, (mapBack + newWidth).toFloat(), 0f, null)
         }
     }
 
-    fun drawMapHintenMars(canvas: Canvas, speed: Double, bmp: Bitmap) {
-        setNewMapHintenXCoords(speed)
+    fun drawMapBackMars(canvas: Canvas, speed: Double, bmp: Bitmap) {
+        setNewMapBackXCoords(speed)
         canvas.drawBitmap(bmp, -700f, 0f, null)
-        if (needToRepeatPartHinten()) {
-            canvas.drawBitmap(bmp, (mapHinten + newWidth).toFloat(), 0f, null)
+        if (needToRepeatPartBack()) {
+            canvas.drawBitmap(bmp, (mapBack + newWidth).toFloat(), 0f, null)
         }
     }
 
-    fun drawMapVorne(canvas: Canvas, speed: Double, bmp: Bitmap) {
-        setNewMapVorneXCoords(speed)
-        canvas.drawBitmap(bmp, mapVorne.toFloat(), 0f, null)
-        if (needToRepeatPartVorne()) {
-            canvas.drawBitmap(bmp, (mapVorne + newWidth).toFloat(), 0f, null)
+    fun drawMapFront(canvas: Canvas, speed: Double, bmp: Bitmap) {
+        setNewMapFrontXCoords(speed)
+        canvas.drawBitmap(bmp, mapFront.toFloat(), 0f, null)
+        if (needToRepeatPartFront()) {
+            canvas.drawBitmap(bmp, (mapFront + newWidth).toFloat(), 0f, null)
         }
     }
 
-    fun drawMapMitte(canvas: Canvas, speed: Double, bmp: Bitmap) {
-        setNewMapMitteXCoords(speed)
-        canvas.drawBitmap(bmp, mapMitte.toFloat(), 0f, null)
-        if (needToRepeatPartMitte()) {
-            canvas.drawBitmap(bmp, (mapMitte + newWidth).toFloat(), 0f, null)
+    fun drawMapMiddle(canvas: Canvas, speed: Double, bmp: Bitmap) {
+        setNewMapMiddleXCoords(speed)
+        canvas.drawBitmap(bmp, mapMiddle.toFloat(), 0f, null)
+        if (needToRepeatPartMiddle()) {
+            canvas.drawBitmap(bmp, (mapMiddle + newWidth).toFloat(), 0f, null)
         }
     }
 
-    abstract fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double)
+    abstract fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double)
 }

@@ -10,7 +10,7 @@ import de.thm.lampgame.model.obstacles.ObstacleNames
 
 class BitmapBouncingSaw(context: Context, width: Int, height: Int, x: Int, y: Int) :
     ObstacleModel(ObstacleNames.BOUNCINGSAW, (0.05 * width).toInt(), (0.1 * height).toInt(), x, y, true) {
-    private var falling = false
+    private var isFalling = false
 
     companion object {
         var texture = R.drawable.saw
@@ -24,10 +24,10 @@ class BitmapBouncingSaw(context: Context, width: Int, height: Int, x: Int, y: In
     override fun draw(canvas: Any, velocityX: Int, velocityY: Int) {
         changeableX -= velocityX
 
-        if(changeableY >= y/4 && !falling) changeableY -= velocityY
-        else falling = true
-        if(changeableY <= y && falling) changeableY += velocityY
-        else falling = false
+        if(changeableY >= y/4 && !isFalling) changeableY -= velocityY
+        else isFalling = true
+        if(changeableY <= y && isFalling) changeableY += velocityY
+        else isFalling = false
 
         (canvas as Canvas).drawBitmap(bmp as Bitmap, changeableX.toFloat(), changeableY.toFloat(), null)
     }

@@ -78,17 +78,17 @@ open class TilesetModel(var startX: Int, private var tilesetNr: Int, var width: 
 
     fun randomItemSpawn(isTorch: Boolean) {
         if (isTorch) {
-            item = torch ; item.x = itemX ; item.y = itemY ; hasItem = true ; item.pickedUp = false
+            item = torch ; item.x = itemX ; item.y = itemY ; hasItem = true ; item.isPickedUp = false
 
         } else when ((1..6).random()) {
             1 -> {
-                item = dblPoints ; item.x = itemX; item.y = itemY; hasItem = true ; item.pickedUp = false
+                item = dblPoints ; item.x = itemX; item.y = itemY; hasItem = true ; item.isPickedUp = false
             }
             2 -> {
-                item = bonusJump ; item.x = itemX; item.y = itemY; hasItem = true ; item.pickedUp = false
+                item = bonusJump ; item.x = itemX; item.y = itemY; hasItem = true ; item.isPickedUp = false
             }
             3 -> {
-                item = immortality ; item.x = itemX; item.y = itemY; hasItem = true ; item.pickedUp = false
+                item = immortality ; item.x = itemX; item.y = itemY; hasItem = true ; item.isPickedUp = false
             }
             else -> hasItem = false
         }

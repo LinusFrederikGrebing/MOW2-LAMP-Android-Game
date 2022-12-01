@@ -38,5 +38,4 @@ class DrawFirebar(screenWidth: Int, screenHeight: Int) {
         canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
         canvas.drawRect(firebarRect, firebarPaint)
     }
-
 }

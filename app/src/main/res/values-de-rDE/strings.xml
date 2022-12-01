@@ -16,22 +16,22 @@
     <string name="volumeTest">Lautstärke testen</string>
     <string name="torchNumber">Fackelanzahl</string>
     <string name="lock">Schloss</string>
-    <string name="pointsValues">Punkte: %1$d</string>
+    <string name="pointsValuesDecimal">Punkte: %1$d</string>
     <string name="mountainMap">Landschaft</string>
     <string name="cemeteryMap">Friedhof</string>
     <string name="christmasMap">Weihnachten</string>
     <string name="lampSkin">Lampe</string>
     <string name="blueLampSkin">Blaue Lampe</string>
     <string name="purpleLampSkin">Lila Lampe</string>
-    <string name="christmasLampSkin">Weihnachts Lampe</string>
+    <string name="christmasLampSkin">Weihnachts-Lampe</string>
     <string name="alreadyActive">%1$s ist bereits aktiv!</string>
     <string name="language">Sprache :</string>
     <string name="german">Deutsch</string>
     <string name="english">Englisch</string>
-    <string name="tipp1">Tipp: Hebe Fackeln auf, bevor Dir das Feuer ausgeht!</string>
-    <string name="tipp2">Tipp: Du kannst auch zweimal springen!</string>
-    <string name="tipp3">Tipp: Springe bedacht!</string>
-    <string name="tipp4">Tipp: Wasser ist besonders gefährlich. Halte dich stehts fern!</string>
-    <string name="tippnotfound">Kein Tipp gefunden!</string>
-
+    <string name="tip1">Tipp: Hebe Fackeln auf, bevor dir das Feuer ausgeht!</string>
+    <string name="tip2">Tipp: Du kannst auch zweimal springen!</string>
+    <string name="tip3">Tipp: Springe mit Bedacht!</string>
+    <string name="tip4">Tipp: Wasser ist besonders gefährlich. Halte dich stehts fern!</string>
+    <string name="tipNotFound">Kein Tipp gefunden!</string>
+    <string name="pointsValuesString">Punkte: %1$s</string>
 </resources>

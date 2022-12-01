@@ -16,10 +16,10 @@ class BlueLampSkin(context: Context) : SkinController() {
     }
 
     init {
-        char[0] = BitmapFactory.decodeResource(context.resources, R.drawable.legs_leftskin2)
-        char[1] = BitmapFactory.decodeResource(context.resources, R.drawable.innenskin2)
-        char[2] = BitmapFactory.decodeResource(context.resources, R.drawable.legs_rightskin2)
-        char[3] = BitmapFactory.decodeResource(context.resources, R.drawable.aussenskin2)
-        char[4] = BitmapFactory.decodeResource(context.resources, R.drawable.shared_char_jump_fireskin2)
+        char[0] = BitmapFactory.decodeResource(context.resources, R.drawable.blue_lamp_legs_left)
+        char[1] = BitmapFactory.decodeResource(context.resources, R.drawable.blue_lamp_inside)
+        char[2] = BitmapFactory.decodeResource(context.resources, R.drawable.blue_lamp_legs_right)
+        char[3] = BitmapFactory.decodeResource(context.resources, R.drawable.blue_lamp_outside)
+        char[4] = BitmapFactory.decodeResource(context.resources, R.drawable.blue_lamp_jump)
     }
 }

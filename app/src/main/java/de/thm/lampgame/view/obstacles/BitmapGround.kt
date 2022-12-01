@@ -17,7 +17,7 @@ class BitmapGround(context: Context, width: Int, height: Int) : ObstacleModel (
     false
 ) {
     companion object {
-        var texture = R.drawable.tilesground
+        var texture = R.drawable.cemetery_ground
     }
 
     init {

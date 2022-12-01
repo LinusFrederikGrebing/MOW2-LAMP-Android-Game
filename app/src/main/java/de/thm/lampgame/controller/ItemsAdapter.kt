@@ -109,7 +109,7 @@ class ItemsAdapter(private val listener: OnItemClickListener) : RecyclerView.Ada
     }
 }
 
-//TODO auskommentierten Code entfernen, wenn nicht mehr benötigt
+//TODO Delete Code if not required anymore
 /*
 import android.view.LayoutInflater
 import android.view.View

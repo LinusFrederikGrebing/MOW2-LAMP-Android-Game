@@ -25,28 +25,28 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     }
 
     init {
-        BitmapGround.texture = R.drawable.groundmars
-        BitmapTerrain.texture = R.drawable.platformmars
-        BitmapWater.texture = R.drawable.waternew
-        BitmapTube.texture = R.drawable.marswall2
-        BitmapSaw.texture = R.drawable.saw_water
-        BitmapBouncingSaw.texture = R.drawable.bouncingsaw_water
-        background = BitmapFactory.decodeResource(context.resources, R.drawable.letzerbackgroundmars)
-        mitte = BitmapFactory.decodeResource(context.resources, R.drawable.mittebackgroundmars)
-        vorne = BitmapFactory.decodeResource(context.resources, R.drawable.vornebackgroundmars)
+        BitmapGround.texture = R.drawable.mars_ground
+        BitmapTerrain.texture = R.drawable.mars_platform
+        BitmapWater.texture = R.drawable.water_ground
+        BitmapTube.texture = R.drawable.mars_wall
+        BitmapSaw.texture = R.drawable.water_projectile
+        BitmapBouncingSaw.texture = R.drawable.water_bouncing_projectile
+        background = BitmapFactory.decodeResource(context.resources, R.drawable.mars_background)
+        middle = BitmapFactory.decodeResource(context.resources, R.drawable.mars_middle)
+        front = BitmapFactory.decodeResource(context.resources, R.drawable.mars_front)
         height = background.height.toFloat()
         width = background.width.toFloat()
         ratio = width / height
         newWidth = (ratio * screenHeight).toInt()
         background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
-        mitte = Bitmap.createScaledBitmap(mitte, newWidth, screenHeight, false)
-        vorne = Bitmap.createScaledBitmap(vorne, newWidth, screenHeight, false)
+        middle = Bitmap.createScaledBitmap(middle, newWidth, screenHeight, false)
+        front = Bitmap.createScaledBitmap(front, newWidth, screenHeight, false)
     }
 
-    override fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double) {
-        drawMapHintenMars(canvas, speedHinten, background)
-        drawMapMitte(canvas, speedMitte, mitte)
-        drawMapVorne(canvas, speedVorne, vorne)
+    override fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double) {
+        drawMapBackMars(canvas, speedBack, background)
+        drawMapMiddle(canvas, speedMiddle, middle)
+        drawMapFront(canvas, speedFront, front)
     }
 }
 

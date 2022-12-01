@@ -10,12 +10,14 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.view.MotionEvent
 import android.view.View
+import de.thm.lampgame.R
 import de.thm.lampgame.controller.ActiveItemController
 import de.thm.lampgame.controller.*
 import de.thm.lampgame.controller.activities.GameOverActivity
 import de.thm.lampgame.controller.activities.PauseActivity
 import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.tileset.TilesetQueue
+import de.thm.lampgame.model.UiText
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.view.player.DrawTorchCount
 import kotlin.math.roundToInt
@@ -30,20 +32,20 @@ class GameView(context: Context) : View(context) {
     private lateinit var map: MapController
     var gameStatus = true
 
-    // the game should also be able to get the gameover status from other classes, such as the TilesetQueueModel
+    // the game should also be able to get the game-over status from other classes, such as the TilesetQueueModel
     companion object {
         var gameover = false
     }
 
     init {
-        // if the game starts or is restarted, the gameover status must be set to false
+        // if the game starts or is restarted, the game-over status must be set to false
         gameover = false
 
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
         paint.color = Color.BLACK
-        paint.textSize = screenHeight*0.07.toFloat()
+        paint.textSize = screenHeight * 0.07.toFloat()
 
         // the active status is used to check which map needs to be loaded
         Database.listOfMaps.forEach { if (it.itemInfo.active) map = it.createMap(context,screenHeight,screenWidth) }
@@ -58,25 +60,30 @@ class GameView(context: Context) : View(context) {
     private var drawTorch = DrawTorchCount(context, screenWidth, screenHeight)
     private var activeItemController = ActiveItemController(context, screenWidth, screenHeight)
 
+
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
         // redraw the game elements only when the game status is active
         if (gameStatus) {
             // every 300 iterations the game speed is increased
             if (tilesetQueue.tilesetQueueModel.iterations % 300 == 0) multiplication++
-            // draw the background. There are three background layers. Each layer can have a different velocity, usually the backmost level is the slowest
+
+            // draw the background. There are three background layers. Each layer can have a different velocity, usually the back-most level is the slowest
             map.drawMap(canvas, 0.1 + multiplication*0.1, 0.2 + multiplication*0.2, 0.3 + multiplication*0.3)
 
             // draw tileset with obstacles
             tilesetQueue.drawTilesetsAndCheckCollisions(canvas, (screenWidth/200) + multiplication, player)
 
             // draw canvas-elements
-            canvas.drawText("Punkte: ${player.playerModel.points.roundToInt()}",  (screenWidth*0.01).toFloat(), (screenHeight*0.075).toFloat(), paint)
-            drawTorch.draw(canvas, player.playerModel.coinsPerRound)
+            val text = UiText.StringResource(R.string.pointsValuesString, "${player.playerModel.points.roundToInt()}")
+            canvas.drawText(text.asString(context), (screenWidth*0.01).toFloat(), (screenHeight * 0.075).toFloat(), paint)
+            drawTorch.draw(canvas, player.playerModel.torchesPerRound)
             pauseButton.draw(canvas)
 
             // draw the player and if an item is picked up, draw the item
-            activeItemController.checkItemDurAndSetItemEffect(canvas, paint, player)
+            activeItemController.checkItemDurationAndSetItemEffect(canvas, paint, player)
             player.drawPlayer(canvas,1.0 + (multiplication * 0.01), tilesetQueue.tilesetQueueModel.collision)
 
             // check if the game is lost yet
@@ -106,7 +113,7 @@ class GameView(context: Context) : View(context) {
                     context.startActivity(intent)
                     gameStatus = false
                 } else if (player.playerModel.jumpCount < player.playerModel.maxJump) {
-                    player.groundjumping(context)
+                    player.groundJumping(context)
                     player.playerModel.sprung()
                 }
                 return true

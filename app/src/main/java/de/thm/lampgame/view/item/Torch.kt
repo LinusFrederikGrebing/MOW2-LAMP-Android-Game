@@ -14,7 +14,7 @@ class Torch(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: In
     }
 
      override fun draw(canvas: Any, velocity: Int) {
-         if (!pickedUp) {
+         if (!isPickedUp) {
             x -= velocity
              (canvas as Canvas).drawBitmap(bmp as Bitmap, x.toFloat(), y.toFloat(), null)
         }

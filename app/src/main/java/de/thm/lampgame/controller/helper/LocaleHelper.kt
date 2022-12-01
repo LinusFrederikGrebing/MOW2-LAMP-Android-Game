@@ -16,9 +16,8 @@ class LocaleHelper : AppCompatActivity() {
         val locale = language?.let { Locale(it) }
         val resources: Resources = context.resources
         val configuration: Configuration = resources.configuration
-
+        //TODO maybe fix/update deprecated stuff
         configuration.locale = locale
-
         resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 }

@@ -11,7 +11,7 @@ class Immortality(context: Context, screenHeight: Int, screenWidth: Int, x: Int,
         bmp = Bitmap.createScaledBitmap(unsizedBmp as Bitmap, width, height, true) }
 
     override fun draw(canvas: Any, velocity: Int) {
-        if (!pickedUp) {
+        if (!isPickedUp) {
             x -= velocity
             (canvas as Canvas).drawBitmap(bmp as Bitmap, x.toFloat(), y.toFloat(), null)
         }

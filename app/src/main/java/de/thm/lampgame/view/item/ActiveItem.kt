@@ -7,10 +7,9 @@ import de.thm.lampgame.R
 class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: Int) {
     private var unsizedBmp: Bitmap? = null
     var bmp: Bitmap? = null
-    private var activetexture = 0
+    private var activeTexture = 0
     private val backgroundPaint: Paint = Paint()
     private val myPaint: Paint = Paint()
-
     private var speed: Float = 0.0F
 
     companion object {
@@ -20,16 +19,16 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
 
     init {
         backgroundPaint.color = Color.WHITE
-        activetexture = texture
+        activeTexture = texture
         unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
         bmp = Bitmap.createScaledBitmap(unsizedBmp!!, screenHeight / 9, screenHeight / 9, true)
     }
 
     fun draw(canvas: Canvas) {
-        if (texture != activetexture) {
+        if (texture != activeTexture) {
             unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
             bmp = Bitmap.createScaledBitmap(unsizedBmp!!, screenHeight / 9, screenHeight / 9, true)
-            activetexture = texture
+            activeTexture = texture
         }
         canvas.drawBitmap(
             bmp!!,
@@ -67,5 +66,4 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
         )
         draw(canvas)
     }
-
 }

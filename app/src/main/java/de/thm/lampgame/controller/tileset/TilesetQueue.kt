@@ -13,12 +13,13 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
             tilesetQueueModel.tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
             //TEST durch ersetzen der "i" Variable.
         }
+        //TODO: Delete TEST comments
 
         // the tilesetqueue consists of two tilesets, first and last. Initialize the first two.
         tilesetQueueModel.initQueue(
             Tileset(0, context, 0, screenWidth, screenHeight),      // the tileset with the number 0 has no obstacles // TEST DURCH das ändern des 0
             Tileset((1..tilesetQueueModel.possibleTilesetCount).random(), context, screenWidth, screenWidth, screenHeight) // TEST DURCH ändern der maximalen Anzahl
-        // 1. Tileset auf 0 lassne und das 2. Tileset auf "neue Tileset nummer" setzen.
+        // the first tileset stays at 0 and the second tileset is set to the "new tileset number".
         )
     }
 
@@ -48,7 +49,7 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
         tilesetQueueModel.collisionCheck(player)
 
         // checks if a new tileset needs to be added to the queue and if so, adds it
-        tilesetQueueModel.insertTilesetifneedTo()
+        tilesetQueueModel.insertTilesetIfNeeded()
     }
 
 }

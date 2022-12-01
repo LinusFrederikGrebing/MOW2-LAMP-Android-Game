@@ -8,12 +8,11 @@ import de.thm.lampgame.R
 import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
-
 class BitmapTerrain(context: Context, width: Int, height: Int, x: Int, y: Int) :
     ObstacleModel(ObstacleNames.TERRAIN, width, height, x, y, false) {
 
     companion object {
-        var texture = R.drawable.tilesground
+        var texture = R.drawable.cemetery_ground
     }
 
     init {

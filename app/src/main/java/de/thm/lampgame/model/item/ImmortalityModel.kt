@@ -7,13 +7,13 @@ import de.thm.lampgame.view.item.ActiveItem
 abstract class ImmortalityModel(screenHeight: Int, screenWidth: Int, height : Int, width: Int, x: Int, y: Int) : ItemModel(screenHeight, screenWidth, height, width, x,y) {
 
     companion object{
-        const val immortalduration = 100
-        var immortalDur = 0
+        const val immortalityDuration = 100
+        var immortalityDur = 0
     }
     override var activateEffect: (Player) -> Unit = {p ->
-        ActiveItem.texture = R.drawable.immortality
+        ActiveItem.texture = R.drawable.immortality_icon
         ActiveItem.speedMultiplier = 360F
         p.playerModel.immortal = true
-        immortalDur = immortalduration
+        immortalityDur = immortalityDuration
     }
 }

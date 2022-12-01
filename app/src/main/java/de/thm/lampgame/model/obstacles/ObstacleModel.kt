@@ -12,6 +12,5 @@ open class ObstacleModel (
     var changeableY = y
     lateinit var unsizedBmp: Any
     lateinit var bmp: Any
-
     open fun draw(canvas: Any, velocityX: Int, velocityY: Int) {}
 }

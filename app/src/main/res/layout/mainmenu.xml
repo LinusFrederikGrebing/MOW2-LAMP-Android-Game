@@ -26,7 +26,7 @@
             app:srcCompat="@drawable/torch" />
 
         <TextView
-            android:id="@+id/playercoinstv"
+            android:id="@+id/playertorchestv"
             android:layout_width="83dp"
             android:layout_height="wrap_content"
             android:text="@string/torchNumber"

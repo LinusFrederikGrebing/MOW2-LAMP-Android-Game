@@ -13,7 +13,7 @@ class PauseButton(context: Context, val screenWidth: Int, val screenHeight: Int)
     private var hitbox: Rect
 
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources,  R.drawable.pausebutton)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources,  R.drawable.pausebutton_icon)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, screenHeight / 10, screenHeight / 10, true)
         hitbox = Rect(screenWidth - screenWidth / 16,screenWidth / 16 - screenHeight / 10,(screenWidth - screenWidth / 16)+(screenHeight / 10),(screenWidth / 16 - screenHeight / 10)+(screenHeight / 10))
     }
