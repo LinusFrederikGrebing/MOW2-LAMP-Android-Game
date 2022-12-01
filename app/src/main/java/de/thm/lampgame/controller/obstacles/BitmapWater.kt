@@ -11,8 +11,8 @@ import de.thm.lampgame.model.obstacles.ObstacleNames
 class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) : ObstacleController()  {
     override var obstacleModel = ObstacleModel(ObstacleNames.WATER, width,(0.13 * height).toInt(), x, (0.87 * y).toInt(), true)
         companion object {
-        var texture = R.drawable.waternew
-    }
+            var texture = R.drawable.water_ground
+        }
 
     init {
         obstacleModel.unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)

@@ -34,13 +34,13 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
         background = BitmapFactory.decodeResource(context.resources, R.drawable.mars_background)
         middle = BitmapFactory.decodeResource(context.resources, R.drawable.mars_middle)
         front = BitmapFactory.decodeResource(context.resources, R.drawable.mars_front)
-        height = background.height.toFloat()
-        width = background.width.toFloat()
-        ratio = width / height
-        newWidth = (ratio * screenHeight).toInt()
-        background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
-        middle = Bitmap.createScaledBitmap(middle, newWidth, screenHeight, false)
-        front = Bitmap.createScaledBitmap(front, newWidth, screenHeight, false)
+        mapModel.height = background.height.toFloat()
+        mapModel.width = background.width.toFloat()
+        mapModel.ratio = mapModel.width / mapModel.height
+        mapModel.newWidth = (mapModel.ratio * screenHeight).toInt()
+        background = Bitmap.createScaledBitmap(background, mapModel.newWidth, screenHeight, false)
+        middle = Bitmap.createScaledBitmap(middle, mapModel.newWidth, screenHeight, false)
+        front = Bitmap.createScaledBitmap(front, mapModel.newWidth, screenHeight, false)
     }
 
     override fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double) {

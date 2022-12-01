@@ -11,7 +11,7 @@ import de.thm.lampgame.model.obstacles.ObstacleNames
 class BitmapBouncingSaw(context: Context, width: Int, height: Int, x: Int, y: Int) : ObstacleController(){
     override var obstacleModel = ObstacleModel(ObstacleNames.BOUNCINGSAW, (0.05 * width).toInt(), (0.1 * height).toInt(), x, y, true)
     companion object {
-        var texture = R.drawable.saw
+        var texture = R.drawable.water_bouncing_projectile
     }
 
     init {

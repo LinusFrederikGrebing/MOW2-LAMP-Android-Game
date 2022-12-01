@@ -34,14 +34,14 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         middle = BitmapFactory.decodeResource(context.resources, R.drawable.cemetery_middle)
         front = BitmapFactory.decodeResource(context.resources, R.drawable.cemetery_front)
 
-        mapController.height = background.height.toFloat()
-        mapController.width = background.width.toFloat()
-        mapController.ratio = mapController.width / mapController.height
-        mapController.newWidth = (mapController.ratio * screenHeight).toInt()
+        mapModel.height = background.height.toFloat()
+        mapModel.width = background.width.toFloat()
+        mapModel.ratio = mapModel.width / mapModel.height
+        mapModel.newWidth = (mapModel.ratio * screenHeight).toInt()
 
-        background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
-        middle = Bitmap.createScaledBitmap(middle, newWidth, screenHeight, false)
-        front = Bitmap.createScaledBitmap(front, newWidth, screenHeight, false)
+        background = Bitmap.createScaledBitmap(background, mapModel.newWidth, screenHeight, false)
+        middle = Bitmap.createScaledBitmap(middle, mapModel.newWidth, screenHeight, false)
+        front = Bitmap.createScaledBitmap(front, mapModel.newWidth, screenHeight, false)
     }
 
     override fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double) {

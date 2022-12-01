@@ -1,6 +1,5 @@
 package de.thm.lampgame.model.tileset
 
-import de.thm.lampgame.model.item.ItemModel
 import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 import de.thm.lampgame.controller.item.ItemController
@@ -80,17 +79,17 @@ open class TilesetModel(var startX: Int, private var tilesetNr: Int, var width: 
 
     fun randomItemSpawn(isTorch: Boolean) {
         if (isTorch) {
-            item = torch ; item.x = itemX ; item.y = itemY ; hasItem = true ; item.isPickedUp = false
+            item = torch ; item.itemModel.x = itemX ; item.itemModel.y = itemY ; hasItem = true ; item.itemModel.isPickedUp = false
 
         } else when ((1..6).random()) {
             1 -> {
-                item = dblPoints ; item.x = itemX; item.y = itemY; hasItem = true ; item.isPickedUp = false
+                item = dblPoints ; item.itemModel.x = itemX; item.itemModel.y = itemY; hasItem = true ; item.itemModel.isPickedUp = false
             }
             2 -> {
-                item = bonusJump ; item.x = itemX; item.y = itemY; hasItem = true ; item.isPickedUp = false
+                item = bonusJump ; item.itemModel.x = itemX; item.itemModel.y = itemY; hasItem = true ; item.itemModel.isPickedUp = false
             }
             3 -> {
-                item = immortality ; item.x = itemX; item.y = itemY; hasItem = true ; item.isPickedUp = false
+                item = immortality ; item.itemModel.x = itemX; item.itemModel.y = itemY; hasItem = true ; item.itemModel.isPickedUp = false
             }
             else -> hasItem = false
         }

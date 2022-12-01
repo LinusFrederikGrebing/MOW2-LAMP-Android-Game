@@ -13,13 +13,13 @@ open class ObstacleModel (
     lateinit var unsizedBmp: Any
     lateinit var bmp: Any
 
-    var falling = false
+    var isFalling = false
 
     fun changeYCoords(velocityY : Int){
-        if(changeableY >= y/4 && !falling) changeableY -= velocityY
-        else falling = true
-        if(changeableY <= y && falling) changeableY += velocityY
-        else falling = false
+        if(changeableY >= y/4 && !isFalling) changeableY -= velocityY
+        else isFalling = true
+        if(changeableY <= y && isFalling) changeableY += velocityY
+        else isFalling = false
     }
 
 }

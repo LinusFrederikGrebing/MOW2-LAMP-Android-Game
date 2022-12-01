@@ -13,7 +13,7 @@ class DoublePoints(context: Context, screenHeight: Int, screenWidth: Int, x: Int
         itemModel.bmp = Bitmap.createScaledBitmap(itemModel.unsizedBmp as Bitmap, itemModel.width, itemModel.height, true) }
 
     override fun draw(canvas: Any, velocity: Int) {
-        if (!itemModel.pickedUp) {
+        if (!itemModel.isPickedUp) {
             itemModel.x -= velocity
             (canvas as Canvas).drawBitmap(itemModel.bmp as Bitmap, itemModel.x.toFloat(), itemModel.y.toFloat(), null)
         }

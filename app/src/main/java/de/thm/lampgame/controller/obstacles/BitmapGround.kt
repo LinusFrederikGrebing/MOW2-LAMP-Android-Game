@@ -11,7 +11,7 @@ import de.thm.lampgame.model.obstacles.ObstacleNames
 class BitmapGround(context: Context, width: Int, height: Int) : ObstacleController() {
     override var obstacleModel =  ObstacleModel (ObstacleNames.GROUND, width, (0.13 * height).toInt(), 0, (0.87 * height).toInt(), false)
     companion object {
-        var texture = R.drawable.tilesground
+        var texture = R.drawable.cemetery_ground
     }
 
     init {

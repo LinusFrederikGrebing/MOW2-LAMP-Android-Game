@@ -5,40 +5,40 @@ import android.graphics.Canvas
 import de.thm.lampgame.model.map.MapModel
 
 abstract class MapController(screenWidth: Int, screenHeight: Int)  {
-    var mapController = MapModel(screenWidth, screenHeight)
+    var mapModel = MapModel(screenWidth, screenHeight)
     lateinit var middle: Bitmap
     lateinit var background: Bitmap
-    lateinit var vorne: Bitmap
+    lateinit var front: Bitmap
 
     fun drawMapBack(canvas: Canvas, speed: Double, bmp: Bitmap) {
-        setNewMapBackXCoords(speed)
-        canvas.drawBitmap(bmp, mapBack.toFloat(), 0f, null)
-        if (needToRepeatPartBack()) {
-            canvas.drawBitmap(bmp, (mapBack + newWidth).toFloat(), 0f, null)
+        mapModel.setNewMapBackXCoords(speed)
+        canvas.drawBitmap(bmp, mapModel.mapBack.toFloat(), 0f, null)
+        if (mapModel.needToRepeatPartBack()) {
+            canvas.drawBitmap(bmp, (mapModel.mapBack + mapModel.newWidth).toFloat(), 0f, null)
         }
     }
 
     fun drawMapBackMars(canvas: Canvas, speed: Double, bmp: Bitmap) {
-        setNewMapBackXCoords(speed)
+        mapModel.setNewMapBackXCoords(speed)
         canvas.drawBitmap(bmp, -700f, 0f, null)
-        if (needToRepeatPartBack()) {
-            canvas.drawBitmap(bmp, (mapBack + newWidth).toFloat(), 0f, null)
+        if (mapModel.needToRepeatPartBack()) {
+            canvas.drawBitmap(bmp, (mapModel.mapBack + mapModel.newWidth).toFloat(), 0f, null)
         }
     }
 
     fun drawMapFront(canvas: Canvas, speed: Double, bmp: Bitmap) {
-        setNewMapFrontXCoords(speed)
-        canvas.drawBitmap(bmp, mapFront.toFloat(), 0f, null)
-        if (needToRepeatPartFront()) {
-            canvas.drawBitmap(bmp, (mapFront + newWidth).toFloat(), 0f, null)
+        mapModel.setNewMapFrontXCoords(speed)
+        canvas.drawBitmap(bmp, mapModel.mapFront.toFloat(), 0f, null)
+        if (mapModel.needToRepeatPartFront()) {
+            canvas.drawBitmap(bmp, (mapModel.mapFront + mapModel.newWidth).toFloat(), 0f, null)
         }
     }
 
     fun drawMapMiddle(canvas: Canvas, speed: Double, bmp: Bitmap) {
-        setNewMapMiddleXCoords(speed)
-        canvas.drawBitmap(bmp, mapMiddle.toFloat(), 0f, null)
-        if (needToRepeatPartMiddle()) {
-            canvas.drawBitmap(bmp, (mapMiddle + newWidth).toFloat(), 0f, null)
+        mapModel.setNewMapMiddleXCoords(speed)
+        canvas.drawBitmap(bmp, mapModel.mapMiddle.toFloat(), 0f, null)
+        if (mapModel.needToRepeatPartMiddle()) {
+            canvas.drawBitmap(bmp, (mapModel.mapMiddle + mapModel.newWidth).toFloat(), 0f, null)
         }
     }
 
