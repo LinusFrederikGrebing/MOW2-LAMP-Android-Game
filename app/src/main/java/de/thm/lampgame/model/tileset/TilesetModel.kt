@@ -1,17 +1,18 @@
 package de.thm.lampgame.model.tileset
 
-import de.thm.lampgame.model.item.ItemModel
 import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
+import de.thm.lampgame.controller.item.ItemController
+import de.thm.lampgame.controller.obstacles.ObstacleController
 
 open class TilesetModel(var startX: Int, private var tilesetNr: Int, var width: Int, var height: Int) {
-    var obstacles: MutableList<ObstacleModel> = mutableListOf()
+    var obstacles: MutableList<ObstacleController> = mutableListOf()
     var obstaclesWithoutBitmaps: MutableList<ObstacleModel> = mutableListOf()
-    lateinit var item: ItemModel
-    lateinit var dblPoints : ItemModel
-    lateinit var bonusJump : ItemModel
-    lateinit var immortality : ItemModel
-    lateinit var torch : ItemModel
+    lateinit var item: ItemController
+    lateinit var dblPoints : ItemController
+    lateinit var bonusJump : ItemController
+    lateinit var immortality : ItemController
+    lateinit var torch : ItemController
     var hasItem = false
     var itemX = 0
     var itemY = 0
@@ -78,17 +79,17 @@ open class TilesetModel(var startX: Int, private var tilesetNr: Int, var width: 
 
     fun randomItemSpawn(isTorch: Boolean) {
         if (isTorch) {
-            item = torch ; item.x = itemX ; item.y = itemY ; hasItem = true ; item.pickedUp = false
+            item = torch ; item.itemModel.x = itemX ; item.itemModel.y = itemY ; hasItem = true ; item.itemModel.pickedUp = false
 
         } else when ((1..6).random()) {
             1 -> {
-                item = dblPoints ; item.x = itemX; item.y = itemY; hasItem = true ; item.pickedUp = false
+                item = dblPoints ; item.itemModel.x = itemX; item.itemModel.y = itemY; hasItem = true ; item.itemModel.pickedUp = false
             }
             2 -> {
-                item = bonusJump ; item.x = itemX; item.y = itemY; hasItem = true ; item.pickedUp = false
+                item = bonusJump ; item.itemModel.x = itemX; item.itemModel.y = itemY; hasItem = true ; item.itemModel.pickedUp = false
             }
             3 -> {
-                item = immortality ; item.x = itemX; item.y = itemY; hasItem = true ; item.pickedUp = false
+                item = immortality ; item.itemModel.x = itemX; item.itemModel.y = itemY; hasItem = true ; item.itemModel.pickedUp = false
             }
             else -> hasItem = false
         }

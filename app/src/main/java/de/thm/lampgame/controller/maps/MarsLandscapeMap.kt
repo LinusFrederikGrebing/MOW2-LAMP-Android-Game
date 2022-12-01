@@ -7,12 +7,12 @@ import android.graphics.Canvas
 import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.MapInterface
-import de.thm.lampgame.view.obstacles.BitmapGround
-import de.thm.lampgame.view.obstacles.BitmapTerrain
-import de.thm.lampgame.view.obstacles.BitmapTube
-import de.thm.lampgame.view.obstacles.BitmapWater
-import de.thm.lampgame.view.obstacles.BitmapSaw
-import de.thm.lampgame.view.obstacles.BitmapBouncingSaw
+import de.thm.lampgame.controller.obstacles.BitmapGround
+import de.thm.lampgame.controller.obstacles.BitmapTerrain
+import de.thm.lampgame.controller.obstacles.BitmapTube
+import de.thm.lampgame.controller.obstacles.BitmapWater
+import de.thm.lampgame.controller.obstacles.BitmapSaw
+import de.thm.lampgame.controller.obstacles.BitmapBouncingSaw
 
 class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
@@ -34,13 +34,13 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
         background = BitmapFactory.decodeResource(context.resources, R.drawable.letzerbackgroundmars)
         mitte = BitmapFactory.decodeResource(context.resources, R.drawable.mittebackgroundmars)
         vorne = BitmapFactory.decodeResource(context.resources, R.drawable.vornebackgroundmars)
-        height = background.height.toFloat()
-        width = background.width.toFloat()
-        ratio = width / height
-        newWidth = (ratio * screenHeight).toInt()
-        background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
-        mitte = Bitmap.createScaledBitmap(mitte, newWidth, screenHeight, false)
-        vorne = Bitmap.createScaledBitmap(vorne, newWidth, screenHeight, false)
+        mapController.height = background.height.toFloat()
+        mapController.width = background.width.toFloat()
+        mapController.ratio = mapController.width / mapController.height
+        mapController.newWidth = (mapController.ratio * screenHeight).toInt()
+        background = Bitmap.createScaledBitmap(background, mapController.newWidth, screenHeight, false)
+        mitte = Bitmap.createScaledBitmap(mitte, mapController.newWidth, screenHeight, false)
+        vorne = Bitmap.createScaledBitmap(vorne, mapController.newWidth, screenHeight, false)
     }
 
     override fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double) {

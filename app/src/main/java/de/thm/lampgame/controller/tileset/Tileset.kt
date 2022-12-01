@@ -1,20 +1,22 @@
 package de.thm.lampgame.controller.tileset
 
 import android.content.Context
-import de.thm.lampgame.view.item.DoublePoints
-import de.thm.lampgame.view.item.Torch
-import de.thm.lampgame.view.item.BonusJump
-import de.thm.lampgame.view.item.Immortality
+
+import de.thm.lampgame.controller.item.DoublePoints
+import de.thm.lampgame.controller.item.Torch
+import de.thm.lampgame.controller.item.BonusJump
+import de.thm.lampgame.controller.item.Immortality
+import de.thm.lampgame.controller.obstacles.*
 import de.thm.lampgame.model.obstacles.ObstacleNames
 import de.thm.lampgame.model.tileset.TilesetModel
-import de.thm.lampgame.view.obstacles.*
+
 
 class Tileset(
     tileset: Int,
     val context: Context,
     startX: Int,
-    screenWidth: Int,
-    screenHeight: Int
+    val screenWidth: Int,
+    val screenHeight: Int
 ) {
     val tilesetModel = TilesetModel(startX, tileset, screenWidth, screenHeight)
     init {

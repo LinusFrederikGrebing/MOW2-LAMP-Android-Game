@@ -1,6 +1,6 @@
 package de.thm.lampgame.model.map
 
-abstract class MapModel(val screenWidth: Int, val screenHeight: Int) {
+class MapModel(val screenWidth: Int, val screenHeight: Int) {
     var newWidth = 0
     var mapHinten = 0.0
     var mapMitte = 0.0

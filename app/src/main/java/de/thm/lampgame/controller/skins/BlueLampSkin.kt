@@ -7,7 +7,6 @@ import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.SkinInterface
 
 class BlueLampSkin(context: Context) : SkinController() {
-
     companion object : SkinInterface {
         override var itemInfo = Database.skinBlueLamp
         override fun createSkin(context: Any): BlueLampSkin {

@@ -5,9 +5,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.obstacles.*
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.MapInterface
-import de.thm.lampgame.view.obstacles.*
 
 class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
@@ -28,13 +28,13 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         background = BitmapFactory.decodeResource(context.resources, R.drawable.berghinten)
         mitte = BitmapFactory.decodeResource(context.resources, R.drawable.bergemitte)
         vorne = BitmapFactory.decodeResource(context.resources, R.drawable.bergevorne)
-        height = background.height.toFloat()
-        width = background.width.toFloat()
-        ratio = width / height
-        newWidth = (ratio * screenHeight).toInt()
-        background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
-        mitte = Bitmap.createScaledBitmap(mitte, newWidth, screenHeight, false)
-        vorne = Bitmap.createScaledBitmap(vorne, newWidth, screenHeight, false)
+        mapController.height = background.height.toFloat()
+        mapController.width = background.width.toFloat()
+        mapController.ratio = mapController.width / mapController.height
+        mapController.newWidth = (mapController.ratio * screenHeight).toInt()
+        background = Bitmap.createScaledBitmap(background, mapController.newWidth, screenHeight, false)
+        mitte = Bitmap.createScaledBitmap(mitte, mapController.newWidth, screenHeight, false)
+        vorne = Bitmap.createScaledBitmap(vorne, mapController.newWidth, screenHeight, false)
     }
 
     override fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double) {

@@ -2,8 +2,8 @@ package de.thm.lampgame.model.tileset
 
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.tileset.Tileset
-import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.view.GameView
+import de.thm.lampgame.controller.obstacles.ObstacleController
 
 open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     var queue = ArrayDeque<Tileset>(2)       //the queue consists of 2 tilesets
@@ -19,11 +19,11 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         // each tileset is the width of the device
         // the first tileset starts at x = 0
         queue.first().tilesetModel.obstacles.forEach {
-            it.changeableX += 0
+            it.obstacleModel.changeableX += 0
         }
         // the secound tileset starts at x = screenWidth
         queue.last().tilesetModel.obstacles.forEach {
-            it.changeableX += screenWidth
+            it.obstacleModel.changeableX += screenWidth
         }
     }
 
@@ -49,7 +49,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     private fun insertTileset(startX: Int, t: Tileset) {
         // reset the coordinates of the old tileset
         queue.first().tilesetModel.obstacles.forEach {
-            it.changeableX = it.x
+            it.obstacleModel.changeableX = it.obstacleModel.x
         }
         queue.first().tilesetModel.hasItem = false
         // remove the old tileset
@@ -57,7 +57,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         // add the new tileset
         queue.add(t)
         // set the start position to the new value
-        queue.last().tilesetModel.obstacles.forEach { it.changeableX += startX }
+        queue.last().tilesetModel.obstacles.forEach { it.obstacleModel.changeableX += startX }
         queue.last().tilesetModel.itemX += startX
     }
 
@@ -81,16 +81,16 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         }
     }
 
-    private fun returnCollision(obstacle: ObstacleModel, player: Player): Boolean {
-        if (player.playerModel.charX + player.playerModel.charWidth > obstacle.changeableX && player.playerModel.charX + player.playerModel.charWidth < obstacle.changeableX + obstacle.width
-            || player.playerModel.charX > obstacle.changeableX && player.playerModel.charX < obstacle.changeableX + obstacle.width
+    private fun returnCollision(obstacle: ObstacleController, player: Player): Boolean {
+        if (player.playerModel.charX + player.playerModel.charWidth > obstacle.obstacleModel.changeableX && player.playerModel.charX + player.playerModel.charWidth < obstacle.obstacleModel.changeableX + obstacle.obstacleModel.width
+            || player.playerModel.charX > obstacle.obstacleModel.changeableX && player.playerModel.charX < obstacle.obstacleModel.changeableX + obstacle.obstacleModel.width
         ) {
-            if (player.playerModel.charY > obstacle.changeableY && player.playerModel.charY < obstacle.changeableY + obstacle.height
-                || player.playerModel.charY + player.playerModel.charHeight > obstacle.changeableY && player.playerModel.charY + player.playerModel.charHeight < obstacle.changeableY + obstacle.height
+            if (player.playerModel.charY > obstacle.obstacleModel.changeableY && player.playerModel.charY < obstacle.obstacleModel.changeableY + obstacle.obstacleModel.height
+                || player.playerModel.charY + player.playerModel.charHeight > obstacle.obstacleModel.changeableY && player.playerModel.charY + player.playerModel.charHeight < obstacle.obstacleModel.changeableY + obstacle.obstacleModel.height
             ) {
                 setCollisionResult(
-                    obstacle.death,
-                    obstacle.changeableY,
+                    obstacle.obstacleModel.death,
+                    obstacle.obstacleModel.changeableY,
                     player.playerModel.charY + player.playerModel.charHeight,
                     player
                 )

@@ -28,11 +28,11 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
         // draw the item if the tileset has one and check if the player picked up the item
         if (tilesetQueueModel.queue.first().tilesetModel.hasItem) {
             tilesetQueueModel.queue.first().tilesetModel.item.draw(canvas, velocity)
-            tilesetQueueModel.queue.first().tilesetModel.item.itemPickup(player, tilesetQueueModel.queue.first().tilesetModel.item.activateEffect)
+            tilesetQueueModel.queue.first().tilesetModel.item.itemModel.itemPickup(player, tilesetQueueModel.queue.first().tilesetModel.item.itemModel.activateEffect)
         }
         if (tilesetQueueModel.queue.last().tilesetModel.hasItem) {
             tilesetQueueModel.queue.last().tilesetModel.item.draw(canvas, velocity)
-            tilesetQueueModel.queue.last().tilesetModel.item.itemPickup(player, tilesetQueueModel.queue.last().tilesetModel.item.activateEffect)
+            tilesetQueueModel.queue.last().tilesetModel.item.itemModel.itemPickup(player, tilesetQueueModel.queue.last().tilesetModel.item.itemModel.activateEffect)
         }
 
         // draw the respective tileset and its obstacles

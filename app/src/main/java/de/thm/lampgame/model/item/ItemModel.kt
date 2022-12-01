@@ -7,7 +7,6 @@ abstract class ItemModel(val screenHeight: Int, val screenWidth: Int, val width 
     lateinit var unsizedBmp: Any
     lateinit var bmp: Any
 
-    abstract fun draw(canvas: Any, velocity: Int)
 
     open fun itemPickup(p: Player, itemEffect: (Player) -> Unit){
         if (!pickedUp) {
