@@ -28,4 +28,10 @@
     <string name="language">Sprache :</string>
     <string name="german">Deutsch</string>
     <string name="english">Englisch</string>
+    <string name="tipp1">Tipp: Hebe Fackeln auf, bevor Dir das Feuer ausgeht!</string>
+    <string name="tipp2">Tipp: Du kannst auch zweimal springen!</string>
+    <string name="tipp3">Tipp: Springe bedacht!</string>
+    <string name="tipp4">Tipp: Wasser ist besonders gefährlich. Halte dich stehts fern!</string>
+    <string name="tippnotfound">Kein Tipp gefunden!</string>
+
 </resources>

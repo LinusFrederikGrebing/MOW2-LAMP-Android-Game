@@ -38,4 +38,11 @@
     <string name="christmasLampSkin">Christmas Lamp</string>
     <string name="german">German</string>
     <string name="english">English</string>
+    <string name="tipp1">Tip: Pick up torches before you run out of fire!</string>
+    <string name="tipp2">Tip: You can also jump twice!</string>
+    <string name="tipp3">Tip: jump carefully!</string>
+    <string name="tipp4">Tip: Water is particularly dangerous. Stay away!</string>
+    <string name="tippnotfound">No tip found!</string>
+
+
 </resources>

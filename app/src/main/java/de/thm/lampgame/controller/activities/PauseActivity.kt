@@ -4,6 +4,7 @@ package de.thm.lampgame.controller.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
 
@@ -29,8 +30,22 @@ class PauseActivity : AppCompatActivity() {
     }
 
     fun buttonRestart(view: View?){
+        setloadingScreen()
         val intent = Intent(this, StartGameActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
+    }
+
+    fun setloadingScreen(){
+        setContentView(R.layout.loadingscreenlayout)
+        val tippView: TextView = findViewById(R.id.textViewTipp)
+        val text = when ((1 .. 4).random()) {
+            1 -> getString(R.string.tipp1)
+            2 -> getString(R.string.tipp2)
+            3 -> getString(R.string.tipp3)
+            4 -> getString(R.string.tipp4)
+            else -> { getString(R.string.tippnotfound) }
+        }
+        tippView.text = text
     }
 }

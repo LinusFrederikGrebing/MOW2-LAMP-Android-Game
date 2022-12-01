@@ -38,9 +38,22 @@ class GameOverActivity : AppCompatActivity() {
     }
 
     fun restart(view: View) {
+        setloadingScreen()
         val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()
+    }
+    fun setloadingScreen(){
+        setContentView(R.layout.loadingscreenlayout)
+        val tippView: TextView = findViewById(R.id.textViewTipp)
+        val text =  when ((1 .. 4).random()) {
+            1 -> getString(R.string.tipp1)
+            2 -> getString(R.string.tipp2)
+            3 -> getString(R.string.tipp3)
+            4 -> getString(R.string.tipp4)
+            else -> { getString(R.string.tippnotfound) }
+        }
+        tippView.text = text
     }
 
     fun mainMenu(view: View) {
