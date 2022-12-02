@@ -6,7 +6,7 @@ import de.thm.lampgame.R
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.SkinInterface
 
-class PurpleLampSkin(context: Context) : SkinController(){
+class PurpleLampSkin(context: Context) : SkinController() {
 
     companion object : SkinInterface {
         override var itemInfo = Database.skinPurpleLamp

@@ -5,21 +5,20 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.obstacles.*
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.MapInterface
-import de.thm.lampgame.controller.obstacles.BitmapGround
-import de.thm.lampgame.controller.obstacles.BitmapTerrain
-import de.thm.lampgame.controller.obstacles.BitmapTube
-import de.thm.lampgame.controller.obstacles.BitmapWater
-import de.thm.lampgame.controller.obstacles.BitmapSaw
-import de.thm.lampgame.controller.obstacles.BitmapBouncingSaw
 
 class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
     companion object : MapInterface {
         override var itemInfo = Database.mapCemeteryLandscape
-        override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): CemeteryLandscapeMap {
-            return CemeteryLandscapeMap(context as Context,screenHeight,screenWidth)
+        override fun createMap(
+            context: Any,
+            screenHeight: Int,
+            screenWidth: Int
+        ): CemeteryLandscapeMap {
+            return CemeteryLandscapeMap(context as Context, screenHeight, screenWidth)
         }
     }
 
@@ -44,7 +43,12 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         front = Bitmap.createScaledBitmap(front, mapModel.newWidth, screenHeight, false)
     }
 
-    override fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double) {
+    override fun drawMap(
+        canvas: Canvas,
+        speedBack: Double,
+        speedMiddle: Double,
+        speedFront: Double
+    ) {
         drawMapBack(canvas, speedBack, background)
         drawMapMiddle(canvas, speedMiddle, middle)
         drawMapFront(canvas, speedFront, front)

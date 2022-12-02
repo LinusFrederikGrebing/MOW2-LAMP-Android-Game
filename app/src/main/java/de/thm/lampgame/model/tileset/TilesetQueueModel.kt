@@ -1,9 +1,9 @@
 package de.thm.lampgame.model.tileset
 
 import de.thm.lampgame.controller.Player
+import de.thm.lampgame.controller.obstacles.ObstacleController
 import de.thm.lampgame.controller.tileset.Tileset
 import de.thm.lampgame.view.GameView
-import de.thm.lampgame.controller.obstacles.ObstacleController
 
 open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     var queue = ArrayDeque<Tileset>(2)       //the queue consists of 2 tilesets
@@ -62,7 +62,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     }
 
     // get a random new tileset as long as the new tileset is not already in the queue
-    private fun getPossibleTileset() : Tileset {
+    private fun getPossibleTileset(): Tileset {
         var random: Int
         do {
             random = (0 until possibleTilesetCount).random()
@@ -73,10 +73,12 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     fun collisionCheck(player: Player) {
         collision = false  // sets collision to false by default
         for (i in 0 until queue.first().tilesetModel.obstacles.size) {
-            if (this.returnCollision(queue.first().tilesetModel.obstacles[i], player)) collision = true
+            if (this.returnCollision(queue.first().tilesetModel.obstacles[i], player)) collision =
+                true
         }
         for (i in 0 until queue.last().tilesetModel.obstacles.size) {
-            if (this.returnCollision(queue.last().tilesetModel.obstacles[i], player)) collision = true
+            if (this.returnCollision(queue.last().tilesetModel.obstacles[i], player)) collision =
+                true
         }
     }
 

@@ -11,21 +11,21 @@ class MapModel(val screenWidth: Int, val screenHeight: Int) {
 
     fun setNewMapBackXCoords(speed: Double) {
         mapBack -= speed
-        if (mapBack <- newWidth) {
+        if (mapBack < -newWidth) {
             mapBack = 0.0
         }
     }
 
     fun setNewMapMiddleXCoords(speed: Double) {
         mapMiddle -= speed
-        if (mapMiddle <- newWidth) {
+        if (mapMiddle < -newWidth) {
             mapMiddle = 0.0
         }
     }
 
     fun setNewMapFrontXCoords(speed: Double) {
         mapFront -= speed
-        if (mapFront <- newWidth) {
+        if (mapFront < -newWidth) {
             mapFront = 0.0
         }
     }

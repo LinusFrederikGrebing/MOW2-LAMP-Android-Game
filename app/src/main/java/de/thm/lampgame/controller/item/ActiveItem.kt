@@ -5,8 +5,8 @@ import android.graphics.*
 import de.thm.lampgame.R
 
 class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: Int) {
-    private var unsizedBmp: Bitmap? = null
-    var bmp: Bitmap? = null
+    private var unsizedBmp: Bitmap
+    var bmp: Bitmap
     private var activeTexture = 0
     private val backgroundPaint: Paint = Paint()
     private val myPaint: Paint = Paint()
@@ -21,17 +21,17 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
         backgroundPaint.color = Color.WHITE
         activeTexture = texture
         unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
-        bmp = Bitmap.createScaledBitmap(unsizedBmp!!, screenHeight / 9, screenHeight / 9, true)
+        bmp = Bitmap.createScaledBitmap(unsizedBmp, screenHeight / 9, screenHeight / 9, true)
     }
 
     fun draw(canvas: Canvas) {
         if (texture != activeTexture) {
             unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
-            bmp = Bitmap.createScaledBitmap(unsizedBmp!!, screenHeight / 9, screenHeight / 9, true)
+            bmp = Bitmap.createScaledBitmap(unsizedBmp, screenHeight / 9, screenHeight / 9, true)
             activeTexture = texture
         }
         canvas.drawBitmap(
-            bmp!!,
+            bmp,
             screenWidth * 0.025.toFloat(),
             screenHeight * 0.835.toFloat(),
             null
@@ -42,7 +42,8 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
         speed = (360 / duration.toFloat())
         speedMultiplier -= speed
 
-        myPaint.color = if (speedMultiplier > 180) Color.GREEN else if (speedMultiplier < 60) Color.RED else Color.YELLOW
+        myPaint.color =
+            if (speedMultiplier > 180) Color.GREEN else if (speedMultiplier < 60) Color.RED else Color.YELLOW
 
         canvas.drawArc(
             screenWidth * 0.01.toFloat(),

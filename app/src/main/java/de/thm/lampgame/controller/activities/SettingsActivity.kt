@@ -1,6 +1,5 @@
 package de.thm.lampgame.controller.activities
 
-import android.content.Context
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -14,7 +13,7 @@ import de.thm.lampgame.controller.helper.LocaleHelper
 import de.thm.lampgame.model.shop.Database
 
 
-class  SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private var music: Int = 0
     private val localHelper = LocaleHelper()
@@ -23,7 +22,7 @@ class  SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
-        getPersistedLanguageData()
+        localHelper.getAndSetPersistedLanguageData(this)
         musicVolume()
         volumeTest()
     }
@@ -55,9 +54,11 @@ class  SettingsActivity : AppCompatActivity() {
         }
 
         buttonTest.setOnClickListener {
-            buttonClicked = if(!buttonClicked) {
+            buttonClicked = if (!buttonClicked) {
                 mediaPlayer = MediaPlayer.create(this, music); mediaPlayer?.start(); true
-            } else { mediaPlayer?.stop(); false }
+            } else {
+                mediaPlayer?.stop(); false
+            }
         }
     }
 
@@ -66,29 +67,17 @@ class  SettingsActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun getPersistedLanguageData() {
-        val settings = getSharedPreferences("NEW-DATA", Context.MODE_PRIVATE)
-        println((settings.getString("SELECTED_LANGUAGE", "en")))
-        localHelper.setLocale(this, (settings.getString("SELECTED_LANGUAGE", "en")))
-    }
 
     fun changeLang(view: View) {
-        saveNewLanguage("en")
         localHelper.setLocale(this, "en")
         this.recreate()
     }
 
     fun changeLangDe(view: View) {
-        saveNewLanguage("de")
         localHelper.setLocale(this, "de")
         this.recreate()
     }
 
-    private fun saveNewLanguage(language: String){
-        val settings = getSharedPreferences("NEW-DATA", Context.MODE_PRIVATE)
-        val editor = settings.edit()
-        editor.putString("SELECTED_LANGUAGE", language)
-        editor.apply()
-    }
+
 
 }

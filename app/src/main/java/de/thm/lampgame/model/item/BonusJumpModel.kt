@@ -4,8 +4,9 @@ import de.thm.lampgame.R
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.item.ActiveItem
 
-class BonusJumpModel(screenHeight: Int, screenWidth: Int, height : Int, width: Int, x: Int, y: Int) : ItemModel(screenHeight, screenWidth, height, width, x,y) {
-    companion object{
+class BonusJumpModel(screenHeight: Int, screenWidth: Int, height: Int, width: Int, x: Int, y: Int) :
+    ItemModel(screenHeight, screenWidth, height, width, x, y) {
+    companion object {
         const val bonusJumpDuration = 250
         var dblJumpDur = 0
     }
@@ -14,6 +15,6 @@ class BonusJumpModel(screenHeight: Int, screenWidth: Int, height : Int, width: I
         ActiveItem.texture = R.drawable.bonusjump_icon
         ActiveItem.speedMultiplier = 360F
         p.playerModel.maxJump = 3
-       dblJumpDur = bonusJumpDuration
+        dblJumpDur = bonusJumpDuration
     }
 }

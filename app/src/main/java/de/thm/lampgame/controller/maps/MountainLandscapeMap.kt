@@ -13,8 +13,12 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
     MapController(screenWidth, screenHeight) {
     companion object : MapInterface {
         override var itemInfo = Database.mapMountainLandscape
-        override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): MountainLandscapeMap {
-            return MountainLandscapeMap(context as Context,screenHeight,screenWidth)
+        override fun createMap(
+            context: Any,
+            screenHeight: Int,
+            screenWidth: Int
+        ): MountainLandscapeMap {
+            return MountainLandscapeMap(context as Context, screenHeight, screenWidth)
         }
     }
 
@@ -25,8 +29,12 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         BitmapTube.texture = R.drawable.mountain_landscape_wall
         BitmapSaw.texture = R.drawable.water_projectile
         BitmapBouncingSaw.texture = R.drawable.water_bouncing_projectile
-        background = BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_background)
-        middle = BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_middle)
+        background = BitmapFactory.decodeResource(
+            context.resources,
+            R.drawable.mountain_landscape_background
+        )
+        middle =
+            BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_middle)
         front = BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_front)
         mapModel.height = background.height.toFloat()
         mapModel.width = background.width.toFloat()
@@ -37,7 +45,12 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         front = Bitmap.createScaledBitmap(front, mapModel.newWidth, screenHeight, false)
     }
 
-    override fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double) {
+    override fun drawMap(
+        canvas: Canvas,
+        speedBack: Double,
+        speedMiddle: Double,
+        speedFront: Double
+    ) {
         drawMapBack(canvas, speedBack, background)
         drawMapMiddle(canvas, speedMiddle, middle)
         drawMapFront(canvas, speedFront, front)

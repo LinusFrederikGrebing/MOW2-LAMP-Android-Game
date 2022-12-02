@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.helper.LoadingScreenHelper
 import de.thm.lampgame.model.PlayerModel
 
 class GameOverActivity : AppCompatActivity() {
@@ -36,23 +37,18 @@ class GameOverActivity : AppCompatActivity() {
         }
     }
 
+
+    private val loadingScreenHelper = LoadingScreenHelper()
+
     fun restart(view: View) {
-        setLoadingScreen()
+        setContentView(R.layout.loadingscreenlayout)
+        val tipView: TextView = findViewById(R.id.textViewTipp)
+        val text = loadingScreenHelper.getLoadingScreenText(this)
+        tipView.text = text
+
         val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()
-    }
-    private fun setLoadingScreen(){
-        setContentView(R.layout.loadingscreenlayout)
-        val tippView: TextView = findViewById(R.id.textViewTipp)
-        val text =  when ((1 .. 4).random()) {
-            1 -> getString(R.string.tip1)
-            2 -> getString(R.string.tip2)
-            3 -> getString(R.string.tip3)
-            4 -> getString(R.string.tip4)
-            else -> { getString(R.string.tipNotFound) }
-        }
-        tippView.text = text
     }
 
     fun mainMenu(view: View) {

@@ -7,19 +7,40 @@ import de.thm.lampgame.model.tileset.TilesetQueueModel
 
 class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
     val tilesetQueueModel = TilesetQueueModel(screenWidth, screenHeight)
+
     init {
         // initialize each possible tileset once
         for (i in 1..tilesetQueueModel.possibleTilesetCount) {
-            tilesetQueueModel.tilesetList.add(Tileset(i, context, screenWidth, screenWidth, screenHeight))
+            tilesetQueueModel.tilesetList.add(
+                Tileset(
+                    i,
+                    context,
+                    screenWidth,
+                    screenWidth,
+                    screenHeight
+                )
+            )
             //TEST durch ersetzen der "i" Variable.
         }
         //TODO: Delete TEST comments
 
         // the tilesetqueue consists of two tilesets, first and last. Initialize the first two.
         tilesetQueueModel.initQueue(
-            Tileset(0, context, 0, screenWidth, screenHeight),      // the tileset with the number 0 has no obstacles // TEST DURCH das ändern des 0
-            Tileset((1..tilesetQueueModel.possibleTilesetCount).random(), context, screenWidth, screenWidth, screenHeight) // TEST DURCH ändern der maximalen Anzahl
-        // the first tileset stays at 0 and the second tileset is set to the "new tileset number".
+            Tileset(
+                0,
+                context,
+                0,
+                screenWidth,
+                screenHeight
+            ),      // the tileset with the number 0 has no obstacles // TEST DURCH das ändern des 0
+            Tileset(
+                (1..tilesetQueueModel.possibleTilesetCount).random(),
+                context,
+                screenWidth,
+                screenWidth,
+                screenHeight
+            ) // TEST DURCH ändern der maximalen Anzahl
+            // the first tileset stays at 0 and the second tileset is set to the "new tileset number".
         )
     }
 
@@ -29,11 +50,17 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
         // draw the item if the tileset has one and check if the player picked up the item
         if (tilesetQueueModel.queue.first().tilesetModel.hasItem) {
             tilesetQueueModel.queue.first().tilesetModel.item.draw(canvas, velocity)
-            tilesetQueueModel.queue.first().tilesetModel.item.itemModel.itemPickup(player, tilesetQueueModel.queue.first().tilesetModel.item.itemModel.activateEffect)
+            tilesetQueueModel.queue.first().tilesetModel.item.itemModel.itemPickup(
+                player,
+                tilesetQueueModel.queue.first().tilesetModel.item.itemModel.activateEffect
+            )
         }
         if (tilesetQueueModel.queue.last().tilesetModel.hasItem) {
             tilesetQueueModel.queue.last().tilesetModel.item.draw(canvas, velocity)
-            tilesetQueueModel.queue.last().tilesetModel.item.itemModel.itemPickup(player, tilesetQueueModel.queue.last().tilesetModel.item.itemModel.activateEffect)
+            tilesetQueueModel.queue.last().tilesetModel.item.itemModel.itemPickup(
+                player,
+                tilesetQueueModel.queue.last().tilesetModel.item.itemModel.activateEffect
+            )
         }
 
         // draw the respective tileset and its obstacles

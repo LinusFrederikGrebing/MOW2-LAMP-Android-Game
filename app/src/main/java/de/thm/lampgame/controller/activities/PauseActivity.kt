@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.helper.LoadingScreenHelper
 
 class PauseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,38 +15,33 @@ class PauseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pause)
     }
 
-    fun buttonContinue(view: View?){
+    fun buttonContinue(view: View?) {
         finish()
     }
 
-    fun buttonHome(view: View?){
+    fun buttonHome(view: View?) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
 
-    fun buttonSettings(view: View?){
+    fun buttonSettings(view: View?) {
         val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
 
-    fun buttonRestart(view: View?){
-        setloadingScreen()
+    private val loadingScreenHelper = LoadingScreenHelper()
+
+    fun buttonRestart(view: View?) {
+        setContentView(R.layout.loadingscreenlayout)
+        val tipView: TextView = findViewById(R.id.textViewTipp)
+        val text = loadingScreenHelper.getLoadingScreenText(this)
+        tipView.text = text
+
         val intent = Intent(this, StartGameActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
 
-    fun setloadingScreen(){
-        setContentView(R.layout.loadingscreenlayout)
-        val tippView: TextView = findViewById(R.id.textViewTipp)
-        val text = when ((1 .. 4).random()) {
-            1 -> getString(R.string.tip1)
-            2 -> getString(R.string.tip2)
-            3 -> getString(R.string.tip3)
-            4 -> getString(R.string.tip4)
-            else -> { getString(R.string.tipNotFound) }
-        }
-        tippView.text = text
-    }
+
 }

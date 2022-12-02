@@ -3,10 +3,10 @@ package de.thm.lampgame.model
 import de.thm.lampgame.view.GameView
 
 class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
-    
+
     // player size and starting position
-    var charHeight  = (0.16 * screenHeight).toInt()
-    var charWidth =  (0.07 * screenWidth).toInt()
+    var charHeight = (0.16 * screenHeight).toInt()
+    var charWidth = (0.07 * screenWidth).toInt()
     var charY = (0.10 * screenWidth).toInt()
     var charX = (0.15 * screenWidth).toInt()
 
@@ -25,7 +25,8 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
 
 
     var jumpCount = 0    // counts the number of jumps without ground collision
-    var maxJump = 2     // the maximum number of jumps is 2 by default, but can increase to 3 with the BonusJump item
+    var maxJump =
+        2     // the maximum number of jumps is 2 by default, but can increase to 3 with the BonusJump item
 
 
     var torchesPerRound = 0  // saves the torches collected per round
@@ -40,7 +41,8 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
 
     // cycles through the character sprite-sheet -> special case: while jumping / falling
     fun calkCharFrame(): Int {
-        charFrame = if (jumpState) 4 else if (charFrame == 0) 1 else if (charFrame == 1) 2 else if (charFrame == 2) 3 else 0
+        charFrame =
+            if (jumpState) 4 else if (charFrame == 0) 1 else if (charFrame == 1) 2 else if (charFrame == 2) 3 else 0
         return charFrame
     }
 
@@ -69,7 +71,7 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     // decrease player's fire by 0.15F, when it reaches zero, the player dies
     fun calkFire() {
         fire -= 0.10F
-        if(fire <= 0F) GameView.gameover = true
+        if (fire <= 0F) GameView.gameover = true
     }
 
     // character can only jump if there are still jumps left

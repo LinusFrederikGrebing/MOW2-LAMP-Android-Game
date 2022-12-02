@@ -9,7 +9,7 @@ import de.thm.lampgame.model.item.BonusJumpModel
 import de.thm.lampgame.model.item.DoublePointsModel
 import de.thm.lampgame.model.item.ImmortalityModel
 
-class ActiveItemController(context: Context, screenWidth : Int, screenHeight: Int) {
+class ActiveItemController(context: Context, screenWidth: Int, screenHeight: Int) {
     private var dblPointsItem = ActiveItem(context, screenWidth, screenHeight)
     private var bonusJumpItem = ActiveItem(context, screenWidth, screenHeight)
     private var Immortality = ActiveItem(context, screenWidth, screenHeight)

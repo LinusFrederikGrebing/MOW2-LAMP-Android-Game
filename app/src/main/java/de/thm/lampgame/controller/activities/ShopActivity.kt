@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.ItemsAdapter
 import de.thm.lampgame.databinding.ShopActivityLayoutBinding
+import de.thm.lampgame.model.PlayerModel
 import de.thm.lampgame.model.shop.DataItem
 import de.thm.lampgame.model.shop.Database
-import de.thm.lampgame.model.PlayerModel
 
 
 class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
@@ -32,7 +32,8 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         binding = ShopActivityLayoutBinding.inflate(layoutInflater)
 
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@ShopActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(this@ShopActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = adapterList
         }
         setContentView(binding.root)
@@ -84,21 +85,30 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
                 if (locked.text == it.itemInfo.name && PlayerModel.torches >= it.itemInfo.price.toInt()) {
                     PlayerModel.torches -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
-                    putSharedPref((it.itemInfo.name).toString() + "BuyStatus", it.itemInfo.buyStatus)
+                    putSharedPref(
+                        (it.itemInfo.name).toString() + "BuyStatus",
+                        it.itemInfo.buyStatus
+                    )
                 }
             }
             2 -> Database.listOfSkins.forEach {
                 if (locked.text == it.itemInfo.name && PlayerModel.torches >= it.itemInfo.price.toInt()) {
                     PlayerModel.torches -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
-                    putSharedPref((it.itemInfo.name).toString() + "BuyStatus", it.itemInfo.buyStatus)
+                    putSharedPref(
+                        (it.itemInfo.name).toString() + "BuyStatus",
+                        it.itemInfo.buyStatus
+                    )
                 }
             }
             3 -> Database.listOfMusic.forEach {
                 if (locked.text == it.itemInfo.name && PlayerModel.torches >= it.itemInfo.price.toInt()) {
                     PlayerModel.torches -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
-                    putSharedPref((it.itemInfo.name).toString() + "BuyStatus", it.itemInfo.buyStatus)
+                    putSharedPref(
+                        (it.itemInfo.name).toString() + "BuyStatus",
+                        it.itemInfo.buyStatus
+                    )
                 }
             }
         }
@@ -106,18 +116,18 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     }
 
     private fun unlockedCase(unlocked: DataItem.Unlocked) {
-        when(shop) {
+        when (shop) {
             1 -> Database.listOfMaps.forEach {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
-                putSharedPref((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
+                putSharedPref((it.itemInfo.name).toString() + "Active", it.itemInfo.active)
             }
             2 -> Database.listOfSkins.forEach {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
-                putSharedPref((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
+                putSharedPref((it.itemInfo.name).toString() + "Active", it.itemInfo.active)
             }
             3 -> Database.listOfMusic.forEach {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
-                putSharedPref((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
+                putSharedPref((it.itemInfo.name).toString() + "Active", it.itemInfo.active)
             }
         }
         getRightList()
@@ -127,12 +137,13 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         createToast(getString(R.string.alreadyActive, "${active.text}"))
     }
 
-    private fun getRightList(){
-        ItemsAdapter.itemList = if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsMusic()
+    private fun getRightList() {
+        ItemsAdapter.itemList =
+            if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsMusic()
         inflateList()
     }
 
-    private fun createToast(text: String){
+    private fun createToast(text: String) {
         Toast.makeText(
             this, text,
             Toast.LENGTH_LONG
@@ -147,7 +158,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     private fun putSharedPref(identifier: String, value: Boolean) {
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
-        editor.putBoolean(identifier,value)
+        editor.putBoolean(identifier, value)
         editor.apply()
     }
 

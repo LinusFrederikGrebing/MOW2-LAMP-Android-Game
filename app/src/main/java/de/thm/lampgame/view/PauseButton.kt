@@ -13,17 +13,27 @@ class PauseButton(context: Context, val screenWidth: Int, val screenHeight: Int)
     private var hitbox: Rect
 
     init {
-        unsizedBmp = BitmapFactory.decodeResource(context.resources,  R.drawable.pausebutton_icon)
+        unsizedBmp = BitmapFactory.decodeResource(context.resources, R.drawable.pausebutton_icon)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, screenHeight / 10, screenHeight / 10, true)
-        hitbox = Rect(screenWidth - screenWidth / 16,screenWidth / 16 - screenHeight / 10,(screenWidth - screenWidth / 16)+(screenHeight / 10),(screenWidth / 16 - screenHeight / 10)+(screenHeight / 10))
+        hitbox = Rect(
+            screenWidth - screenWidth / 16,
+            screenWidth / 16 - screenHeight / 10,
+            (screenWidth - screenWidth / 16) + (screenHeight / 10),
+            (screenWidth / 16 - screenHeight / 10) + (screenHeight / 10)
+        )
     }
 
     fun draw(canvas: Canvas) {
-        canvas.drawBitmap(bmp, (screenWidth - screenWidth / 16).toFloat(), (screenWidth / 16 - screenHeight / 10).toFloat(), null)
+        canvas.drawBitmap(
+            bmp,
+            (screenWidth - screenWidth / 16).toFloat(),
+            (screenWidth / 16 - screenHeight / 10).toFloat(),
+            null
+        )
     }
 
-    fun checkIfClicked(x: Float, y: Float) : Boolean {
-        val clickedRect = Rect(x.toInt(),y.toInt(),x.toInt(),y.toInt())
-        return Rect.intersects(clickedRect,hitbox)
+    fun checkIfClicked(x: Float, y: Float): Boolean {
+        val clickedRect = Rect(x.toInt(), y.toInt(), x.toInt(), y.toInt())
+        return Rect.intersects(clickedRect, hitbox)
     }
 }

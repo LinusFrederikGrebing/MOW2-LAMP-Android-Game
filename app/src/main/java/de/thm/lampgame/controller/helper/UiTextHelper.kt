@@ -1,17 +1,17 @@
-package de.thm.lampgame.model
+package de.thm.lampgame.controller.helper
 
 import android.content.Context
 import androidx.annotation.StringRes
 
-sealed class UiText {
-    data class DynamicString(val value: String) : UiText()
+sealed class UiTextHelper {
+    data class DynamicString(val value: String) : UiTextHelper()
     class StringResource(
         @StringRes val resId: Int,
         vararg val args: Any
-    ): UiText()
+    ) : UiTextHelper()
 
     fun asString(context: Context): String {
-        return when(this) {
+        return when (this) {
             is DynamicString -> value
             is StringResource -> context.getString(resId, *args)
         }

@@ -1,12 +1,13 @@
 package de.thm.lampgame.controller
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
-import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.PlayerModel
+import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.view.player.DrawFirebar
 
 class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatActivity() {
@@ -22,17 +23,59 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatA
 
         // resize char
         rechar[0] =
-            char[0]?.let { Bitmap.createScaledBitmap(it, playerModel.charWidth, playerModel.charHeight, true) }
+            char[0]?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    playerModel.charWidth,
+                    playerModel.charHeight,
+                    true
+                )
+            }
         rechar[1] =
-            char[1]?.let { Bitmap.createScaledBitmap(it, playerModel.charWidth, playerModel.charHeight, true) }
+            char[1]?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    playerModel.charWidth,
+                    playerModel.charHeight,
+                    true
+                )
+            }
         rechar[2] =
-            char[2]?.let { Bitmap.createScaledBitmap(it, playerModel.charWidth, playerModel.charHeight, true) }
+            char[2]?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    playerModel.charWidth,
+                    playerModel.charHeight,
+                    true
+                )
+            }
         rechar[3] =
-            char[3]?.let { Bitmap.createScaledBitmap(it, playerModel.charWidth, playerModel.charHeight, true) }
+            char[3]?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    playerModel.charWidth,
+                    playerModel.charHeight,
+                    true
+                )
+            }
         rechar[4] =
-            char[4]?.let { Bitmap.createScaledBitmap(it, playerModel.charWidth, playerModel.charHeight, true) }
+            char[4]?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    playerModel.charWidth,
+                    playerModel.charHeight,
+                    true
+                )
+            }
         rechar[5] =
-            char[5]?.let { Bitmap.createScaledBitmap(it, playerModel.charWidth, playerModel.charHeight, true) }
+            char[5]?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    playerModel.charWidth,
+                    playerModel.charHeight,
+                    true
+                )
+            }
     }
 
     private fun drawChar(canvas: Canvas) {

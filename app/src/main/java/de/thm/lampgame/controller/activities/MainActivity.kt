@@ -7,24 +7,28 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.helper.LoadingScreenHelper
 import de.thm.lampgame.controller.helper.LocaleHelper
 import de.thm.lampgame.model.PlayerModel
 import de.thm.lampgame.model.shop.Database
 
 class MainActivity : AppCompatActivity() {
     private val localHelper = LocaleHelper()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mainmenu)
-
         // overwrite everything with the saved data
         getAndSetPersistedCoinsAndHighscoreData()
         getAndSetPersistedShopItemData()
-        getAndSetPersistedLanguageData()
+
     }
 
-    private fun getAndSetPersistedCoinsAndHighscoreData(){
+    override fun onResume() {
+        super.onResume()
+        localHelper.getAndSetPersistedLanguageData(this)
+    }
+
+    private fun getAndSetPersistedCoinsAndHighscoreData() {
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val playerTorches = findViewById<TextView>(R.id.playertorchestv)
         val viewHighscore: TextView = findViewById(R.id.highscore)
@@ -39,40 +43,39 @@ class MainActivity : AppCompatActivity() {
         // check which value for the attributes buystatus and active is saved for the respective item in the shared preferences, if no value was saved, take the default value from the database
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         Database.listOfMusic.forEach {
-            it.itemInfo.buyStatus = settings.getBoolean((it.itemInfo.name).toString() + "BuyStatus",it.itemInfo.buyStatus)
-            it.itemInfo.active = settings.getBoolean((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
+            it.itemInfo.buyStatus = settings.getBoolean(
+                (it.itemInfo.name).toString() + "BuyStatus",
+                it.itemInfo.buyStatus
+            )
+            it.itemInfo.active =
+                settings.getBoolean((it.itemInfo.name).toString() + "Active", it.itemInfo.active)
         }
         Database.listOfMaps.forEach {
-            it.itemInfo.buyStatus = settings.getBoolean((it.itemInfo.name).toString() + "BuyStatus",it.itemInfo.buyStatus)
-            it.itemInfo.active = settings.getBoolean((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
+            it.itemInfo.buyStatus = settings.getBoolean(
+                (it.itemInfo.name).toString() + "BuyStatus",
+                it.itemInfo.buyStatus
+            )
+            it.itemInfo.active =
+                settings.getBoolean((it.itemInfo.name).toString() + "Active", it.itemInfo.active)
         }
         Database.listOfSkins.forEach {
-            it.itemInfo.buyStatus = settings.getBoolean((it.itemInfo.name).toString() + "BuyStatus",it.itemInfo.buyStatus)
-            it.itemInfo.active = settings.getBoolean((it.itemInfo.name).toString() + "Active",it.itemInfo.active)
+            it.itemInfo.buyStatus = settings.getBoolean(
+                (it.itemInfo.name).toString() + "BuyStatus",
+                it.itemInfo.buyStatus
+            )
+            it.itemInfo.active =
+                settings.getBoolean((it.itemInfo.name).toString() + "Active", it.itemInfo.active)
         }
     }
 
-    private fun getAndSetPersistedLanguageData() {
-        val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
-        println((settings.getString("SELECTED_LANGUAGE", "en")))
-        localHelper.setLocale(this, (settings.getString("SELECTED_LANGUAGE", "en")))
-    }
-
-    private fun setLoadingScreen(){
-        setContentView(R.layout.loadingscreenlayout)
-        val tipView: TextView = findViewById(R.id.textViewTipp)
-        val text =  when ((1 .. 4).random()) {
-            1 -> getString(R.string.tip1)
-            2 -> getString(R.string.tip2)
-            3 -> getString(R.string.tip3)
-            4 -> getString(R.string.tip4)
-           else -> { getString(R.string.tipNotFound) }
-        }
-        tipView.text = text
-    }
+    private val loadingScreenHelper = LoadingScreenHelper()
 
     fun startGame(view: View?) {
-        setLoadingScreen()
+        setContentView(R.layout.loadingscreenlayout)
+        val tipView: TextView = findViewById(R.id.textViewTipp)
+        val text = loadingScreenHelper.getLoadingScreenText(this)
+        tipView.text = text
+
         val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()

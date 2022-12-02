@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import de.thm.lampgame.model.map.MapModel
 
-abstract class MapController(screenWidth: Int, screenHeight: Int)  {
+abstract class MapController(screenWidth: Int, screenHeight: Int) {
     var mapModel = MapModel(screenWidth, screenHeight)
     lateinit var middle: Bitmap
     lateinit var background: Bitmap
