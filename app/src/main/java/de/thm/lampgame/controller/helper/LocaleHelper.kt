@@ -25,7 +25,7 @@ class LocaleHelper : AppCompatActivity() {
     }
 
     // stores the current language in the sharedPreferences
-    fun saveNewLanguage(context: Context, language: String?) {
+    private fun saveNewLanguage(context: Context, language: String?) {
         settings = context.getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = settings!!.edit()
         editor.putString("SELECTED_LANGUAGE", language)
@@ -33,11 +33,11 @@ class LocaleHelper : AppCompatActivity() {
     }
 
     // updates the language in the system configuration
+    @Suppress("DEPRECATION")
     private fun updateResources(context: Context, language: String?) {
         val locale = language?.let { Locale(it) }
         val resources: Resources = context.resources
         val configuration: Configuration = resources.configuration
-        //TODO fix/update deprecated stuff
         configuration.locale = locale
         resources.updateConfiguration(configuration, resources.displayMetrics)
     }

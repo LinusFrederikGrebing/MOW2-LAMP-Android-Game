@@ -9,6 +9,7 @@ import de.thm.lampgame.controller.skins.BlueLampSkin
 import de.thm.lampgame.controller.skins.ChristmasLampSkin
 import de.thm.lampgame.controller.skins.OriginalLampSkin
 import de.thm.lampgame.controller.skins.PurpleLampSkin
+import de.thm.lampgame.model.music.BackgroundMusicAurora
 import de.thm.lampgame.model.music.BackgroundMusicChristmasIsHere
 import de.thm.lampgame.model.music.BackgroundMusicIsland
 import de.thm.lampgame.model.music.BackgroundMusicPasswordInfinity
@@ -41,6 +42,13 @@ object Database {
         false,
         "30",
         R.drawable.shop_music_island
+    )
+    var musicAuroraInfo = ShopItemInfo(
+        R.string.auroraMusic,
+        false,
+        false,
+        "70",
+        R.drawable.shop_music_aurora
     )
 
     var mapMountainLandscape = ShopItemInfo(
@@ -117,7 +125,8 @@ object Database {
     val listOfMusic = listOf(
         BackgroundMusicPasswordInfinity,
         BackgroundMusicIsland,
-        BackgroundMusicChristmasIsHere
+        BackgroundMusicChristmasIsHere,
+        BackgroundMusicAurora
     )
 
     // the lists are filled based on the status

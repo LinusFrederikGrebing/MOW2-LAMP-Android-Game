@@ -15,7 +15,7 @@ import de.thm.lampgame.model.shop.Database
 
 class SettingsActivity : AppCompatActivity() {
     private val localHelper = LocaleHelper() // needed to change the language during the runtime
-    var mediaPlayer: MediaPlayer? = null
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class SettingsActivity : AppCompatActivity() {
         volumeTest()
     }
 
-    fun musicVolume() {
+    private fun musicVolume() {
         //volume slider
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)

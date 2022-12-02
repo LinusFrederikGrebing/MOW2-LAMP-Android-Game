@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/exit_icon_red"
+        android:background="@drawable/exit_icon"
         android:foregroundGravity="left"
         android:onClick="mainMenu"
         app:layout_constraintBottom_toBottomOf="parent"
