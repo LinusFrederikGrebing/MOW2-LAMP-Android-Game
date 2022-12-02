@@ -24,7 +24,7 @@
     <string name="blueLampSkin">Blaue Lampe</string>
     <string name="purpleLampSkin">Lila Lampe</string>
     <string name="christmasLampSkin">Weihnachts-Lampe</string>
-    <string name="alreadyActive">%1$s ist bereits aktiv!</string>
+    <string name="mapAlreadyActive">Diese Karte ist bereits aktiv!</string>
     <string name="language">Sprache :</string>
     <string name="german">Deutsch</string>
     <string name="english">Englisch</string>
@@ -34,4 +34,6 @@
     <string name="tip4">Tipp: Wasser ist besonders gefährlich. Halte dich stehts fern!</string>
     <string name="tipNotFound">Kein Tipp gefunden!</string>
     <string name="pointsValuesString">Punkte: %1$s</string>
+    <string name="skinAlreadyActive">Dieses Kostüm ist bereits aktiv!</string>
+    <string name="musicAlreadyActive">Diese Musik ist bereits aktiv!</string>
 </resources>

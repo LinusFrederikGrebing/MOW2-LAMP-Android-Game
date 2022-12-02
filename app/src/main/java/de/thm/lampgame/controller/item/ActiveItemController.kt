@@ -1,9 +1,10 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.controller.item
 
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.item.ActiveItem
 import de.thm.lampgame.model.item.BonusJumpModel
 import de.thm.lampgame.model.item.DoublePointsModel
@@ -12,7 +13,7 @@ import de.thm.lampgame.model.item.ImmortalityModel
 class ActiveItemController(context: Context, screenWidth: Int, screenHeight: Int) {
     private var dblPointsItem = ActiveItem(context, screenWidth, screenHeight)
     private var bonusJumpItem = ActiveItem(context, screenWidth, screenHeight)
-    private var Immortality = ActiveItem(context, screenWidth, screenHeight)
+    private var immortality = ActiveItem(context, screenWidth, screenHeight)
 
     fun checkItemDurationAndSetItemEffect(canvas: Canvas, paint: Paint, player: Player) {
         if (DoublePointsModel.dblPtsDur > 0) {
@@ -28,7 +29,7 @@ class ActiveItemController(context: Context, screenWidth: Int, screenHeight: Int
 
         if (ImmortalityModel.immortalityDur > 0) {
             ImmortalityModel.immortalityDur--
-            Immortality.drawCircle(canvas, ImmortalityModel.immortalityDuration)
+            immortality.drawCircle(canvas, ImmortalityModel.immortalityDuration)
         } else player.playerModel.immortal = false
     }
 

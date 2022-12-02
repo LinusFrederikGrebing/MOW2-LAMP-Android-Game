@@ -21,7 +21,7 @@ class GameOverActivity : AppCompatActivity() {
         setPointsAndHighScore()
     }
 
-    fun setPointsAndHighScore(){
+    private fun setPointsAndHighScore(){
         val viewPoints: TextView = findViewById(R.id.points)
         val viewHighscore: TextView = findViewById(R.id.highscore)
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)

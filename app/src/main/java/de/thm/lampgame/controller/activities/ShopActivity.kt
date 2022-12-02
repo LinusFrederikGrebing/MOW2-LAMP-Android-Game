@@ -22,8 +22,6 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         ItemsAdapter.itemList = Database.getItemsMaps()
         inflateList()
         setPlayerTorchesTextView()
@@ -82,7 +80,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         } else if (ItemsAdapter.itemList[position] is DataItem.Unlocked) {
             unlockedCase(ItemsAdapter.itemList[position] as DataItem.Unlocked)
         } else {
-            activeCase(ItemsAdapter.itemList[position] as DataItem.Active)
+            activeCase()
         }
 
         // at the end, the player's current currency needs to be updated
@@ -153,9 +151,13 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         getRightList()
     }
 
-    private fun activeCase(active: DataItem.Active) {
-        // creates a small notification that the clicked card is already active
-        createToast(getString(R.string.alreadyActive, "${active.text}"))
+    private fun activeCase() {
+        when (shop) {
+            // creates a small notification that the clicked card is already active
+            1 -> createToast(getString(R.string.mapAlreadyActive))
+            2 -> createToast(getString(R.string.skinAlreadyActive))
+            3 -> createToast(getString(R.string.musicAlreadyActive))
+        }
     }
 
     // updates the item list and returns the list of the active shop

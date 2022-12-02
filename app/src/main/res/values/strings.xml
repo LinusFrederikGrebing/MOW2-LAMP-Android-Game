@@ -4,7 +4,9 @@
     <string name="continueStr">Continue</string>
     <string name="highScore" translatable="false">Highscore:</string>
     <string name="highScoreValues" translatable="false">Highscore: %1$d</string>
-    <string name="alreadyActive">%1$s is already active!</string>
+    <string name="mapAlreadyActive">This Map is already active!</string>
+    <string name="skinAlreadyActive">This Skin is already active!</string>
+    <string name="musicAlreadyActive">This Music is already active!</string>
     <string name="itemShop">Item Shop</string>
     <string name="lampGame" translatable="false">Lamp Game</string>
     <string name="lock">Lock</string>
@@ -44,4 +46,5 @@
     <string name="tip4">Tip: Water is particularly dangerous. Stay away!</string>
     <string name="tipNotFound">No tip found!</string>
     <string name="pointsValuesString">Points: %1$s</string>
+    <string name="auroraMusic" translatable="false">Aurora</string>
 </resources>

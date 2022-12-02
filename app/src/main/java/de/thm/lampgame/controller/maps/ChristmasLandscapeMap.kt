@@ -28,9 +28,9 @@ class ChristmasLandscapeMap(context: Context, screenHeight: Int, screenWidth: In
         // Depending on which map is active, the design of some obstacles should also change.
         // Therefore, the textures of the obstacles belonging to the map are initialized with the map
         BitmapGround.texture = R.drawable.christmas_ground
-        BitmapTerrain.texture = R.drawable.cemetery_platform
+        BitmapTerrain.texture = R.drawable.christmas_platform
         BitmapWater.texture = R.drawable.water_ground
-        BitmapTube.texture = R.drawable.obstaclestonewall
+        BitmapTube.texture = R.drawable.christmas_wall2
         BitmapSaw.texture = R.drawable.water_projectile
         BitmapBouncingSaw.texture = R.drawable.water_bouncing_projectile
         // initializes all layers of the map with their bitmaps
