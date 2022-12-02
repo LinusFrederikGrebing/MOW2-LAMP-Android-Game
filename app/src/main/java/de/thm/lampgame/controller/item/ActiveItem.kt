@@ -2,20 +2,18 @@ package de.thm.lampgame.controller.item
 
 import android.content.Context
 import android.graphics.*
-import de.thm.lampgame.R
 
-class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: Int) {
+class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: Int,  val texture : Int, itemDuration : Int) {
     private var unsizedBmp: Bitmap
     var bmp: Bitmap
     private var activeTexture = 0
     private val backgroundPaint: Paint = Paint()
     private val myPaint: Paint = Paint()
-    private var speed: Float = 0.0F
+    private var speed: Float = (360 / itemDuration.toFloat())
 
-    companion object {
-        var texture = R.drawable.himmel
-        var speedMultiplier: Float = 360F
-    }
+
+    var proportion: Float = 360F
+
 
     init {
         backgroundPaint.color = Color.WHITE
@@ -38,12 +36,10 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
         )
     }
 
-    fun drawCircle(canvas: Canvas, duration: Int) {
-        speed = (360 / duration.toFloat())
-        speedMultiplier -= speed
-
+    fun drawCircle(canvas: Canvas) {
+        proportion -= speed
         myPaint.color =
-            if (speedMultiplier > 180) Color.GREEN else if (speedMultiplier < 60) Color.RED else Color.YELLOW
+            if (proportion > 180) Color.GREEN else if (proportion < 60) Color.RED else Color.YELLOW
 
         canvas.drawArc(
             screenWidth * 0.01.toFloat(),
@@ -51,7 +47,7 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
             screenWidth * 0.1.toFloat(),
             screenHeight * 0.98.toFloat(),
             270F,
-            speedMultiplier,
+            proportion,
             true,
             myPaint
         )
