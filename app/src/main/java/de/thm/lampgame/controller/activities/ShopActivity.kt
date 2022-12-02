@@ -15,7 +15,6 @@ import de.thm.lampgame.model.PlayerModel
 import de.thm.lampgame.model.shop.DataItem
 import de.thm.lampgame.model.shop.Database
 
-
 class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     private lateinit var binding: ShopActivityLayoutBinding
     private val adapterList by lazy { ItemsAdapter(this) }
@@ -23,6 +22,8 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         ItemsAdapter.itemList = Database.getItemsMaps()
         inflateList()
         setPlayerTorchesTextView()
@@ -46,6 +47,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         finish()
     }
 
+    // puts the shop on maps
     fun shopMaps(view: View) {
         shop = 1
         ItemsAdapter.itemList = Database.getItemsMaps()
@@ -53,6 +55,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         setPlayerTorchesTextView()
     }
 
+    // sets the shop to skins
     fun shopSkins(view: View) {
         shop = 2
         ItemsAdapter.itemList = Database.getItemsSkins()
@@ -60,6 +63,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         setPlayerTorchesTextView()
     }
 
+    // puts the shop on music
     fun shopMusic(view: View) {
         shop = 3
         ItemsAdapter.itemList = Database.getItemsMusic()
@@ -67,6 +71,11 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         setPlayerTorchesTextView()
     }
 
+    // there are three different cases to handle an item click:
+    // in the first case, the item that was clicked on is of the Locked type
+    // in the second case, the item is of the type Unlocked
+    // in the third case, the item is of type Active
+    // depending on the type, a different case should occur
     override fun onItemClick(position: Int) {
         if (ItemsAdapter.itemList[position] is DataItem.Locked) {
             lockedCase(ItemsAdapter.itemList[position] as DataItem.Locked)
@@ -75,13 +84,19 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         } else {
             activeCase(ItemsAdapter.itemList[position] as DataItem.Active)
         }
+
+        // at the end, the player's current currency needs to be updated
         setPlayerTorchesTextView()
     }
 
     private fun lockedCase(locked: DataItem.Locked) {
+        // the variable locked represents the currently clicked item
 
+        // depending on which shop is active, different item lists are run through
         when (shop) {
             1 -> Database.listOfMaps.forEach {
+                // if the name of the item in the list position matches the name of the clicked item and the player has enough coins available, the item will be bought.
+                // The MapIdentifier in combination with the attribute name results in the identifier for the SharedPreferences, in which the new status of the item is entered
                 if (locked.text == it.itemInfo.name && PlayerModel.torches >= it.itemInfo.price.toInt()) {
                     PlayerModel.torches -= it.itemInfo.price.toInt()
                     it.itemInfo.buyStatus = true
@@ -112,11 +127,15 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
                 }
             }
         }
+        // updates the item list and returns the list of the active shop
         getRightList()
     }
 
     private fun unlockedCase(unlocked: DataItem.Unlocked) {
+        // the variable unlocked represents the currently clicked item
         when (shop) {
+            // if the name of the clicked item matches one of the ListItems,
+            // then active is set to true for this item, all others are set to false
             1 -> Database.listOfMaps.forEach {
                 it.itemInfo.active = unlocked.text == it.itemInfo.name
                 putSharedPref((it.itemInfo.name).toString() + "Active", it.itemInfo.active)
@@ -130,19 +149,23 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
                 putSharedPref((it.itemInfo.name).toString() + "Active", it.itemInfo.active)
             }
         }
+        // updates the item list and returns the list of the active shop
         getRightList()
     }
 
     private fun activeCase(active: DataItem.Active) {
+        // creates a small notification that the clicked card is already active
         createToast(getString(R.string.alreadyActive, "${active.text}"))
     }
 
+    // updates the item list and returns the list of the active shop
     private fun getRightList() {
         ItemsAdapter.itemList =
             if (shop == 1) Database.getItemsMaps() else if (shop == 2) Database.getItemsSkins() else Database.getItemsMusic()
         inflateList()
     }
 
+    // template to issue a small notification
     private fun createToast(text: String) {
         Toast.makeText(
             this, text,
@@ -150,11 +173,13 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         ).show()
     }
 
+    // sets the player's current coins
     private fun setPlayerTorchesTextView() {
         val playerTorches = findViewById<TextView>(R.id.playertorchestv)
         playerTorches.text = PlayerModel.torches.toString()
     }
 
+    // template to store the item attributes buyStatus and active in the SharedPreferences
     private fun putSharedPref(identifier: String, value: Boolean) {
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
@@ -164,6 +189,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
 
     override fun onPause() {
         super.onPause()
+        // when the shop is exited, the player's new coins should be saved
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
         editor.putInt("coins", PlayerModel.torches)

@@ -18,32 +18,43 @@ class StartGameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         gameView = GameView(this)
         setContentView(gameView)
+        // listofmusic represents a list of all possible music objects
         Database.listOfMusic.forEach {
+            // load the music whose status is active
             if (it.itemInfo.active) {
                 activeMusic = it.song
             }
         }
+        // create the music player with the active music object
         mediaPlayer = MediaPlayer.create(this, activeMusic)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // check if the music player is currently stopped at a point, if so go ahead to that point
+        length?.let { mediaPlayer?.seekTo(it) }
+
+        // start the music player and set the game status to ture
+        mediaPlayer?.start()
+        gameView?.gameStatus = true
     }
 
     override fun onPause() {
         super.onPause()
+        // pause the music player and remember its current position
         mediaPlayer?.pause()
         length = mediaPlayer?.currentPosition
-        if (gameView!!.gameStatus) {
+
+        // if the game is paused without setting the gameState to false, start the PauseActivity
+        if (gameView?.gameStatus == true) {
             val intent = Intent(this, PauseActivity::class.java)
             startActivity(intent)
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        length?.let { mediaPlayer?.seekTo(it) }
-        mediaPlayer?.start()
-        gameView!!.gameStatus = true
-    }
 
     override fun onDestroy() {
+        // stop the music player
         super.onDestroy()
         mediaPlayer?.stop()
     }

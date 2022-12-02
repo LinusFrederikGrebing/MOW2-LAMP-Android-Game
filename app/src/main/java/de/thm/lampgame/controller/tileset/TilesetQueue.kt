@@ -6,6 +6,7 @@ import de.thm.lampgame.controller.Player
 import de.thm.lampgame.model.tileset.TilesetQueueModel
 
 class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
+    // creates the associated model
     val tilesetQueueModel = TilesetQueueModel(screenWidth, screenHeight)
 
     init {
@@ -73,6 +74,7 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
             it.draw(canvas, velocity, velocity / 4)
         }
 
+        // checks whether there is a collision and sets the event
         tilesetQueueModel.collisionCheck(player)
 
         // checks if a new tileset needs to be added to the queue and if so, adds it

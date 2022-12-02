@@ -12,40 +12,52 @@ import de.thm.lampgame.controller.helper.LoadingScreenHelper
 import de.thm.lampgame.model.PlayerModel
 
 class GameOverActivity : AppCompatActivity() {
+    private val loadingScreenHelper = LoadingScreenHelper() // use the loadingScreenHelper to get possible tip texts
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
-        val points = intent.extras!!.getInt("POINTS")
+        playDeathSound()
+        setPointsAndHighScore()
+    }
+
+    fun setPointsAndHighScore(){
         val viewPoints: TextView = findViewById(R.id.points)
         val viewHighscore: TextView = findViewById(R.id.highscore)
-
-        viewPoints.text = getString(R.string.pointsValuesDecimal, points)
-        val mp: MediaPlayer = MediaPlayer.create(this, R.raw.death_sound)
-        mp.start()
-
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
-        val highScore = settings.getInt("HIGH_SCORE", 0)
 
-        if (points > highScore) {
-            viewHighscore.text = getString(R.string.highScoreValues, points)
-            val editor = settings.edit()
-            editor.putInt("HIGH_SCORE", points)
-            editor.apply()
-        } else {
-            viewHighscore.text = getString(R.string.highScoreValues, highScore)
+        if(intent != null){
+            if(intent.extras != null){
+                val points = intent.extras!!.getInt("POINTS", 0)
+
+                // set the currently achieved points
+                viewPoints.text = getString(R.string.pointsValuesDecimal, points)
+
+                // if the current score is higher than the saved high score, overwrite the old high score
+                if (points > (settings.getInt("HIGH_SCORE", 0))) {
+                    val editor = settings.edit()
+                    editor.putInt("HIGH_SCORE", points)
+                    editor.apply()
+                }
+                // set the value saved under HighScore
+                viewHighscore.text = getString(R.string.highScoreValues, settings.getInt("HIGH_SCORE", 0))
+            }
         }
     }
 
-
-    private val loadingScreenHelper = LoadingScreenHelper()
+    // play the short gameover music sequence
+    private fun playDeathSound(){
+        val mp: MediaPlayer = MediaPlayer.create(this, R.raw.death_sound)
+        mp.start()
+    }
 
     fun restart(view: View) {
+        // for the loading screen
         setContentView(R.layout.loadingscreenlayout)
         val tipView: TextView = findViewById(R.id.textViewTipp)
-        val text = loadingScreenHelper.getLoadingScreenText(this)
-        tipView.text = text
+        tipView.text = loadingScreenHelper.getLoadingScreenText(this)
 
+        // restart the game
         val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()
@@ -59,6 +71,7 @@ class GameOverActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        // save the player conis when leaving the gameover activity
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
         editor.putInt("coins", PlayerModel.torches)

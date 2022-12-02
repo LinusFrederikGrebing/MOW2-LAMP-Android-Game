@@ -35,30 +35,85 @@ object Database {
         "0",
         R.drawable.shop_music_passwordinfinity
     )
-    var musicIslandInfo =
-        ShopItemInfo(R.string.islandMusic, false, false, "30", R.drawable.shop_music_island)
+    var musicIslandInfo = ShopItemInfo(
+        R.string.islandMusic,
+        false,
+        false,
+        "30",
+        R.drawable.shop_music_island
+    )
 
-    var mapMountainLandscape =
-        ShopItemInfo(R.string.mountainMap, false, false, "50", R.drawable.shop_map_mountain)
-    var mapCemeteryLandscape =
-        ShopItemInfo(R.string.cemeteryMap, true, true, "0", R.drawable.shop_map_cemetery)
-    var mapMarsLandscape =
-        ShopItemInfo(R.string.marsMap, false, false, "100", R.drawable.shop_map_mars)
-    var mapChristmasLandscape =
-        ShopItemInfo(R.string.christmasMap, false, false, "150", R.drawable.shop_map_christmas)
+    var mapMountainLandscape = ShopItemInfo(
+        R.string.mountainMap,
+        false,
+        false,
+        "50",
+        R.drawable.shop_map_mountain
+    )
+    var mapCemeteryLandscape = ShopItemInfo(
+        R.string.cemeteryMap,
+        true,
+        true,
+        "0",
+        R.drawable.shop_map_cemetery
+    )
+    var mapMarsLandscape = ShopItemInfo(
+        R.string.marsMap,
+        false,
+        false,
+        "100",
+        R.drawable.shop_map_mars
+    )
+    var mapChristmasLandscape = ShopItemInfo(
+        R.string.christmasMap,
+        false,
+        false,
+        "150",
+        R.drawable.shop_map_christmas
+    )
 
-    var skinLamp = ShopItemInfo(R.string.lampSkin, true, true, "0", R.drawable.shop_skin_standard)
-    var skinBlueLamp =
-        ShopItemInfo(R.string.blueLampSkin, false, false, "30", R.drawable.shop_skin_blau)
-    var skinPurpleLamp =
-        ShopItemInfo(R.string.purpleLampSkin, false, false, "50", R.drawable.shop_skin_lila)
-    var skinChristmasLamp =
-        ShopItemInfo(R.string.christmasLampSkin, false, false, "70", R.drawable.shop_skin_christmas)
+    var skinLamp = ShopItemInfo(
+        R.string.lampSkin,
+        true,
+        true,
+        "0",
+        R.drawable.shop_skin_standard
+    )
+    var skinBlueLamp = ShopItemInfo(
+        R.string.blueLampSkin,
+        false,
+        false,
+        "30",
+        R.drawable.shop_skin_blau
+    )
+    var skinPurpleLamp = ShopItemInfo(
+        R.string.purpleLampSkin,
+        false,
+        false,
+        "50",
+        R.drawable.shop_skin_lila
+    )
+    var skinChristmasLamp = ShopItemInfo(
+        R.string.christmasLampSkin,
+        false,
+        false,
+        "70",
+        R.drawable.shop_skin_christmas
+    )
 
     // initialize a list of all maps, skins and music
-    val listOfMaps =
-        listOf(CemeteryLandscapeMap, MountainLandscapeMap, MarsLandscapeMap, ChristmasLandscapeMap)
-    val listOfSkins = listOf(OriginalLampSkin, BlueLampSkin, ChristmasLampSkin, PurpleLampSkin)
+    val listOfMaps = listOf(
+        CemeteryLandscapeMap,
+        MountainLandscapeMap,
+        MarsLandscapeMap,
+        ChristmasLandscapeMap
+    )
+    val listOfSkins = listOf(
+        OriginalLampSkin,
+        BlueLampSkin,
+        ChristmasLampSkin,
+        PurpleLampSkin
+    )
     val listOfMusic = listOf(
         BackgroundMusicPasswordInfinity,
         BackgroundMusicIsland,

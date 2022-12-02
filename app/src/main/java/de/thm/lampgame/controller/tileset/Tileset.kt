@@ -17,6 +17,7 @@ class Tileset(
     val screenWidth: Int,
     val screenHeight: Int
 ) {
+    // creates the associated model
     val tilesetModel = TilesetModel(startX, tileset, screenWidth, screenHeight)
 
     init {
@@ -26,6 +27,7 @@ class Tileset(
         initItems()
     }
 
+    // initialize each item once
     private fun initItems() {
         tilesetModel.dblPoints = DoublePoints(
             context,

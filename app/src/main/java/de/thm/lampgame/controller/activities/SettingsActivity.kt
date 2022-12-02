@@ -14,14 +14,13 @@ import de.thm.lampgame.model.shop.Database
 
 
 class SettingsActivity : AppCompatActivity() {
-    private var mediaPlayer: MediaPlayer? = null
-    private var music: Int = 0
-    private val localHelper = LocaleHelper()
-    private var buttonClicked = false
+    private val localHelper = LocaleHelper() // needed to change the language during the runtime
+    var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
+
         localHelper.getAndSetPersistedLanguageData(this)
         musicVolume()
         volumeTest()
@@ -46,13 +45,18 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun volumeTest() {
         //button plays music to test volume
-        val buttonTest: Button = findViewById<View>(R.id.playButton) as Button
+        var music = 0
+        var buttonClicked = false
+
+        // choose the current music
         Database.listOfMusic.forEach {
             if (it.itemInfo.active) {
                 music = it.song
             }
         }
 
+        // if the buttonClicked is true, start the test music, otherwise stop the test music
+        val buttonTest: Button = findViewById<View>(R.id.playButton) as Button
         buttonTest.setOnClickListener {
             buttonClicked = if (!buttonClicked) {
                 mediaPlayer = MediaPlayer.create(this, music); mediaPlayer?.start(); true
@@ -67,12 +71,13 @@ class SettingsActivity : AppCompatActivity() {
         finish()
     }
 
-
+    // use the helper to set the game language to english and restart the SettingsActivity
     fun changeLang(view: View) {
         localHelper.setLocale(this, "en")
         this.recreate()
     }
 
+    // use the helper to set the game language to english and restart the SettingsActivity
     fun changeLangDe(view: View) {
         localHelper.setLocale(this, "de")
         this.recreate()

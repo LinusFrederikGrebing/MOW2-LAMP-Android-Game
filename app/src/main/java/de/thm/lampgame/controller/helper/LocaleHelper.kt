@@ -10,16 +10,21 @@ import java.util.*
 
 class LocaleHelper : AppCompatActivity() {
     private var settings: SharedPreferences? = null
+
+    // If a new language is to be set, the language must be saved in the SharedPreferences
+    // and stored in the configuration
     fun setLocale(context: Context, language: String?) {
         saveNewLanguage(context, language)
         updateResources(context, language)
     }
 
+    // sets the language to the one stored in the sharedPreferences
     fun getAndSetPersistedLanguageData(context: Context) {
         settings = context.getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
-        setLocale(context, (settings!!.getString("SELECTED_LANGUAGE", "en")))
+        updateResources(context, (settings!!.getString("SELECTED_LANGUAGE", "en")))
     }
 
+    // stores the current language in the sharedPreferences
     fun saveNewLanguage(context: Context, language: String?) {
         settings = context.getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = settings!!.edit()
@@ -27,11 +32,12 @@ class LocaleHelper : AppCompatActivity() {
         editor.apply()
     }
 
+    // updates the language in the system configuration
     private fun updateResources(context: Context, language: String?) {
         val locale = language?.let { Locale(it) }
         val resources: Resources = context.resources
         val configuration: Configuration = resources.configuration
-        //TODO maybe fix/update deprecated stuff
+        //TODO fix/update deprecated stuff
         configuration.locale = locale
         resources.updateConfiguration(configuration, resources.displayMetrics)
     }

@@ -11,17 +11,22 @@ import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.view.player.DrawFirebar
 
 class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatActivity() {
+    // creates the associated model
     var playerModel = PlayerModel(screenWidth, screenHeight)
+    // creates an object of the firebar to draw it with the player's current fire
     private var firebar = DrawFirebar(screenWidth, screenHeight)
+
     var rechar = arrayOfNulls<Bitmap>(6)
     private lateinit var char: Array<Bitmap?>
 
     init {
+        // checks which skin is active and returns the respective char skin sequence
         Database.listOfSkins.forEach {
             if (it.itemInfo.active) char = it.createSkin(context).getSkin()
         }
 
         // resize char
+        // -> get the values from the associated model
         rechar[0] =
             char[0]?.let {
                 Bitmap.createScaledBitmap(
@@ -78,7 +83,10 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatA
             }
     }
 
+
     private fun drawChar(canvas: Canvas) {
+        // calkCharFrame returns the current characters skin frequency
+        // draws the character at the position given by the model
         rechar[playerModel.calkCharFrame()]?.let {
             canvas.drawBitmap(
                 it,
@@ -89,11 +97,13 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatA
         }
     }
 
+    // plays a short jump music
     fun groundJumping(context: Context) {
         val mp: MediaPlayer = MediaPlayer.create(context, R.raw.jump_sound)
         mp.start()
     }
 
+    // draws everything important related to the character and calculates values like the current points or the current fire
     fun drawPlayer(canvas: Canvas, velocity: Double, collision: Boolean) {
         playerModel.setJumpStats(collision)
         playerModel.calkFire()

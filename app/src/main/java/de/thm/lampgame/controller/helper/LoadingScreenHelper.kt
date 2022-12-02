@@ -4,7 +4,7 @@ import android.content.Context
 import de.thm.lampgame.R
 
 class LoadingScreenHelper {
-
+    //  the LoadingScreenHelper can be used to get one of the possible tip texts
     fun getLoadingScreenText(context: Context) : String {
         return when ((1..4).random()) {
             1 -> context.getString(R.string.tip1)

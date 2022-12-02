@@ -10,6 +10,7 @@ import de.thm.lampgame.model.item.TorchModel
 
 class Torch(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: Int) :
     ItemController() {
+    // creates the associated model
     override var itemModel: ItemModel = TorchModel(
         screenHeight,
         screenWidth,
@@ -19,6 +20,7 @@ class Torch(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: In
         y
     )
 
+    // initializes and resize the respective bitmap based on the data from the associated model
     init {
         itemModel.unsizedBmp =
             BitmapFactory.decodeResource(context.resources, R.drawable.torch_highlight)
@@ -30,6 +32,9 @@ class Torch(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: In
         )
     }
 
+    // If the respective item has not been picked up yet,
+    // then change the x coordinate by the given speed value and draw the item
+    // -> get the required data from the associated model
     override fun draw(canvas: Any, velocity: Int) {
         if (!itemModel.isPickedUp) {
             itemModel.x -= velocity

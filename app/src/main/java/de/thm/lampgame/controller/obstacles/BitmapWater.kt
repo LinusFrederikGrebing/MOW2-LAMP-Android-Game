@@ -8,8 +8,8 @@ import de.thm.lampgame.R
 import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
-class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) :
-    ObstacleController() {
+class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) : ObstacleController() {
+    // creates the associated model
     override var obstacleModel = ObstacleModel(
         ObstacleNames.WATER,
         width,
@@ -19,10 +19,12 @@ class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) :
         true
     )
 
+    // depending on the map, a different texture of the obstacle should be loaded
     companion object {
         var texture = R.drawable.water_ground
     }
 
+    // initializes and resize the respective bitmap based on the data from the associated model
     init {
         obstacleModel.unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
         obstacleModel.bmp = Bitmap.createScaledBitmap(
@@ -33,6 +35,8 @@ class BitmapWater(context: Context, width: Int, height: Int, x: Int, y: Int) :
         )
     }
 
+    // change the x coordinate by the given velocity value and draw the obstacle
+    // -> get the required data from the associated model
     override fun draw(canvas: Any, velocityX: Int, velocityY: Int) {
         obstacleModel.changeableX -= velocityX
         (canvas as Canvas).drawBitmap(

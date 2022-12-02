@@ -6,6 +6,7 @@ import de.thm.lampgame.model.map.MapModel
 
 abstract class MapController(screenWidth: Int, screenHeight: Int) {
     var mapModel = MapModel(screenWidth, screenHeight)
+
     lateinit var middle: Bitmap
     lateinit var background: Bitmap
     lateinit var front: Bitmap

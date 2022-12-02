@@ -13,18 +13,19 @@ import de.thm.lampgame.model.PlayerModel
 import de.thm.lampgame.model.shop.Database
 
 class MainActivity : AppCompatActivity() {
-    private val localHelper = LocaleHelper()
+    private val localHelper = LocaleHelper() // needed to change the language during the runtime
+    private val loadingScreenHelper = LoadingScreenHelper()  // use the loadingScreenHelper to get possible tip texts
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mainmenu)
         // overwrite everything with the saved data
         getAndSetPersistedCoinsAndHighscoreData()
         getAndSetPersistedShopItemData()
-
     }
 
     override fun onResume() {
         super.onResume()
+        // sets the currently saved game language
         localHelper.getAndSetPersistedLanguageData(this)
     }
 
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         val viewHighscore: TextView = findViewById(R.id.highscore)
         val highScore = settings.getInt("HIGH_SCORE", 0)
         PlayerModel.torches = settings.getInt("coins", PlayerModel.torches)
+
 
         viewHighscore.text = getString(R.string.highScoreValues, highScore)
         playerTorches.text = PlayerModel.torches.toString()
@@ -68,14 +70,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val loadingScreenHelper = LoadingScreenHelper()
+
 
     fun startGame(view: View?) {
+        // for the loading screen
         setContentView(R.layout.loadingscreenlayout)
         val tipView: TextView = findViewById(R.id.textViewTipp)
-        val text = loadingScreenHelper.getLoadingScreenText(this)
-        tipView.text = text
+        tipView.text = loadingScreenHelper.getLoadingScreenText(this)
 
+        // start the game
         val intent = Intent(this, StartGameActivity::class.java)
         startActivity(intent)
         finish()
@@ -86,17 +89,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun shop(view: View?) {
+    fun buttonShop(view: View?) {
         val intent = Intent(this, ShopActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
-        val editor = settings.edit()
-        editor.putInt("coins", PlayerModel.torches)
-        editor.apply()
     }
 }
