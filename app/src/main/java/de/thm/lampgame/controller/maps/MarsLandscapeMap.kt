@@ -30,7 +30,7 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
         // Therefore, the textures of the obstacles belonging to the map are initialized with the map
         BitmapGround.texture = R.drawable.mars_ground
         BitmapTerrain.texture = R.drawable.mars_platform
-        BitmapWater.texture = R.drawable.water_ground
+        BitmapWater.texture = R.drawable.water_ground_dark
         BitmapTube.texture = R.drawable.mars_wall
         BitmapSaw.texture = R.drawable.water_projectile
         BitmapBouncingSaw.texture = R.drawable.water_bouncing_projectile
