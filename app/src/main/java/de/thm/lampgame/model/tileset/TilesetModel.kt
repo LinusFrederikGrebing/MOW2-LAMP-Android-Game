@@ -308,9 +308,9 @@ open class TilesetModel(
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
-                        (0.30 * width).toInt(),
+                        (0.10 * width).toInt(),
                         height,
-                        (0.3 * width).toInt(),
+                        (0.10 * width).toInt(),
                         height,
                         true
                     )
@@ -455,7 +455,7 @@ open class TilesetModel(
                         width,
                         height,
                         (0.45 * width).toInt(),
-                        (0.55 * height).toInt(),
+                        (0.70 * height).toInt(),
                         false
                     ),
                 )
@@ -585,7 +585,7 @@ open class TilesetModel(
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
-                        (0.2 * width).toInt(),
+                        (0.1 * width).toInt(),
                         height,
                         (0.5 * width).toInt(),
                         height,
@@ -688,14 +688,6 @@ open class TilesetModel(
                         width,
                         height,
                         width,
-                        (0.63 * height).toInt(),
-                        true
-                    ),
-                    ObstacleModel(
-                        ObstacleNames.BOUNCINGSAW,
-                        width,
-                        height,
-                        (0.3 * width).toInt(),
                         (0.63 * height).toInt(),
                         true
                     ),

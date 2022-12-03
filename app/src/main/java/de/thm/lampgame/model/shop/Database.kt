@@ -26,7 +26,7 @@ object Database {
         R.string.christmasIsHereMusic,
         false,
         false,
-        "50",
+        "5",
         R.drawable.shop_music_christmas
     )
     var musicPasswordInfinityInfo = ShopItemInfo(
@@ -55,7 +55,7 @@ object Database {
         R.string.mountainMap,
         false,
         false,
-        "50",
+        "5",
         R.drawable.shop_map_mountain
     )
     var mapCemeteryLandscape = ShopItemInfo(
@@ -91,7 +91,7 @@ object Database {
         R.string.blueLampSkin,
         false,
         false,
-        "30",
+        "5",
         R.drawable.shop_skin_blau
     )
     var skinPurpleLamp = ShopItemInfo(
