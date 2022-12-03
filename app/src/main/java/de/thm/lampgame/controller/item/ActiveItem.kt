@@ -3,7 +3,7 @@ package de.thm.lampgame.controller.item
 import android.content.Context
 import android.graphics.*
 
-class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: Int, val texture: Int, itemDuration: Int, val newPosition: Float) {
+class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: Int, val texture: Int, itemDuration: Int, private val newPosition: Float) {
     private var unsizedBmp: Bitmap
     var bmp: Bitmap
     private val backgroundPaint: Paint = Paint()

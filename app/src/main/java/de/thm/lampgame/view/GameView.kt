@@ -11,7 +11,7 @@ import android.graphics.Paint
 import android.view.MotionEvent
 import android.view.View
 import de.thm.lampgame.R
-import de.thm.lampgame.controller.ActiveItemController
+import de.thm.lampgame.controller.item.ActiveItemController
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.activities.GameOverActivity
 import de.thm.lampgame.controller.activities.PauseActivity
