@@ -19,7 +19,7 @@ class ImmortalityModel(
     }
 
     init {
-        immortalityDur = 0
+        immortalityDur = 100
     }
 
     override var activateEffect: (Player) -> Unit = { p ->

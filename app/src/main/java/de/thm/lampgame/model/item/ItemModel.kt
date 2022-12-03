@@ -21,15 +21,18 @@ abstract class ItemModel(
                  || p.playerModel.charX >= x && p.playerModel.charX <= x + width
              ) {
                  if (p.playerModel.charY >= y && p.playerModel.charY <= y + height
-                     || p.playerModel.charY + p.playerModel.charWidth >= y && p.playerModel.charY + p.playerModel.charWidth <= y + height
+                     || p.playerModel.charY + p.playerModel.charHeight >= y && p.playerModel.charY + p.playerModel.charHeight <= y + height
+                     || p.playerModel.charY + (p.playerModel.charHeight/2) > y &&
+                     p.playerModel.charY + (p.playerModel.charHeight/2) < y+height
                  ) {
                      isPickedUp = true
                      itemEffect(p)
                  }
              }
-             //TODO Delete Code if not required anymore
 
-              /* val playerHitbox = Rect(
+             //TODO Delete Code if not required anymore
+             /*
+               val playerHitbox = Rect(
                  p.playerModel.charX,
                  p.playerModel.charY,
                  (p.playerModel.charX + p.playerModel.charWidth),
@@ -39,7 +42,8 @@ abstract class ItemModel(
              if (Rect.intersects(playerHitbox, itemHitbox)) {
                  isPickedUp = true
                  itemEffect(p)
-             }*/
+             }
+            */
         }
     }
 

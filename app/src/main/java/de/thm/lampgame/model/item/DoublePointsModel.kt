@@ -18,7 +18,7 @@ class DoublePointsModel(
     }
 
     init {
-        dblPtsDur = 0
+        dblPtsDur = 250
     }
 
     override var activateEffect: (Player) -> Unit = { p ->

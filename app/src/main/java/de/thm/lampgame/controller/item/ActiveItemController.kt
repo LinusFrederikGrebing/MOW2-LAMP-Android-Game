@@ -11,9 +11,9 @@ import de.thm.lampgame.model.item.ImmortalityModel
 
 class ActiveItemController(context: Context, screenWidth: Int, screenHeight: Int) {
 
-    private var dblPointsItem = ActiveItem(context, screenWidth, screenHeight, DoublePointsModel.textur, DoublePointsModel.doublePointsDuration)
-    private var bonusJumpItem = ActiveItem(context, screenWidth, screenHeight, BonusJumpModel.textur, BonusJumpModel.bonusJumpDuration)
-    private var immortality = ActiveItem(context, screenWidth, screenHeight, ImmortalityModel.textur, ImmortalityModel.immortalityDuration)
+    private var dblPointsItem = ActiveItem(context, screenWidth, screenHeight, DoublePointsModel.textur, DoublePointsModel.doublePointsDuration, 0F)
+    private var bonusJumpItem = ActiveItem(context, screenWidth, screenHeight, BonusJumpModel.textur, BonusJumpModel.bonusJumpDuration, (0.1*screenWidth).toFloat())
+    private var immortality = ActiveItem(context, screenWidth, screenHeight, ImmortalityModel.textur, ImmortalityModel.immortalityDuration, (-0.1*screenWidth).toFloat())
 
     fun checkItemDurationAndSetItemEffect(canvas: Canvas, paint: Paint, player: Player) {
         if(DoublePointsModel.dblPtsDur == DoublePointsModel.doublePointsDuration) dblPointsItem.proportion = 360F
