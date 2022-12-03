@@ -139,7 +139,7 @@ class GameView(context: Context) : View(context) {
                     gameStatus = false
                 } else if (player.playerModel.jumpCount < player.playerModel.maxJump) {
                     player.groundJumping(context)
-                    player.playerModel.sprung()
+                    player.playerModel.jump()
                 }
                 return true
             }

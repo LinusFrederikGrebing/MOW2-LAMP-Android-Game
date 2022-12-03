@@ -74,7 +74,7 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     }
 
     // character can only jump if there are still jumps left
-    fun sprung() {
+    fun jump() {
         if (jumpCount < maxJump) {
             jumpCount++
             velocity = -(screenHeight * 0.04).toInt()
