@@ -1,6 +1,6 @@
 package de.thm.lampgame.model.obstacles
 
-open class ObstacleModel (
+open class ObstacleModel(
     val name: ObstacleNames,
     val width: Int,
     val height: Int,
@@ -13,5 +13,13 @@ open class ObstacleModel (
     lateinit var unsizedBmp: Any
     lateinit var bmp: Any
 
-    open fun draw(canvas: Any, velocityX: Int, velocityY: Int) {}
+    private var isFalling = false
+
+    fun changeYCoords(velocityY: Int) {
+        if (changeableY >= y / 4 && !isFalling) changeableY -= velocityY
+        else isFalling = true
+        if (changeableY <= y && isFalling) changeableY += velocityY
+        else isFalling = false
+    }
+
 }

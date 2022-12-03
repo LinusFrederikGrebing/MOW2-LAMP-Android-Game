@@ -9,17 +9,25 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.helper.LocaleHelper
 import de.thm.lampgame.model.shop.Database
 
 
-class   SettingsActivity : AppCompatActivity() {
-    private var mp: MediaPlayer? = null
-    var music: Int = 0
+class SettingsActivity : AppCompatActivity() {
+    private val localHelper = LocaleHelper() // needed to change the language during the runtime
+    private var mediaPlayer: MediaPlayer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings)
 
-        //Lautstärkeregler
+        localHelper.getAndSetPersistedLanguageData(this)
+        musicVolume()
+        volumeTest()
+    }
+
+    private fun musicVolume() {
+        //volume slider
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
         val curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
@@ -33,21 +41,48 @@ class   SettingsActivity : AppCompatActivity() {
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, arg1, 0)
             }
         })
+    }
 
-        //Testmusik zum Testen der Lautstärke
-        val buttonTest: Button = findViewById<View>(R.id.playButton) as Button
+    private fun volumeTest() {
+        //button plays music to test volume
+        var music = 0
+        var buttonClicked = false
+
+        // choose the current music
         Database.listOfMusic.forEach {
             if (it.itemInfo.active) {
                 music = it.song
             }
         }
-        mp = MediaPlayer.create(this, music)
-        buttonTest.setOnClickListener { mp?.start() }
 
+        // if the buttonClicked is true, start the test music, otherwise stop the test music
+        val buttonTest: Button = findViewById<View>(R.id.playButton) as Button
+        buttonTest.setOnClickListener {
+            buttonClicked = if (!buttonClicked) {
+                mediaPlayer = MediaPlayer.create(this, music); mediaPlayer?.start(); true
+            } else {
+                mediaPlayer?.stop(); false
+            }
+        }
     }
 
     fun mainMenu(view: View) {
-        mp?.stop()
+        mediaPlayer?.stop()
         finish()
     }
+
+    // use the helper to set the game language to english and restart the SettingsActivity
+    fun changeLang(view: View) {
+        localHelper.setLocale(this, "en")
+        this.recreate()
+    }
+
+    // use the helper to set the game language to english and restart the SettingsActivity
+    fun changeLangDe(view: View) {
+        localHelper.setLocale(this, "de")
+        this.recreate()
+    }
+
+
+
 }

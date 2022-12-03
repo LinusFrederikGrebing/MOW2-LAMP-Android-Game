@@ -12,7 +12,7 @@ class DrawFirebar(screenWidth: Int, screenHeight: Int) {
     private val firebarPositionRight = screenWidth / 15
     private val firebarPositionBottom = screenHeight - screenHeight / 4
 
-    fun drawFirebar(canvas: Canvas, fire : Float) {
+    fun drawFirebar(canvas: Canvas, fire: Float) {
         firebarBackgroundRect.set(
             firebarPositionLeft,
             firebarPositionTop,
@@ -38,5 +38,4 @@ class DrawFirebar(screenWidth: Int, screenHeight: Int) {
         canvas.drawRect(firebarBackgroundRect, firebarBackgroundPaint)
         canvas.drawRect(firebarRect, firebarPaint)
     }
-
 }

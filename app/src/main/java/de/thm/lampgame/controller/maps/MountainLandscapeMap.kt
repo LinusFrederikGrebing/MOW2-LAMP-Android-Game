@@ -5,42 +5,62 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import de.thm.lampgame.R
+import de.thm.lampgame.controller.obstacles.*
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.model.shop.MapInterface
-import de.thm.lampgame.view.obstacles.*
 
 class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     MapController(screenWidth, screenHeight) {
     companion object : MapInterface {
+        // all information about the associated map, such as the name or status, is stored in the itemInfo attribute
         override var itemInfo = Database.mapMountainLandscape
-        override fun createMap(context: Any, screenHeight: Int, screenWidth: Int): MountainLandscapeMap {
-            return MountainLandscapeMap(context as Context,screenHeight,screenWidth)
+        // the method is used to create an object from the given map. It serves as an aid to create the map.
+        override fun createMap(
+            context: Any,
+            screenHeight: Int,
+            screenWidth: Int
+        ): MountainLandscapeMap {
+            return MountainLandscapeMap(context as Context, screenHeight, screenWidth)
         }
     }
 
     init {
-        BitmapGround.texture = R.drawable.bodengras
-        BitmapWater.texture = R.drawable.wasser
-        BitmapTube.texture = R.drawable.bottomtube
-        BitmapTerrain.texture = R.drawable.plattform2
-        BitmapSaw.texture = R.drawable.saw_water
-        BitmapBouncingSaw.texture = R.drawable.bouncingsaw_water
-        background = BitmapFactory.decodeResource(context.resources, R.drawable.berghinten)
-        mitte = BitmapFactory.decodeResource(context.resources, R.drawable.bergemitte)
-        vorne = BitmapFactory.decodeResource(context.resources, R.drawable.bergevorne)
-        height = background.height.toFloat()
-        width = background.width.toFloat()
-        ratio = width / height
-        newWidth = (ratio * screenHeight).toInt()
-        background = Bitmap.createScaledBitmap(background, newWidth, screenHeight, false)
-        mitte = Bitmap.createScaledBitmap(mitte, newWidth, screenHeight, false)
-        vorne = Bitmap.createScaledBitmap(vorne, newWidth, screenHeight, false)
+        // Depending on which map is active, the design of some obstacles should also change.
+        // Therefore, the textures of the obstacles belonging to the map are initialized with the map
+        BitmapGround.texture = R.drawable.mountain_landscape_ground
+        BitmapTerrain.texture = R.drawable.mountain_landscape_platform
+        BitmapWater.texture = R.drawable.mountain_landscape_water
+        BitmapTube.texture = R.drawable.mountain_landscape_wall
+        BitmapSaw.texture = R.drawable.water_projectile
+        BitmapBouncingSaw.texture = R.drawable.water_bouncing_projectile
+        // initializes all layers of the map with their bitmaps
+        background = BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_background)
+        middle = BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_middle)
+        front = BitmapFactory.decodeResource(context.resources, R.drawable.mountain_landscape_front)
+        // save the values calculated from the sizes of the bitmap in the associated model
+        mapModel.height = background.height.toFloat()
+        mapModel.width = background.width.toFloat()
+        mapModel.ratio = mapModel.width / mapModel.height
+        mapModel.newWidth = (mapModel.ratio * screenHeight).toInt()
+        // use the calculated values to resize the bitmaps
+        background = Bitmap.createScaledBitmap(background, mapModel.newWidth, screenHeight, false)
+        middle = Bitmap.createScaledBitmap(middle, mapModel.newWidth, screenHeight, false)
+        front = Bitmap.createScaledBitmap(front, mapModel.newWidth, screenHeight, false)
     }
 
-    override fun drawMap(canvas: Canvas, speedHinten: Double, speedMitte: Double, speedVorne: Double) {
-        drawMapHinten(canvas, speedHinten, background)
-        drawMapMitte(canvas, speedMitte, mitte)
-        drawMapVorne(canvas, speedVorne, vorne)
+
+    // each map consists of three levels, each level can have a different speed,
+    // with the last one usually showing the lowest speed
+    override fun drawMap(
+        canvas: Canvas,
+        speedBack: Double,
+        speedMiddle: Double,
+        speedFront: Double
+    ) {
+        // draw each layer with the corresponding speed
+        drawMapBack(canvas, speedBack, background)
+        drawMapMiddle(canvas, speedMiddle, middle)
+        drawMapFront(canvas, speedFront, front)
     }
 }
 

@@ -26,7 +26,7 @@ class GreatestWidthHelper @JvmOverloads constructor(
             }
         }
 
-        // Set the width of all referenced view to the width of the view with the greatest width.
+        // Set the width of all referenced views to the width of the view with the greatest width.
         for (i in 0 until this.mCount) {
             val id = this.mIds[i]
             val child = container.getViewById(id)

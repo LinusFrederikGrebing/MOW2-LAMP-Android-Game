@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,14 +20,15 @@
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="36dp"
-                android:contentDescription="@string/torches"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:contentDescription="@string/torches"
                 android:scaleX="2"
-                app:srcCompat="@drawable/torch" />
+                app:srcCompat="@drawable/torch"
+                tools:ignore="InefficientWeight" />
 
             <TextView
-                android:id="@+id/playercoinstv"
+                android:id="@+id/playertorchestv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/torchNumber"
@@ -58,7 +60,7 @@
                 android:contentDescription="@string/maps_shop"
                 android:scaleX="0.9"
                 android:scaleY="0.9"
-                app:srcCompat="@drawable/shop_maps_icon" />
+                app:srcCompat="@drawable/shop_icon_maps" />
 
             <ImageView
                 android:id="@+id/shop2"
@@ -68,10 +70,10 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:onClick="shopSkins"
-                android:contentDescription="@string/skin_shop"
+                android:contentDescription="@string/skinShop"
                 android:scaleX="1"
                 android:scaleY="1"
-                app:srcCompat="@drawable/shop_skins_icon" />
+                app:srcCompat="@drawable/shop_icon_skins" />
 
             <ImageView
                 android:id="@+id/shop3"
@@ -80,7 +82,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:contentDescription="@string/item_shop"
+                android:contentDescription="@string/itemShop"
                 android:onClick="shopMusic"
                 android:scaleX="0.9"
                 android:scaleY="0.9"
@@ -124,6 +126,6 @@
             android:onClick="mainMenu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/exit_icon_red" />
+            app:srcCompat="@drawable/exit_icon" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
