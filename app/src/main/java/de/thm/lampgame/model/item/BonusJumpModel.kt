@@ -12,7 +12,7 @@ class BonusJumpModel(screenHeight: Int, screenWidth: Int, height: Int, width: In
     }
 
     init {
-        dblJumpDur = 250
+        dblJumpDur = 0
     }
 
     override var activateEffect: (Player) -> Unit = { p ->
