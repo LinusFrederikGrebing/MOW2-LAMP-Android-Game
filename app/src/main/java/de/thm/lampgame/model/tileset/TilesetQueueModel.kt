@@ -8,7 +8,7 @@ import de.thm.lampgame.view.GameView
 open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     var queue = ArrayDeque<Tileset>(2)       //the queue consists of 2 tilesets
     var tilesetList = ArrayList<Tileset>()     // list in which all tileset variations are stored
-    val possibleTilesetCount = 16      // possible variations of different tilesets
+    val possibleTilesetCount = 20      // possible variations of different tilesets
     var collision = false
     var iterations = 0
     var nextTilesethasTorch = false

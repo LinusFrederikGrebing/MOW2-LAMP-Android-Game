@@ -49,7 +49,7 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
                 itemX = (0.52 * width).toInt(); itemY = (0.45 * height).toInt()
             }
             11 -> {
-                itemX = (0.6 * width).toInt(); itemY = (0.6 * height).toInt()
+                itemX = (0.6 * width).toInt(); itemY = (0.1 * height).toInt()
             }
             12 -> {
                 itemX = (0.15 * width).toInt(); itemY = (0.6 * height).toInt()
@@ -71,6 +71,12 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
             }
             18 -> {
                 itemX = width; itemY = (0.1 * height).toInt()
+            }
+            19 -> {
+                itemX = (0.7 * width).toInt(); itemY = (0.5 * height).toInt()
+            }
+            20 -> {
+                itemX = (0.5 * width).toInt(); itemY = (0.6 * height).toInt()
             }
             else -> println("Error Torch Spawn Point")
         }
@@ -484,6 +490,72 @@ open class TilesetModel(var startX: Int, var tilesetNr: Int, var width: Int, var
                         (0.9 * width).toInt(),
                         (0.5 * height).toInt(),
                         false
+                    )
+                )
+            )
+            19 -> obstaclesWithoutBitmaps.addAll(
+                listOf(
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
+                    ObstacleModel(
+                        ObstacleNames.WATER,
+                        (0.1 * width).toInt(),
+                        height,
+                        (0.1 * width).toInt(),
+                        height,
+                        true
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.WATER,
+                        (0.1 * width).toInt(),
+                        height,
+                        (0.35 * width).toInt(),
+                        height,
+                        true
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.WATER,
+                        (0.1 * width).toInt(),
+                        height,
+                        (0.60 * width).toInt(),
+                        height,
+                        true
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.WATER,
+                        (0.1 * width).toInt(),
+                        height,
+                        (0.85 * width).toInt(),
+                        height,
+                        true
+                    )
+                )
+            )
+            20 -> obstaclesWithoutBitmaps.addAll(
+                listOf(
+                    ObstacleModel(ObstacleNames.GROUND, width, height, 0, (0.90 * height).toInt(), false),
+                    ObstacleModel(
+                        ObstacleNames.SAW,
+                        width,
+                        height,
+                        width,
+                        (0.63 * height).toInt(),
+                        true
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.BOUNCINGSAW,
+                        width,
+                        height,
+                        (0.3 * width).toInt(),
+                        (0.63 * height).toInt(),
+                        true
+                    ),
+                    ObstacleModel(
+                        ObstacleNames.BOUNCINGSAW,
+                        width,
+                        height,
+                        (0.8 * width).toInt(),
+                        (0.63 * height).toInt(),
+                        true
                     )
                 )
             )
