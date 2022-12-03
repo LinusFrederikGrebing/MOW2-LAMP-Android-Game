@@ -580,7 +580,7 @@ open class TilesetModel(
                         width,
                         height,
                         (0.2 * width).toInt(),
-                        (0.2 * height).toInt(),
+                        (0.5 * height).toInt(),
                         false
                     ),
                     ObstacleModel(
@@ -608,7 +608,7 @@ open class TilesetModel(
                         width,
                         height,
                         (0.2 * width).toInt(),
-                        (0.2 * height).toInt(),
+                        (0.45 * height).toInt(),
                         false
                     ),
                     ObstacleModel(
@@ -641,7 +641,7 @@ open class TilesetModel(
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
-                        (0.1 * width).toInt(),
+                        (0.03 * width).toInt(),
                         height,
                         (0.1 * width).toInt(),
                         height,
@@ -649,7 +649,7 @@ open class TilesetModel(
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
-                        (0.1 * width).toInt(),
+                        (0.03 * width).toInt(),
                         height,
                         (0.35 * width).toInt(),
                         height,
@@ -657,7 +657,7 @@ open class TilesetModel(
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
-                        (0.1 * width).toInt(),
+                        (0.03 * width).toInt(),
                         height,
                         (0.60 * width).toInt(),
                         height,
@@ -665,7 +665,7 @@ open class TilesetModel(
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
-                        (0.1 * width).toInt(),
+                        (0.03 * width).toInt(),
                         height,
                         (0.85 * width).toInt(),
                         height,
