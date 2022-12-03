@@ -6,20 +6,28 @@ import android.graphics.*
 class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: Int, val texture: Int, itemDuration: Int, private val newPosition: Float) {
     private var unsizedBmp: Bitmap
     var bmp: Bitmap
+    // the paint is used to change the color of the object to be drawn
     private val backgroundPaint: Paint = Paint()
     private val myPaint: Paint = Paint()
+    // the speed describes the item speed in relation to a circle -> 360 degrees.
+    // Depending on the item duration, the item progress bar must run at different speeds
     private var speed: Float = (360 / itemDuration.toFloat())
+   // proportion describes the current proportion of the circle
+    var proportion: Float = resetProportion()
 
-    var proportion: Float = 360F
-
-
+    // for the background arc, the color is set to white and the object texture is determined by the texture parameter
     init {
         backgroundPaint.color = Color.WHITE
         unsizedBmp = BitmapFactory.decodeResource(context.resources, texture)
         bmp = Bitmap.createScaledBitmap(unsizedBmp, screenHeight / 9, screenHeight / 9, true)
     }
 
-    fun draw(canvas: Canvas) {
+    fun resetProportion(): Float {
+        return 360F
+    }
+    // draws the item
+    // newPosition represents a changed position on the x-axis and is set upon ActiveItem initialization
+    fun drawItem(canvas: Canvas) {
         canvas.drawBitmap(
             bmp,
             screenWidth * 0.45.toFloat() + newPosition,
@@ -28,6 +36,7 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
         )
     }
 
+    // draws the arc progress bar and an icon background
     fun drawCircle(canvas: Canvas) {
         proportion -= speed
         myPaint.color =
@@ -53,6 +62,6 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
             true,
             backgroundPaint
         )
-        draw(canvas)
+        drawItem(canvas)
     }
 }

@@ -9,6 +9,7 @@ class MapModel(val screenWidth: Int, val screenHeight: Int) {
     var height = 0.0F
     var ratio = 0.0F
 
+
     fun setNewMapBackXCoords(speed: Double) {
         mapBack -= speed
         if (mapBack < -newWidth) {

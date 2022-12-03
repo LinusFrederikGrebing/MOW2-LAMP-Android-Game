@@ -18,10 +18,12 @@ import de.thm.lampgame.model.shop.Database
 class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
     private lateinit var binding: ShopActivityLayoutBinding
     private val adapterList by lazy { ItemsAdapter(this) }
+
     var shop: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // If the activity is started, the first page -> the shop page for maps should be loaded
         ItemsAdapter.itemList = Database.getItemsMaps()
         inflateList()
         setPlayerTorchesTextView()
@@ -66,14 +68,15 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         shop = 3
         ItemsAdapter.itemList = Database.getItemsMusic()
         inflateList()
+        // sets the player's current coins
         setPlayerTorchesTextView()
     }
 
-    // there are three different cases to handle an item click:
-    // in the first case, the item that was clicked on is of the Locked type
-    // in the second case, the item is of the type Unlocked
-    // in the third case, the item is of type Active
-    // depending on the type, a different case should occur
+    /* there are three different cases to handle an item click:
+    * in the first case, the item that was clicked on is of the Locked type
+    * in the second case, the item is of the type Unlocked
+    * in the third case, the item is of type Active
+     depending on the type, a different case should occur */
     override fun onItemClick(position: Int) {
         if (ItemsAdapter.itemList[position] is DataItem.Locked) {
             lockedCase(ItemsAdapter.itemList[position] as DataItem.Locked)

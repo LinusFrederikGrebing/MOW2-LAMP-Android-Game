@@ -7,6 +7,7 @@ import de.thm.lampgame.model.shop.MusicInterface
 class BackgroundMusicAurora {
 
     companion object : MusicInterface {
+        // all information about the associated musik, such as the name or status, is stored in the itemInfo attribute
         override var itemInfo = Database.musicAuroraInfo
         override val song =
             R.raw.backgroundmusic_aurora

@@ -58,7 +58,7 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
         speedFront: Double
     ) {
         // draw each layer with the corresponding speed
-        drawMapBackMars(canvas, speedBack, background)
+        drawMapBackWithoutChanges(canvas, background)
         drawMapMiddle(canvas, speedMiddle, middle)
         drawMapFront(canvas, speedFront, front)
     }

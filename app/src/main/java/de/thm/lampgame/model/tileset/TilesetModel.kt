@@ -11,17 +11,22 @@ open class TilesetModel(
     var width: Int,
     var height: Int
 ) {
+    // represents the tileset based on the descriptions without the associated bitmaps
     var obstacles: MutableList<ObstacleController> = mutableListOf()
+    // represents the tileset descriptions without the associated bitmaps
     var obstaclesWithoutBitmaps: MutableList<ObstacleModel> = mutableListOf()
+    // the respective items are stored with their bitmaps under the following variables and can be drawn in the TilesetqueueController
     lateinit var item: ItemController
     lateinit var dblPoints: ItemController
     lateinit var bonusJump: ItemController
     lateinit var immortality: ItemController
     lateinit var torch: ItemController
+    // tilesets can also exist without items
     var hasItem = false
     var itemX = 0
     var itemY = 0
 
+    // sets different item coordinates depending on the tileset id
     private fun setItemSpawnpoint() {
         when (tilesetNr) {
             1 -> {
@@ -88,6 +93,7 @@ open class TilesetModel(
         }
     }
 
+    // either the item belonging to the tileset is set to torch or one of the 3 other items is spawned with a probability of 1:2
     fun randomItemSpawn(isTorch: Boolean) {
         if (isTorch) {
             item = torch; item.itemModel.x = itemX; item.itemModel.y = itemY; hasItem =
@@ -110,6 +116,7 @@ open class TilesetModel(
         }
     }
 
+    // depending on which tileset id is passed, the tileset stored under that id will be returned with the associated obstacles
     fun initTilesetWithItsObstacles() {
         when (tilesetNr) {
             0 -> obstaclesWithoutBitmaps.addAll(

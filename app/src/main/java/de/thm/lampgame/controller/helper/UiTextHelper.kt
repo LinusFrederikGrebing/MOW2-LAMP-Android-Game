@@ -3,6 +3,7 @@ package de.thm.lampgame.controller.helper
 import android.content.Context
 import androidx.annotation.StringRes
 
+// the UiTextHelper class is used to ensure reading from the R.Strings file in the view based on the language set
 sealed class UiTextHelper {
     data class DynamicString(val value: String) : UiTextHelper()
     class StringResource(

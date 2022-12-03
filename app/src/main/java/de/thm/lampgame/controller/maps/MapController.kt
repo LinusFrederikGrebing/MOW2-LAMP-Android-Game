@@ -11,17 +11,10 @@ abstract class MapController(screenWidth: Int, screenHeight: Int) {
     lateinit var background: Bitmap
     lateinit var front: Bitmap
 
+  // is needed to realize an endlessly moving background
     fun drawMapBack(canvas: Canvas, speed: Double, bmp: Bitmap) {
         mapModel.setNewMapBackXCoords(speed)
         canvas.drawBitmap(bmp, mapModel.mapBack.toFloat(), 0f, null)
-        if (mapModel.needToRepeatPartBack()) {
-            canvas.drawBitmap(bmp, (mapModel.mapBack + mapModel.newWidth).toFloat(), 0f, null)
-        }
-    }
-
-    fun drawMapBackMars(canvas: Canvas, speed: Double, bmp: Bitmap) {
-        mapModel.setNewMapBackXCoords(speed)
-        canvas.drawBitmap(bmp, -700f, 0f, null)
         if (mapModel.needToRepeatPartBack()) {
             canvas.drawBitmap(bmp, (mapModel.mapBack + mapModel.newWidth).toFloat(), 0f, null)
         }
@@ -41,6 +34,11 @@ abstract class MapController(screenWidth: Int, screenHeight: Int) {
         if (mapModel.needToRepeatPartMiddle()) {
             canvas.drawBitmap(bmp, (mapModel.mapMiddle + mapModel.newWidth).toFloat(), 0f, null)
         }
+    }
+
+    // special function if the last map layer should not move in maps
+    fun drawMapBackWithoutChanges(canvas: Canvas, bmp: Bitmap) {
+        canvas.drawBitmap(bmp, -700f, 0f, null)
     }
 
     abstract fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double)

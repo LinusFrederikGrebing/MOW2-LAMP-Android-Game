@@ -4,6 +4,8 @@ import de.thm.lampgame.controller.Player
 
 class TorchModel(screenHeight: Int, screenWidth: Int, height: Int, width: Int, x: Int, y: Int) :
     ItemModel(screenHeight, screenWidth, height, width, x, y) {
+
+    // determines the effect of the item
     override var activateEffect: (Player) -> Unit = { p ->
         p.playerModel.fire = 100F
         p.playerModel.calkTorches()
