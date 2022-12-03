@@ -22,13 +22,6 @@ object Database {
     const val ACTIVE_TYPE = 2
 
     // init all ShopItemInfo's
-    var musicChristmasInfo = ShopItemInfo(
-        R.string.christmasIsHereMusic,
-        false,
-        false,
-        "5",
-        R.drawable.shop_music_christmas
-    )
     var musicPasswordInfinityInfo = ShopItemInfo(
         R.string.passwordInfinityMusic,
         true,
@@ -43,6 +36,13 @@ object Database {
         "30",
         R.drawable.shop_music_island
     )
+    var musicChristmasInfo = ShopItemInfo(
+        R.string.christmasIsHereMusic,
+        false,
+        false,
+        "5",
+        R.drawable.shop_music_christmas
+    )
     var musicAuroraInfo = ShopItemInfo(
         R.string.auroraMusic,
         false,
@@ -51,19 +51,19 @@ object Database {
         R.drawable.shop_music_aurora
     )
 
-    var mapMountainLandscape = ShopItemInfo(
-        R.string.mountainMap,
-        false,
-        false,
-        "5",
-        R.drawable.shop_map_mountain
-    )
     var mapCemeteryLandscape = ShopItemInfo(
         R.string.cemeteryMap,
         true,
         true,
         "0",
         R.drawable.shop_map_cemetery
+    )
+    var mapMountainLandscape = ShopItemInfo(
+        R.string.mountainMap,
+        false,
+        false,
+        "5",
+        R.drawable.shop_map_mountain
     )
     var mapMarsLandscape = ShopItemInfo(
         R.string.marsMap,
