@@ -15,7 +15,7 @@ open class TilesetModel(
     var obstacles: MutableList<ObstacleController> = mutableListOf()
     // represents the tileset descriptions without the associated bitmaps
     var obstaclesWithoutBitmaps: MutableList<ObstacleModel> = mutableListOf()
-    // the respective items are stored with their bitmaps under the following variables and can be drawn in the TilesetqueueController
+    // the respective items are stored with their bitmaps under the following variables and can be drawn in the TilesetQueueController
     lateinit var item: ItemController
     lateinit var dblPoints: ItemController
     lateinit var bonusJump: ItemController

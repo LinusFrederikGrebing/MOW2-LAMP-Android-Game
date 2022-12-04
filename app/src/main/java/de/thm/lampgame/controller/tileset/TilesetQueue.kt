@@ -23,7 +23,7 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
             )
         }
 
-        // the tilesetqueue consists of two tilesets, first and last. Initialize the first two.
+        // the tilesetQueue consists of two tilesets, first and last. Initialize the first two.
         tilesetQueueModel.initQueue(
             Tileset(
                 0,

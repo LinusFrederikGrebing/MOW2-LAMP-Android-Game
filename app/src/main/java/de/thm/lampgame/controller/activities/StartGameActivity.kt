@@ -18,7 +18,7 @@ class StartGameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         gameView = GameView(this)
         setContentView(gameView)
-        // listofmusic represents a list of all possible music objects
+        // listOfMusic represents a list of all possible music objects
         Database.listOfMusic.forEach {
             // load the music whose status is active
             if (it.itemInfo.active) {

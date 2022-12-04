@@ -35,7 +35,7 @@ class PauseActivity : AppCompatActivity() {
     fun buttonRestart(view: View?) {
         // for the loading screen
         setContentView(R.layout.loadingscreenlayout)
-        val tipView: TextView = findViewById(R.id.textViewTipp)
+        val tipView: TextView = findViewById(R.id.textViewTip)
         tipView.text = loadingScreenHelper.getLoadingScreenText(this)
 
         // restart the game

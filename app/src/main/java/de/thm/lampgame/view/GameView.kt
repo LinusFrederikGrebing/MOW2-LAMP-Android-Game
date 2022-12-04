@@ -9,7 +9,7 @@ import de.thm.lampgame.controller.GameController
 
 class GameView(context: Context) : View(context) {
     private var runnable: Runnable? = null
-    private val updateMillis: Long = 1
+    private val updateMillis: Long = 10
     var gameController = GameController(context)
 
     init {

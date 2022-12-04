@@ -12,12 +12,12 @@ import de.thm.lampgame.model.item.ImmortalityModel
 class ActiveItemController(context: Context, screenWidth: Int, screenHeight: Int) {
 
     // an activeItem object is created for each item that has a duration
-    private var dblPointsItem = ActiveItem(context, screenWidth, screenHeight, DoublePointsModel.textur, DoublePointsModel.doublePointsDuration, 0F)
-    private var bonusJumpItem = ActiveItem(context, screenWidth, screenHeight, BonusJumpModel.textur, BonusJumpModel.bonusJumpDuration, (0.1*screenWidth).toFloat())
-    private var immortality = ActiveItem(context, screenWidth, screenHeight, ImmortalityModel.textur, ImmortalityModel.immortalityDuration, (-0.1*screenWidth).toFloat())
+    private var dblPointsItem = ActiveItem(context, screenWidth, screenHeight, DoublePointsModel.texture, DoublePointsModel.doublePointsDuration, 0F)
+    private var bonusJumpItem = ActiveItem(context, screenWidth, screenHeight, BonusJumpModel.texture, BonusJumpModel.bonusJumpDuration, (0.1*screenWidth).toFloat())
+    private var immortality = ActiveItem(context, screenWidth, screenHeight, ImmortalityModel.texture, ImmortalityModel.immortalityDuration, (-0.1*screenWidth).toFloat())
 
     fun checkItemDurationAndSetItemEffect(canvas: Canvas, paint: Paint, player: Player) {
-        // if the current itemduration is equal to the starting value of the item's duration, then the percentage of the progressbar should be reset
+        // if the current item duration is equal to the starting value of the item's duration, then the percentage of the progressbar should be reset
         if(DoublePointsModel.dblPtsDur == DoublePointsModel.doublePointsDuration) dblPointsItem.resetProportion()
         if(BonusJumpModel.dblJumpDur == BonusJumpModel.bonusJumpDuration) bonusJumpItem.resetProportion()
         if(ImmortalityModel.immortalityDur == ImmortalityModel.immortalityDuration) immortality.resetProportion()
