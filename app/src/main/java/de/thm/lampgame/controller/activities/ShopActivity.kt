@@ -29,6 +29,12 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         setPlayerTorchesTextView()
     }
 
+    override fun onStart() {
+        super.onStart()
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+    }
+
     private fun inflateList() {
         binding = ShopActivityLayoutBinding.inflate(layoutInflater)
 

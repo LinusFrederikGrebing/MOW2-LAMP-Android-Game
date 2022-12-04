@@ -11,12 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LAMPGAME"
-
+        android:screenOrientation="sensorLandscape"
         tools:targetApi="31">
         <activity
             android:name=".controller.activities.MainActivity"
             android:exported="true"
-            android:screenOrientation="landscape"
+            android:screenOrientation="sensorLandscape"
             android:turnScreenOn="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,19 +30,19 @@
         </activity>
         <activity
             android:name=".controller.activities.StartGameActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".controller.activities.GameOverActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".controller.activities.SettingsActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".controller.activities.ShopActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".controller.activities.PauseActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="sensorLandscape" />
 
         <meta-data
             android:name="preloaded_fonts"

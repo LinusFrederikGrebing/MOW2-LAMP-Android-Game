@@ -17,6 +17,12 @@ class PauseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pause)
     }
 
+    override fun onStart() {
+        super.onStart()
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+    }
+
     fun buttonContinue(view: View?) {
         finish()
     }

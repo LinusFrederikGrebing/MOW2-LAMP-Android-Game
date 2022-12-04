@@ -36,8 +36,10 @@ class GameController(val context: Context) {
         gameover = false
         gameStatus = true
 
+
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
+        screenWidth = (screenWidth + (screenWidth*0.05)).toInt()
 
         paint.color = Color.BLACK
         paint.textSize = screenHeight * 0.07.toFloat()
