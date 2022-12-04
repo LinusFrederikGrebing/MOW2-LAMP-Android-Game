@@ -26,12 +26,6 @@ class SettingsActivity : AppCompatActivity() {
         volumeTest()
     }
 
-    override fun onStart() {
-        super.onStart()
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-    }
-
     private fun musicVolume() {
         //volume slider
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager

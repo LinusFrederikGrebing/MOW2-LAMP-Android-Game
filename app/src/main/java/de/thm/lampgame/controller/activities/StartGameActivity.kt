@@ -3,7 +3,6 @@ package de.thm.lampgame.controller.activities
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.model.shop.Database
 import de.thm.lampgame.view.GameView
@@ -30,11 +29,6 @@ class StartGameActivity : AppCompatActivity() {
         mediaPlayer = MediaPlayer.create(this, activeMusic)
     }
 
-    override fun onStart() {
-        super.onStart()
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-    }
 
     override fun onResume() {
         super.onResume()
@@ -43,6 +37,7 @@ class StartGameActivity : AppCompatActivity() {
 
         // start the music player and set the game status to ture
         mediaPlayer?.start()
+        gameView?.gameController?.gameStatus = true
     }
 
     override fun onPause() {
