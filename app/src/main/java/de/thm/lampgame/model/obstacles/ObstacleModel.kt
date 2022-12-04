@@ -4,8 +4,8 @@ open class ObstacleModel(
     val name: ObstacleNames,
     val width: Int,
     val height: Int,
-    var x: Int,
-    var y: Int,
+    var x: Double,
+    var y: Double,
     var death: Boolean
 ) {
     var changeableX = x
@@ -15,7 +15,7 @@ open class ObstacleModel(
 
     private var isFalling = false
 
-    fun changeYCoords(velocityY: Int) {
+    fun changeYCoords(velocityY: Double) {
         if (changeableY >= y / 4 && !isFalling) changeableY -= velocityY
         else isFalling = true
         if (changeableY <= y && isFalling) changeableY += velocityY

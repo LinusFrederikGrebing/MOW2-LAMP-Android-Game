@@ -41,5 +41,5 @@ abstract class MapController(screenWidth: Int, screenHeight: Int) {
         canvas.drawBitmap(bmp, -700f, 0f, null)
     }
 
-    abstract fun drawMap(canvas: Canvas, speedBack: Double, speedMiddle: Double, speedFront: Double)
+    abstract fun drawMap(canvas: Canvas, velocity : Double)
 }

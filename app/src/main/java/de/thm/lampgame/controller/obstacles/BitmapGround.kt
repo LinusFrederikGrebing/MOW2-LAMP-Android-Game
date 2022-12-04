@@ -14,8 +14,8 @@ class BitmapGround(context: Context, width: Int, height: Int) : ObstacleControll
         ObstacleNames.GROUND,
         width,
         (0.13 * height).toInt(),
-        0,
-        (0.87 * height).toInt(),
+        0.0,
+        (0.87 * height),
         false
     )
 
@@ -37,7 +37,7 @@ class BitmapGround(context: Context, width: Int, height: Int) : ObstacleControll
 
     // change the x coordinate by the given velocity value and draw the obstacle
     // -> get the required data from the associated model
-    override fun draw(canvas: Any, velocityX: Int, velocityY: Int) {
+    override fun draw(canvas: Any, velocityX: Double, velocityY: Double) {
         obstacleModel.changeableX -= velocityX
         (canvas as Canvas).drawBitmap(
             obstacleModel.bmp as Bitmap,

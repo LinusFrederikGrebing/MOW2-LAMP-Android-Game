@@ -8,7 +8,7 @@ import de.thm.lampgame.R
 import de.thm.lampgame.model.item.ImmortalityModel
 import de.thm.lampgame.model.item.ItemModel
 
-class Immortality(context: Context, screenHeight: Int, screenWidth: Int, x: Int, y: Int) :
+class Immortality(context: Context, screenHeight: Int, screenWidth: Int, x: Double, y: Double) :
     ItemController() {
     // creates the associated model
     override var itemModel: ItemModel = ImmortalityModel(
@@ -35,7 +35,7 @@ class Immortality(context: Context, screenHeight: Int, screenWidth: Int, x: Int,
     // If the respective item has not been picked up yet,
     // then change the x coordinate by the given speed value and draw the item
     // -> get the required data from the associated model
-    override fun draw(canvas: Any, velocity: Int) {
+    override fun draw(canvas: Any, velocity: Double) {
         if (!itemModel.isPickedUp) {
             itemModel.x -= velocity
             (canvas as Canvas).drawBitmap(

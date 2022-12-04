@@ -8,8 +8,8 @@ class DoublePointsModel(
     screenWidth: Int,
     height: Int,
     width: Int,
-    x: Int,
-    y: Int
+    x: Double,
+    y: Double
 ) : ItemModel(screenHeight, screenWidth, height, width, x, y) {
     companion object {
         // how long the effect of an item remains is determined by the constant

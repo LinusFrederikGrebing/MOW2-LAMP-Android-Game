@@ -1,14 +1,15 @@
 package de.thm.lampgame.model
 
-import de.thm.lampgame.view.GameView
+import de.thm.lampgame.controller.GameController
+
 
 class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
 
     // player size and starting position
     var charHeight = (0.16 * screenHeight).toInt()
     var charWidth = (0.07 * screenWidth).toInt()
-    var charY = (0.10 * screenWidth).toInt()
-    var charX = (0.15 * screenWidth).toInt()
+    var charY = (0.10 * screenWidth)
+    var charX = (0.15 * screenWidth)
 
     var points: Double = 0.0
     var fire: Float = 100F
@@ -63,14 +64,13 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
 
     // the points are the equivalent of meters and can be temporarily doubled by an item
     fun calkPoints(addPts: Double) {
-        points += if (hasDblPts) (addPts * 2.0)
-        else addPts
+        points += (if (hasDblPts) (addPts * 2.0) else addPts)*0.2
     }
 
-    // decrease player's fire by 0.15F, when it reaches zero, the player dies
+    // decrease player's fire by 0.10F, when it reaches zero, the player dies
     fun calkFire() {
         fire -= 0.10F
-        if (fire <= 0F) GameView.gameover = true
+        if (fire <= 0F) GameController.gameover = true
     }
 
     // character can only jump if there are still jumps left

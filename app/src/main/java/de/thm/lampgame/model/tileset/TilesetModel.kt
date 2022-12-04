@@ -6,7 +6,7 @@ import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
 open class TilesetModel(
-    var startX: Int,
+    var startX: Double,
     private var tilesetNr: Int,
     var width: Int,
     var height: Int
@@ -23,71 +23,71 @@ open class TilesetModel(
     lateinit var torch: ItemController
     // tilesets can also exist without items
     var hasItem = false
-    var itemX = 0
-    var itemY = 0
+    var itemX = 0.0
+    var itemY = 0.0
 
     // sets different item coordinates depending on the tileset id
     private fun setItemSpawnpoint() {
         when (tilesetNr) {
             1 -> {
-                itemX = (0.9 * width).toInt(); itemY = (0.1 * height).toInt()
+                itemX = (0.9 * width); itemY = (0.1 * height)
             }
             2 -> {
-                itemX = (0.55 * width).toInt(); itemY = (0.5 * height).toInt()
+                itemX = (0.55 * width); itemY = (0.5 * height)
             }
             3 -> {
-                itemX = (0.55 * width).toInt(); itemY = (0.6 * height).toInt()
+                itemX = (0.55 * width); itemY = (0.6 * height)
             }
             4 -> {
-                itemX = (0.7 * width).toInt(); itemY = (0.25 * height).toInt()
+                itemX = (0.7 * width); itemY = (0.25 * height)
             }
             5 -> {
-                itemX = (0.15 * width).toInt(); itemY = (0.2 * height).toInt()
+                itemX = (0.15 * width); itemY = (0.2 * height)
             }
             6 -> {
-                itemX = (0.6 * width).toInt(); itemY = (0.6 * height).toInt()
+                itemX = (0.6 * width); itemY = (0.6 * height)
             }
             7 -> {
-                itemX = (0.15 * width).toInt(); itemY = (0.6 * height).toInt()
+                itemX = (0.15 * width); itemY = (0.6 * height)
             }
             8 -> {
-                itemX = (0.65 * width).toInt(); itemY = (0.3 * height).toInt()
+                itemX = (0.65 * width); itemY = (0.3 * height)
             }
             9 -> {
-                itemX = (0.30 * width).toInt(); itemY = (0.5 * height).toInt()
+                itemX = (0.30 * width); itemY = (0.5 * height)
             }
             10 -> {
-                itemX = (0.52 * width).toInt(); itemY = (0.45 * height).toInt()
+                itemX = (0.52 * width); itemY = (0.45 * height)
             }
             11 -> {
-                itemX = (0.6 * width).toInt(); itemY = (0.1 * height).toInt()
+                itemX = (0.6 * width); itemY = (0.1 * height)
             }
             12 -> {
-                itemX = (0.15 * width).toInt(); itemY = (0.6 * height).toInt()
+                itemX = (0.15 * width); itemY = (0.6 * height)
             }
             13 -> {
-                itemX = (0.65 * width).toInt(); itemY = (0.3 * height).toInt()
+                itemX = (0.65 * width); itemY = (0.3 * height)
             }
             14 -> {
-                itemX = (0.30 * width).toInt(); itemY = (0.5 * height).toInt()
+                itemX = (0.30 * width); itemY = (0.5 * height)
             }
             15 -> {
-                itemX = (0.52 * width).toInt(); itemY = (0.45 * height).toInt()
+                itemX = (0.52 * width); itemY = (0.45 * height)
             }
             16 -> {
-                itemX = (0.60 * width).toInt(); itemY = (0.5 * height).toInt()
+                itemX = (0.60 * width); itemY = (0.5 * height)
             }
             17 -> {
-                itemX = 0; itemY = (0.5 * height).toInt()
+                itemX = 0.0; itemY = (0.5 * height)
             }
             18 -> {
-                itemX = width; itemY = (0.1 * height).toInt()
+                itemX = width.toDouble(); itemY = (0.1 * height)
             }
             19 -> {
-                itemX = (0.7 * width).toInt(); itemY = (0.5 * height).toInt()
+                itemX = (0.7 * width); itemY = (0.5 * height)
             }
             20 -> {
-                itemX = (0.5 * width).toInt(); itemY = (0.6 * height).toInt()
+                itemX = (0.5 * width); itemY = (0.6 * height)
             }
             else -> println("Error Torch Spawn Point")
         }
@@ -125,8 +125,8 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.9 * height).toInt(),
+                        0.0,
+                        (0.9 * height),
                         false
                     )
                 )
@@ -137,16 +137,16 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.60 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.20 * width).toInt(),
-                        (0.45 * height).toInt(),
+                        (0.20 * width),
+                        (0.45 * height),
                         false
                     )
                 )
@@ -157,16 +157,16 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.15 * width).toInt(),
                         height,
-                        (0.5 * width).toInt(),
-                        height,
+                        (0.5 * width),
+                        height.toDouble(),
                         true
                     )
                 )
@@ -177,24 +177,24 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.30 * width).toInt(),
-                        (0.65 * height).toInt(),
+                        (0.30 * width),
+                        (0.65 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.9 * width).toInt(),
-                        (0.55 * height).toInt(),
+                        (0.9 * width),
+                        (0.55 * height),
                         false
                     )
                 )
@@ -205,16 +205,16 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.50 * width).toInt(),
-                        (0.65 * height).toInt(),
+                        (0.50 * width),
+                        (0.65 * height),
                         false
                     )
                 )
@@ -225,24 +225,24 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.40 * width).toInt(),
-                        (0.55 * height).toInt(),
+                        (0.40 * width),
+                        (0.55 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.75 * width).toInt(),
-                        (0.65 * height).toInt(),
+                        (0.75 * width),
+                        (0.65 * height),
                         false
                     )
                 )
@@ -253,16 +253,16 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.SAW,
                         width,
                         height,
-                        width,
-                        (0.63 * height).toInt(),
+                        width.toDouble(),
+                        (0.63 * height),
                         true
                     )
                 )
@@ -273,16 +273,16 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.BOUNCINGSAW,
                         width,
                         height,
-                        (0.5 * width).toInt(),
-                        (0.63 * height).toInt(),
+                        (0.5 * width),
+                        (0.63 * height),
                         true
                     )
                 )
@@ -293,32 +293,32 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.60 * width).toInt(),
-                        (0.45 * height).toInt(),
+                        (0.60 * width),
+                        (0.45 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.10 * width).toInt(),
-                        (0.45 * height).toInt(),
+                        (0.10 * width),
+                        (0.45 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.10 * width).toInt(),
                         height,
-                        (0.10 * width).toInt(),
-                        height,
+                        (0.10 * width),
+                        height.toDouble(),
                         true
                     )
                 )
@@ -329,16 +329,16 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.SAW,
                         width,
                         height,
-                        width,
-                        (0.33 * height).toInt(),
+                        width.toDouble(),
+                        (0.33 * height),
                         true
                     )
                 )
@@ -349,24 +349,24 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.20 * width).toInt(),
-                        (0.65 * height).toInt(),
+                        (0.20 * width),
+                        (0.65 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.60 * width).toInt(),
-                        (0.45 * height).toInt(),
+                        (0.60 * width),
+                        (0.45 * height),
                         false
                     ),
                 )
@@ -377,64 +377,64 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.25 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.1 * width).toInt(),
-                        (0.65 * height).toInt(),
+                        (0.1 * width),
+                        (0.65 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.25 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.40 * width).toInt(),
-                        (0.45 * height).toInt(),
+                        (0.40 * width),
+                        (0.45 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.25 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.70 * width).toInt(),
-                        (0.25 * height).toInt(),
+                        (0.70 * width),
+                        (0.25 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.267 * width).toInt(),
                         height,
-                        (0.1 * width).toInt(),
-                        height,
+                        (0.1 * width),
+                        height.toDouble(),
                         true
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.267 * width).toInt(),
                         height,
-                        (0.3 * width).toInt(),
-                        height,
+                        (0.3 * width),
+                        height.toDouble(),
                         true
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.267 * width).toInt(),
                         height,
-                        (0.5 * width).toInt(),
-                        height,
+                        (0.5 * width),
+                        height.toDouble(),
                         true
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.267 * width).toInt(),
                         height,
-                        (0.7 * width).toInt(),
-                        height,
+                        (0.7 * width),
+                        height.toDouble(),
                         true
                     )
                 )
@@ -445,24 +445,24 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.80 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.20 * width).toInt(),
-                        (0.15 * height).toInt(),
+                        (0.20 * width),
+                        (0.15 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.45 * width).toInt(),
-                        (0.70 * height).toInt(),
+                        (0.45 * width),
+                        (0.70 * height),
                         false
                     ),
                 )
@@ -473,16 +473,16 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.45 * width).toInt(),
-                        (0.55 * height).toInt(),
+                        (0.45 * width),
+                        (0.55 * height),
                         false
                     ),
                 )
@@ -493,24 +493,24 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.10 * width).toInt(),
                         height,
-                        (0.1 * width).toInt(),
-                        height,
+                        (0.1 * width),
+                        height.toDouble(),
                         true
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.10 * width).toInt(),
                         height,
-                        (0.7 * width).toInt(),
-                        height,
+                        (0.7 * width),
+                        height.toDouble(),
                         true
                     )
                 )
@@ -521,16 +521,16 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.30 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.20 * width).toInt(),
-                        (0.45 * height).toInt(),
+                        (0.20 * width),
+                        (0.45 * height),
                         false
                     ),
 
@@ -538,8 +538,8 @@ open class TilesetModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.7 * width).toInt(),
-                        (0.55 * height).toInt(),
+                        (0.7 * width),
+                        (0.55 * height),
                         false
                     ),
                 )
@@ -550,24 +550,24 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.7 * width).toInt(),
-                        (0.65 * height).toInt(),
+                        (0.7 * width),
+                        (0.65 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.5 * width).toInt(),
-                        (0.55 * height).toInt(),
+                        (0.5 * width),
+                        (0.55 * height),
                         false
                     ),
                 )
@@ -578,24 +578,24 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.2 * width).toInt(),
-                        (0.5 * height).toInt(),
+                        (0.2 * width),
+                        (0.5 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.1 * width).toInt(),
                         height,
-                        (0.5 * width).toInt(),
-                        height,
+                        (0.5 * width),
+                        height.toDouble(),
                         false
                     )
                 )
@@ -606,32 +606,32 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TUBE,
                         width,
                         height,
-                        (0.2 * width).toInt(),
-                        (0.45 * height).toInt(),
+                        (0.2 * width),
+                        (0.45 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.13 * width).toInt(),
                         height,
-                        (0.5 * width).toInt(),
-                        height,
+                        (0.5 * width),
+                        height.toDouble(),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.TERRAIN,
                         (0.1 * width).toInt(),
                         (0.1 * height).toInt(),
-                        (0.9 * width).toInt(),
-                        (0.5 * height).toInt(),
+                        (0.9 * width),
+                        (0.5 * height),
                         false
                     )
                 )
@@ -642,40 +642,40 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.03 * width).toInt(),
                         height,
-                        (0.1 * width).toInt(),
-                        height,
+                        (0.1 * width),
+                        height.toDouble(),
                         true
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.03 * width).toInt(),
                         height,
-                        (0.35 * width).toInt(),
-                        height,
+                        (0.35 * width),
+                        height.toDouble(),
                         true
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.03 * width).toInt(),
                         height,
-                        (0.60 * width).toInt(),
-                        height,
+                        (0.60 * width),
+                        height.toDouble(),
                         true
                     ),
                     ObstacleModel(
                         ObstacleNames.WATER,
                         (0.03 * width).toInt(),
                         height,
-                        (0.85 * width).toInt(),
-                        height,
+                        (0.85 * width),
+                        height.toDouble(),
                         true
                     )
                 )
@@ -686,24 +686,24 @@ open class TilesetModel(
                         ObstacleNames.GROUND,
                         width,
                         height,
-                        0,
-                        (0.90 * height).toInt(),
+                        0.0,
+                        (0.90 * height),
                         false
                     ),
                     ObstacleModel(
                         ObstacleNames.SAW,
                         width,
                         height,
-                        width,
-                        (0.63 * height).toInt(),
+                        width.toDouble(),
+                        (0.63 * height),
                         true
                     ),
                     ObstacleModel(
                         ObstacleNames.BOUNCINGSAW,
                         width,
                         height,
-                        (0.8 * width).toInt(),
-                        (0.63 * height).toInt(),
+                        (0.8 * width),
+                        (0.63 * height),
                         true
                     )
                 )
@@ -712,12 +712,12 @@ open class TilesetModel(
         }
     }
 
-    fun placeTileset(startPos: Int) {
+    fun placeTileset(startPos: Double) {
         startX = startPos
         setItemSpawnpoint()
     }
 
-    fun drawTileset(terrainVelocity: Int) {
+    fun drawTileset(terrainVelocity: Double) {
         startX -= terrainVelocity
     }
 }

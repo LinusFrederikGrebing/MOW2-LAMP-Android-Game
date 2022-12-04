@@ -53,14 +53,12 @@ class MarsLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int) :
     // with the last one usually showing the lowest speed
     override fun drawMap(
         canvas: Canvas,
-        speedBack: Double,
-        speedMiddle: Double,
-        speedFront: Double
+        velocity: Double,
     ) {
         // draw each layer with the corresponding speed
         drawMapBackWithoutChanges(canvas, background)
-        drawMapMiddle(canvas, speedMiddle, middle)
-        drawMapFront(canvas, speedFront, front)
+        drawMapMiddle(canvas, velocity*0.02, middle)
+        drawMapFront(canvas, velocity*0.03, front)
     }
 }
 

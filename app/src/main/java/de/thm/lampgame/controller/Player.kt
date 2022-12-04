@@ -99,8 +99,10 @@ class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatA
 
     // plays a short jump music
     fun groundJumping(context: Context) {
-        val mp: MediaPlayer = MediaPlayer.create(context, R.raw.jump_sound)
-        mp.start()
+        if(playerModel.jumpCount < playerModel.maxJump) {
+            val mp: MediaPlayer = MediaPlayer.create(context, R.raw.jump_sound)
+            mp.start()
+        }
     }
 
     // draws everything important related to the character and calculates values like the current points or the current fire

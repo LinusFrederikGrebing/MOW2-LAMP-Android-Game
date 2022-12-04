@@ -8,8 +8,8 @@ class ImmortalityModel(
     screenWidth: Int,
     height: Int,
     width: Int,
-    x: Int,
-    y: Int
+    x: Double,
+    y: Double
 ) : ItemModel(screenHeight, screenWidth, height, width, x, y) {
 
     companion object {

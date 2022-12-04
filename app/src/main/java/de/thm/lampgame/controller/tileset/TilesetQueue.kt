@@ -16,7 +16,7 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
                 Tileset(
                     i,
                     context,
-                    screenWidth,
+                    screenWidth.toDouble(),
                     screenWidth,
                     screenHeight
                 )
@@ -28,14 +28,14 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
             Tileset(
                 0,
                 context,
-                0,
+                0.0,
                 screenWidth,
                 screenHeight
             ),
             Tileset(
                 (1..tilesetQueueModel.possibleTilesetCount).random(),
                 context,
-                screenWidth,
+                screenWidth.toDouble(),
                 screenWidth,
                 screenHeight
             )
@@ -43,7 +43,7 @@ class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {
         )
     }
 
-    fun drawTilesetsAndCheckCollisions(canvas: Canvas, velocity: Int, player: Player) {
+    fun drawTilesetsAndCheckCollisions(canvas: Canvas, velocity: Double, player: Player) {
         tilesetQueueModel.iterate()
 
         // draw the item if the tileset has one and check if the player picked up the item

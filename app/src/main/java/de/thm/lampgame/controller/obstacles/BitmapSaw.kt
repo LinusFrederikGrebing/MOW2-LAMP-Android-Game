@@ -9,7 +9,7 @@ import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
 
-class BitmapSaw(context: Context, width: Int, height: Int, x: Int, y: Int) : ObstacleController() {
+class BitmapSaw(context: Context, width: Int, height: Int, x: Double, y: Double) : ObstacleController() {
     // creates the associated model
     override var obstacleModel = ObstacleModel(
         ObstacleNames.SAW,
@@ -38,7 +38,7 @@ class BitmapSaw(context: Context, width: Int, height: Int, x: Int, y: Int) : Obs
 
     // change the x coordinate by the given velocity value and draw the obstacle
     // -> get the required data from the associated model
-    override fun draw(canvas: Any, velocityX: Int, velocityY: Int) {
+    override fun draw(canvas: Any, velocityX: Double, velocityY: Double) {
         obstacleModel.changeableX -= (velocityX * 1.5).toInt()
         (canvas as Canvas).drawBitmap(
             obstacleModel.bmp as Bitmap,

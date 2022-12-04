@@ -3,7 +3,7 @@ package de.thm.lampgame.model.item
 import de.thm.lampgame.R
 import de.thm.lampgame.controller.Player
 
-class BonusJumpModel(screenHeight: Int, screenWidth: Int, height: Int, width: Int, x: Int, y: Int) :
+class BonusJumpModel(screenHeight: Int, screenWidth: Int, height: Int, width: Int, x: Double, y: Double) :
     ItemModel(screenHeight, screenWidth, height, width, x, y) {
 
     companion object {

@@ -7,8 +7,8 @@ abstract class ItemModel(
     val screenWidth: Int,
     val width: Int,
     val height: Int,
-    var x: Int,
-    var y: Int
+    var x: Double,
+    var y: Double
 ) {
     var isPickedUp = false
     lateinit var unsizedBmp: Any

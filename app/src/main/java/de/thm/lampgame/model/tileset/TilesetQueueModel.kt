@@ -3,7 +3,7 @@ package de.thm.lampgame.model.tileset
 import de.thm.lampgame.controller.Player
 import de.thm.lampgame.controller.obstacles.ObstacleController
 import de.thm.lampgame.controller.tileset.Tileset
-import de.thm.lampgame.view.GameView
+import de.thm.lampgame.controller.GameController
 
 open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     var queue = ArrayDeque<Tileset>(2)       //the queue consists of 2 tilesets
@@ -19,7 +19,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         // each tileset is the width of the device
         // the first tileset starts at x = 0
         queue.first().tilesetModel.obstacles.forEach {
-            it.obstacleModel.changeableX += 0
+            it.obstacleModel.changeableX += 0.0
         }
         // the second tileset starts at x = screenWidth
         queue.last().tilesetModel.obstacles.forEach {
@@ -46,7 +46,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         }
     }
 
-    private fun insertTileset(startX: Int, t: Tileset) {
+    private fun insertTileset(startX: Double, t: Tileset) {
         // reset the coordinates of the old tileset
         queue.first().tilesetModel.obstacles.forEach {
             it.obstacleModel.changeableX = it.obstacleModel.x
@@ -106,11 +106,11 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     // Case 2: obstacle x is not a death tileset, the player touches the tileset from above
     // Case 3: Obstacle x is not a death Tileset, the player is touching the tileset from below
 
-    private fun setCollisionResult(death: Boolean, obstacleY: Int, playerY: Int, player: Player) {
+    private fun setCollisionResult(death: Boolean, obstacleY: Double, playerY: Double, player: Player) {
         // case 1
         if (death) {
             if (!player.playerModel.immortal) {         // checks if the player has immortality status or not
-                GameView.gameover = true
+                GameController.gameover = true
             }
         }
         // case 2
@@ -122,7 +122,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         // case 3
         else {
             if (!player.playerModel.immortal) {
-                GameView.gameover = true
+                GameController.gameover = true
             }
         }
     }

@@ -8,7 +8,7 @@ import de.thm.lampgame.R
 import de.thm.lampgame.model.obstacles.ObstacleModel
 import de.thm.lampgame.model.obstacles.ObstacleNames
 
-class BitmapTube(context: Context, width: Int, height: Int, x: Int, y: Int) : ObstacleController() {
+class BitmapTube(context: Context, width: Int, height: Int, x: Double, y: Double) : ObstacleController() {
     // creates the associated model
     override var obstacleModel = ObstacleModel(
         ObstacleNames.TUBE,
@@ -37,7 +37,7 @@ class BitmapTube(context: Context, width: Int, height: Int, x: Int, y: Int) : Ob
 
     // change the x coordinate by the given velocity value and draw the obstacle
     // -> get the required data from the associated model
-    override fun draw(canvas: Any, velocityX: Int, velocityY: Int) {
+    override fun draw(canvas: Any, velocityX: Double, velocityY: Double) {
         obstacleModel.changeableX -= velocityX
         (canvas as Canvas).drawBitmap(
             obstacleModel.bmp as Bitmap,

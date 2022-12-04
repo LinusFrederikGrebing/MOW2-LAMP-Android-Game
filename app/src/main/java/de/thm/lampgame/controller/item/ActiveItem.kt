@@ -13,7 +13,7 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
     // Depending on the item duration, the item progress bar must run at different speeds
     private var speed: Float = (360 / itemDuration.toFloat())
    // proportion describes the current proportion of the circle
-    var proportion: Float = resetProportion()
+    var proportion: Float = 360F
 
     // for the background arc, the color is set to white and the object texture is determined by the texture parameter
     init {
@@ -22,9 +22,10 @@ class ActiveItem(val context: Context, val screenWidth: Int, val screenHeight: I
         bmp = Bitmap.createScaledBitmap(unsizedBmp, screenHeight / 9, screenHeight / 9, true)
     }
 
-    fun resetProportion(): Float {
-        return 360F
+    fun resetProportion() {
+        proportion = 360F
     }
+
     // draws the item
     // newPosition represents a changed position on the x-axis and is set upon ActiveItem initialization
     fun drawItem(canvas: Canvas) {

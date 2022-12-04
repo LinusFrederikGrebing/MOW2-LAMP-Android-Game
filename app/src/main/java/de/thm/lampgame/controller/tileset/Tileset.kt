@@ -13,7 +13,7 @@ import de.thm.lampgame.model.tileset.TilesetModel
 class Tileset(
     tileset: Int,
     val context: Context,
-    startX: Int,
+    startX: Double,
     val screenWidth: Int,
     val screenHeight: Int
 ) {

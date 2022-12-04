@@ -52,14 +52,12 @@ class CemeteryLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
     // with the last one usually showing the lowest speed
     override fun drawMap(
         canvas: Canvas,
-        speedBack: Double,
-        speedMiddle: Double,
-        speedFront: Double
+        velocity: Double,
     ) {
         // draw each layer with the corresponding speed
-        drawMapBack(canvas, speedBack, background)
-        drawMapMiddle(canvas, speedMiddle, middle)
-        drawMapFront(canvas, speedFront, front)
+        drawMapBack(canvas, velocity*0.01, background)
+        drawMapMiddle(canvas, velocity*0.02, middle)
+        drawMapFront(canvas, velocity*0.03, front)
     }
 }
 

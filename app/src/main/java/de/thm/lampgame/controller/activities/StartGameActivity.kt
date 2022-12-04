@@ -36,7 +36,6 @@ class StartGameActivity : AppCompatActivity() {
 
         // start the music player and set the game status to ture
         mediaPlayer?.start()
-        gameView?.gameStatus = true
     }
 
     override fun onPause() {
@@ -46,7 +45,7 @@ class StartGameActivity : AppCompatActivity() {
         length = mediaPlayer?.currentPosition
 
         // if the game is paused without setting the gameState to false, start the PauseActivity
-        if (gameView?.gameStatus == true) {
+        if (gameView?.gameController?.gameStatus == true) {
             val intent = Intent(this, PauseActivity::class.java)
             startActivity(intent)
         }
