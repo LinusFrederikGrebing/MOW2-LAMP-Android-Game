@@ -45,7 +45,7 @@ class GameOverActivity : AppCompatActivity() {
         }
     }
 
-    // play the short gameover music sequence
+    // play the short gameOver music sequence
     private fun playDeathSound(){
         val mp: MediaPlayer = MediaPlayer.create(this, R.raw.death_sound)
         mp.start()
@@ -54,7 +54,7 @@ class GameOverActivity : AppCompatActivity() {
     fun restart(view: View) {
         // for the loading screen
         setContentView(R.layout.loadingscreenlayout)
-        val tipView: TextView = findViewById(R.id.textViewTipp)
+        val tipView: TextView = findViewById(R.id.textViewTip)
         tipView.text = loadingScreenHelper.getLoadingScreenText(this)
 
         // restart the game
@@ -71,7 +71,7 @@ class GameOverActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        // save the player conis when leaving the gameover activity
+        // save the player torches when leaving the gameOver activity
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
         editor.putInt("coins", PlayerModel.torches)

@@ -31,7 +31,7 @@ class SettingsActivity : AppCompatActivity() {
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
         val curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-        val volControl = findViewById<View>(R.id.volbar) as SeekBar
+        val volControl = findViewById<View>(R.id.volumebar) as SeekBar
         volControl.max = maxVolume
         volControl.progress = curVolume
         volControl.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {

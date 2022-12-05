@@ -11,7 +11,7 @@ class BonusJumpModel(screenHeight: Int, screenWidth: Int, height: Int, width: In
         const val bonusJumpDuration = 250
         var dblJumpDur = 0
         // each item has a texture, the texture is used to draw the item or to draw an image in the form of the active item
-        var textur =  R.drawable.bonusjump_icon
+        var texture =  R.drawable.bonusjump_icon
     }
 
     // if an object is created from the item, it must be ensured that the item is not still active

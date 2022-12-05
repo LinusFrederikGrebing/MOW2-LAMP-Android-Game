@@ -28,14 +28,13 @@ class GameController(val context: Context) {
 
     // the game should also be able to get the game-over status from other classes, such as the TilesetQueueModel
     companion object {
-        var gameover = false
+        var gameOver = false
     }
 
     init {
         // if the game starts or is restarted, the game-over status must be set to false
-        gameover = false
+        gameOver = false
         gameStatus = true
-
 
         screenWidth = Resources.getSystem().displayMetrics.widthPixels
         screenHeight = Resources.getSystem().displayMetrics.heightPixels
@@ -79,14 +78,14 @@ class GameController(val context: Context) {
             player.drawPlayer(canvas, velocity, tilesetQueue.tilesetQueueModel.collision)
 
             // check if the game is lost yet
-            if (gameover) {
+            if (gameOver) {
                 gameOver()
             }
 
         }
     }
         // Start GameOver Activity
-        fun gameOver() {
+        private fun gameOver() {
             gameStatus = false
             val intent = Intent(context, GameOverActivity::class.java)
             intent.putExtra("POINTS", player.playerModel.points.roundToInt())

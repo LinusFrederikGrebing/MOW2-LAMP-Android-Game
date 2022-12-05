@@ -30,7 +30,7 @@ class ChristmasLandscapeMap(context: Context, screenHeight: Int, screenWidth: In
         BitmapGround.texture = R.drawable.christmas_ground
         BitmapTerrain.texture = R.drawable.christmas_platform
         BitmapWater.texture = R.drawable.water_ground_dark
-        BitmapTube.texture = R.drawable.christmas_wall2
+        BitmapTube.texture = R.drawable.christmas_wall
         BitmapSaw.texture = R.drawable.water_projectile
         BitmapBouncingSaw.texture = R.drawable.water_bouncing_projectile
         // initializes all layers of the map with their bitmaps

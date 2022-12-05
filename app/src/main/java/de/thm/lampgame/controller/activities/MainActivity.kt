@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mainmenu)
         // overwrite everything with the saved data
-        getAndSetPersistedCoinsAndHighscoreData()
+        getAndSetPersistedTorchesAndHighscoreData()
         getAndSetPersistedShopItemData()
 
     }
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         localHelper.getAndSetPersistedLanguageData(this)
     }
 
-    private fun getAndSetPersistedCoinsAndHighscoreData() {
+    private fun getAndSetPersistedTorchesAndHighscoreData() {
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val playerTorches = findViewById<TextView>(R.id.playertorchestv)
         val viewHighscore: TextView = findViewById(R.id.highscore)
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getAndSetPersistedShopItemData() {
-        // check which value for the attributes buystatus and active is saved for the respective item in the shared preferences, if no value was saved, take the default value from the database
+        // check which value for the attributes buyStatus and active is saved for the respective item in the shared preferences, if no value was saved, take the default value from the database
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         Database.listOfMusic.forEach {
             it.itemInfo.buyStatus = settings.getBoolean(
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     fun startGame(view: View?) {
         // for the loading screen
         setContentView(R.layout.loadingscreenlayout)
-        val tipView: TextView = findViewById(R.id.textViewTipp)
+        val tipView: TextView = findViewById(R.id.textViewTip)
         tipView.text = loadingScreenHelper.getLoadingScreenText(this)
 
         // start the game

@@ -70,7 +70,7 @@ class PlayerModel(val screenWidth: Int, val screenHeight: Int) {
     // decrease player's fire by 0.10F, when it reaches zero, the player dies
     fun calkFire() {
         fire -= 0.10F
-        if (fire <= 0F) GameController.gameover = true
+        if (fire <= 0F) GameController.gameOver = true
     }
 
     // character can only jump if there are still jumps left

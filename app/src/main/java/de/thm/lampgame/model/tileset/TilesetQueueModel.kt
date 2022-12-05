@@ -10,7 +10,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
     var tilesetList = ArrayList<Tileset>()     // list in which all tileset variations are stored
     val possibleTilesetCount = 20      // possible variations of different tilesets
     var collision = false
-    var iterations = 0
+    private var iterations = 0
     private var nextTilesetHasTorch = false
 
     fun initQueue(t1: Tileset, t2: Tileset) {
@@ -110,7 +110,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         // case 1
         if (death) {
             if (!player.playerModel.immortal) {         // checks if the player has immortality status or not
-                GameController.gameover = true
+                GameController.gameOver = true
             }
         }
         // case 2
@@ -122,7 +122,7 @@ open class TilesetQueueModel(val screenWidth: Int, val screenHeight: Int) {
         // case 3
         else {
             if (!player.playerModel.immortal) {
-                GameController.gameover = true
+                GameController.gameOver = true
             }
         }
     }

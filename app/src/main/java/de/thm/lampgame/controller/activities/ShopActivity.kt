@@ -68,7 +68,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         shop = 3
         ItemsAdapter.itemList = Database.getItemsMusic()
         inflateList()
-        // sets the player's current coins
+        // sets the player's current torches
         setPlayerTorchesTextView()
     }
 
@@ -96,7 +96,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         // depending on which shop is active, different item lists are run through
         when (shop) {
             1 -> Database.listOfMaps.forEach {
-                // if the name of the item in the list position matches the name of the clicked item and the player has enough coins available, the item will be bought.
+                // if the name of the item in the list position matches the name of the clicked item and the player has enough torches available, the item will be bought.
                 // The MapIdentifier in combination with the attribute name results in the identifier for the SharedPreferences, in which the new status of the item is entered
                 if (locked.text == it.itemInfo.name && PlayerModel.torches >= it.itemInfo.price.toInt()) {
                     PlayerModel.torches -= it.itemInfo.price.toInt()
@@ -178,7 +178,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
         ).show()
     }
 
-    // sets the player's current coins
+    // sets the player's current torches
     private fun setPlayerTorchesTextView() {
         val playerTorches = findViewById<TextView>(R.id.playertorchestv)
         playerTorches.text = PlayerModel.torches.toString()
@@ -194,7 +194,7 @@ class ShopActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener {
 
     override fun onPause() {
         super.onPause()
-        // when the shop is exited, the player's new coins should be saved
+        // when the shop is exited, the player's new torches should be saved
         val settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE)
         val editor = settings.edit()
         editor.putInt("coins", PlayerModel.torches)

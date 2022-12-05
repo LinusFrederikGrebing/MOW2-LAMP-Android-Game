@@ -9,7 +9,6 @@
 
 
     <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gifImageView2"
         android:layout_width="72dp"
         android:layout_height="71dp"
         android:layout_centerVertical="true"
@@ -24,7 +23,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textViewTipp"
+        android:id="@+id/textViewTip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

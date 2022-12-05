@@ -7,7 +7,7 @@ import de.thm.lampgame.model.shop.MusicInterface
 
 class BackgroundMusicPasswordInfinity {
     companion object : MusicInterface {
-        // all information about the associated musik, such as the name or status, is stored in the itemInfo attribute
+        // all information about the associated music, such as the name or status, is stored in the itemInfo attribute
         override var itemInfo = Database.musicPasswordInfinityInfo
         override val song =
             R.raw.backgroundmusic_password_infinity
