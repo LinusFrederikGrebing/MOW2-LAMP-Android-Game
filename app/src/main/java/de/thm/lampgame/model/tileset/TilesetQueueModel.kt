@@ -1,6 +1,6 @@
 package de.thm.lampgame.model.tileset
 
-import de.thm.lampgame.controller.Player
+import de.thm.lampgame.controller.player.Player
 import de.thm.lampgame.controller.obstacles.ObstacleController
 import de.thm.lampgame.controller.tileset.Tileset
 import de.thm.lampgame.controller.GameController

@@ -1,4 +1,4 @@
-package de.thm.lampgame.controller
+package de.thm.lampgame.controller.player
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import de.thm.lampgame.R
 import de.thm.lampgame.model.PlayerModel
 import de.thm.lampgame.model.shop.Database
-import de.thm.lampgame.view.player.DrawFirebar
 
 class Player(context: Context, screenHeight: Int, screenWidth: Int) : AppCompatActivity() {
     // creates the associated model

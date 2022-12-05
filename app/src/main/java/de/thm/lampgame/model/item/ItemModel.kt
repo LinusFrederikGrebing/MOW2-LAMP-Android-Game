@@ -1,6 +1,6 @@
 package de.thm.lampgame.model.item
 
-import de.thm.lampgame.controller.Player
+import de.thm.lampgame.controller.player.Player
 
 abstract class ItemModel(
     val screenHeight: Int,
@@ -30,7 +30,7 @@ abstract class ItemModel(
                  }
              }
 
-             //TODO Delete Code if not required anymore
+             // old version of the code above, more elegant but discarded so that the code can be translated by S = K
              /*
                val playerHitbox = Rect(
                  p.playerModel.charX,

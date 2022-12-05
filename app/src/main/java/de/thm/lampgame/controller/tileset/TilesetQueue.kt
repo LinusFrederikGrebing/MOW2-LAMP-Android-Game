@@ -2,7 +2,7 @@ package de.thm.lampgame.controller.tileset
 
 import android.content.Context
 import android.graphics.Canvas
-import de.thm.lampgame.controller.Player
+import de.thm.lampgame.controller.player.Player
 import de.thm.lampgame.model.tileset.TilesetQueueModel
 
 class TilesetQueue(context: Context, screenWidth: Int, screenHeight: Int) {

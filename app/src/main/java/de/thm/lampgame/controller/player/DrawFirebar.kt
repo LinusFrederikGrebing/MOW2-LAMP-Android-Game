@@ -1,4 +1,4 @@
-package de.thm.lampgame.view.player
+package de.thm.lampgame.controller.player
 
 import android.graphics.*
 

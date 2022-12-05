@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import de.thm.lampgame.controller.Player
+import de.thm.lampgame.controller.player.Player
 import de.thm.lampgame.model.item.BonusJumpModel
 import de.thm.lampgame.model.item.DoublePointsModel
 import de.thm.lampgame.model.item.ImmortalityModel

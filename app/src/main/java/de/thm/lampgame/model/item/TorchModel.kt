@@ -1,6 +1,6 @@
 package de.thm.lampgame.model.item
 
-import de.thm.lampgame.controller.Player
+import de.thm.lampgame.controller.player.Player
 
 class TorchModel(screenHeight: Int, screenWidth: Int, height: Int, width: Int, x: Double, y: Double) :
     ItemModel(screenHeight, screenWidth, height, width, x, y) {

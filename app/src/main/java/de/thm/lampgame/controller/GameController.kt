@@ -15,8 +15,8 @@ import de.thm.lampgame.controller.item.ActiveItemController
 import de.thm.lampgame.controller.maps.MapController
 import de.thm.lampgame.controller.tileset.TilesetQueue
 import de.thm.lampgame.model.shop.Database
-import de.thm.lampgame.view.PauseButton
-import de.thm.lampgame.view.player.DrawTorchCount
+import de.thm.lampgame.controller.player.DrawTorchCount
+import de.thm.lampgame.controller.player.Player
 import kotlin.math.roundToInt
 
 class GameController(val context: Context) {
