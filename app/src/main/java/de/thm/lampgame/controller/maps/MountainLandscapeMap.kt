@@ -56,10 +56,10 @@ class MountainLandscapeMap(context: Context, screenHeight: Int, screenWidth: Int
         velocity: Double,
     ) {
         // draw each layer with the corresponding speed
-        drawMapBack(canvas, velocity*0.01, background)
-        drawMapMiddle(canvas, velocity*0.02, middle)
-        drawMapFront(canvas, velocity*0.03, front)
-    }
+        drawMapBack(canvas, velocity*0.03, background)
+        drawMapMiddle(canvas, velocity*0.06, middle)
+        drawMapFront(canvas, velocity*0.09, front)
+      }
 }
 
 
